@@ -1,7 +1,7 @@
 <? require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php"); ?>
 <?
 require_once("vendor/autoload.php");
-require (__DIR__ . "/config.php");  // настройки и константы
+require(__DIR__ . "/config.php");  // настройки и константы
 
 use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
@@ -461,9 +461,6 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 //	print_r($arPropertyFields);
 //	echo "</pre>";
 
-
-	// Исключаем бренд, запишем его в свойство ПРОИЗВОДИТЕЛЬ - ЭТО СПРАВОЧНИК!
-
 	if (!in_array($arPropertyFields["CODE"], $allSkuPropertiesCodesArray)) {
 		if ($arPropertyFields["CODE"] !== "BREND") {
 			$newProperty = new CIBlockProperty;
@@ -600,13 +597,13 @@ foreach ($resultArray as $key => $item) {
 
 	$offerPrice = 0;
 
-	$morePhotoArray = []; // Массив дополнительных картинок
+	$morePhotoArray = []; // Массив дополнительных картинок товара
 
 	$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
 
 	$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
 
-	$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; //ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
+	$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
 
 	$obElement = new CIBlockElement;
 
@@ -633,10 +630,6 @@ foreach ($resultArray as $key => $item) {
 	];
 
 //	echo "<pre>";
-//	echo $item[0]["ATTRIBUTES"]["Бренд"] . '<br>';
-//	echo "</pre>";
-
-//	echo "<pre>";
 //	print_r($itemFieldsArray);
 //	echo "</pre>";
 
@@ -657,11 +650,6 @@ foreach ($resultArray as $key => $item) {
 		CIBlockElement::SetPropertyValuesEx($productId, $IBlockCatalogId, array("MANUFACTURER" => $manXmlId));
 
 		foreach ($item as $k => $offer) {
-//			echo "<pre>";
-//		print_r($offer['ATTRIBUTES']['Размер']);
-//		print_r($valueIdPairsArray[$offer['ATTRIBUTES']['Размер']]);
-//		print_r($valueIdPairsArray);
-//			echo "</pre>";
 
 			$obElement = new CIBlockElement();
 

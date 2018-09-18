@@ -11,4 +11,5 @@ define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
 define('SAVE_FILE', __DIR__ . "/save/parser_dump.php");
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
+
 ?>
