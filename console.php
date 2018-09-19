@@ -694,6 +694,9 @@ foreach ($resultArray as $key => $item) {
 				if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
 					throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
 				}
+
+				echo "Добавлено торговое предложение " . $catalogProductAddResult . PHP_EOL;
+
 			} else {
 				throw new Exception("Ошибка добавления торгового предложения: " . $obElement->LAST_ERROR);
 			}
@@ -713,6 +716,6 @@ $elapsedMemory = (!function_exists('memory_get_usage'))
 	: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
 
 echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
-echo $elapsedMemory;
+echo $elapsedMemory . PHP_EOL;
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
