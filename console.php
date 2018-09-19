@@ -5,7 +5,7 @@ set_time_limit(0);
 ini_set("memory_limit", "1024M");
 
 $_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
-//$_SERVER["DOCUMENT_ROOT"] = realpath(dirname(__FILE__)."/../../");
+
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
 define("LANG", "s1");
