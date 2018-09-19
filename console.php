@@ -431,24 +431,13 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-echo "\nКоличество товаров: " . count($resultArray) . "\n";
-
-//echo "<hr>";
-//echo "<pre>";
-//echo "Название производителя => UF_XML_ID\n";
-//print_r($manValueIdPairsArray);
-//echo "</pre>";
+echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 
 // TODO try-catch на запись элемента
 
-//$resultArray = array_slice($resultArray, 0, 10, true);
-
-//echo "<pre>";
-//print_r($resultArray);
-//echo "</pre>";
-
+$resultArray = array_slice($resultArray, 0, 100, true);
 
 foreach ($resultArray as $key => $item) {
 

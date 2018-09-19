@@ -2,7 +2,7 @@
 
 ini_set('max_execution_time', '2400');
 ini_set('session.gc_maxlifetime', 2400);
-ini_set("memory_limit", "1024M");
+ini_set("memory_limit", "256M");
 set_time_limit(0);
 
 $_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
@@ -16,6 +16,7 @@ define("LANG", "s1");
 define("NO_KEEP_STATISTIC", true);
 define("NOT_CHECK_PERMISSIONS", true);
 define("BX_BUFFER_USED", true);
+define("BX_CLUSTER_GROUP", 2); // Отключает исполнение агентов
 
 define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
 define('SAVE_FILE', __DIR__ . "/save/parser_dump.php");
