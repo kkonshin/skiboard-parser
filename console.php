@@ -1,18 +1,8 @@
 #!/usr/bin/php
 
 <?php
-set_time_limit(0);
-ini_set("memory_limit", "1024M");
 
-$_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
-
-$DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
-
-define("LANG", "s1");
-
-define("NO_KEEP_STATISTIC", true);
-define("NOT_CHECK_PERMISSIONS", true);
-define("BX_BUFFER_USED", true);
+require(__DIR__ . "/config.php");  // настройки и константы
 
 require ($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
@@ -24,7 +14,6 @@ while(ob_get_level()){
 $startExecTime = getmicrotime();
 
 require_once("vendor/autoload.php");
-require(__DIR__ . "/config.php");  // настройки и константы
 
 use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
@@ -181,7 +170,7 @@ function parse()
 if (!is_file(SAVE_FILE)) {
 	$resultArray = parse();
 } else {
-	echo "Данные извлечены из файла сохранения: \n<br>";
+	echo "Данные извлечены из файла сохранения: \n";
 	$resultArray = unserialize(file_get_contents(SAVE_FILE));
 }
 
@@ -196,12 +185,12 @@ if (!is_file(SAVE_FILE)) {
 //);
 //
 //foreach (array_slice($resultArray, 180, 10) as $key => $value){
-//	$unique[] = CUtil::translit($value[0]["NAME"] .  $value[0]["OFFER_ID"], 'ru', $translitParams) . "<br>";
-//	$unique[] = CUtil::translit($value[0]["NAME"] .  $value[0]["ATTRIBUTES"]['Артикул'] . $value[0]["ATTRIBUTES"]['Размер'], 'ru', $translitParams) . "<br>";
-//	echo CUtil::translit($value[0]["NAME"] . ' ' . $value[0]["ATTRIBUTES"]['Артикул'] . ' ' .$value[0]["ATTRIBUTES"]['Размер'], 'ru', $translitParams) . "<br>";
-//	echo $value[0]["NAME"] . ' ' .  $value[0]["OFFER_ID"] . "<br>";
+//	$unique[] = CUtil::translit($value[0]["NAME"] .  $value[0]["OFFER_ID"], 'ru', $translitParams) . "\n";
+//	$unique[] = CUtil::translit($value[0]["NAME"] .  $value[0]["ATTRIBUTES"]['Артикул'] . $value[0]["ATTRIBUTES"]['Размер'], 'ru', $translitParams) . "\n";
+//	echo CUtil::translit($value[0]["NAME"] . ' ' . $value[0]["ATTRIBUTES"]['Артикул'] . ' ' .$value[0]["ATTRIBUTES"]['Размер'], 'ru', $translitParams) . "\n";
+//	echo $value[0]["NAME"] . ' ' .  $value[0]["OFFER_ID"] . "\n";
 //}
-//echo count($unique) . "<br>";
+//echo count($unique) . "\n";
 //echo count(array_unique($unique));
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
@@ -267,7 +256,7 @@ while ($res = $dbRes->GetNext()) {
 }
 
 echo "<pre>";
-echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . "<br>";
+echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . "\n";
 //print_r($sizePropArray);
 echo "</pre>";
 
@@ -323,8 +312,8 @@ if (is_array($sizePropArray) && !empty($sizePropArray)) {
 }
 
 //echo "<pre>";
-//echo count($newSizesArray) + count($sizePropArray) . "<br>";
-//echo "Разница: " . count($newSizesArray) . "<br>";
+//echo count($newSizesArray) + count($sizePropArray) . "\n";
+//echo "Разница: " . count($newSizesArray) . "\n";
 //print_r($newSizesArray);
 //echo "</pre>";
 
@@ -393,7 +382,7 @@ while ($res = $propsResDb->GetNext()) {
 }
 
 //echo "<pre>";
-//echo "Все свойства инфоблока торговых предложений: <br>";
+//echo "Все свойства инфоблока торговых предложений: \n";
 //print_r($allSkuPropertiesArray);
 //echo "</pre>";
 
@@ -402,7 +391,7 @@ while ($res = $propsResDb->GetNext()) {
 foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
 //		echo "<pre>";
-//		echo "Выборка из 10 ТП для отладки, свойства ТП: <br>";
+//		echo "Выборка из 10 ТП для отладки, свойства ТП: \n";
 //		print_r($offer["ATTRIBUTES"]);
 //		echo "</pre>";
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
@@ -415,7 +404,7 @@ foreach ($resultArray as $key => $item) {
 
 
 //echo "<pre>";
-//echo "Все уникальные свойства офферов источника: <br>";
+//echo "Все уникальные свойства офферов источника: \n";
 //print_r($allSourcePropertiesArray);
 //echo "</pre>";
 
@@ -460,7 +449,7 @@ foreach ($allSkuPropertiesArray as $key => $property) {
 
 
 //echo "<pre>";
-//echo "Массив имен свойств ТП: <br>";
+//echo "Массив имен свойств ТП: \n";
 //print_r($allSkuPropertiesCodesArray);
 //echo "</pre>";
 
@@ -483,7 +472,7 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 	];
 
 //	echo "<pre>";
-//	echo "Массив полей свойств ТП: <br>";
+//	echo "Массив полей свойств ТП: \n";
 //	print_r($arPropertyFields);
 //	echo "</pre>";
 
@@ -493,10 +482,10 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 			$newPropertyId = $newProperty->Add($arPropertyFields);
 
 			if ($newPropertyId > 0) {
-				echo "Свойство торговых предложений ID = {$newPropertyId} успешно добавлено <br>";
+				echo "Свойство торговых предложений ID = {$newPropertyId} успешно добавлено \n";
 			}
 		} else {
-			echo "Свойство с символьным кодом {$arPropertyFields['CODE']} уже существует или исключено из записи<br>";
+			echo "Свойство с символьным кодом {$arPropertyFields['CODE']} уже существует или исключено из записи\n";
 		}
 	}
 }
@@ -568,7 +557,7 @@ foreach ($sourceBrandsArray as $brandId => $brand) {
 				"UF_LINK" => "/brands/" . strtolower(CUtil::translit($sourceBrandsArray[$brandId], 'ru', $translitParams)) . "/",
 			]
 		);
-		echo "В справочник добавлен новый производитель ID = " . $result->getId() . "<br>";
+		echo "В справочник добавлен новый производитель ID = " . $result->getId() . "\n";
 	}
 }
 
@@ -601,7 +590,7 @@ foreach ($manufacturerArray as $manId => $man) {
 
 //echo "<hr>";
 //echo "<pre>";
-//echo "Название производителя => UF_XML_ID<br>";
+//echo "Название производителя => UF_XML_ID\n";
 //print_r($manValueIdPairsArray);
 //echo "</pre>";
 
@@ -660,9 +649,9 @@ foreach ($resultArray as $key => $item) {
 //	echo "</pre>";
 
 	if ($productId = $obElement->Add($itemFieldsArray)) {
-		echo "Добавлен товар " . $productId . "<br>";
+		echo "Добавлен товар " . $productId . "\n";
 	} else {
-		echo "Ошибка: " . $obElement->LAST_ERROR . "<br>";
+		echo "Ошибка: " . $obElement->LAST_ERROR . "\n";
 		continue;
 	}
 
@@ -700,7 +689,7 @@ foreach ($resultArray as $key => $item) {
 			}
 
 //			echo "<pre>";
-//			echo "Значения свойств ТП для записи <br>";
+//			echo "Значения свойств ТП для записи \n";
 //			print_r($arOfferProps);
 //			echo "</pre>";
 
