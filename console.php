@@ -2,6 +2,10 @@
 
 <?php
 
+if (php_sapi_name() !== "cli"){
+	die ('Этот скрипт предназначен для запуска из командной строки');
+}
+
 require(__DIR__ . "/config.php");  // настройки и константы
 
 require ($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
@@ -20,10 +24,6 @@ use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
 global $USER;
-
-// Удалить лишнее в конце
-
-// TODO буферизация, сохранение на диск, скачивание по частям?
 
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
@@ -129,7 +129,6 @@ function parse()
 				}
 			}
 		}
-
 
 		// Получим массив уникальных ID родительских товаров
 		foreach ($ta as $key => $value) {
@@ -239,13 +238,6 @@ foreach ($sizePropArray as $key => $value) {
 	$deleteIdArray[] = $value["ID"];
 }
 
-
-//echo "<pre>";
-//echo min($tmpIdArray) . ' - ' . max($tmpIdArray) ;
-//print_r($tmpIdArray);
-//echo "</pre>";
-
-
 // Если массив свойств в базе пуст - загрузим дамп с рабочего
 
 if (count($sizePropArray) === 0) {
@@ -267,23 +259,11 @@ if (count($sizePropArray) === 0) {
 	}
 }
 
-
-//echo "<pre>";
-//print_r($productionSizesArray);
-//print_r($sourceSizesArray);
-//echo "</pre>";
-
 $newSizesArray = null;
 
 if (is_array($sizePropArray) && !empty($sizePropArray)) {
 	$newSizesArray = array_values(array_diff($sourceSizesArray, $tmpSizeArray));
 }
-
-//echo "<pre>";
-//echo count($newSizesArray) + count($sizePropArray) . "\n";
-//echo "Разница: " . count($newSizesArray) . "\n";
-//print_r($newSizesArray);
-//echo "</pre>";
 
 //----------------------------------Добавим новые значения в свойство "SIZE"------------------------------------------//
 
@@ -313,32 +293,10 @@ foreach ($sizePropArray as $key => $value) {
 	$valueIdPairsArray[$value["VALUE"]] = $value["ID"];
 }
 
-
-// Удалим лишние ------------------------------------------------------------------------------------------------------
-
-// При удалении и перезаписи значений свойств БУДЕТ ИЗМЕНЕН ID значения свойства
-// ACHTUNG! Не пользоваться в лоб массовым удалением, посколько оно удаляет значения свойств ДЛЯ ВСЕХ свойств типа "список"
-
-//if (!empty($deleteIdArray)) {
-//	for ($i = min($deleteIdArray); $i < max($deleteIdArray) + 1; $i++) {
-//		$del = new CIBlockPropertyEnum;
-//		$r = $del->Delete($i);
-//	}
-//}
-
-//echo "<pre>";
-//print_r($sizePropArray);
-//print_r($valueIdPairsArray);
-//echo "</pre>";
-
-
 //---------------------------------------КОНЕЦ ОБРАБОТКИ РАЗМЕРОВ-----------------------------------------------------//
 
 
 //--------------------ПОЛУЧАЕМ СВОЙСТВА ТОРГОВЫХ ПРЕДЛОЖЕНИЙ----------------------------------------------------------//
-
-// NOTICE можно фильтровать выборку по типу свойства
-// NOTICE все новые свойства записывать как тип СТРОКА
 
 $allSkuPropertiesArray = []; // Все свойства торговых предложений, уже существующие в инфоблоке ТП
 $allSourcePropertiesArray = []; // Все свойства тогровых предложений из прайса
@@ -349,19 +307,8 @@ while ($res = $propsResDb->GetNext()) {
 	$allSkuPropertiesArray[] = $res;
 }
 
-//echo "<pre>";
-//echo "Все свойства инфоблока торговых предложений: \n";
-//print_r($allSkuPropertiesArray);
-//echo "</pre>";
-
-//$resultArray = array_slice($resultArray, 0, 10, true);
-
 foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
-//		echo "<pre>";
-//		echo "Выборка из 10 ТП для отладки, свойства ТП: \n";
-//		print_r($offer["ATTRIBUTES"]);
-//		echo "</pre>";
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
 			if (!in_array($attribute, $allSourcePropertiesArray)) {
 				$allSourcePropertiesArray[] = $attribute;
@@ -370,56 +317,11 @@ foreach ($resultArray as $key => $item) {
 	}
 }
 
-
-//echo "<pre>";
-//echo "Все уникальные свойства офферов источника: \n";
-//print_r($allSourcePropertiesArray);
-//echo "</pre>";
-
-
-//[0] => Артикул - строка
-//[1] => Бренд - список
-//[2] => Коллекция - строка или число
-//[3] => Пол - М/Ж/Не указан
-//[4] => Тип - не записываем или строка "Дополнительная информация"
-//[5] => Товар - не записываем, это категория?
-//[6] => Размер - уже обработан
-//[7] => Состав - строка
-//[8] => Застежка - строка
-//[9] => Стиль - строка
-//[10] => Количество мест - строка
-//[11] => Крой - строка
-//[12] => Количество секций - строка
-//[13] => Уровень - строка
-//[14] => Шнуровка - строка
-//[15] => Подошва - строка
-//[16] => Мембрана - строка
-//[17] => Толщина - строка
-//[18] => Прогиб - строка
-//[19] => Жесткость - строка
-//[20] => Линза - строка
-
-//foreach ($resultArray as $key => $item){
-//	foreach($item as $k => $offer) {
-//		echo "<pre>";
-//		print_r($offer["ATTRIBUTES"]);
-//		print_r($offer);
-//		echo "</pre>";
-//	}
-//}
-
-
-// Сохраним эти свойства в ИБ ТП, если их там еще нет
+// Сохраним свойства в ИБ ТП, если их там еще нет
 
 foreach ($allSkuPropertiesArray as $key => $property) {
 	$allSkuPropertiesCodesArray[] = $property["CODE"];
 }
-
-
-//echo "<pre>";
-//echo "Массив имен свойств ТП: \n";
-//print_r($allSkuPropertiesCodesArray);
-//echo "</pre>";
 
 foreach ($allSourcePropertiesArray as $key => $value) {
 
@@ -438,11 +340,6 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 			]
 		]
 	];
-
-//	echo "<pre>";
-//	echo "Массив полей свойств ТП: \n";
-//	print_r($arPropertyFields);
-//	echo "</pre>";
 
 	if (!in_array($arPropertyFields["CODE"], $allSkuPropertiesCodesArray)) {
 		if ($arPropertyFields["CODE"] !== "BREND") {
@@ -463,7 +360,6 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 
 // Записываем всех производителей, которых там нет в справочник Manufacturer
 
-
 Loader::includeModule('highloadblock');
 
 $manufacturerArray = [];
@@ -481,11 +377,6 @@ while ($res = $tempData->fetch()) {
 	$manufacturerArray[] = $res;
 }
 
-//echo "<pre>";
-//print_r($manufacturerArray);
-//echo "</pre>";
-
-
 // Массив возможных значений свойства 'Бренд' из источника
 $sourceBrandsArray = [];
 $manufacturerXmlIds = [];
@@ -500,18 +391,9 @@ foreach ($resultArray as $key => $item) {
 
 $sourceBrandsArray = array_values(array_unique($sourceBrandsArray));
 
-//echo "<pre>";
-//print_r($sourceBrandsArray);
-//echo "</pre>";
-
 foreach ($manufacturerArray as $manId => $man) {
 	$manufacturerXmlIds[] = $man["UF_XML_ID"];
 }
-
-//echo "<pre>";
-//print_r($manufacturerXmlIds);
-//echo "</pre>";
-
 
 // Цикл для записи брендов в HL
 
@@ -541,12 +423,6 @@ $tempData = $dataClass::getList([
 while ($res = $tempData->fetch()) {
 	$manufacturerArray[] = $res;
 }
-
-//echo "<hr>";
-//echo "<pre>";
-//print_r($manufacturerArray);
-//echo "</pre>";
-
 
 // Создаем массив пар ИМЯ=>XML_ID для использования при сохранении товара
 $manValueIdPairsArray = [];
