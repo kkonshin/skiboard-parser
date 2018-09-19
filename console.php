@@ -60,11 +60,10 @@ function parse()
 		$offerIds = $offers->each(function (Crawler $node, $i) {
 			return $node->attr('id');
 		});
+
 		// Получаем массив свойств для каждого оффера
 		foreach ($allItems as $key => $item) {
 			foreach ($item as $k => $v) {
-
-				//		$ta[$key][] = $v;
 
 				$ta[$key]["PARENT_ITEM_ID"] = $groupIds[$key];
 
@@ -148,10 +147,6 @@ function parse()
 			}
 		}
 
-//		echo "<pre>";
-//		print_r($groupedItemsArray);
-//		echo "</pre>";
-
 		// Сохраняем результаты парсинга, чтобы не парсить по несколько раз (DEVELOPMENT), в продакшене не использовать
 		if (count($groupedItemsArray) > 0) {
 			file_put_contents(SAVE_FILE, serialize($groupedItemsArray));
@@ -173,25 +168,6 @@ if (!is_file(SAVE_FILE)) {
 	echo "Данные извлечены из файла сохранения: \n";
 	$resultArray = unserialize(file_get_contents(SAVE_FILE));
 }
-
-// TMP - удалить
-//$translitParams = Array(
-//	"max_len" => "600", // обрезает символьный код до 100 символов
-//	"change_case" => "L", // буквы преобразуются к нижнему регистру
-//	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
-//	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
-//	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
-//	"use_google" => "false", // отключаем использование google
-//);
-//
-//foreach (array_slice($resultArray, 180, 10) as $key => $value){
-//	$unique[] = CUtil::translit($value[0]["NAME"] .  $value[0]["OFFER_ID"], 'ru', $translitParams) . "\n";
-//	$unique[] = CUtil::translit($value[0]["NAME"] .  $value[0]["ATTRIBUTES"]['Артикул'] . $value[0]["ATTRIBUTES"]['Размер'], 'ru', $translitParams) . "\n";
-//	echo CUtil::translit($value[0]["NAME"] . ' ' . $value[0]["ATTRIBUTES"]['Артикул'] . ' ' .$value[0]["ATTRIBUTES"]['Размер'], 'ru', $translitParams) . "\n";
-//	echo $value[0]["NAME"] . ' ' .  $value[0]["OFFER_ID"] . "\n";
-//}
-//echo count($unique) . "\n";
-//echo count(array_unique($unique));
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
@@ -237,10 +213,6 @@ foreach ($resultArray as $key => $item) {
 }
 
 $sourceSizesArray = array_unique($sourceSizesArray);
-
-//echo "<pre>";
-//print_r($sourceSizesArray);
-//echo "</pre>";
 
 //file_put_contents(__DIR__. "/save/escaped_source_sizes.php", print_r($sourceSizesArray, true));
 
@@ -736,6 +708,11 @@ foreach ($resultArray as $key => $item) {
 
 //--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
 
+$elapsedMemory = (!function_exists('memory_get_usage'))
+	? '-'
+	: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
+
 echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
+echo $elapsedMemory;
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
