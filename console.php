@@ -437,7 +437,7 @@ echo "\nКоличество товаров для записи: " . count($resu
 
 // TODO try-catch на запись элемента
 
-$resultArray = array_slice($resultArray, 0, 100, true);
+$resultArray = array_slice($resultArray, 0, 10, true);
 
 foreach ($resultArray as $key => $item) {
 
@@ -479,10 +479,6 @@ foreach ($resultArray as $key => $item) {
 		]
 	];
 
-//	echo "<pre>";
-//	print_r($itemFieldsArray);
-//	echo "</pre>";
-
 	if ($productId = $obElement->Add($itemFieldsArray)) {
 		echo "Добавлен товар " . $productId . "\n";
 	} else {
@@ -523,11 +519,6 @@ foreach ($resultArray as $key => $item) {
 				$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
 			}
 
-//			echo "<pre>";
-//			echo "Значения свойств ТП для записи \n";
-//			print_r($arOfferProps);
-//			echo "</pre>";
-
 			// TODO проверить отображение детального описания, т.к. приходит htmlescape
 
 			$arOfferFields = [
@@ -560,7 +551,7 @@ foreach ($resultArray as $key => $item) {
 					throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
 				}
 
-				echo "Добавлено торговое предложение " . $catalogProductAddResult . PHP_EOL;
+				echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
 
 			} else {
 				throw new Exception("Ошибка добавления торгового предложения: " . $obElement->LAST_ERROR);

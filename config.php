@@ -1,8 +1,7 @@
 <?
 
-ini_set('max_execution_time', '2400');
-ini_set('session.gc_maxlifetime', 2400);
-ini_set("memory_limit", "256M");
+ini_set("memory_limit", "128M");
+
 set_time_limit(0);
 
 $_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
