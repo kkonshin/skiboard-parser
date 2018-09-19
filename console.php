@@ -437,7 +437,7 @@ echo "\nКоличество товаров для записи: " . count($resu
 
 // TODO try-catch на запись элемента
 
-$resultArray = array_slice($resultArray, 0, 500, true);
+//$resultArray = array_slice($resultArray, 250, 250, true);
 
 foreach ($resultArray as $key => $item) {
 
