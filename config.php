@@ -9,8 +9,8 @@ $_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
 
 $DOCUMENT_ROOT = $_SERVER["DOCUMENT_ROOT"];
 
-//ini_set('display_errors', 1);
-//ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 
 define("LANG", "s1");
 define("NO_KEEP_STATISTIC", true);

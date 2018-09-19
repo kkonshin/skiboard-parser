@@ -255,11 +255,7 @@ while ($res = $dbRes->GetNext()) {
 	$sizePropArray[] = $res;
 }
 
-echo "<pre>";
 echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . "\n";
-//print_r($sizePropArray);
-echo "</pre>";
-
 
 // Получим массив ID значений для последующего удаления именно размеров
 
@@ -489,7 +485,6 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 		}
 	}
 }
-echo "<hr>";
 
 //---------------------------------ПРОИЗВОДИТЕЛЬ [справочник/highload]------------------------------------------------//
 
@@ -588,6 +583,8 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
+echo "\nКоличество товаров: " . count($resultArray) . "\n";
+
 //echo "<hr>";
 //echo "<pre>";
 //echo "Название производителя => UF_XML_ID\n";
@@ -603,6 +600,7 @@ foreach ($manufacturerArray as $manId => $man) {
 //echo "<pre>";
 //print_r($resultArray);
 //echo "</pre>";
+
 
 foreach ($resultArray as $key => $item) {
 
@@ -738,6 +736,6 @@ foreach ($resultArray as $key => $item) {
 
 //--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
 
-echo "\nScript works for " . (getmicrotime() - $startExecTime) . " sec\n";
+echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
