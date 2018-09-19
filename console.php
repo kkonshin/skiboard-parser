@@ -493,7 +493,9 @@ foreach ($resultArray as $key => $item) {
 			: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
 
 		// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
-		CIBlockElement::SetPropertyValuesEx($productId, $IBlockCatalogId, array("MANUFACTURER" => $manXmlId));
+		if (!empty ($manXmlId)) {
+			CIBlockElement::SetPropertyValuesEx($productId, $IBlockCatalogId, array("MANUFACTURER" => $manXmlId));
+		}
 
 		foreach ($item as $k => $offer) {
 
