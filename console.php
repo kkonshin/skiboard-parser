@@ -437,7 +437,7 @@ echo "\nКоличество товаров для записи: " . count($resu
 
 // TODO try-catch на запись элемента
 
-$resultArray = array_slice($resultArray, 0, 10, true);
+$resultArray = array_slice($resultArray, 0, 500, true);
 
 foreach ($resultArray as $key => $item) {
 
@@ -472,10 +472,10 @@ foreach ($resultArray as $key => $item) {
 		"NAME" => $item[0]["NAME"],
 		"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 		"ACTIVE" => "Y",
-		"DETAIL_PICTURE" => CFile::MakeFileArray($item[0]["PICTURES"][0]),
+		"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 		"PROPERTY_VALUES" => [
 			"SITE_NAME" => "skiboard.ru",
-			"MORE_PHOTO" => $item[0]["MORE_PHOTO"],
+			"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 		]
 	];
 
@@ -525,8 +525,8 @@ foreach ($resultArray as $key => $item) {
 				'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
 				'IBLOCK_ID' => SKU_IBLOCK_ID,
 				'ACTIVE' => 'Y',
-				"DETAIL_TEXT" => $offer["DESCRIPTION"],
-				"DETAIL_PICTURE" => CFile::MakeFileArray($offer["PICTURES"][0]),
+				"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? $offer["DESCRIPTION"] : "",
+				"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
 				'PROPERTY_VALUES' => $arOfferProps
 			];
 
@@ -541,6 +541,8 @@ foreach ($resultArray as $key => $item) {
 					"VAT_INCLUDED" => "Y"
 				]);
 
+
+				// FIXME не отображается ошибка добавления, если ТП уже существует
 
 				if (!$catalogProductAddResult) {
 					throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
