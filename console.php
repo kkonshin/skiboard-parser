@@ -10,6 +10,10 @@ require(__DIR__ . "/config.php");  // настройки и константы
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
+// TODO
+
+
+
 // Очищаем все 3 буфера
 while (ob_get_level()) {
 	ob_end_flush();
@@ -440,6 +444,11 @@ echo "\nКоличество товаров для записи: " . count($resu
 $resultArray = array_slice($resultArray, 0, 500, true);
 
 $counter = 0;
+
+register_shutdown_function(function(){
+    global $counter;
+	file_put_contents(__DIR__ . "/counter.log", $counter);
+});
 
 foreach ($resultArray as $key => $item) {
 
