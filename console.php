@@ -2,16 +2,16 @@
 
 <?php
 
-if (php_sapi_name() !== "cli"){
+if (php_sapi_name() !== "cli") {
 	die ('Этот скрипт предназначен для запуска из командной строки');
 }
 
 require(__DIR__ . "/config.php");  // настройки и константы
 
-require ($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
 // Очищаем все 3 буфера
-while(ob_get_level()){
+while (ob_get_level()) {
 	ob_end_flush();
 }
 
@@ -27,7 +27,7 @@ global $USER;
 
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
-if (!Loader::includeModule('iblock')){
+if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль iblock');
 }
 
@@ -437,9 +437,15 @@ echo "\nКоличество товаров для записи: " . count($resu
 
 // TODO try-catch на запись элемента
 
-//$resultArray = array_slice($resultArray, 250, 250, true);
+$resultArray = array_slice($resultArray, 0, 500, true);
+
+$counter = 0;
 
 foreach ($resultArray as $key => $item) {
+
+	if ($counter === 200 || $counter === 400) {
+		sleep(10);
+	}
 
 	if (!Loader::includeModule('iblock') || !Loader::includeModule('catalog')) {
 		die('Невозможно загрузить модуль инфоблоков или торгового каталога');
@@ -555,6 +561,8 @@ foreach ($resultArray as $key => $item) {
 					throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
 				}
 
+				$counter++;
+
 				echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
 
 			} else {
@@ -576,6 +584,6 @@ $elapsedMemory = (!function_exists('memory_get_usage'))
 	: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
 
 echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
-echo $elapsedMemory . PHP_EOL;
+echo "Использованная память " . $elapsedMemory . PHP_EOL;
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
