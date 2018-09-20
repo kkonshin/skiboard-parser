@@ -4,6 +4,8 @@ ini_set("memory_limit", "96M");
 
 set_time_limit(0);
 
+ignore_user_abort(true);
+
 $_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
 
 ini_set('display_errors', 1);
