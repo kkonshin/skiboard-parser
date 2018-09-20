@@ -441,7 +441,7 @@ echo "\nКоличество товаров для записи: " . count($resu
 
 // TODO try-catch на запись элемента
 
-$resultArray = array_slice($resultArray, 0, 500, true);
+$resultArray = array_slice($resultArray, 0, 450, true);
 
 $counter = 0;
 
@@ -453,7 +453,7 @@ register_shutdown_function(function(){
 foreach ($resultArray as $key => $item) {
 
 	if ($counter === 200 || $counter === 400) {
-		sleep(10);
+		sleep(5);
 	}
 
 	if (!Loader::includeModule('iblock') || !Loader::includeModule('catalog')) {
@@ -571,6 +571,8 @@ foreach ($resultArray as $key => $item) {
 				}
 
 				$counter++;
+
+				file_put_contents(__DIR__ . "/counter.log", $counter);
 
 				echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
 
