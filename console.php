@@ -10,10 +10,6 @@ require(__DIR__ . "/config.php");  // настройки и константы
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
-// TODO
-
-
-
 // Очищаем все 3 буфера
 while (ob_get_level()) {
 	ob_end_flush();
@@ -51,7 +47,6 @@ function parse()
 
 	try {
 		// Все параметры всех офферов
-
 		$allItems = $offers->each(function (Crawler $node, $i) {
 			return $node->children();
 		});
@@ -141,7 +136,7 @@ function parse()
 
 		$parentItemsIdsArray = array_unique($parentItemsIdsArray);
 
-		// Разобъем исходный массив по родительским товарам, исключает товары с ценой 0
+		// Разобъем исходный массив по родительским товарам, исключая товары с ценой 0
 		foreach ($parentItemsIdsArray as $key => $id) {
 			foreach ($ta as $k => $item) {
 				if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0) {
@@ -217,8 +212,6 @@ foreach ($resultArray as $key => $item) {
 
 $sourceSizesArray = array_unique($sourceSizesArray);
 
-//file_put_contents(__DIR__. "/save/escaped_source_sizes.php", print_r($sourceSizesArray, true));
-
 // Получаем массив существующих значений свойства "SIZE"
 $sizePropArray = [];
 
@@ -242,25 +235,27 @@ foreach ($sizePropArray as $key => $value) {
 	$deleteIdArray[] = $value["ID"];
 }
 
-// Если массив свойств в базе пуст - загрузим дамп с рабочего
+// Если массив значений размеров в базе пуст - загрузим дамп с рабочего
 
 if (count($sizePropArray) === 0) {
-
 	$productionSizesArray = null;
+    try {
+		$productionSizesArray = unserialize(file_get_contents(__DIR__ . "/save/size_dump.php"));
 
-	$productionSizesArray = unserialize(file_get_contents(__DIR__ . "/save/size_dump.php"));
-
-	foreach ($productionSizesArray as $key => $sizeValue) {
-		CIBlockPropertyEnum::Add(
-			[
-				'PROPERTY_ID' => 120,
-				'ID' => $sizeValue["ID"],
-				'VALUE' => $sizeValue["VALUE"],
-				'DEF' => $sizeValue["DEF"],
-				'SORT' => $sizeValue["SORT"],
-			]
-		);
-	}
+		foreach ($productionSizesArray as $key => $sizeValue) {
+			CIBlockPropertyEnum::Add(
+				[
+					'PROPERTY_ID' => 120,
+					'ID' => $sizeValue["ID"],
+					'VALUE' => $sizeValue["VALUE"],
+					'DEF' => $sizeValue["DEF"],
+					'SORT' => $sizeValue["SORT"],
+				]
+			);
+		}
+    } catch (Exception $e) {
+        return $e->getMessage();
+    }
 }
 
 $newSizesArray = null;
@@ -362,7 +357,7 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 //---------------------------------ПРОИЗВОДИТЕЛЬ [справочник/highload]------------------------------------------------//
 
 
-// Записываем всех производителей, которых там нет в справочник Manufacturer
+// Записываем всех производителей, которых там нет, в справочник Manufacturer
 
 Loader::includeModule('highloadblock');
 
@@ -438,10 +433,7 @@ foreach ($manufacturerArray as $manId => $man) {
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-
-// TODO try-catch на запись элемента
-
-$resultArray = array_slice($resultArray, 0, 450, true);
+//$resultArray = array_slice($resultArray, 0, 450, true);
 
 $counter = 0;
 
@@ -451,10 +443,6 @@ register_shutdown_function(function(){
 });
 
 foreach ($resultArray as $key => $item) {
-
-	if ($counter === 200 || $counter === 400) {
-		sleep(5);
-	}
 
 	if (!Loader::includeModule('iblock') || !Loader::includeModule('catalog')) {
 		die('Невозможно загрузить модуль инфоблоков или торгового каталога');
@@ -551,15 +539,12 @@ foreach ($resultArray as $key => $item) {
 			$offerId = $obElement->Add($arOfferFields);
 
 			if ($offerId) {
-				// Добавляем как товар
+				// Добавляем элемент как товар каталога
 				$catalogProductAddResult = CCatalogProduct::Add([
 					"ID" => $offerId,
 					'QUANTITY' => '5',
 					"VAT_INCLUDED" => "Y"
 				]);
-
-
-				// FIXME не отображается ошибка добавления, если ТП уже существует
 
 				if (!$catalogProductAddResult) {
 					throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
@@ -572,8 +557,6 @@ foreach ($resultArray as $key => $item) {
 
 				$counter++;
 
-				file_put_contents(__DIR__ . "/counter.log", $counter);
-
 				echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
 
 			} else {
@@ -584,11 +567,10 @@ foreach ($resultArray as $key => $item) {
 		throw new Exception("Ошибка добавления товара: " . $obElement->LAST_ERROR);
 	}
 }
-
-
-//--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)-----------------------------------//
+//--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//
 
 //--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
+//--------------------------------------КОНЕЦ ОБНОВЛЕНИЯ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------//
 
 $elapsedMemory = (!function_exists('memory_get_usage'))
 	? '-'
