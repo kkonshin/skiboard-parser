@@ -161,6 +161,7 @@ function parse()
 // Если существует файл сохранения - парсер не запускается!
 
 if (!is_file(SAVE_FILE)) {
+    echo "Начат парсинг XML" . PHP_EOL;
 	$resultArray = parse();
 } else {
 	echo "Данные извлечены из файла сохранения: \n";
