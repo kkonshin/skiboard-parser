@@ -436,7 +436,7 @@ foreach ($manufacturerArray as $manId => $man) {
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-//$resultArray = array_slice($resultArray, 0, 450, true);
+//$resultArray = array_slice($resultArray, 0, 10, true);
 
 $counter = 0;
 
@@ -458,14 +458,15 @@ foreach ($resultArray as $key => $item) {
 		$morePhotoArray = []; // Массив дополнительных картинок товара
 
 		$obElement = new CIBlockElement;
-
+        /*
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
-					$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+						$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
 				}
 			}
 		}
+        */
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
@@ -474,10 +475,10 @@ foreach ($resultArray as $key => $item) {
 			"NAME" => $item[0]["NAME"],
 			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "Y",
-			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
+//			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => "skiboard.ru",
-				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
+//				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];
 
@@ -530,7 +531,7 @@ foreach ($resultArray as $key => $item) {
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
 					'ACTIVE' => 'Y',
 					"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? $offer["DESCRIPTION"] : "",
-					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
+//					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
 					'PROPERTY_VALUES' => $arOfferProps
 				];
 
