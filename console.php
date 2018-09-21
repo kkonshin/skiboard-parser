@@ -229,11 +229,8 @@ echo "Количество значений свойства 'SIZE' в базе:
 // Получим массив ID значений для последующего удаления именно размеров
 
 $tmpSizeArray = [];
-$deleteIdArray = [];
-
 foreach ($sizePropArray as $key => $value) {
 	$tmpSizeArray[] = $value["VALUE"];
-	$deleteIdArray[] = $value["ID"];
 }
 
 // Если массив значений размеров в базе пуст - загрузим дамп с рабочего
