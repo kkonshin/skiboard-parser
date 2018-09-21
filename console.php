@@ -6,6 +6,7 @@ if (php_sapi_name() !== "cli") {
 	die ('Этот скрипт предназначен для запуска из командной строки');
 }
 
+
 require(__DIR__ . "/config.php");  // настройки и константы
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
@@ -28,7 +29,11 @@ global $USER;
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
 if (!Loader::includeModule('iblock')) {
-	die('Не удалось загрузить модуль iblock');
+	die('Не удалось загрузить модуль инфоблоки');
+}
+
+if (!Loader::includeModule('catalog')) {
+	die('Невозможно загрузить модуль торгового каталога');
 }
 
 function parse()
@@ -161,7 +166,7 @@ function parse()
 // Если существует файл сохранения - парсер не запускается!
 
 if (!is_file(SAVE_FILE)) {
-    echo "Начат парсинг XML" . PHP_EOL;
+	echo "Начат парсинг XML" . PHP_EOL;
 	$resultArray = parse();
 } else {
 	echo "Данные извлечены из файла сохранения: \n";
@@ -237,7 +242,7 @@ foreach ($sizePropArray as $key => $value) {
 
 if (count($sizePropArray) === 0) {
 	$productionSizesArray = null;
-    try {
+	try {
 		$productionSizesArray = unserialize(file_get_contents(__DIR__ . "/save/size_dump.php"));
 
 		foreach ($productionSizesArray as $key => $sizeValue) {
@@ -251,9 +256,9 @@ if (count($sizePropArray) === 0) {
 				]
 			);
 		}
-    } catch (Exception $e) {
-        return $e->getMessage();
-    }
+	} catch (Exception $e) {
+		return $e->getMessage();
+	}
 }
 
 $newSizesArray = null;
@@ -435,135 +440,131 @@ echo "\nКоличество товаров для записи: " . count($resu
 
 $counter = 0;
 
-register_shutdown_function(function(){
-    global $counter;
+$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
+
+$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
+
+$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
+
+register_shutdown_function(function () {
+	global $counter;
 	file_put_contents(__DIR__ . "/counter.log", $counter);
 });
 
 foreach ($resultArray as $key => $item) {
+	try {
+		$offerPrice = 0;
 
-	if (!Loader::includeModule('iblock') || !Loader::includeModule('catalog')) {
-		die('Невозможно загрузить модуль инфоблоков или торгового каталога');
-	}
+		$morePhotoArray = []; // Массив дополнительных картинок товара
 
-	$offerPrice = 0;
+		$obElement = new CIBlockElement;
 
-	$morePhotoArray = []; // Массив дополнительных картинок товара
-
-	$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
-
-	$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
-
-	$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
-
-	$obElement = new CIBlockElement;
-
-	foreach ($item as $itemId => $offer) {
-		if (count($offer["PICTURES"]) > 1) {
-			foreach ($offer["PICTURES"] as $pictureId => $picture) {
-				$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+		foreach ($item as $itemId => $offer) {
+			if (count($offer["PICTURES"]) > 1) {
+				foreach ($offer["PICTURES"] as $pictureId => $picture) {
+					$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+				}
 			}
 		}
-	}
 
-	$itemFieldsArray = [
-		"MODIFIED_BY" => $USER->GetID(),
-		"IBLOCK_ID" => $IBlockCatalogId,
-		"IBLOCK_SECTION_ID" => 345,
-		"NAME" => $item[0]["NAME"],
-		"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
-		"ACTIVE" => "Y",
-		"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
-		"PROPERTY_VALUES" => [
-			"SITE_NAME" => "skiboard.ru",
-			"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
-		]
-	];
+		$itemFieldsArray = [
+			"MODIFIED_BY" => $USER->GetID(),
+			"IBLOCK_ID" => $IBlockCatalogId,
+			"IBLOCK_SECTION_ID" => 345,
+			"NAME" => $item[0]["NAME"],
+			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
+			"ACTIVE" => "Y",
+			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
+			"PROPERTY_VALUES" => [
+				"SITE_NAME" => "skiboard.ru",
+				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
+			]
+		];
 
-	if ($productId = $obElement->Add($itemFieldsArray)) {
-		echo "Добавлен товар " . $productId . "\n";
-	} else {
-		echo "Ошибка: " . $obElement->LAST_ERROR . "\n";
-		continue;
-	}
-
-	if ($productId) {
-
-		$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])]))
-			? ($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])])
-			: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
-
-		// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
-		if (!empty ($manXmlId)) {
-			CIBlockElement::SetPropertyValuesEx($productId, $IBlockCatalogId, array("MANUFACTURER" => $manXmlId));
+		if ($productId = $obElement->Add($itemFieldsArray)) {
+			echo "Добавлен товар " . $productId . "\n";
+		} else {
+			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . "\n";
+			continue;
 		}
 
-		foreach ($item as $k => $offer) {
+		if ($productId) {
 
-			$obElement = new CIBlockElement();
+			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])]))
+				? ($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])])
+				: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
 
-			// Цена торгового предложения в зависимости от сезона
-
-			if (in_array((int)$offer["CATEGORY_ID"], $summer)) {
-				$offerPrice = $offer["PRICE"] * 1.5;
+			// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
+			if (!empty ($manXmlId)) {
+				CIBlockElement::SetPropertyValuesEx($productId, $IBlockCatalogId, array("MANUFACTURER" => $manXmlId));
 			}
 
-			if (in_array((int)$offer["CATEGORY_ID"], $winter)) {
-				$offerPrice = $offer["PRICE"] * 1.6;
-			}
+			foreach ($item as $k => $offer) {
 
-			$arOfferProps = [
-				$SKUPropertyId => $productId,
-				'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
-				'EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
-			];
+				$obElement = new CIBlockElement();
 
-			foreach ($offer['ATTRIBUTES'] as $propertyName => $propertyValue) {
-				$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
-			}
+				// Цена торгового предложения в зависимости от сезона
 
-			// TODO проверить отображение детального описания, т.к. приходит htmlescape
-
-			$arOfferFields = [
-				'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
-				'IBLOCK_ID' => SKU_IBLOCK_ID,
-				'ACTIVE' => 'Y',
-				"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? $offer["DESCRIPTION"] : "",
-				"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
-				'PROPERTY_VALUES' => $arOfferProps
-			];
-
-			// Получаем ID торгового предложения
-			$offerId = $obElement->Add($arOfferFields);
-
-			if ($offerId) {
-				// Добавляем элемент как товар каталога
-				$catalogProductAddResult = CCatalogProduct::Add([
-					"ID" => $offerId,
-					'QUANTITY' => '5',
-					"VAT_INCLUDED" => "Y"
-				]);
-
-				if (!$catalogProductAddResult) {
-					throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
+				if (in_array((int)$offer["CATEGORY_ID"], $summer)) {
+					$offerPrice = $offer["PRICE"] * 1.5;
 				}
 
-				// и установим цену
-				if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
-					throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
+				if (in_array((int)$offer["CATEGORY_ID"], $winter)) {
+					$offerPrice = $offer["PRICE"] * 1.6;
 				}
 
-				$counter++;
+				$arOfferProps = [
+					$SKUPropertyId => $productId,
+					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
+					'EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
+				];
 
-				echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
+				foreach ($offer['ATTRIBUTES'] as $propertyName => $propertyValue) {
+					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
+				}
 
-			} else {
-				throw new Exception("Ошибка добавления торгового предложения: " . $obElement->LAST_ERROR);
+				// TODO проверить отображение детального описания, т.к. приходит htmlescape
+
+				$arOfferFields = [
+					'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
+					'IBLOCK_ID' => SKU_IBLOCK_ID,
+					'ACTIVE' => 'Y',
+					"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? $offer["DESCRIPTION"] : "",
+					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
+					'PROPERTY_VALUES' => $arOfferProps
+				];
+
+				// Получаем ID торгового предложения
+				$offerId = $obElement->Add($arOfferFields);
+
+				if ($offerId) {
+					// Добавляем элемент как товар каталога
+					$catalogProductAddResult = CCatalogProduct::Add([
+						"ID" => $offerId,
+						'QUANTITY' => '5',
+						"VAT_INCLUDED" => "Y"
+					]);
+
+					if (!$catalogProductAddResult) {
+						throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
+					}
+
+					// и установим цену
+					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
+						throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
+					}
+
+					$counter++;
+
+					echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
+				}
 			}
 		}
-	} else {
-		throw new Exception("Ошибка добавления товара: " . $obElement->LAST_ERROR);
+	} catch (Exception $e) {
+		echo $e->getMessage() . PHP_EOL;
 	}
+
+
 }
 //--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//
 
