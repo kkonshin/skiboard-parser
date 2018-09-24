@@ -435,9 +435,9 @@ foreach ($manufacturerArray as $manId => $man) {
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 800;
+$offset = 0;
 $length = count($resultArray) - $offset;
-$resultArray = array_slice($resultArray, 800, $length,true);
+$resultArray = array_slice($resultArray, $offset, $length,true);
 
 $counter = 0;
 
@@ -557,6 +557,12 @@ foreach ($resultArray as $key => $item) {
 					$counter++;
 
 					echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
+
+					// TODO удалить все возможные переменные, которые не инициализируются заново на следующем этапе цикла записи
+                    // Сохраняется ли в памяти объект $obElement = new CIBlockElement() на каждой итерации?
+
+					unset ($obElement);
+
 				}
 			}
 		}
