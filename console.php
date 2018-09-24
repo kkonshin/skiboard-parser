@@ -80,7 +80,7 @@ function parse()
 				}
 
 				// Исключаем категории
-				if ($v->nodeName === 'categoryId' && !in_array($v->nodeValue,
+				if ($v->nodeName === 'categoryId' && !in_array(trim((string)$v->nodeValue),
 						[
 							'374',
 							'375',
@@ -94,7 +94,9 @@ function parse()
 						]
 					)
 				) {
-					$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
+					$catTempArray[] = $v->nodeValue;
+				    $ta[$key]['CATEGORY_ID'] = $v->nodeValue;
+
 				}
 				if ($v->nodeName === 'picture') {
 					$ta[$key]['PICTURES'][] = $v->nodeValue;
@@ -105,6 +107,8 @@ function parse()
 				$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
 			}
 		}
+
+		file_put_contents(__DIR__. "/logs/categories.log", print_r(array_unique($catTempArray), true));
 
 		// Развернем полученный через extract массив атрибутов, извлечем размер
 		foreach ($ta as $key => $value) {
@@ -150,9 +154,10 @@ function parse()
 		}
 
 		// Сохраняем результаты парсинга, чтобы не парсить по несколько раз (DEVELOPMENT), в продакшене не использовать
-		if (count($groupedItemsArray) > 0) {
-			file_put_contents(SAVE_FILE, serialize($groupedItemsArray));
-		}
+
+//		if (count($groupedItemsArray) > 0) {
+//			file_put_contents(SAVE_FILE, serialize($groupedItemsArray));
+//		}
 
 		return $groupedItemsArray;
 
@@ -179,7 +184,7 @@ $summer = array_unique([
 	334, 335, 336, 396, 294, 358, 360, 359, 361, 362, 389, 292, 401, 385, 393, 381, 370, 278, 279, 282, 283,
 	368, 409, 372, 347, 368, 409, 372, 347, 348, 349, 327, 350, 351, 352, 353, 354, 355, 356, 357, 271, 419,
 	297, 298, 299, 300, 301, 302, 303, 325, 326, 402, 403, 404, 405, 406, 371, 270, 310, 304, 305, 306, 307,
-	386, 387, 410, 395, 420, 421, 422, 423, 424, 425, 383, 392, 293, 427
+	386, 387, 410, 395, 420, 421, 422, 423, 424, 425, 383, 392, 293, 427,
 ]);
 
 
@@ -435,8 +440,9 @@ foreach ($manufacturerArray as $manId => $man) {
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 0;
-$length = count($resultArray) - $offset;
+$offset = 500;
+//$length = count($resultArray) - $offset;
+$length = 10;
 $resultArray = array_slice($resultArray, $offset, $length,true);
 
 $counter = 0;
