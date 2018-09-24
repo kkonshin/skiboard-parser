@@ -306,7 +306,7 @@ foreach ($sizePropArray as $key => $value) {
 //--------------------ПОЛУЧАЕМ СВОЙСТВА ТОРГОВЫХ ПРЕДЛОЖЕНИЙ----------------------------------------------------------//
 
 $allSkuPropertiesArray = []; // Все свойства торговых предложений, уже существующие в инфоблоке ТП
-$allSourcePropertiesArray = []; // Все свойства тогровых предложений из прайса
+$allSourcePropertiesArray = []; // Все свойства торговых предложений из прайса
 $allSkuPropertiesCodesArray = []; // Массив символьных кодов ТП для проверки уникальности
 
 $propsResDb = CIBlockProperty::GetList([], ["IBLOCK_ID" => SKU_IBLOCK_ID, "CHECK_PERMISSIONS" => "N"]);
@@ -455,7 +455,14 @@ $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инф
 
 register_shutdown_function(function () {
 	global $counter;
+	global $startExecTime;
 	file_put_contents(__DIR__ . "/counter.log", $counter);
+
+	$elapsedMemory = (!function_exists('memory_get_usage'))
+		? '-'
+		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
+	echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
+	echo "Использованная память " . $elapsedMemory . PHP_EOL;
 });
 
 foreach ($resultArray as $key => $item) {
