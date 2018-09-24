@@ -65,6 +65,7 @@ function parse()
 		});
 
 		// Получаем массив свойств для каждого оффера
+
 		foreach ($allItems as $key => $item) {
 			foreach ($item as $k => $v) {
 
@@ -94,7 +95,7 @@ function parse()
 						]
 					)
 				) {
-					$catTempArray[] = $v->nodeValue;
+//					$catTempArray[] = $v->nodeValue;
 				    $ta[$key]['CATEGORY_ID'] = $v->nodeValue;
 
 				}
@@ -108,7 +109,7 @@ function parse()
 			}
 		}
 
-		file_put_contents(__DIR__. "/logs/categories.log", print_r(array_unique($catTempArray), true));
+//		file_put_contents(__DIR__. "/logs/categories.log", print_r(array_unique($catTempArray), true));
 
 		// Развернем полученный через extract массив атрибутов, извлечем размер
 		foreach ($ta as $key => $value) {
@@ -144,10 +145,10 @@ function parse()
 
 		$parentItemsIdsArray = array_unique($parentItemsIdsArray);
 
-		// Разобъем исходный массив по родительским товарам, исключая товары с ценой 0
+		// Разобъем исходный массив по родительским товарам, исключая товары с ценой 0 и товары без категории
 		foreach ($parentItemsIdsArray as $key => $id) {
 			foreach ($ta as $k => $item) {
-				if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0) {
+				if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
 					$groupedItemsArray[$id][] = $item;
 				}
 			}
@@ -440,9 +441,8 @@ foreach ($manufacturerArray as $manId => $man) {
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 500;
-//$length = count($resultArray) - $offset;
-$length = 10;
+$offset = 0;
+$length = count($resultArray) - $offset;
 $resultArray = array_slice($resultArray, $offset, $length,true);
 
 $counter = 0;
