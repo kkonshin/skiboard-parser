@@ -440,7 +440,6 @@ foreach ($resultArray as $key => $item) {
 
 		$obElement = new CIBlockElement;
 
-
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
