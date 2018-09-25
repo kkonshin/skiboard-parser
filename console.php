@@ -457,7 +457,6 @@ register_shutdown_function(function () {
 	global $counter;
 	global $startExecTime;
 	file_put_contents(__DIR__ . "/counter.log", $counter);
-
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
@@ -472,6 +471,8 @@ foreach ($resultArray as $key => $item) {
 		$morePhotoArray = []; // Массив дополнительных картинок товара
 
 		$obElement = new CIBlockElement;
+
+		/*
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
@@ -479,6 +480,7 @@ foreach ($resultArray as $key => $item) {
 				}
 			}
 		}
+        */
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
@@ -490,7 +492,7 @@ foreach ($resultArray as $key => $item) {
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => "skiboard.ru",
-				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
+//				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];
 
@@ -589,12 +591,5 @@ foreach ($resultArray as $key => $item) {
 
 //--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
 //--------------------------------------КОНЕЦ ОБНОВЛЕНИЯ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------//
-
-$elapsedMemory = (!function_exists('memory_get_usage'))
-	? '-'
-	: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
-
-echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
-echo "Использованная память " . $elapsedMemory . PHP_EOL;
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
