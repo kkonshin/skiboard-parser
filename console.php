@@ -96,7 +96,7 @@ function parse()
 					)
 				) {
 //					$catTempArray[] = $v->nodeValue;
-				    $ta[$key]['CATEGORY_ID'] = $v->nodeValue;
+					$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
 
 				}
 				if ($v->nodeName === 'picture') {
@@ -443,7 +443,7 @@ echo "\nКоличество товаров для записи: " . count($resu
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 $offset = 0;
 $length = count($resultArray) - $offset;
-$resultArray = array_slice($resultArray, $offset, $length,true);
+$resultArray = array_slice($resultArray, $offset, $length, true);
 
 $counter = 0;
 
@@ -477,13 +477,23 @@ foreach ($resultArray as $key => $item) {
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
-				        $tempPicture = CFile::MakeFileArray($picture);
-				        if (!CFile::CheckImageFile($tempPicture)){
-							$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
-                        }
+					$tempPicture = CFile::MakeFileArray($picture);
+					if ($err = CFile::CheckImageFile($tempPicture)) {
+						$pictureErrorsArray[] = $err;
+						continue;
+					} else {
+						$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+					}
 				}
 			}
 		}
+        		
+		// Лог ошибок изображений
+
+		if (!empty($pictureErrorsArray)) {
+			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
+		}
+
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
@@ -577,7 +587,7 @@ foreach ($resultArray as $key => $item) {
 					echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
 
 					// TODO удалить все возможные переменные, которые не инициализируются заново на следующем этапе цикла записи
-                    // Сохраняется ли в памяти объект $obElement = new CIBlockElement() на каждой итерации?
+					// Сохраняется ли в памяти объект $obElement = new CIBlockElement() на каждой итерации?
 
 					unset ($obElement);
 
