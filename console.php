@@ -28,6 +28,7 @@ global $USER;
 if (!is_dir(__DIR__ . "/logs")) {
 	mkdir(__DIR__ . "/logs", 0777, true);
 }
+
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
 if (!Loader::includeModule('iblock')) {
@@ -227,34 +228,9 @@ while ($res = $dbRes->GetNext()) {
 
 echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . "\n";
 
-// Получим массив ID значений для последующего удаления именно размеров
-
 $tmpSizeArray = [];
 foreach ($sizePropArray as $key => $value) {
 	$tmpSizeArray[] = $value["VALUE"];
-}
-
-// Если массив значений размеров в базе пуст - загрузим дамп с рабочего
-
-if (count($sizePropArray) === 0) {
-	$productionSizesArray = null;
-	try {
-		$productionSizesArray = unserialize(file_get_contents(__DIR__ . "/save/size_dump.php"));
-
-		foreach ($productionSizesArray as $key => $sizeValue) {
-			CIBlockPropertyEnum::Add(
-				[
-					'PROPERTY_ID' => 120,
-					'ID' => $sizeValue["ID"],
-					'VALUE' => $sizeValue["VALUE"],
-					'DEF' => $sizeValue["DEF"],
-					'SORT' => $sizeValue["SORT"],
-				]
-			);
-		}
-	} catch (Exception $e) {
-		return $e->getMessage();
-	}
 }
 
 $newSizesArray = null;
@@ -430,9 +406,9 @@ foreach ($manufacturerArray as $manId => $man) {
 }
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 596;
-//$length = count($resultArray) - $offset;
-$length = 10;
+$offset = 0;
+$length = count($resultArray) - $offset;
+//$length = 10;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
@@ -448,7 +424,7 @@ $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инф
 register_shutdown_function(function () {
 	global $counter;
 	global $startExecTime;
-	file_put_contents(__DIR__ . "/logs/counter.log", $counter);
+	file_put_contents(__DIR__ . "/counter.log", $counter);
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
@@ -464,7 +440,6 @@ foreach ($resultArray as $key => $item) {
 
 		$obElement = new CIBlockElement;
 
-//         TODO предварительное создание, проверка и сохранение картинок MORE_PHOTO
 
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
