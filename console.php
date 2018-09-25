@@ -472,15 +472,18 @@ foreach ($resultArray as $key => $item) {
 
 		$obElement = new CIBlockElement;
 
-		/*
+//         TODO предварительное создание, проверка и сохранение картинок MORE_PHOTO
+
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
-						$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+				        $tempPicture = CFile::MakeFileArray($picture);
+				        if (!CFile::CheckImageFile($tempPicture)){
+							$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+                        }
 				}
 			}
 		}
-        */
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
