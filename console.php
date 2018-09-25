@@ -157,12 +157,6 @@ function parse()
 			}
 		}
 
-		// Сохраняем результаты парсинга, чтобы не парсить по несколько раз (DEVELOPMENT), в продакшене не использовать
-
-//		if (count($groupedItemsArray) > 0) {
-//			file_put_contents(SAVE_FILE, serialize($groupedItemsArray));
-//		}
-
 		return $groupedItemsArray;
 
 	} catch (Exception $e) {
@@ -170,16 +164,10 @@ function parse()
 	}
 }
 
-// TODO проверку удалить в продакшене, если не будет реализовано кеширование.
-// Если существует файл сохранения - парсер не запускается!
+echo "Начат парсинг XML" . PHP_EOL;
 
-if (!is_file(SAVE_FILE)) {
-	echo "Начат парсинг XML" . PHP_EOL;
-	$resultArray = parse();
-} else {
-	echo "Данные извлечены из файла сохранения: \n";
-	$resultArray = unserialize(file_get_contents(SAVE_FILE));
-}
+$resultArray = parse();
+
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
