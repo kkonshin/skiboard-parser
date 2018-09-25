@@ -474,7 +474,7 @@ foreach ($resultArray as $key => $item) {
 						$pictureErrorsArray[] = $err;
 						continue;
 					} else {
-						$item[$itemId]["MORE_PHOTO"][$pictureId] = CFile::MakeFileArray($picture);
+						$item[$itemId]["MORE_PHOTO"][$pictureId] = $tempPicture;
 					}
 				}
 			}
