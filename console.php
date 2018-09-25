@@ -438,12 +438,13 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
-
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 $offset = 0;
-$length = count($resultArray) - $offset;
+//$length = count($resultArray) - $offset;
+$length = 10;
 $resultArray = array_slice($resultArray, $offset, $length, true);
+
+echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
 $counter = 0;
 
@@ -487,13 +488,12 @@ foreach ($resultArray as $key => $item) {
 				}
 			}
 		}
-        		
+
 		// Лог ошибок изображений
 
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
-
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
@@ -505,7 +505,7 @@ foreach ($resultArray as $key => $item) {
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => "skiboard.ru",
-//				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
+				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];
 
