@@ -25,6 +25,9 @@ use \Bitrix\Highloadblock as HL;
 
 global $USER;
 
+if (!is_dir(__DIR__ . "/logs")) {
+	mkdir(__DIR__ . "/logs", 0777, true);
+}
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
 if (!Loader::includeModule('iblock')) {
@@ -439,7 +442,7 @@ foreach ($manufacturerArray as $manId => $man) {
 }
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 0;
+$offset = 596;
 //$length = count($resultArray) - $offset;
 $length = 10;
 $resultArray = array_slice($resultArray, $offset, $length, true);
@@ -461,8 +464,8 @@ register_shutdown_function(function () {
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
-	echo "\nВремя работы скрипта " . (getmicrotime() - $startExecTime) . " сек\n";
-	echo "Использованная память " . $elapsedMemory . PHP_EOL;
+	echo "\nВремя работы скрипта: " . (getmicrotime() - $startExecTime) . " сек\n";
+	echo "Использованная память: " . $elapsedMemory . PHP_EOL;
 });
 
 foreach ($resultArray as $key => $item) {
@@ -479,7 +482,7 @@ foreach ($resultArray as $key => $item) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
-					if ($err = CFile::CheckImageFile($tempPicture)) {
+					if (strlen($err = CFile::CheckImageFile($tempPicture)) > 0) {
 						$pictureErrorsArray[] = $err;
 						continue;
 					} else {
@@ -492,7 +495,7 @@ foreach ($resultArray as $key => $item) {
 		// Лог ошибок изображений
 
 		if (!empty($pictureErrorsArray)) {
-			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
+			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true), FILE_APPEND);
 		}
 
 		$itemFieldsArray = [
