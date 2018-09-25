@@ -448,7 +448,7 @@ $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инф
 register_shutdown_function(function () {
 	global $counter;
 	global $startExecTime;
-	file_put_contents(__DIR__ . "/counter.log", $counter);
+	file_put_contents(__DIR__ . "/logs/counter.log", $counter);
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
