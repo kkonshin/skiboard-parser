@@ -42,48 +42,35 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
+$xml = file_get_contents(SOURCE);
+
+$previousSourceName = "previous.xml";
+$previousSourceDate = "";
+
+if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)){
+	echo "Сохраняем каталог во временный файл" . PHP_EOL;
+	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
+
+	// require (__DIR__ . "/add.php");
+
+} else {
+	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
+	$previousCrawler = new Crawler($previousXml);
+	$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
+	echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
+}
+
+// TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
+
 function parse()
 {
+    // TODO передавать аргументами ?
+    global $xml;
+    global $previousSourceDate;
 
 	$ta = [];
 
-	$xml = null;
-
-	$previousSourceDate = "";
-	$previousSourceName = "previous.xml";
-
-	$xml = file_get_contents(SOURCE);
-
-	$sourceFileName = "source_" . date("Y-m-d_H") . ".xml";
-
-	// Если это первый запуск парсера, и файла сохранения нет - сохраняем
-    /*
-	if (!is_file(SOURCE_SAVE_PATH . $sourceFileName)) {
-
-	    file_put_contents(SOURCE_SAVE_PATH . $sourceFileName, $xml);
-
-	} else {
-
-		// Иначе получаем дату предыдущего каталога
-
-		$previousXml = file_get_contents(SOURCE_SAVE_PATH . $sourceFileName);
-		$previousCrawler = new Crawler($previousXml);
-		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
-		echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
-	}
-    */
-
-    if (!is_file(SOURCE_SAVE_FILE . $previousSourceName)){
-        file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
-    } else {
-		$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
-		$previousCrawler = new Crawler($previousXml);
-		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
-		echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
-    }
-
 	$crawler = new Crawler($xml);
-
 	// Дата свежего каталога
 	$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
@@ -93,7 +80,9 @@ function parse()
 
 	// TODO если предыдущий каталог существует и даты не совпадают - запускаем сравнение и update
 
-	echo "Сохраняем каталог от " . $sourceDate . PHP_EOL;
+    // TODO выносим сохранение в отдельный скрипт
+
+	echo "Каталог от " . $sourceDate . PHP_EOL;
 
 	$offers = $crawler->filter('offer');
 
@@ -474,16 +463,7 @@ $IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока т�
 
 $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
 
-register_shutdown_function(function () {
-	global $counter;
-	global $startExecTime;
-	file_put_contents(__DIR__ . "/counter.log", $counter);
-	$elapsedMemory = (!function_exists('memory_get_usage'))
-		? '-'
-		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
-	echo "\nВремя работы скрипта: " . (getmicrotime() - $startExecTime) . " сек\n";
-	echo "Использованная память: " . $elapsedMemory . PHP_EOL;
-});
+
 
 foreach ($resultArray as $key => $item) {
 	try {
@@ -617,5 +597,17 @@ foreach ($resultArray as $key => $item) {
 
 //--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
 //--------------------------------------КОНЕЦ ОБНОВЛЕНИЯ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------//
+
+
+register_shutdown_function(function () {
+	global $counter;
+	global $startExecTime;
+	file_put_contents(__DIR__ . "/counter.log", $counter);
+	$elapsedMemory = (!function_exists('memory_get_usage'))
+		? '-'
+		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
+	echo "\nВремя работы скрипта: " . (getmicrotime() - $startExecTime) . " сек\n";
+	echo "Использованная память: " . $elapsedMemory . PHP_EOL;
+});
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
