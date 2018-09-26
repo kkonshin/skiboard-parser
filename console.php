@@ -50,21 +50,37 @@ function parse()
 	$xml = null;
 
 	$previousSourceDate = "";
-
-	$sourceFileName = "source_" . date("Y-m-d_H") . ".xml";
+	$previousSourceName = "previous.xml";
 
 	$xml = file_get_contents(SOURCE);
 
+	$sourceFileName = "source_" . date("Y-m-d_H") . ".xml";
+
 	// Если это первый запуск парсера, и файла сохранения нет - сохраняем
+    /*
 	if (!is_file(SOURCE_SAVE_PATH . $sourceFileName)) {
-		file_put_contents(SOURCE_SAVE_PATH . $sourceFileName, $xml);
+
+	    file_put_contents(SOURCE_SAVE_PATH . $sourceFileName, $xml);
+
 	} else {
+
 		// Иначе получаем дату предыдущего каталога
+
 		$previousXml = file_get_contents(SOURCE_SAVE_PATH . $sourceFileName);
 		$previousCrawler = new Crawler($previousXml);
 		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
 		echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
 	}
+    */
+
+    if (!is_file(SOURCE_SAVE_FILE . $previousSourceName)){
+        file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
+    } else {
+		$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
+		$previousCrawler = new Crawler($previousXml);
+		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
+		echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
+    }
 
 	$crawler = new Crawler($xml);
 
@@ -75,7 +91,9 @@ function parse()
 		die ("Обновление каталога не требуется" . PHP_EOL);
 	}
 
-	echo "Каталог от " . $sourceDate . PHP_EOL;
+	// TODO если предыдущий каталог существует и даты не совпадают - запускаем сравнение и update
+
+	echo "Сохраняем каталог от " . $sourceDate . PHP_EOL;
 
 	$offers = $crawler->filter('offer');
 
