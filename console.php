@@ -47,20 +47,35 @@ function parse()
 
 	$ta = [];
 
-	$sourceFileName = "source_" . date("Y-m-d_H-i") . ".xml";
+	$xml = null;
 
-	if (!is_file(SOURCE_SAVE_PATH . $sourceFileName)){
-		$xml = file_get_contents(SOURCE);
+	$previousSourceDate = "";
+
+	$sourceFileName = "source_" . date("Y-m-d_H") . ".xml";
+
+	$xml = file_get_contents(SOURCE);
+
+	// Если это первый запуск парсера, и файла сохранения нет - сохраняем
+	if (!is_file(SOURCE_SAVE_PATH . $sourceFileName)) {
 		file_put_contents(SOURCE_SAVE_PATH . $sourceFileName, $xml);
-    } else {
-	    $xml = file_get_contents(SOURCE_SAVE_PATH . $sourceFileName);
-    }
+	} else {
+		// Иначе получаем дату предыдущего каталога
+		$previousXml = file_get_contents(SOURCE_SAVE_PATH . $sourceFileName);
+		$previousCrawler = new Crawler($previousXml);
+		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
+		echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
+	}
 
 	$crawler = new Crawler($xml);
 
-    $sourceDate = $crawler->filter('yml_catalog')->attr('date');
+	// Дата свежего каталога
+	$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
-    echo $sourceDate . PHP_EOL;
+	if ($sourceDate === $previousSourceDate) {
+		die ("Обновление каталога не требуется" . PHP_EOL);
+	}
+
+	echo "Каталог от " . $sourceDate . PHP_EOL;
 
 	$offers = $crawler->filter('offer');
 
@@ -242,7 +257,7 @@ while ($res = $dbRes->GetNext()) {
 	$sizePropArray[] = $res;
 }
 
-echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . "\n";
+echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . PHP_EOL;
 
 $tmpSizeArray = [];
 foreach ($sizePropArray as $key => $value) {
