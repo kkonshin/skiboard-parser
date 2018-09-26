@@ -18,6 +18,7 @@ define("BX_BUFFER_USED", true);
 define("BX_CLUSTER_GROUP", 2); // Отключает исполнение агентов
 
 define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
+define('SOURCE_SAVE_PATH', __DIR__ . "/save/");
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
 

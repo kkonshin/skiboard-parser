@@ -28,6 +28,9 @@ global $USER;
 if (!is_dir(__DIR__ . "/logs")) {
 	mkdir(__DIR__ . "/logs", 0777, true);
 }
+if (!is_dir(__DIR__ . "/save")) {
+	mkdir(__DIR__ . "/save", 0777, true);
+}
 
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
@@ -169,6 +172,7 @@ echo "Начат парсинг XML" . PHP_EOL;
 
 $resultArray = parse();
 
+echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
@@ -406,10 +410,14 @@ foreach ($manufacturerArray as $manId => $man) {
 }
 
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
+echo "Сохраняем товары" . PHP_EOL;
+
 $offset = 0;
-$length = count($resultArray) - $offset;
-//$length = 10;
+//$length = count($resultArray) - $offset;
+$length = 5;
 $resultArray = array_slice($resultArray, $offset, $length, true);
+
+file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
 
 echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
 
