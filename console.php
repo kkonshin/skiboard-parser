@@ -47,9 +47,17 @@ function parse()
 
 	$ta = [];
 
-	$xml = file_get_contents(SOURCE);
+	$sourceFileName = "source_" . date("Y-m-d_H-i") . ".xml";
+
+	if (!is_file(SOURCE_SAVE_PATH . $sourceFileName)){
+		$xml = file_get_contents(SOURCE);
+		file_put_contents(SOURCE_SAVE_PATH . $sourceFileName, $xml);
+    } else {
+	    $xml = file_get_contents(SOURCE_SAVE_PATH . $sourceFileName);
+    }
 
 	$crawler = new Crawler($xml);
+	
 	$offers = $crawler->filter('offer');
 
 	$parentItemsIdsArray = [];
