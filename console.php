@@ -47,7 +47,12 @@ $xml = file_get_contents(SOURCE);
 $previousSourceName = "previous.xml";
 $previousSourceDate = "";
 $previousXml = null;
+$previousResultArray = [];
+$resultDifferenceArray = [];
+$resultDifferenceArrayKeys = [];
 $isNewBasicSource = false;
+$resultArrayLength = 0;
+$previousResultArrayLength = 0;
 
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
@@ -59,8 +64,8 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
 }
 
-
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
+
 if (!function_exists("checkCatalogDate")) {
 	function checkCatalogDate($xml, $previousXml)
 	{
@@ -207,12 +212,46 @@ function parse($xml)
 	}
 }
 
-
 if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
 	$previousResultArray = parse($previousXml);
+	if (!empty($previousResultArray)) {
+		$previousResultArrayLength = count($previousResultArray);
+	}
 }
 
 $resultArray = parse($xml);
+
+if (!empty($resultArray)) {
+	$resultArrayLength = count($resultArray);
+}
+
+echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
+echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
+
+if ($resultArrayLength !== $previousResultArrayLength) {
+
+    // TODO разница между массивами
+    $resultArrayKeys = array_keys($resultArray);
+    $previousResultArrayKeys = array_keys($previousResultArray);
+
+    // TODO берем массив с большей длиной для определения разницы
+    if ($resultArrayLength > $previousResultArrayLength){
+
+        $resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
+
+        // Значит в исходном массиве нужно деактивировать товары с ключами разницы
+
+    } elseif ($previousResultArrayLength > $resultArrayLength) {
+
+        $resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
+
+        // Значит нужно записать в инфоблок новые элементы с ключами разницы
+    }
+
+	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
+//	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
+//	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
+}
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
