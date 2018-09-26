@@ -46,43 +46,51 @@ $xml = file_get_contents(SOURCE);
 
 $previousSourceName = "previous.xml";
 $previousSourceDate = "";
+$previousXml = null;
 $isNewBasicSource = false;
 
-if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)){
+if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
-
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
-
 	// Если источник парсится впервые, запишем все товары во временный инфоблок (пока нет привязки к разделам)
 	$isNewBasicSource = true;
 
 } else {
 	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
-	$previousCrawler = new Crawler($previousXml);
-	$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
-	echo "Найден сохраненный каталог от " . $previousSourceDate . PHP_EOL;
 }
 
+
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
+if (!function_exists("checkCatalogDate")) {
+	function checkCatalogDate($xml, $previousXml)
+	{
+		$crawler = new Crawler($xml);
+		$previousCrawler = new Crawler($previousXml);
 
-function parse()
+		$sourceDate = $crawler->filter('yml_catalog')->attr('date');
+		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
+
+		if ($sourceDate === $previousSourceDate) {
+			echo "Обновление каталога не требуется" . PHP_EOL;
+			die();
+		} else if (!empty($sourceDate)) {
+			echo "Будет произведено обновление товаров каталога" . PHP_EOL;
+			return true;
+		}
+		return false;
+	}
+}
+
+
+function parse($xml)
 {
-    global $xml;
-    global $previousSourceDate;
-
 	$ta = [];
 
 	$crawler = new Crawler($xml);
 
 	$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
-	if ($sourceDate === $previousSourceDate) {
-		die ("Обновление каталога не требуется" . PHP_EOL);
-	}
-
-	// TODO если предыдущий каталог существует и даты не совпадают - запускаем сравнение и update
-
-	echo "Каталог от " . $sourceDate . PHP_EOL;
+	echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
 
 	$offers = $crawler->filter('offer');
 
@@ -199,9 +207,12 @@ function parse()
 	}
 }
 
-echo "Начат парсинг XML" . PHP_EOL;
 
-$resultArray = parse();
+if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
+	$previousResultArray = parse($previousXml);
+}
+
+$resultArray = parse($xml);
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
@@ -426,6 +437,7 @@ foreach ($manufacturerArray as $manId => $man) {
 }
 
 if ($isNewBasicSource) {
+	echo "\nСохраняем товары" . PHP_EOL;
 	require(__DIR__ . "/add.php");
 }
 
