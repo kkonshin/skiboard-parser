@@ -57,7 +57,11 @@ function parse()
     }
 
 	$crawler = new Crawler($xml);
-	
+
+    $sourceDate = $crawler->filter('yml_catalog')->attr('date');
+
+    echo $sourceDate . PHP_EOL;
+
 	$offers = $crawler->filter('offer');
 
 	$parentItemsIdsArray = [];
