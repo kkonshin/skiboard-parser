@@ -46,12 +46,15 @@ $xml = file_get_contents(SOURCE);
 
 $previousSourceName = "previous.xml";
 $previousSourceDate = "";
+$isNewBasicSource = false;
 
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)){
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
+
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
 
-	// require (__DIR__ . "/add.php");
+	// Если источник парсится впервые, запишем все товары во временный инфоблок (пока нет привязки к разделам)
+	$isNewBasicSource = true;
 
 } else {
 	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
@@ -64,14 +67,13 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)){
 
 function parse()
 {
-    // TODO передавать аргументами ?
     global $xml;
     global $previousSourceDate;
 
 	$ta = [];
 
 	$crawler = new Crawler($xml);
-	// Дата свежего каталога
+
 	$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
 	if ($sourceDate === $previousSourceDate) {
@@ -79,8 +81,6 @@ function parse()
 	}
 
 	// TODO если предыдущий каталог существует и даты не совпадают - запускаем сравнение и update
-
-    // TODO выносим сохранение в отдельный скрипт
 
 	echo "Каталог от " . $sourceDate . PHP_EOL;
 
@@ -136,7 +136,6 @@ function parse()
 						]
 					)
 				) {
-//					$catTempArray[] = $v->nodeValue;
 					$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
 
 				}
@@ -149,8 +148,6 @@ function parse()
 				$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
 			}
 		}
-
-//		file_put_contents(__DIR__. "/logs/categories.log", print_r(array_unique($catTempArray), true));
 
 		// Развернем полученный через extract массив атрибутов, извлечем размер
 		foreach ($ta as $key => $value) {
@@ -209,21 +206,6 @@ $resultArray = parse();
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
-
-$summer = array_unique([
-	288, 289, 290, 418, 321, 322, 296, 398, 400, 411, 412, 413, 414, 415, 275, 330, 328, 329, 331, 332, 333,
-	334, 335, 336, 396, 294, 358, 360, 359, 361, 362, 389, 292, 401, 385, 393, 381, 370, 278, 279, 282, 283,
-	368, 409, 372, 347, 368, 409, 372, 347, 348, 349, 327, 350, 351, 352, 353, 354, 355, 356, 357, 271, 419,
-	297, 298, 299, 300, 301, 302, 303, 325, 326, 402, 403, 404, 405, 406, 371, 270, 310, 304, 305, 306, 307,
-	386, 387, 410, 395, 420, 421, 422, 423, 424, 425, 383, 392, 293, 427,
-]);
-
-
-$winter = array_unique([
-	337, 338, 339, 340, 341, 342, 343, 407, 385, 399, 416, 417, 273, 280, 286, 287, 408, 369, 365, 266, 365,
-	373, 280, 286, 287, 408, 369, 267, 268, 269, 364, 391
-]);
-
 
 // Транслитерация символьного кода
 
@@ -443,7 +425,9 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-require (__DIR__ . "/add.php");
+if ($isNewBasicSource) {
+	require(__DIR__ . "/add.php");
+}
 
 //--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
 //--------------------------------------КОНЕЦ ОБНОВЛЕНИЯ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------//
