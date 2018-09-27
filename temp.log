@@ -1,0 +1,67 @@
+array (
+  0 => 
+  array (
+    'IBLOCK_ID' => '12',
+    '~IBLOCK_ID' => '12',
+    'ID' => '84176',
+    '~ID' => '84176',
+    'NAME' => 'Гидромайка мужская короткий рукав SKINS HYPERFREAK S/S CREW_o',
+    '~NAME' => 'Гидромайка мужская короткий рукав SKINS HYPERFREAK S/S CREW_o',
+    'PROPERTY_GROUP_ID_VALUE' => '5210',
+    '~PROPERTY_GROUP_ID_VALUE' => '5210',
+    'PROPERTY_GROUP_ID_VALUE_ID' => '431042',
+    '~PROPERTY_GROUP_ID_VALUE_ID' => '431042',
+  ),
+  1 => 
+  array (
+    'IBLOCK_ID' => '12',
+    '~IBLOCK_ID' => '12',
+    'ID' => '85676',
+    '~ID' => '85676',
+    'NAME' => 'Крепления для вейкборда мужские CWB JT_o',
+    '~NAME' => 'Крепления для вейкборда мужские CWB JT_o',
+    'PROPERTY_GROUP_ID_VALUE' => '6468',
+    '~PROPERTY_GROUP_ID_VALUE' => '6468',
+    'PROPERTY_GROUP_ID_VALUE_ID' => '432993',
+    '~PROPERTY_GROUP_ID_VALUE_ID' => '432993',
+  ),
+  2 => 
+  array (
+    'IBLOCK_ID' => '12',
+    '~IBLOCK_ID' => '12',
+    'ID' => '86102',
+    '~ID' => '86102',
+    'NAME' => 'Весло для каяка Aqua Marina BEACH Aluminum Kayak Paddle (4 sections) White S18',
+    '~NAME' => 'Весло для каяка Aqua Marina BEACH Aluminum Kayak Paddle (4 sections) White S18',
+    'PROPERTY_GROUP_ID_VALUE' => '7213',
+    '~PROPERTY_GROUP_ID_VALUE' => '7213',
+    'PROPERTY_GROUP_ID_VALUE_ID' => '433888',
+    '~PROPERTY_GROUP_ID_VALUE_ID' => '433888',
+  ),
+  3 => 
+  array (
+    'IBLOCK_ID' => '12',
+    '~IBLOCK_ID' => '12',
+    'ID' => '87319',
+    '~ID' => '87319',
+    'NAME' => 'Лыжи парные прогулочные Connelly ECLYPSE - SWERVE LACE ADJ (Blue) S18',
+    '~NAME' => 'Лыжи парные прогулочные Connelly ECLYPSE - SWERVE LACE ADJ (Blue) S18',
+    'PROPERTY_GROUP_ID_VALUE' => '7695',
+    '~PROPERTY_GROUP_ID_VALUE' => '7695',
+    'PROPERTY_GROUP_ID_VALUE_ID' => '435609',
+    '~PROPERTY_GROUP_ID_VALUE_ID' => '435609',
+  ),
+  4 => 
+  array (
+    'IBLOCK_ID' => '12',
+    '~IBLOCK_ID' => '12',
+    'ID' => '87423',
+    '~ID' => '87423',
+    'NAME' => 'Комплект Proline воднолыжный 75\' WK/SKI W/PE 5 SEC AIR - VLT Black/Yellow S18',
+    '~NAME' => 'Комплект Proline воднолыжный 75\' WK/SKI W/PE 5 SEC AIR - VLT Black/Yellow S18',
+    'PROPERTY_GROUP_ID_VALUE' => '7813',
+    '~PROPERTY_GROUP_ID_VALUE' => '7813',
+    'PROPERTY_GROUP_ID_VALUE_ID' => '435896',
+    '~PROPERTY_GROUP_ID_VALUE_ID' => '435896',
+  ),
+)

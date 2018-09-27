@@ -242,29 +242,43 @@ if ($resultArrayLength !== $previousResultArrayLength) {
 
 		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
 
-		// Значит в исходном массиве нужно деактивировать товары с ключами разницы
+		// Значит нужно записать в инфоблок новые элементы с ключами разницы
 
 		$dbRes = CIBlockElement::GetList(
 			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345],
+			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
 			false,
 			false,
-			["IBLOCK_ID", "ID", "NAME"]
+			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID"]
 		);
 
 		while ($res = $dbRes->GetNext()) {
 			$temp[] = $res;
 		}
 
-
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
 
-		// Значит нужно записать в инфоблок новые элементы с ключами разницы
+		// Значит в инфоблоке нужно деактивировать товары с ключами разницы
 
-		$element = new CIBlockElement();
-		$element->Update(78025, ["ACTIVE" => "N"]);
+		$dbRes = CIBlockElement::GetList(
+			[],
+			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
+			false,
+			false,
+			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
+		);
+
+		while ($res = $dbRes->GetNext()) {
+			$temp[] = $res;
+		}
+
+		foreach ($temp as $tempKey => $tempValue) {
+			$element = new CIBlockElement();
+			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
+		}
+
 	}
 
 

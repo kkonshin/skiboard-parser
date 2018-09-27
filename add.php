@@ -1,8 +1,8 @@
 <?php
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 $offset = 0;
-//$length = count($resultArray) - $offset;
-$length = 5;
+$length = count($resultArray) - $offset;
+//$length = 50;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
