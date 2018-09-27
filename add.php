@@ -1,9 +1,11 @@
 <?php
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 0;
-$length = count($resultArray) - $offset;
+
+// Ограничение длины массива для разработки
+//$offset = 0;
+//$length = count($resultArray) - $offset;
 //$length = 50;
-$resultArray = array_slice($resultArray, $offset, $length, true);
+//$resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
 

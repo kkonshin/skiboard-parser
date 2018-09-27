@@ -231,9 +231,9 @@ if (!empty($resultArray)) {
 echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
 echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
 
-if ($resultArrayLength !== $previousResultArrayLength) {
+if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
-	// TODO разница между массивами
+	// TODO разница между массивамиfd
 	$resultArrayKeys = array_keys($resultArray);
 	$previousResultArrayKeys = array_keys($previousResultArray);
 
@@ -241,20 +241,14 @@ if ($resultArrayLength !== $previousResultArrayLength) {
 	if ($resultArrayLength > $previousResultArrayLength) {
 
 		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
-
-		// Значит нужно записать в инфоблок новые элементы с ключами разницы
-
-		$dbRes = CIBlockElement::GetList(
-			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
-			false,
-			false,
-			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID"]
-		);
-
-		while ($res = $dbRes->GetNext()) {
-			$temp[] = $res;
+		foreach ($resultDifferenceArrayKeys as $diffKey => $diffValue) {
+			$temp[$diffValue] = $resultArray[$diffValue];
 		}
+		$resultArray = $temp;
+		// Значит нужно записать в инфоблок новые элементы с ключами разницы
+		// т.е. выбрать из нового массива только эти элементы
+
+		require(__DIR__ . "/add.php");
 
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 
@@ -278,14 +272,14 @@ if ($resultArrayLength !== $previousResultArrayLength) {
 			$element = new CIBlockElement();
 			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
 		}
-
 	}
 
 
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/temp.log", var_export($temp, true));
+//	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
+//	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;

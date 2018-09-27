@@ -1,67 +1,534 @@
-array (
-  0 => 
-  array (
-    'IBLOCK_ID' => '12',
-    '~IBLOCK_ID' => '12',
-    'ID' => '84176',
-    '~ID' => '84176',
-    'NAME' => 'Гидромайка мужская короткий рукав SKINS HYPERFREAK S/S CREW_o',
-    '~NAME' => 'Гидромайка мужская короткий рукав SKINS HYPERFREAK S/S CREW_o',
-    'PROPERTY_GROUP_ID_VALUE' => '5210',
-    '~PROPERTY_GROUP_ID_VALUE' => '5210',
-    'PROPERTY_GROUP_ID_VALUE_ID' => '431042',
-    '~PROPERTY_GROUP_ID_VALUE_ID' => '431042',
-  ),
-  1 => 
-  array (
-    'IBLOCK_ID' => '12',
-    '~IBLOCK_ID' => '12',
-    'ID' => '85676',
-    '~ID' => '85676',
-    'NAME' => 'Крепления для вейкборда мужские CWB JT_o',
-    '~NAME' => 'Крепления для вейкборда мужские CWB JT_o',
-    'PROPERTY_GROUP_ID_VALUE' => '6468',
-    '~PROPERTY_GROUP_ID_VALUE' => '6468',
-    'PROPERTY_GROUP_ID_VALUE_ID' => '432993',
-    '~PROPERTY_GROUP_ID_VALUE_ID' => '432993',
-  ),
-  2 => 
-  array (
-    'IBLOCK_ID' => '12',
-    '~IBLOCK_ID' => '12',
-    'ID' => '86102',
-    '~ID' => '86102',
-    'NAME' => 'Весло для каяка Aqua Marina BEACH Aluminum Kayak Paddle (4 sections) White S18',
-    '~NAME' => 'Весло для каяка Aqua Marina BEACH Aluminum Kayak Paddle (4 sections) White S18',
-    'PROPERTY_GROUP_ID_VALUE' => '7213',
-    '~PROPERTY_GROUP_ID_VALUE' => '7213',
-    'PROPERTY_GROUP_ID_VALUE_ID' => '433888',
-    '~PROPERTY_GROUP_ID_VALUE_ID' => '433888',
-  ),
-  3 => 
-  array (
-    'IBLOCK_ID' => '12',
-    '~IBLOCK_ID' => '12',
-    'ID' => '87319',
-    '~ID' => '87319',
-    'NAME' => 'Лыжи парные прогулочные Connelly ECLYPSE - SWERVE LACE ADJ (Blue) S18',
-    '~NAME' => 'Лыжи парные прогулочные Connelly ECLYPSE - SWERVE LACE ADJ (Blue) S18',
-    'PROPERTY_GROUP_ID_VALUE' => '7695',
-    '~PROPERTY_GROUP_ID_VALUE' => '7695',
-    'PROPERTY_GROUP_ID_VALUE_ID' => '435609',
-    '~PROPERTY_GROUP_ID_VALUE_ID' => '435609',
-  ),
-  4 => 
-  array (
-    'IBLOCK_ID' => '12',
-    '~IBLOCK_ID' => '12',
-    'ID' => '87423',
-    '~ID' => '87423',
-    'NAME' => 'Комплект Proline воднолыжный 75\' WK/SKI W/PE 5 SEC AIR - VLT Black/Yellow S18',
-    '~NAME' => 'Комплект Proline воднолыжный 75\' WK/SKI W/PE 5 SEC AIR - VLT Black/Yellow S18',
-    'PROPERTY_GROUP_ID_VALUE' => '7813',
-    '~PROPERTY_GROUP_ID_VALUE' => '7813',
-    'PROPERTY_GROUP_ID_VALUE_ID' => '435896',
-    '~PROPERTY_GROUP_ID_VALUE_ID' => '435896',
-  ),
+Array
+(
+    [8244] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 8244
+                    [OFFER_ID] => f8e554523e0eb9692b30
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => MW5MGRB*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Мужской
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/cef94c6c-2762-11e8-be2a-000c29181d73_f861763b-4932-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern мужской Watts H2O Matte Gry w/Neon Green Brim S18
+                    [DESCRIPTION] => Тонкий профиль, противоударная пена &nbsp;Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 8244
+                    [OFFER_ID] => 186bce689d876d8a817f
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => MW5MGRB*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Мужской
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/cef94c6c-2762-11e8-be2a-000c29181d73_f861763b-4932-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern мужской Watts H2O Matte Gry w/Neon Green Brim S18
+                    [DESCRIPTION] => Тонкий профиль, противоударная пена &nbsp;Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 8244
+                    [OFFER_ID] => 1987a601cf987342daf8
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => MW5MGRB*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Мужской
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/cef94c6c-2762-11e8-be2a-000c29181d73_f861763b-4932-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern мужской Watts H2O Matte Gry w/Neon Green Brim S18
+                    [DESCRIPTION] => Тонкий профиль, противоударная пена &nbsp;Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 8244
+                    [OFFER_ID] => 2fa33a4386d67eea45e8
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => MW5MGRB*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Мужской
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => XL
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/cef94c6c-2762-11e8-be2a-000c29181d73_f861763b-4932-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern мужской Watts H2O Matte Gry w/Neon Green Brim S18
+                    [DESCRIPTION] => Тонкий профиль, противоударная пена &nbsp;Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+        )
+
+    [8245] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 8245
+                    [OFFER_ID] => bafe022070bbf599ee63
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SBK*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => XS
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/8ab964bb-2764-11e8-be2a-000c29181d73_913f1139-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Blk S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 8245
+                    [OFFER_ID] => 3c9aeba43b2dcc346177
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SBK*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/8ab964bb-2764-11e8-be2a-000c29181d73_913f1139-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Blk S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 8245
+                    [OFFER_ID] => 639d7817914a1d3c6480
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SBK*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/8ab964bb-2764-11e8-be2a-000c29181d73_913f1139-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Blk S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+        )
+
+    [8246] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 8246
+                    [OFFER_ID] => ee6ad33df6e36843cd2f
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SWT*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водных видов спорта
+                            [Товар] => Шлем
+                            [Размер] => XS
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/f731dba4-2764-11e8-be2a-000c29181d73_dc43a82c-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Wht S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 8246
+                    [OFFER_ID] => 101c5fa2b99a360bf562
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SWT*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водных видов спорта
+                            [Товар] => Шлем
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/f731dba4-2764-11e8-be2a-000c29181d73_dc43a82c-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Wht S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 8246
+                    [OFFER_ID] => 9b4733da364df404e987
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SWT*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водных видов спорта
+                            [Товар] => Шлем
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/f731dba4-2764-11e8-be2a-000c29181d73_dc43a82c-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Wht S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 8246
+                    [OFFER_ID] => 17dc08e440a935da8a65
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SWT*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водных видов спорта
+                            [Товар] => Шлем
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/f731dba4-2764-11e8-be2a-000c29181d73_dc43a82c-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Wht S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+        )
+
+    [8247] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 8247
+                    [OFFER_ID] => 62ae8b6c0974c68249d1
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SGR*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/5d5019ad-2765-11e8-be2a-000c29181d73_5003b892-4f6e-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Graphite Gry S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 8247
+                    [OFFER_ID] => 753f6185e1c2c828cec9
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SGR*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/5d5019ad-2765-11e8-be2a-000c29181d73_5003b892-4f6e-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Graphite Gry S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 8247
+                    [OFFER_ID] => d663fae14e3933f898b0
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SGR*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/5d5019ad-2765-11e8-be2a-000c29181d73_5003b892-4f6e-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Graphite Gry S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+        )
+
+    [8248] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 8248
+                    [OFFER_ID] => 05ba2b387b6a41375026
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SMD*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => XS
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/bf265e63-2766-11e8-be2a-000c29181d73_c1189bb5-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Midnight Blue S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 8248
+                    [OFFER_ID] => 2392a0cb1dbdc2ac67ed
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SMD*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/bf265e63-2766-11e8-be2a-000c29181d73_c1189bb5-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Midnight Blue S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 8248
+                    [OFFER_ID] => 3efd3b32498d5900d9c2
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SMD*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/bf265e63-2766-11e8-be2a-000c29181d73_c1189bb5-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Midnight Blue S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 8248
+                    [OFFER_ID] => 9f6caa4084afe44b3a50
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => WW5SMD*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Женский
+                            [Стиль] => для водного спорта
+                            [Товар] => Шлем
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 2942.135
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/bf265e63-2766-11e8-be2a-000c29181d73_c1189bb5-4931-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Шлем для водных видов спорта Bern женский Lenox H2O Satin Midnight Blue S18
+                    [DESCRIPTION] => Шлем специально для женщин.
+Тонкий профиль, противоударная пена Brock, 9 вентилируемых отверстий.&nbsp;Отлично сидит и смотрится. Подходит для любого активного отдыха в любую погоду.
+                )
+
+        )
+
+    [8249] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 8249
+                    [OFFER_ID] => af99d36b6a6cbb1e3fd1
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => H2O-Ear*S18
+                            [Бренд] => Bern
+                            [Коллекция] => 2018
+                            [Пол] => Унисекс
+                            [Товар] => защита
+                            [Размер] => OS
+                        )
+
+                    [PRICE] => 478.952
+                    [CATEGORY_ID] => 321
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/34/2ec77153-2767-11e8-be2a-000c29181d73_9b77efb6-4f71-11e8-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Защита ушей для H2O шлема Bern унисекс H2O Earflaps - 1 Pair Black S18
+                    [DESCRIPTION] => Защитные вставки для ушей, съемные. 
+                )
+
+        )
+
 )
