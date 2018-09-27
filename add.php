@@ -5,7 +5,7 @@ $offset = 0;
 $length = 5;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
-file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
 
 echo "Количество товаров для записи: " . count($resultArray) . "\n";
 
@@ -59,6 +59,7 @@ foreach ($resultArray as $key => $item) {
 //			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => "skiboard.ru",
+				"GROUP_ID" => $key,
 //				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];

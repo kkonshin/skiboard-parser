@@ -212,6 +212,9 @@ function parse($xml)
 	}
 }
 
+//-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
+
+
 if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
 	$previousResultArray = parse($previousXml);
 	if (!empty($previousResultArray)) {
@@ -230,27 +233,45 @@ echo "Длина исходного массива: " . $previousResultArrayLeng
 
 if ($resultArrayLength !== $previousResultArrayLength) {
 
-    // TODO разница между массивами
-    $resultArrayKeys = array_keys($resultArray);
-    $previousResultArrayKeys = array_keys($previousResultArray);
+	// TODO разница между массивами
+	$resultArrayKeys = array_keys($resultArray);
+	$previousResultArrayKeys = array_keys($previousResultArray);
 
-    // TODO берем массив с большей длиной для определения разницы
-    if ($resultArrayLength > $previousResultArrayLength){
+	// TODO берем массив с большей длиной для определения разницы
+	if ($resultArrayLength > $previousResultArrayLength) {
 
-        $resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
+		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
 
-        // Значит в исходном массиве нужно деактивировать товары с ключами разницы
+		// Значит в исходном массиве нужно деактивировать товары с ключами разницы
 
-    } elseif ($previousResultArrayLength > $resultArrayLength) {
+		$dbRes = CIBlockElement::GetList(
+			[],
+			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345],
+			false,
+			false,
+			["IBLOCK_ID", "ID", "NAME"]
+		);
 
-        $resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
+		while ($res = $dbRes->GetNext()) {
+			$temp[] = $res;
+		}
 
-        // Значит нужно записать в инфоблок новые элементы с ключами разницы
-    }
 
-	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
+	} elseif ($previousResultArrayLength > $resultArrayLength) {
+
+		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
+
+		// Значит нужно записать в инфоблок новые элементы с ключами разницы
+
+		$element = new CIBlockElement();
+		$element->Update(78025, ["ACTIVE" => "N"]);
+	}
+
+
+//	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
+//	file_put_contents(__DIR__ . "/temp.log", var_export($temp, true));
 }
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
