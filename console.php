@@ -51,6 +51,7 @@ $previousResultArray = [];
 $resultDifferenceArray = [];
 $resultDifferenceArrayKeys = [];
 $isNewBasicSource = false;
+$isAddNewItems = false;
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
 
@@ -248,7 +249,9 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		// Значит нужно записать в инфоблок новые элементы с ключами разницы
 		// т.е. выбрать из нового массива только эти элементы
 
-		require(__DIR__ . "/add.php");
+
+        // FIXME $valueIdPairsArray - еще недоступен
+        $isAddNewItems = true;
 
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 
@@ -285,18 +288,6 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
-
-// Транслитерация символьного кода
-
-$translitParams = Array(
-	"max_len" => "600", // обрезает символьный код до 100 символов
-	"change_case" => "L", // буквы преобразуются к нижнему регистру
-	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
-	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
-	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
-	"use_google" => "false", // отключаем использование google
-);
-
 
 //---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//
 
@@ -504,7 +495,7 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-if ($isNewBasicSource) {
+if ($isNewBasicSource || $isAddNewItems) {
 	echo "\nСохраняем товары" . PHP_EOL;
 	require(__DIR__ . "/add.php");
 }
