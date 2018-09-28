@@ -20,7 +20,9 @@ $startExecTime = getmicrotime();
 require_once("vendor/autoload.php");
 
 require (__DIR__ . "/setsize.php");
+require(__DIR__. "/setproperties.php");
 require(__DIR__ . "/add.php");
+
 
 use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
@@ -217,6 +219,7 @@ function parse($xml)
 //-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
 
 
+
 if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
 	$previousResultArray = parse($previousXml);
 	if (!empty($previousResultArray)) {
@@ -235,11 +238,9 @@ echo "Длина исходного массива: " . $previousResultArrayLeng
 
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
-	// TODO разница между массивами
 	$resultArrayKeys = array_keys($resultArray);
 	$previousResultArrayKeys = array_keys($previousResultArray);
 
-	// TODO берем массив с большей длиной для определения разницы
 	if ($resultArrayLength > $previousResultArrayLength) {
 
 		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
@@ -251,7 +252,8 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		// т.е. выбрать из нового массива только эти элементы
 
         // TODO создать свойства для новых товаров
-
+		$valueIdPairsArray = setSize($resultArray);
+		setProperties($resultArray);
         addItems($resultArray);
 
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
@@ -282,7 +284,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
+	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
 //	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
@@ -290,81 +292,12 @@ echo "Парсинг завершен. Обновляем свойства эл�
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
-// Транслитерация символьного кода
 
-$translitParams = Array(
-	"max_len" => "600", // обрезает символьный код до 100 символов
-	"change_case" => "L", // буквы преобразуются к нижнему регистру
-	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
-	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
-	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
-	"use_google" => "false", // отключаем использование google
-);
+//setSize($resultArray);
 
-
-//---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//
-
-setSize($resultArray);
 
 //--------------------ПОЛУЧАЕМ СВОЙСТВА ТОРГОВЫХ ПРЕДЛОЖЕНИЙ----------------------------------------------------------//
-
-$allSkuPropertiesArray = []; // Все свойства торговых предложений, уже существующие в инфоблоке ТП
-$allSourcePropertiesArray = []; // Все свойства торговых предложений из прайса
-$allSkuPropertiesCodesArray = []; // Массив символьных кодов ТП для проверки уникальности
-
-$propsResDb = CIBlockProperty::GetList([], ["IBLOCK_ID" => SKU_IBLOCK_ID, "CHECK_PERMISSIONS" => "N"]);
-while ($res = $propsResDb->GetNext()) {
-	$allSkuPropertiesArray[] = $res;
-}
-
-foreach ($resultArray as $key => $item) {
-	foreach ($item as $k => $offer) {
-		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
-			if (!in_array($attribute, $allSourcePropertiesArray)) {
-				$allSourcePropertiesArray[] = $attribute;
-			}
-		}
-	}
-}
-
-// Сохраним свойства в ИБ ТП, если их там еще нет
-
-foreach ($allSkuPropertiesArray as $key => $property) {
-	$allSkuPropertiesCodesArray[] = $property["CODE"];
-}
-
-foreach ($allSourcePropertiesArray as $key => $value) {
-
-	$arPropertyFields = [
-		"NAME" => $value,
-		"ACTIVE" => "Y",
-		"CODE" => strtoupper(CUtil::translit($value, "ru", $translitParams)),
-		"PROPERTY_TYPE" => "S",
-		"IBLOCK_ID" => SKU_IBLOCK_ID,
-		"SEARCHABLE" => "Y",
-		"FILTRABLE" => "Y",
-		"VALUES" => [
-			0 => [
-				"VALUE" => "",
-				"DEF" => "Y"
-			]
-		]
-	];
-
-	if (!in_array($arPropertyFields["CODE"], $allSkuPropertiesCodesArray)) {
-		if ($arPropertyFields["CODE"] !== "BREND") {
-			$newProperty = new CIBlockProperty;
-			$newPropertyId = $newProperty->Add($arPropertyFields);
-
-			if ($newPropertyId > 0) {
-				echo "Свойство торговых предложений ID = {$newPropertyId} успешно добавлено \n";
-			}
-		} else {
-			echo "Свойство с символьным кодом {$arPropertyFields['CODE']} уже существует или исключено из записи\n";
-		}
-	}
-}
-
+//setProperties($resultArray);
 //---------------------------------ПРОИЗВОДИТЕЛЬ [справочник/highload]------------------------------------------------//
 
 
@@ -443,7 +376,8 @@ foreach ($manufacturerArray as $manId => $man) {
 
 if ($isNewBasicSource) {
 	echo "\nСохраняем товары" . PHP_EOL;
-
+	$valueIdPairsArray = setSize($resultArray);
+    setProperties($resultArray);
 	addItems($resultArray);
 
 }

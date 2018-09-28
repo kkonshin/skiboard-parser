@@ -2,11 +2,14 @@
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 function addItems ($resultArray){
 
+
 	global $USER;
 	global $translitParams;
 	global $summer;
 	global $winter;
 	global $valueIdPairsArray;
+
+
 // Ограничение длины массива для разработки
 //$offset = 0;
 //$length = count($resultArray) - $offset;

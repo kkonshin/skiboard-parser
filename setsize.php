@@ -68,4 +68,5 @@ if (!function_exists("setSize")) {
 			$valueIdPairsArray[$value["VALUE"]] = $value["ID"];
 		}
 	}
+	return $valueIdPairsArray;
 }
