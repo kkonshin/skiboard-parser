@@ -253,6 +253,10 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
         // TODO создать свойства для новых товаров
 		$valueIdPairsArray = setSize($resultArray);
+
+		file_put_contents("tmp.php", print_r($valueIdPairsArray, true));
+
+
 		setProperties($resultArray);
         addItems($resultArray);
 
