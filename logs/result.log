@@ -1,0 +1,717 @@
+Array
+(
+    [5744] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 5744
+                    [OFFER_ID] => b9e5b97f171d9e96640c
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6716300*S17
+                            [Бренд] => Connelly
+                            [Коллекция] => 2017
+                            [Пол] => Женский
+                            [Тип] => Перчатки
+                            [Товар] => Перчатки
+                            [Размер] => XS
+                        )
+
+                    [PRICE] => 3010.557
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/32/4ffe127d-ffe6-11e6-a4a1-000c29181d73_ab0e6867-187c-11e7-91ca-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Перчатки женские Connelly SP GLOVE Black/Purple
+                    [DESCRIPTION] => 
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; сделаны из двуслойного материала Amara с цепкими вставками для лучшего захвата;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; принудительно согнутые пальцы с усиленными зонами износа;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из силикона по всей ладони и на кончиках пальцев;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из тисненого неопрена на тыльной стороне ладони, которая при сжатии помогает защищать кулак;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; застёжка-липучка на тыльной стороне позволяет быстро и легко зафиксировать перчатку.
+&nbsp;
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 5744
+                    [OFFER_ID] => 4b281adb7fa03650ffe0
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6716300*S17
+                            [Бренд] => Connelly
+                            [Коллекция] => 2017
+                            [Пол] => Женский
+                            [Тип] => Перчатки
+                            [Товар] => Перчатки
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 3010.557
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/32/4ffe127d-ffe6-11e6-a4a1-000c29181d73_ab0e6867-187c-11e7-91ca-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Перчатки женские Connelly SP GLOVE Black/Purple
+                    [DESCRIPTION] => 
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; сделаны из двуслойного материала Amara с цепкими вставками для лучшего захвата;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; принудительно согнутые пальцы с усиленными зонами износа;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из силикона по всей ладони и на кончиках пальцев;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из тисненого неопрена на тыльной стороне ладони, которая при сжатии помогает защищать кулак;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; застёжка-липучка на тыльной стороне позволяет быстро и легко зафиксировать перчатку.
+&nbsp;
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 5744
+                    [OFFER_ID] => ea3ed5a708ee9df7372a
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6716300*S17
+                            [Бренд] => Connelly
+                            [Коллекция] => 2017
+                            [Пол] => Женский
+                            [Тип] => Перчатки
+                            [Товар] => Перчатки
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 3010.557
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/32/4ffe127d-ffe6-11e6-a4a1-000c29181d73_ab0e6867-187c-11e7-91ca-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Перчатки женские Connelly SP GLOVE Black/Purple
+                    [DESCRIPTION] => 
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; сделаны из двуслойного материала Amara с цепкими вставками для лучшего захвата;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; принудительно согнутые пальцы с усиленными зонами износа;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из силикона по всей ладони и на кончиках пальцев;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из тисненого неопрена на тыльной стороне ладони, которая при сжатии помогает защищать кулак;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; застёжка-липучка на тыльной стороне позволяет быстро и легко зафиксировать перчатку.
+&nbsp;
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 5744
+                    [OFFER_ID] => 96eb4be57be10e8ece28
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6716300*S17
+                            [Бренд] => Connelly
+                            [Коллекция] => 2017
+                            [Пол] => Женский
+                            [Тип] => Перчатки
+                            [Товар] => Перчатки
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 3010.557
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/32/4ffe127d-ffe6-11e6-a4a1-000c29181d73_ab0e6867-187c-11e7-91ca-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Перчатки женские Connelly SP GLOVE Black/Purple
+                    [DESCRIPTION] => 
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; сделаны из двуслойного материала Amara с цепкими вставками для лучшего захвата;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; принудительно согнутые пальцы с усиленными зонами износа;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из силикона по всей ладони и на кончиках пальцев;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; вставка из тисненого неопрена на тыльной стороне ладони, которая при сжатии помогает защищать кулак;
+·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; застёжка-липучка на тыльной стороне позволяет быстро и легко зафиксировать перчатку.
+&nbsp;
+                )
+
+        )
+
+    [5745] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => b40a317335962ec7dc94
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 2805.291
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => 203554a6900bb0e86ce6
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 2805.291
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => 5cf86204b96d6ca2fcf6
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 2805.291
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => e82b660a747aaee8f62b
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => XS
+                        )
+
+                    [PRICE] => 2736.87
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [4] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => 40116f38614a81610888
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => 2XS
+                        )
+
+                    [PRICE] => 2736.87
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [5] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => b8dbd8404a6a7d714f73
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 1984.23
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [6] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => 5be2df8e2d5d359fa090
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 1984.23
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [7] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => 29a3a0d92f0ae28d5fc7
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 1984.23
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+            [8] => Array
+                (
+                    [PARENT_ITEM_ID] => 5745
+                    [OFFER_ID] => 54327626de85989e48b5
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 671429
+                            [Бренд] => Connelly
+                            [Коллекция] => 2014
+                            [Пол] => Женский
+                            [Состав] => синтетическая кожа/непрен/нейлон
+                            [Тип] => Перчатки
+                            [Товар] => Гидроперчатки
+                            [Размер] => XXS
+                        )
+
+                    [PRICE] => 2052.652
+                    [CATEGORY_ID] => 300
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45e9-9966-11e3-b912-001e67059a2f.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a1-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [2] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_a63ab2a2-6798-11e1-8ca3-001e67059a2f.jpeg
+                            [3] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_404e451c-0081-11e6-9582-000c29181d73.jpeg
+                            [4] => http://b2b.skiboard.ru/images/detailed/31/29cf043f-437d-11e2-8b48-001e67059a2f_5b9e45eb-9966-11e3-b912-001e67059a2f.jpeg
+                        )
+
+                    [NAME] => Перчатки Connelly женские CONN WMNS TOUR GLOVE Purple (PUR)
+                    [DESCRIPTION] => Мы не могли забыть про женщин, поэтому модернизировали и эти перчатки. 
+Взяв за основу ту же форму, мы добавили неопер на тыльной стороне для большей долговечности и гибкости. 
+Ладони из материала Amara и новый внешний вид, который гармонирует с остальной женской продукцией. 
+Вы будете очень стильными на воде!
+                )
+
+        )
+
+    [5750] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 5750
+                    [OFFER_ID] => 655a2d5025cfbaf87ed0
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400095
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2012
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => XS
+                        )
+
+                    [PRICE] => 3489.509
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82aa-1774-11e1-8e51-001e8c53c4a2_0d0ac4e9-ff41-11e7-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля PIVOT SILVER
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 5750
+                    [OFFER_ID] => ed1bc3a8947f95192656
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400095
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2012
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 3763.196
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82aa-1774-11e1-8e51-001e8c53c4a2_0d0ac4e9-ff41-11e7-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля PIVOT SILVER
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 5750
+                    [OFFER_ID] => 8b0679d08c7b91363ab2
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400095
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2012
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 3763.196
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82aa-1774-11e1-8e51-001e8c53c4a2_0d0ac4e9-ff41-11e7-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля PIVOT SILVER
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 5750
+                    [OFFER_ID] => 9e80f36c7585ae8b6db5
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400095
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2012
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 3763.196
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82aa-1774-11e1-8e51-001e8c53c4a2_0d0ac4e9-ff41-11e7-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля PIVOT SILVER
+                )
+
+            [4] => Array
+                (
+                    [PARENT_ITEM_ID] => 5750
+                    [OFFER_ID] => 7a84f9e16593ec5c7f80
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400095
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2012
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => XL
+                        )
+
+                    [PRICE] => 3763.196
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82aa-1774-11e1-8e51-001e8c53c4a2_0d0ac4e9-ff41-11e7-be2a-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля PIVOT SILVER
+                )
+
+        )
+
+    [5752] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 5752
+                    [OFFER_ID] => e02f2b1c42542bfa31f5
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400096
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2011
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => S
+                        )
+
+                    [PRICE] => 1710.544
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82ac-1774-11e1-8e51-001e8c53c4a2_d011a22d-7c92-11e5-974e-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля REAR TOE STRAP
+                    [DESCRIPTION] => &nbsp;
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 5752
+                    [OFFER_ID] => 6cd7ad8e2d73bfe494b3
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400096
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2011
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => M
+                        )
+
+                    [PRICE] => 1710.544
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82ac-1774-11e1-8e51-001e8c53c4a2_d011a22d-7c92-11e5-974e-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля REAR TOE STRAP
+                    [DESCRIPTION] => &nbsp;
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 5752
+                    [OFFER_ID] => e38c6c1f5f0fc2b7bf6a
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400096
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2011
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => L
+                        )
+
+                    [PRICE] => 1710.544
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82ac-1774-11e1-8e51-001e8c53c4a2_d011a22d-7c92-11e5-974e-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля REAR TOE STRAP
+                    [DESCRIPTION] => &nbsp;
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 5752
+                    [OFFER_ID] => 450e2f8aa660cf03741d
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 6400096
+                            [Бренд] => Connelly
+                            [Застежка] => Нет
+                            [Коллекция] => 2011
+                            [Тип] => Заднее
+                            [Товар] => Петля
+                            [Размер] => XL
+                        )
+
+                    [PRICE] => 1710.544
+                    [CATEGORY_ID] => 283
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/31/116e82ac-1774-11e1-8e51-001e8c53c4a2_d011a22d-7c92-11e5-974e-000c29181d73.jpeg
+                        )
+
+                    [NAME] => Петля REAR TOE STRAP
+                    [DESCRIPTION] => &nbsp;
+                )
+
+        )
+
+    [5754] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 5754
+                    [OFFER_ID] => 504bac9351b36375d08d
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => B9500006*S17
+                            [Бренд] => Aqua Marina
+                            [Коллекция] => 2017
+                            [Состав] => лайкра
+                            [Стиль] => для сапборда
+                            [Товар] => Плавники
+                            [Размер] => OS
+                        )
+
+                    [PRICE] => 342.109
+                    [CATEGORY_ID] => 362
+                    [PICTURES] => Array
+                        (
+                            [0] => http://b2b.skiboard.ru/images/detailed/33/8ac2d074-058c-11e7-a4a1-000c29181d73_1af72624-60ba-11e7-84ca-000c29181d73.jpeg
+                            [1] => http://b2b.skiboard.ru/images/detailed/7/Fin-03_vbof-6i.jpg
+                            [2] => http://b2b.skiboard.ru/images/detailed/7/Fin-06.jpg
+                        )
+
+                    [NAME] => Плавник для сапборда Aqua Marina Side Fin Black
+                    [DESCRIPTION] => 
+Размеры: 8.7” x 4.1” (22 x 10.5 см)
+Ударопрочный термопластичный материал ABS
+Съемный
+                )
+
+        )
+
+)

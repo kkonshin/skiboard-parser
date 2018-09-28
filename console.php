@@ -28,6 +28,9 @@ global $USER;
 if (!is_dir(__DIR__ . "/logs")) {
 	mkdir(__DIR__ . "/logs", 0777, true);
 }
+if (!is_dir(__DIR__ . "/save")) {
+	mkdir(__DIR__ . "/save", 0777, true);
+}
 
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
@@ -39,14 +42,73 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-function parse()
-{
+$xml = file_get_contents(SOURCE);
 
+$previousSourceName = "previous.xml";
+$previousSourceDate = "";
+$previousXml = null;
+$previousResultArray = [];
+$resultDifferenceArray = [];
+$resultDifferenceArrayKeys = [];
+$isNewBasicSource = false;
+$isAddNewItems = false;
+$resultArrayLength = 0;
+$previousResultArrayLength = 0;
+
+$translitParams = Array(
+	"max_len" => "600", // обрезает символьный код до 100 символов
+	"change_case" => "L", // буквы преобразуются к нижнему регистру
+	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
+	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
+	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
+	"use_google" => "false", // отключаем использование google
+);
+
+
+
+if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
+	echo "Сохраняем каталог во временный файл" . PHP_EOL;
+	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
+	// Если источник парсится впервые, запишем все товары во временный инфоблок (пока нет привязки к разделам)
+	$isNewBasicSource = true;
+
+} else {
+	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
+}
+
+// TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
+
+if (!function_exists("checkCatalogDate")) {
+	function checkCatalogDate($xml, $previousXml)
+	{
+		$crawler = new Crawler($xml);
+		$previousCrawler = new Crawler($previousXml);
+
+		$sourceDate = $crawler->filter('yml_catalog')->attr('date');
+		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
+
+		if ($sourceDate === $previousSourceDate) {
+			echo "Обновление каталога не требуется" . PHP_EOL;
+			die();
+		} else if (!empty($sourceDate)) {
+			echo "Будет произведено обновление товаров каталога" . PHP_EOL;
+			return true;
+		}
+		return false;
+	}
+}
+
+
+function parse($xml)
+{
 	$ta = [];
 
-	$xml = file_get_contents(SOURCE);
-
 	$crawler = new Crawler($xml);
+
+	$sourceDate = $crawler->filter('yml_catalog')->attr('date');
+
+	echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
+
 	$offers = $crawler->filter('offer');
 
 	$parentItemsIdsArray = [];
@@ -99,7 +161,6 @@ function parse()
 						]
 					)
 				) {
-//					$catTempArray[] = $v->nodeValue;
 					$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
 
 				}
@@ -112,8 +173,6 @@ function parse()
 				$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
 			}
 		}
-
-//		file_put_contents(__DIR__. "/logs/categories.log", print_r(array_unique($catTempArray), true));
 
 		// Развернем полученный через extract массив атрибутов, извлечем размер
 		foreach ($ta as $key => $value) {
@@ -165,39 +224,78 @@ function parse()
 	}
 }
 
-echo "Начат парсинг XML" . PHP_EOL;
+//-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
 
-$resultArray = parse();
 
+if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
+	$previousResultArray = parse($previousXml);
+	if (!empty($previousResultArray)) {
+		$previousResultArrayLength = count($previousResultArray);
+	}
+}
+
+$resultArray = parse($xml);
+
+if (!empty($resultArray)) {
+	$resultArrayLength = count($resultArray);
+}
+
+echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
+echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
+
+if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
+
+	$resultArrayKeys = array_keys($resultArray);
+	$previousResultArrayKeys = array_keys($previousResultArray);
+
+	// TODO берем массив с большей длиной для определения разницы
+	if ($resultArrayLength > $previousResultArrayLength) {
+
+		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
+		foreach ($resultDifferenceArrayKeys as $diffKey => $diffValue) {
+			$temp[$diffValue] = $resultArray[$diffValue];
+		}
+		$resultArray = $temp;
+		// Значит нужно записать в инфоблок новые элементы с ключами разницы
+		// т.е. выбрать из нового массива только эти элементы
+
+		$isAddNewItems = true;
+
+	} elseif ($previousResultArrayLength > $resultArrayLength) {
+
+		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
+
+		// Значит в инфоблоке нужно деактивировать товары с ключами разницы
+
+		$dbRes = CIBlockElement::GetList(
+			[],
+			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
+			false,
+			false,
+			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
+		);
+
+		while ($res = $dbRes->GetNext()) {
+			$temp[] = $res;
+		}
+
+		foreach ($temp as $tempKey => $tempValue) {
+			$element = new CIBlockElement();
+			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
+		}
+	}
+
+
+//	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
+//	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
+//	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
+	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
+//	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
+}
+
+echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
-
-$summer = array_unique([
-	288, 289, 290, 418, 321, 322, 296, 398, 400, 411, 412, 413, 414, 415, 275, 330, 328, 329, 331, 332, 333,
-	334, 335, 336, 396, 294, 358, 360, 359, 361, 362, 389, 292, 401, 385, 393, 381, 370, 278, 279, 282, 283,
-	368, 409, 372, 347, 368, 409, 372, 347, 348, 349, 327, 350, 351, 352, 353, 354, 355, 356, 357, 271, 419,
-	297, 298, 299, 300, 301, 302, 303, 325, 326, 402, 403, 404, 405, 406, 371, 270, 310, 304, 305, 306, 307,
-	386, 387, 410, 395, 420, 421, 422, 423, 424, 425, 383, 392, 293, 427,
-]);
-
-
-$winter = array_unique([
-	337, 338, 339, 340, 341, 342, 343, 407, 385, 399, 416, 417, 273, 280, 286, 287, 408, 369, 365, 266, 365,
-	373, 280, 286, 287, 408, 369, 267, 268, 269, 364, 391
-]);
-
-
-// Транслитерация символьного кода
-
-$translitParams = Array(
-	"max_len" => "600", // обрезает символьный код до 100 символов
-	"change_case" => "L", // буквы преобразуются к нижнему регистру
-	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
-	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
-	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
-	"use_google" => "false", // отключаем использование google
-);
-
 
 //---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//
 
@@ -226,7 +324,7 @@ while ($res = $dbRes->GetNext()) {
 	$sizePropArray[] = $res;
 }
 
-echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . "\n";
+echo "Количество значений свойства 'SIZE' в базе: " . count($sizePropArray) . PHP_EOL;
 
 $tmpSizeArray = [];
 foreach ($sizePropArray as $key => $value) {
@@ -399,27 +497,19 @@ while ($res = $tempData->fetch()) {
 }
 
 // Создаем массив пар ИМЯ=>XML_ID для использования при сохранении товара
+
 $manValueIdPairsArray = [];
 
 foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-//-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-$offset = 0;
-$length = count($resultArray) - $offset;
-//$length = 10;
-$resultArray = array_slice($resultArray, $offset, $length, true);
+// Сохранение товаров
 
-echo "\nКоличество товаров для записи: " . count($resultArray) . "\n";
-
-$counter = 0;
-
-$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
-
-$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
-
-$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
+if ($isNewBasicSource || $isAddNewItems) {
+	echo "\nСохраняем товары" . PHP_EOL;
+	require(__DIR__ . "/add.php");
+}
 
 register_shutdown_function(function () {
 	global $counter;
@@ -431,139 +521,5 @@ register_shutdown_function(function () {
 	echo "\nВремя работы скрипта: " . (getmicrotime() - $startExecTime) . " сек\n";
 	echo "Использованная память: " . $elapsedMemory . PHP_EOL;
 });
-
-foreach ($resultArray as $key => $item) {
-	try {
-		$offerPrice = 0;
-
-		$morePhotoArray = []; // Массив дополнительных картинок товара
-
-		$obElement = new CIBlockElement;
-
-
-		foreach ($item as $itemId => $offer) {
-			if (count($offer["PICTURES"]) > 1) {
-				foreach ($offer["PICTURES"] as $pictureId => $picture) {
-					$tempPicture = CFile::MakeFileArray($picture);
-					if (strlen($err = CFile::CheckImageFile($tempPicture)) > 0) {
-						$pictureErrorsArray[] = $err;
-						continue;
-					} else {
-						$item[$itemId]["MORE_PHOTO"][$pictureId] = $tempPicture;
-					}
-				}
-			}
-		}
-
-		// Лог ошибок изображений
-
-		if (!empty($pictureErrorsArray)) {
-			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true), FILE_APPEND);
-		}
-
-		$itemFieldsArray = [
-			"MODIFIED_BY" => $USER->GetID(),
-			"IBLOCK_ID" => $IBlockCatalogId,
-			"IBLOCK_SECTION_ID" => 345,
-			"NAME" => $item[0]["NAME"],
-			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
-			"ACTIVE" => "Y",
-			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
-			"PROPERTY_VALUES" => [
-				"SITE_NAME" => "skiboard.ru",
-				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
-			]
-		];
-
-		if ($productId = $obElement->Add($itemFieldsArray)) {
-			echo "Добавлен товар " . $productId . "\n";
-		} else {
-			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . "\n";
-			continue;
-		}
-
-		if ($productId) {
-
-			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])]))
-				? ($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])])
-				: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
-
-			// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
-			if (!empty ($manXmlId)) {
-				CIBlockElement::SetPropertyValuesEx($productId, $IBlockCatalogId, array("MANUFACTURER" => $manXmlId));
-			}
-
-			foreach ($item as $k => $offer) {
-
-				$obElement = new CIBlockElement();
-
-				// Цена торгового предложения в зависимости от сезона
-
-				if (in_array((int)$offer["CATEGORY_ID"], $summer)) {
-					$offerPrice = $offer["PRICE"] * 1.5;
-				}
-
-				if (in_array((int)$offer["CATEGORY_ID"], $winter)) {
-					$offerPrice = $offer["PRICE"] * 1.6;
-				}
-
-				$arOfferProps = [
-					$SKUPropertyId => $productId,
-					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
-					'EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
-				];
-
-				foreach ($offer['ATTRIBUTES'] as $propertyName => $propertyValue) {
-					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
-				}
-
-				// TODO проверить отображение детального описания, т.к. приходит htmlescape
-
-				$arOfferFields = [
-					'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
-					'IBLOCK_ID' => SKU_IBLOCK_ID,
-					'ACTIVE' => 'Y',
-					"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? $offer["DESCRIPTION"] : "",
-					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
-					'PROPERTY_VALUES' => $arOfferProps
-				];
-
-				// Получаем ID торгового предложения
-				$offerId = $obElement->Add($arOfferFields);
-
-				if ($offerId) {
-					// Добавляем элемент как товар каталога
-					$catalogProductAddResult = CCatalogProduct::Add([
-						"ID" => $offerId,
-						'QUANTITY' => '5',
-						"VAT_INCLUDED" => "Y"
-					]);
-
-					if (!$catalogProductAddResult) {
-						throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
-					}
-
-					// и установим цену
-					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
-						throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
-					}
-
-					$counter++;
-
-					echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
-
-				}
-			}
-		}
-	} catch (Exception $e) {
-		echo $e->getMessage() . PHP_EOL;
-	}
-
-
-}
-//--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//
-
-//--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
-//--------------------------------------КОНЕЦ ОБНОВЛЕНИЯ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------//
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
