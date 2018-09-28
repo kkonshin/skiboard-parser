@@ -55,6 +55,17 @@ $isAddNewItems = false;
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
 
+$translitParams = Array(
+	"max_len" => "600", // обрезает символьный код до 100 символов
+	"change_case" => "L", // буквы преобразуются к нижнему регистру
+	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
+	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
+	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
+	"use_google" => "false", // отключаем использование google
+);
+
+
+
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
@@ -234,7 +245,6 @@ echo "Длина исходного массива: " . $previousResultArrayLeng
 
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
-	// TODO разница между массивамиfd
 	$resultArrayKeys = array_keys($resultArray);
 	$previousResultArrayKeys = array_keys($previousResultArray);
 
@@ -279,7 +289,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
+	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
 //	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
@@ -487,20 +497,19 @@ while ($res = $tempData->fetch()) {
 }
 
 // Создаем массив пар ИМЯ=>XML_ID для использования при сохранении товара
+
 $manValueIdPairsArray = [];
 
 foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
+// Сохранение товаров
+
 if ($isNewBasicSource || $isAddNewItems) {
 	echo "\nСохраняем товары" . PHP_EOL;
 	require(__DIR__ . "/add.php");
 }
-
-//--------------------------------------ОБНОВЛЕНИЕ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------------//
-//--------------------------------------КОНЕЦ ОБНОВЛЕНИЯ (UPDATE) ЭЛЕМЕНТОВ-------------------------------------------//
-
 
 register_shutdown_function(function () {
 	global $counter;

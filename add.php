@@ -1,14 +1,5 @@
 <?php
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
-function addItems ($resultArray){
-
-
-	global $USER;
-	global $translitParams;
-	global $summer;
-	global $winter;
-	global $valueIdPairsArray;
-
 
 // Ограничение длины массива для разработки
 //$offset = 0;
@@ -158,7 +149,6 @@ function addItems ($resultArray){
 		} catch (Exception $e) {
 			echo $e->getMessage() . PHP_EOL;
 		}
-	}
 }
 
 //--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//
