@@ -17,8 +17,8 @@ define("NOT_CHECK_PERMISSIONS", true);
 define("BX_BUFFER_USED", true);
 define("BX_CLUSTER_GROUP", 2); // Отключает исполнение агентов
 
-define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
-//define('SOURCE', __DIR__ . "/save/previous_.xml"); // для разработки
+//define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
+define('SOURCE', __DIR__ . "/save/previous_.xml"); // для разработки
 define('SOURCE_SAVE_PATH', __DIR__ . "/save/");
 define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);
@@ -40,9 +40,6 @@ $winter = array_unique([
 	373, 280, 286, 287, 408, 369, 267, 268, 269, 364, 391
 ]);
 
-
-// Транслитерация символьного кода
-
 $translitParams = Array(
 	"max_len" => "600", // обрезает символьный код до 100 символов
 	"change_case" => "L", // буквы преобразуются к нижнему регистру
@@ -51,4 +48,3 @@ $translitParams = Array(
 	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
 	"use_google" => "false", // отключаем использование google
 );
-?>

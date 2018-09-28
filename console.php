@@ -249,9 +249,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		// Значит нужно записать в инфоблок новые элементы с ключами разницы
 		// т.е. выбрать из нового массива только эти элементы
 
-
-        // FIXME $valueIdPairsArray - еще недоступен
-        $isAddNewItems = true;
+		$isAddNewItems = true;
 
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 
