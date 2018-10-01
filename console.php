@@ -280,6 +280,8 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 
 // Проверка изменения цен в новом каталоге
 
+// FIXME update в данный момент не работает, несмотря на возвращаемый код удачного завершения
+
 foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 	foreach ($resultArray as $resultKey => $resultItem) {
 		foreach ($resultItem as $offerKey => $offerValue) {
@@ -288,8 +290,6 @@ foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
 //					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
 //					echo $offerValue["SEASON_PRICE"] . " vs " . $offerIdValue["PRICE"] . PHP_EOL;
-					$element = new CIBlockElement();
-					$element->Update($offerIdValue["ID"], ["ACTIVE" => "Y"]);
 //					echo CPrice::Update(1, ["PRODUCT_ID" =>$offerIdValue["ID"], "PRICE" => $offerValue["SEASON_PRICE"], "CURRENCY" => "RUB"]) . PHP_EOL;
 				}
 			}
