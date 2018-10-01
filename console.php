@@ -64,8 +64,6 @@ $translitParams = Array(
 	"use_google" => "false", // отключаем использование google
 );
 
-
-
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
@@ -246,7 +244,7 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue){
     $catalogIds[] = $cidsValue["ID"];
 }
 
-$catalogSkus = CCatalogSku::getOffersList($catalogIds, CATALOG_IBLOCK_ID, [], ["*"], ["PROPERTY_EXTERNAL_OFFER_ID"]);
+$catalogSkus = CCatalogSku::getOffersList($catalogIds, CATALOG_IBLOCK_ID, [], ["*"], ["CODE" => ["EXTERNAL_OFFER_ID"]]);
 
 foreach ($catalogSkus as $skuKey => $skuValue){
     foreach ($skuValue as $key => $value){
@@ -266,7 +264,7 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue){
 //file_put_contents("logs/catalog_ids.log", print_r($catalogIds, true));
 //file_put_contents("logs/catalog_skus.log", print_r($catalogSkus, true));
 //file_put_contents("logs/skusPrices.log", print_r($skusPrices, true));
-//file_put_contents("logs/catalogSkusNoParent.log", print_r($catalogSkusWithoutParent, true));
+file_put_contents("logs/catalogSkusNoParent.log", print_r($catalogSkusWithoutParent, true));
 
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
@@ -320,7 +318,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/temp.log", print_r($temp, true));
+	file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
 //	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
