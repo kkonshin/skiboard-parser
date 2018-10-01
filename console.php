@@ -261,10 +261,27 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue){
     }
 }
 
+// Проверка изменения цен в новом каталоге
+
+foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue){
+	foreach ($resultArray as $resultKey => $resultItem){
+		foreach ($resultItem as $offerKey => $offerValue){
+			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]){
+//					echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . PHP_EOL;
+				if ($offerValue["PRICE"] !== $offerIdValue["PRICE"]){
+					echo $offerValue["PRICE"] . PHP_EOL;
+				}
+			}
+		}
+	}
+}
+
+
+
 //file_put_contents("logs/catalog_ids.log", print_r($catalogIds, true));
 //file_put_contents("logs/catalog_skus.log", print_r($catalogSkus, true));
 //file_put_contents("logs/skusPrices.log", print_r($skusPrices, true));
-file_put_contents("logs/catalogSkusNoParent.log", print_r($catalogSkusWithoutParent, true));
+//file_put_contents("logs/catalogSkusNoParent.log", print_r($catalogSkusWithoutParent, true));
 
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
@@ -315,10 +332,11 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		}
 	}
 
+
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-	file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
+//	file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
 //	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
