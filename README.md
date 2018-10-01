@@ -1,8 +1,23 @@
 # skiboard-parser
 skiboard.ru parser
 
+Для разбора DOM парсер использует компонент symfony/dom-crawler
+
 Для ручного запуска парсера скопировать репозиторий, перейти в папку 
 skiboard-parser и запустить скрипт командой консоли php -f console.php 
+
+Для настройки автоматического запуска необходимо в файл
+/www/bitrix/crontab/crontab.cfg добавить (или раскомментировать) строку:
+
+0 1 * * * /usr/bin/php -f /home/bitrix/www/test/skiboard-parser/ > /home/bitrix/www/test/skiboard-parser/logs/crontab.log 2>&1
+
+, где 0 1 - запуск в 01:00 ежедневно, 
+/usr/bin/php - путь к интерпретатору php
+/home/bitrix/www/test/skiboard-parser/console.php - путь к исполняемому файлу парсера
+/home/bitrix/www/test/skiboard-parser/logs/crontab.log - путь к логам крона
+
+
+
 
 > При первом запуске происходит полный разбор .xml файла и 
 запись всех товаров и ТП во временный раздел инфоблока каталога.
