@@ -144,6 +144,7 @@ function parse($xml)
 					$ta[$key]['PRICE'] = $v->nodeValue;
 				}
 
+
 				// Исключаем категории
 				if ($v->nodeName === 'categoryId' && !in_array(trim((string)$v->nodeValue),
 						[
@@ -162,6 +163,16 @@ function parse($xml)
 					$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
 
 				}
+
+				if (in_array((int)$ta[$key]['CATEGORY_ID'], SUMMER)) {
+					$ta[$key]["SEASON_PRICE"] = (string)round($ta[$key]["PRICE"] * 1.5, 2);
+				}
+
+				if (in_array((int)$ta[$key]['CATEGORY_ID'], WINTER)) {
+					$ta[$key]["SEASON_PRICE"] = (string)round($ta[$key]["PRICE"] * 1.6, 2);
+				}
+
+
 				if ($v->nodeName === 'picture') {
 					$ta[$key]['PICTURES'][] = $v->nodeValue;
 				}
@@ -234,48 +245,57 @@ if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
 
 $resultArray = parse($xml);
 
-$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE"=>"Y", "SECTION_ID" => 345], false, false, ["ID"]);
+//file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
 
-while($res = $dbRes->GetNext()){
-    $catalogIdsTempArray[] = $res;
+$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_ID" => 345], false, false, ["ID"]);
+
+while ($res = $dbRes->GetNext()) {
+	$catalogIdsTempArray[] = $res;
 }
 
-foreach ($catalogIdsTempArray as $cidsKey => $cidsValue){
-    $catalogIds[] = $cidsValue["ID"];
+foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
+	$catalogIds[] = $cidsValue["ID"];
 }
 
 $catalogSkus = CCatalogSku::getOffersList($catalogIds, CATALOG_IBLOCK_ID, [], ["*"], ["CODE" => ["EXTERNAL_OFFER_ID"]]);
 
-foreach ($catalogSkus as $skuKey => $skuValue){
-    foreach ($skuValue as $key => $value){
-        $catalogSkusWithoutParent[] = $value;
+echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
+
+foreach ($catalogSkus as $skuKey => $skuValue) {
+	foreach ($skuValue as $key => $value) {
+		$catalogSkusWithoutParent[] = $value;
 		$skusPrices[] = CPrice::GetBasePrice($key);
-    }
+	}
 }
 
-foreach ($catalogSkusWithoutParent as $skuKey => $skuValue){
-    foreach ($skusPrices as $priceKey => $priceValue){
-        if ($skuValue["ID"] == $priceValue["PRODUCT_ID"]){
+echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
+
+foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
+	foreach ($skusPrices as $priceKey => $priceValue) {
+		if ($skuValue["ID"] == $priceValue["PRODUCT_ID"]) {
 			$catalogSkusWithoutParent[$skuKey]["PRICE"] = $priceValue["PRICE"];
-        }
-    }
+		}
+	}
 }
 
 // Проверка изменения цен в новом каталоге
 
-foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue){
-	foreach ($resultArray as $resultKey => $resultItem){
-		foreach ($resultItem as $offerKey => $offerValue){
-			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]){
-//					echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . PHP_EOL;
-				if ($offerValue["PRICE"] !== $offerIdValue["PRICE"]){
-					echo $offerValue["PRICE"] . PHP_EOL;
+foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
+	foreach ($resultArray as $resultKey => $resultItem) {
+		foreach ($resultItem as $offerKey => $offerValue) {
+			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]) {
+//				echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
+				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
+//					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
+//					echo $offerValue["SEASON_PRICE"] . " vs " . $offerIdValue["PRICE"] . PHP_EOL;
+					$element = new CIBlockElement();
+					$element->Update($offerIdValue["ID"], ["ACTIVE" => "Y"]);
+//					echo CPrice::Update(1, ["PRODUCT_ID" =>$offerIdValue["ID"], "PRICE" => $offerValue["SEASON_PRICE"], "CURRENCY" => "RUB"]) . PHP_EOL;
 				}
 			}
 		}
 	}
 }
-
 
 
 //file_put_contents("logs/catalog_ids.log", print_r($catalogIds, true));

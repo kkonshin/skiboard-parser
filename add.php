@@ -90,11 +90,11 @@
 
 					// Цена торгового предложения в зависимости от сезона
 
-					if (in_array((int)$offer["CATEGORY_ID"], $summer)) {
+					if (in_array((int)$offer["CATEGORY_ID"], SUMMER)) {
 						$offerPrice = $offer["PRICE"] * 1.5;
 					}
 
-					if (in_array((int)$offer["CATEGORY_ID"], $winter)) {
+					if (in_array((int)$offer["CATEGORY_ID"], WINTER)) {
 						$offerPrice = $offer["PRICE"] * 1.6;
 					}
 
