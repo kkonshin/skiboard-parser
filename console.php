@@ -71,6 +71,26 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 
 // TODO DRY
 
+/*
+$tmpPriceId = [];
+
+$cp = new CPrice();
+
+$dbres = $cp->GetList([], ["PRODUCT_ID" => 103892], false, false, ["ID"]);
+
+while ($res = $dbres->GetNext()){
+    $tmpPriceId[] = $res;
+}
+*/
+
+//file_put_contents("logs/priceId.log", print_r($tmpPriceId, true));
+
+//echo CPrice::GetByID(103892);
+//echo CPrice::Update(83576, ["PRODUCT_ID" => 103892, "CURRENCY" => "RUB", "PRICE" => 1]) . PHP_EOL;
+//CIBlock::clearIblockTagCache(SKU_IBLOCK_ID);
+//CIBlock::clearIblockTagCache(CATALOG_IBLOCK_ID);
+
+
 $crawler = new Crawler($xml);
 
 $previousCrawler = new Crawler($previousXml);
@@ -215,6 +235,7 @@ function parse($xml)
 
 //TODO DRY
 
+// если даты каталогов не совпадают, значит получен новый прайс, распарсим его
 
 if (!empty($previousXml) && Parser\CatalogDate::checkDate($crawler, $previousCrawler)) {
 	$previousResultArray = parse($previousXml);
@@ -225,7 +246,7 @@ if (!empty($previousXml) && Parser\CatalogDate::checkDate($crawler, $previousCra
 
 $resultArray = parse($xml);
 
-//file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 $dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_ID" => 345], false, false, ["ID"]);
 
@@ -260,7 +281,11 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 
 // Проверка изменения цен в новом каталоге
 
-// FIXME update в данный момент не работает, несмотря на возвращаемый код удачного завершения
+// Проходим по массивам ТП из инфоблока и распарсенному новому прайсу, если внешние ID совпадают,
+// и сезонная цена в новом прайсе (сейчас записывается на этапе разборки XML) не совпадает с ценой,
+// сохраненной в инфоблоке - цену необходимо обновить
+
+// На этом этапе должен быть доступен $resultArray и все торговые предложения
 
 foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 	foreach ($resultArray as $resultKey => $resultItem) {
@@ -272,13 +297,32 @@ foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 //					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
 					// Цена товара с наценкой из актуального прайса vs цена товара, записанная в инфоблоке в данный момент
 					echo "Новая цена с наценкой " . $offerValue["SEASON_PRICE"] . " vs " . " цена в инфоблоке " . $offerIdValue["PRICE"] . PHP_EOL;
-//					echo CPrice::Update(1, ["PRODUCT_ID" =>$offerIdValue["ID"], "PRICE" => $offerValue["SEASON_PRICE"], "CURRENCY" => "RUB"]) . PHP_EOL;
+
+					$tmpPriceId = null;
+
+                    $cp = new CPrice();
+
+                    $dbres = $cp->GetList([], ["PRODUCT_ID" => $offerIdValue["ID"]], false, false, ["ID"]);
+
+                    while ($res = $dbres->GetNext()){
+                        $tmpPriceId = $res;
+                    }
+
+					echo "Обновлена цена {$offerValue["SEASON_PRICE"]} для товарного предложения {$offerIdValue["ID"]} "
+                        . CPrice::Update(
+                                $tmpPriceId["ID"],
+                                [
+                                    "PRODUCT_ID" =>$offerIdValue["ID"],
+                                    "PRICE" => $offerValue["SEASON_PRICE"],
+                                    "CURRENCY" => "RUB"
+                                ]
+                        )
+                        . PHP_EOL;
 				}
 			}
 		}
 	}
 }
-
 
 //file_put_contents("logs/catalog_ids.log", print_r($catalogIds, true));
 //file_put_contents("logs/catalog_skus.log", print_r($catalogSkus, true));
