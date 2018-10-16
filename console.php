@@ -583,9 +583,7 @@ if ($isNewBasicSource || $isAddNewItems) {
 }
 
 register_shutdown_function(function () {
-	global $counter;
 	global $startExecTime;
-	file_put_contents(__DIR__ . "/counter.log", $counter);
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
