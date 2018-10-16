@@ -42,3 +42,11 @@ $winter = array_unique([
 define('SUMMER', $summer);
 define('WINTER', $winter);
 
+$translitParams = Array(
+	"max_len" => "600", // обрезает символьный код до 100 символов
+	"change_case" => "L", // буквы преобразуются к нижнему регистру
+	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
+	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
+	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
+	"use_google" => "false", // отключаем использование google
+);

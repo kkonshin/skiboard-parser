@@ -23,6 +23,7 @@ use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 use Parser\Update;
+use Parser\CatalogDate;
 
 global $USER;
 
@@ -56,15 +57,6 @@ $isAddNewItems = false;
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
 
-$translitParams = Array(
-	"max_len" => "600", // обрезает символьный код до 100 символов
-	"change_case" => "L", // буквы преобразуются к нижнему регистру
-	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
-	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
-	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
-	"use_google" => "false", // отключаем использование google
-);
-
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
@@ -77,26 +69,11 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
 
-if (!function_exists("checkCatalogDate")) {
-	function checkCatalogDate($xml, $previousXml)
-	{
-		$crawler = new Crawler($xml);
-		$previousCrawler = new Crawler($previousXml);
+// TODO DRY
 
-		$sourceDate = $crawler->filter('yml_catalog')->attr('date');
-		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
+$crawler = new Crawler($xml);
 
-		if ($sourceDate === $previousSourceDate) {
-			echo "Обновление каталога не требуется" . PHP_EOL;
-			die();
-		} else if (!empty($sourceDate)) {
-			echo "Будет произведено обновление товаров каталога" . PHP_EOL;
-			return true;
-		}
-		return false;
-	}
-}
-
+$previousCrawler = new Crawler($previousXml);
 
 function parse($xml)
 {
@@ -236,8 +213,10 @@ function parse($xml)
 
 //-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
 
+//TODO DRY
 
-if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
+
+if (!empty($previousXml) && Parser\CatalogDate::checkDate($crawler, $previousCrawler)) {
 	$previousResultArray = parse($previousXml);
 	if (!empty($previousResultArray)) {
 		$previousResultArrayLength = count($previousResultArray);

@@ -6,7 +6,7 @@ class Update
 {
 	public static function priceUpdate()
 	{
-		return "test successful";
+		return "Update test successful";
 	}
 
 }
