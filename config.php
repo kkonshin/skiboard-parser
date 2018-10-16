@@ -19,10 +19,11 @@ define("BX_CLUSTER_GROUP", 2); // Отключает исполнение аге
 
 define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
 //define('SOURCE', __DIR__ . "/save/previous_.xml"); // для разработки
-define('SOURCE_SAVE_PATH', __DIR__ . "/save/");
+define('SOURCE_SAVE_PATH', __DIR__ . "/save/"); // для сохранения временных файлов
 define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
+define('TEMP_CATALOG_SECTION', 345); // ID раздела для временного сохранения товаров
 
 // Наценка устанавливается в зависимости от сезона. Значения свойства CATEGORY_ID для разнесения товаров по сезонам
 

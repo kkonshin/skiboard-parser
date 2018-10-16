@@ -4,7 +4,7 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 3;
+$length = 5;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
@@ -52,7 +52,7 @@ foreach ($resultArray as $key => $item) {
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
 			"IBLOCK_ID" => $IBlockCatalogId,
-			"IBLOCK_SECTION_ID" => 345,
+			"IBLOCK_SECTION_ID" => TEMP_CATALOG_SECTION,
 			"NAME" => $item[0]["NAME"],
 			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "Y",

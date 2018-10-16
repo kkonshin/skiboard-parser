@@ -69,28 +69,6 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
 
-// TODO DRY
-
-/*
-$tmpPriceId = [];
-
-$cp = new CPrice();
-
-$dbres = $cp->GetList([], ["PRODUCT_ID" => 103892], false, false, ["ID"]);
-
-while ($res = $dbres->GetNext()){
-    $tmpPriceId[] = $res;
-}
-*/
-
-//file_put_contents("logs/priceId.log", print_r($tmpPriceId, true));
-
-//echo CPrice::GetByID(103892);
-//echo CPrice::Update(83576, ["PRODUCT_ID" => 103892, "CURRENCY" => "RUB", "PRICE" => 1]) . PHP_EOL;
-//CIBlock::clearIblockTagCache(SKU_IBLOCK_ID);
-//CIBlock::clearIblockTagCache(CATALOG_IBLOCK_ID);
-
-
 $crawler = new Crawler($xml);
 
 $previousCrawler = new Crawler($previousXml);
@@ -246,9 +224,9 @@ if (!empty($previousXml) && Parser\CatalogDate::checkDate($crawler, $previousCra
 
 $resultArray = parse($xml);
 
-file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_ID" => 345], false, false, ["ID"]);
+$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_ID" => TEMP_CATALOG_SECTION], false, false, ["ID"]);
 
 while ($res = $dbRes->GetNext()) {
 	$catalogIdsTempArray[] = $res;
@@ -296,7 +274,7 @@ foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 				    // Цена товара с уже произведенной наценкой из актуального прайса skiboard.ru
 //					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
 					// Цена товара с наценкой из актуального прайса vs цена товара, записанная в инфоблоке в данный момент
-					echo "Новая цена с наценкой " . $offerValue["SEASON_PRICE"] . " vs " . " цена в инфоблоке " . $offerIdValue["PRICE"] . PHP_EOL;
+//					echo "Новая цена с наценкой " . $offerValue["SEASON_PRICE"] . " vs " . " цена в инфоблоке " . $offerIdValue["PRICE"] . PHP_EOL;
 
 					$tmpPriceId = null;
 
@@ -362,7 +340,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 		$dbRes = CIBlockElement::GetList(
 			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
+			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
 			false,
 			false,
 			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
