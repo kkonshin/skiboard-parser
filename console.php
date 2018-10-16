@@ -22,6 +22,7 @@ require_once("vendor/autoload.php");
 use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
+use Parser\Update;
 
 global $USER;
 
@@ -286,10 +287,12 @@ foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 	foreach ($resultArray as $resultKey => $resultItem) {
 		foreach ($resultItem as $offerKey => $offerValue) {
 			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]) {
-//				echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
+				echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
 				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
+				    // Цена товара с уже произведенной наценкой из актуального прайса skiboard.ru
 //					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
-//					echo $offerValue["SEASON_PRICE"] . " vs " . $offerIdValue["PRICE"] . PHP_EOL;
+					// Цена товара с наценкой из актуального прайса vs цена товара, записанная в инфоблоке в данный момент
+					echo "Новая цена с наценкой " . $offerValue["SEASON_PRICE"] . " vs " . " цена в инфоблоке " . $offerIdValue["PRICE"] . PHP_EOL;
 //					echo CPrice::Update(1, ["PRODUCT_ID" =>$offerIdValue["ID"], "PRICE" => $offerValue["SEASON_PRICE"], "CURRENCY" => "RUB"]) . PHP_EOL;
 				}
 			}
