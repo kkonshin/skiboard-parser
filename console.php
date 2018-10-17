@@ -22,8 +22,10 @@ require_once("vendor/autoload.php");
 use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
+
 use Parser\Update;
 use Parser\CatalogDate;
+use Parser\SectionsList;
 use Parser\Mail;
 
 global $USER;
@@ -222,17 +224,22 @@ function parse($xml)
 
 //-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
 
-// если даты каталогов не совпадают, значит получен новый прайс, распарсим его
+// если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
 
 $isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
 
 if (!empty($previousXml) && $isNewPrice) {
-	$previousResultArray = parse($previousXml);
+
+	// TODO здесь изменить на вызов метода
+    $previousResultArray = parse($previousXml);
+
+
 	if (!empty($previousResultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
 	}
 }
 
+// TODO здесь изменить на вызов метода
 $resultArray = parse($xml);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));

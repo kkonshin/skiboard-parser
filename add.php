@@ -20,6 +20,7 @@ $IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока т�
 $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
 
 
+
 foreach ($resultArray as $key => $item) {
 	try {
 		$offerPrice = 0;
