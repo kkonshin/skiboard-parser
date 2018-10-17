@@ -30,6 +30,7 @@ define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
 define('TEMP_CATALOG_SECTION', 345); // ID раздела для временного сохранения товаров
+define('SIZE_PROPERTY_ID', 120); // ID свойства "Размер"
 
 // Наценка устанавливается в зависимости от сезона. Значения свойства CATEGORY_ID для разнесения товаров по сезонам
 

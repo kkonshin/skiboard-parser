@@ -405,7 +405,7 @@ $sourceSizesArray = array_unique($sourceSizesArray);
 // Получаем массив существующих значений свойства "SIZE"
 $sizePropArray = [];
 
-$dbRes = CIBlockProperty::GetPropertyEnum(120,
+$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID,
 	[], []
 );
 
@@ -433,7 +433,7 @@ $tmpValueIdPairsArray = [];
 foreach ($newSizesArray as $key => $sizeValue) {
 	if (!in_array($sizeValue, $tmpSizeArray)) {
 		$tmpValue = new CIBlockPropertyEnum;
-		$tmpValue->Add(['PROPERTY_ID' => 120, 'VALUE' => $sizeValue]);
+		$tmpValue->Add(['PROPERTY_ID' => SIZE_PROPERTY_ID, 'VALUE' => $sizeValue]);
 	}
 }
 
@@ -442,7 +442,7 @@ foreach ($newSizesArray as $key => $sizeValue) {
 $sizePropArray = [];
 $valueIdPairsArray = [];
 
-$dbRes = CIBlockProperty::GetPropertyEnum(120,
+$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID,
 	[], []
 );
 
