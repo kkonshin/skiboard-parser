@@ -8,8 +8,14 @@ ignore_user_abort(true);
 
 $_SERVER["DOCUMENT_ROOT"] = "/home/bitrix/www";
 
+// Показ ошибок
+// Вывод некоторых ошибок требует установки 'debug' => true в /bitrix/.settings.php
+
 ini_set('display_errors', 1);
 ini_set('error_reporting', E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+
+//ini_set('log_errors', 1); // Логирование ошибок в файл
+//ini_set('error_log', __DIR__ . "/logs/errors.log"); // Адрес лога ошибок
 
 define("LANG", "s1");
 define("NO_KEEP_STATISTIC", true);

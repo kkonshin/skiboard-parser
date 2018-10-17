@@ -24,6 +24,7 @@ use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 use Parser\Update;
 use Parser\CatalogDate;
+use Parser\Mail;
 
 global $USER;
 
@@ -72,6 +73,16 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 $crawler = new Crawler($xml);
 
 $previousCrawler = new Crawler($previousXml);
+
+// TODO удалить после тестирования
+
+/*
+$newSectionsList = [123,321,145];
+
+$mailSendResult = Parser\Mail::sendMail($newSectionsList);
+
+echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_event при удачном добавлении письма в очередь отправки
+*/
 
 function parse($xml)
 {
