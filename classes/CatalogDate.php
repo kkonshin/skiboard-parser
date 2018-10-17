@@ -14,10 +14,10 @@ class CatalogDate
 		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
 
 		if ($sourceDate === $previousSourceDate) {
-			echo "Обновление каталога не требуется" . PHP_EOL;
+			echo "Даты в старой и новой выгрузке совпадают. Обновление каталога не требуется" . PHP_EOL;
 			die();
 		} else if (!empty($sourceDate)) {
-			echo "Будет произведено обновление товаров каталога" . PHP_EOL;
+			echo "Получен новый файл выгрузки. Будет произведено обновление товаров каталога" . PHP_EOL;
 			return true;
 		}
 		return false;

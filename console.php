@@ -222,11 +222,11 @@ function parse($xml)
 
 //-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
 
-//TODO DRY
-
 // если даты каталогов не совпадают, значит получен новый прайс, распарсим его
 
-if (!empty($previousXml) && Parser\CatalogDate::checkDate($crawler, $previousCrawler)) {
+$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
+
+if (!empty($previousXml) && $isNewPrice) {
 	$previousResultArray = parse($previousXml);
 	if (!empty($previousResultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
