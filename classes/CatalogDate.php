@@ -8,7 +8,6 @@ class CatalogDate
 {
 	public static function checkDate(Crawler $crawler, Crawler $previousCrawler)
 	{
-
 		$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
 		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');

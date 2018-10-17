@@ -74,7 +74,9 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 
 $crawler = new Crawler($xml);
 
-$previousCrawler = new Crawler($previousXml);
+if (!empty($previousXml)){
+	$previousCrawler = new Crawler($previousXml);
+}
 
 // TODO удалить после тестирования
 
@@ -226,7 +228,9 @@ function parse($xml)
 
 // если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
 
-$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
+if ($crawler && $previousCrawler) {
+	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
+}
 
 if (!empty($previousXml) && $isNewPrice) {
 
