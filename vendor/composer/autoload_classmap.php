@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Parser\\Activate' => $baseDir . '/classes/Activate.php',
+    'Parser\\BindToSections' => $baseDir . '/classes/BindToSections.php',
     'Parser\\CatalogDate' => $baseDir . '/classes/CatalogDate.php',
     'Parser\\Deactivate' => $baseDir . '/classes/Deactivate.php',
     'Parser\\ItemsStatus' => $baseDir . '/classes/ItemsStatus.php',

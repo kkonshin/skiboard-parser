@@ -50,6 +50,7 @@ class ComposerStaticInit8047fca868d933214226a84bede21512
 
     public static $classMap = array (
         'Parser\\Activate' => __DIR__ . '/../..' . '/classes/Activate.php',
+        'Parser\\BindToSections' => __DIR__ . '/../..' . '/classes/BindToSections.php',
         'Parser\\CatalogDate' => __DIR__ . '/../..' . '/classes/CatalogDate.php',
         'Parser\\Deactivate' => __DIR__ . '/../..' . '/classes/Deactivate.php',
         'Parser\\ItemsStatus' => __DIR__ . '/../..' . '/classes/ItemsStatus.php',
