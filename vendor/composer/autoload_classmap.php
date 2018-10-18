@@ -6,6 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Parser\\Activate' => $baseDir . '/classes/Activate.php',
+    'Parser\\CatalogDate' => $baseDir . '/classes/CatalogDate.php',
+    'Parser\\Deactivate' => $baseDir . '/classes/Deactivate.php',
+    'Parser\\ItemsStatus' => $baseDir . '/classes/ItemsStatus.php',
+    'Parser\\Mail' => $baseDir . '/classes/Mail.php',
+    'Parser\\ParseXml' => $baseDir . '/classes/ParseXml.php',
+    'Parser\\SectionParams' => $baseDir . '/classes/SectionParams.php',
+    'Parser\\SectionsList' => $baseDir . '/classes/SectionsList.php',
+    'Parser\\SectionsListInterface' => $baseDir . '/classes/SectionsList.php',
     'Parser\\Update' => $baseDir . '/classes/Update.php',
     'Symfony\\Component\\CssSelector\\CssSelectorConverter' => $vendorDir . '/symfony/css-selector/CssSelectorConverter.php',
     'Symfony\\Component\\CssSelector\\Exception\\ExceptionInterface' => $vendorDir . '/symfony/css-selector/Exception/ExceptionInterface.php',

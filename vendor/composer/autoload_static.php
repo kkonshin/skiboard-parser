@@ -49,6 +49,15 @@ class ComposerStaticInit8047fca868d933214226a84bede21512
     );
 
     public static $classMap = array (
+        'Parser\\Activate' => __DIR__ . '/../..' . '/classes/Activate.php',
+        'Parser\\CatalogDate' => __DIR__ . '/../..' . '/classes/CatalogDate.php',
+        'Parser\\Deactivate' => __DIR__ . '/../..' . '/classes/Deactivate.php',
+        'Parser\\ItemsStatus' => __DIR__ . '/../..' . '/classes/ItemsStatus.php',
+        'Parser\\Mail' => __DIR__ . '/../..' . '/classes/Mail.php',
+        'Parser\\ParseXml' => __DIR__ . '/../..' . '/classes/ParseXml.php',
+        'Parser\\SectionParams' => __DIR__ . '/../..' . '/classes/SectionParams.php',
+        'Parser\\SectionsList' => __DIR__ . '/../..' . '/classes/SectionsList.php',
+        'Parser\\SectionsListInterface' => __DIR__ . '/../..' . '/classes/SectionsList.php',
         'Parser\\Update' => __DIR__ . '/../..' . '/classes/Update.php',
         'Symfony\\Component\\CssSelector\\CssSelectorConverter' => __DIR__ . '/..' . '/symfony/css-selector/CssSelectorConverter.php',
         'Symfony\\Component\\CssSelector\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/css-selector/Exception/ExceptionInterface.php',

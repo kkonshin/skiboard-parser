@@ -19,5 +19,7 @@ class SectionsList implements SectionsListInterface
 
 		// TODO использовать результат проверки класса CatalogDate
 
+		
+
 	}
 }

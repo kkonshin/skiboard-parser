@@ -39,6 +39,8 @@ if (!is_dir(__DIR__ . "/save")) {
 
 //-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
 
+
+// TODO модули также могут подключаться в отдельных классах
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
 }
@@ -248,7 +250,7 @@ $resultArray = parse($xml);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_ID" => TEMP_CATALOG_SECTION], false, false, ["ID"]);
+$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION], false, false, ["ID"]);
 
 while ($res = $dbRes->GetNext()) {
 	$catalogIdsTempArray[] = $res;

@@ -6,6 +6,7 @@ use \Bitrix\Main\Mail\Event;
 
 class Mail
 {
+	// TODO письмо о появлении новых товаров
 	public static function sendMail(Array $newSectionsList)
 	{
 		$result = Event::send([

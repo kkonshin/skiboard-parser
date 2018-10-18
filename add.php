@@ -20,7 +20,6 @@ $IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока т�
 $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
 
 
-
 foreach ($resultArray as $key => $item) {
 	try {
 		$offerPrice = 0;
@@ -56,7 +55,7 @@ foreach ($resultArray as $key => $item) {
 			"IBLOCK_SECTION_ID" => TEMP_CATALOG_SECTION,
 			"NAME" => $item[0]["NAME"],
 			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
-			"ACTIVE" => "Y",
+			"ACTIVE" => "N",
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => "skiboard.ru",
@@ -112,7 +111,7 @@ foreach ($resultArray as $key => $item) {
 				$arOfferFields = [
 					'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
-					'ACTIVE' => 'Y',
+					'ACTIVE' => 'N',
 					"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? $offer["DESCRIPTION"] : "",
 					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
 					'PROPERTY_VALUES' => $arOfferProps
