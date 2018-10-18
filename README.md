@@ -20,7 +20,7 @@ skiboard-parser и запустить скрипт командой консол
 Для настройки автоматического запуска необходимо в файл
 /www/bitrix/crontab/crontab.cfg добавить (или раскомментировать) строку:
 
-0 1 * * * /usr/bin/php -f /home/bitrix/www/test/skiboard-parser/ > /home/bitrix/www/test/skiboard-parser/logs/crontab.log 2>&1
+0 1 * * * /usr/bin/php -f /home/bitrix/www/test/skiboard-parser/console.php > /home/bitrix/www/test/skiboard-parser/logs/crontab.log 2>&1
 
 , где 0 1 - запуск в 01:00 ежедневно,
  
