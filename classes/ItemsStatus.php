@@ -23,7 +23,13 @@ class ItemsStatus
 			["IBLOCK_ID" => $this->catalogIblockId, "SECTION_ID" => $this->tempCatalogSection],
 			false,
 			false,
-			["IBLOCK_ID", "ID", "NAME", "ACTIVE"]
+			[
+				"IBLOCK_ID",
+				"ID",
+				"NAME",
+				"ACTIVE",
+				"CATEGORY_ID"
+			]
 		);
 
 		while ($res = $dbRes->GetNext()) {
