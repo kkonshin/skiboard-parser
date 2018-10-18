@@ -2,7 +2,7 @@
 
 <?php
 /*
- * Скрипт активирует все товары во временном разделе skiboard temp. Для запуска набрать php -f activate.php
+ * Скрипт деактивирует все товары во временном разделе skiboard temp. Для запуска набрать php -f deactivate.php
  * в командной строке в папке парсера
  */
 if (php_sapi_name() !== "cli") {
@@ -15,7 +15,7 @@ require_once("vendor/autoload.php");
 
 use Parser\SectionParams;
 use Parser\ItemsStatus;
-use Parser\Activate;
+use Parser\Deactivate;
 
 while (ob_get_level()) {
 	ob_end_flush();
@@ -25,6 +25,6 @@ $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
 
-Activate::activateItems($itemStatus);
+Deactivate::deactivateItems($itemStatus);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
