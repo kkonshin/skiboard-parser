@@ -24,7 +24,12 @@ while (ob_get_level()) {
 $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
-
+/*
+ * Активация товаров
+ */
 Activate::activateItems($itemStatus);
-
+/*
+ * Активация торговых предложений
+ */
+Activate::activateSkus($itemStatus);
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

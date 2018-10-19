@@ -12,4 +12,19 @@ class Activate extends ItemsStatus
 			$element->Update($tempValue["ID"], ["ACTIVE" => "Y"]);
 		}
 	}
+
+	public static function activateSkus(ItemsStatus $object)
+	{
+		/*
+		 * Метод активирует торговые предложения, связанные со списком товаров
+		 */
+		$skuList = $object->getSkuList();
+
+		foreach ( $skuList as $item) {
+			foreach ($item as $sku){
+				$element = new \CIBlockElement();
+				$element->Update($sku["ID"], ["ACTIVE" => "Y"]);
+			}
+		}
+	}
 }

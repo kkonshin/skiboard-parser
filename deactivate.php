@@ -21,13 +21,13 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-/*
- * Деактивация товаров
- */
-
 $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
+
+/*
+ * Деактивация товаров
+ */
 
 Deactivate::deactivateItems($itemStatus);
 
