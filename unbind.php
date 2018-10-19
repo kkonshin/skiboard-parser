@@ -29,6 +29,6 @@ $itemStatus = new ItemsStatus($params);
  * Отвязывает товары во временном разделе от всех остальных разделов
  */
 
-BindToSections::bind($itemStatus, [TEMP_CATALOG_SECTION]);
+BindToSections::bind($itemStatus, []);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
