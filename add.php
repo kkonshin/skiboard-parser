@@ -42,7 +42,6 @@ foreach ($resultArray as $key => $item) {
 			}
 		}
 
-
 		// Лог ошибок изображений
 
 		if (!empty($pictureErrorsArray)) {
