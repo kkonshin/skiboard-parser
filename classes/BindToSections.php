@@ -12,11 +12,12 @@ class BindToSections extends ItemsStatus
 
 		$sections[] = $object->tempCatalogSection;
 
-		$temp = $object->getList();
+		$itemsList = $object->getList(); // Список всех товаров раздела
 
-		foreach ($temp as $tempKey => $tempValue) {
+		foreach ($itemsList as $itemKey => $itemValue) {
+
 			\CIBlockElement::SetElementSection(
-				$tempValue["ID"],
+				$itemValue["ID"],
 				$sections,
 				false,
 				$object->catalogIblockId
