@@ -60,6 +60,7 @@ foreach ($resultArray as $key => $item) {
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => "skiboard.ru",
 				"GROUP_ID" => $key,
+				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];

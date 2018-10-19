@@ -34,7 +34,7 @@ class ItemsStatus
 				"ID",
 				"NAME",
 				"ACTIVE",
-				"CATEGORY_ID"
+				"PROPERTY_CATEGORY_ID"
 			]
 		);
 

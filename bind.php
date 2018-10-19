@@ -25,6 +25,9 @@ $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
 
-BindToSections::bind($itemStatus, [312, 310]);
+BindToSections::bind($itemStatus, $categoryToSection);
+
+//print_r($categoryToSection);
+
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

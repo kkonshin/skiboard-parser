@@ -141,7 +141,15 @@ $categories = array_keys($categoryToSection);
  * Массив всех разделов для привязки товаров
  */
 
-$catalogSections = array_values($categoryToSection);
+$catalogSections = [];
+
+foreach ($categoryToSection as $sections){
+	foreach ($sections as $section){
+		$catalogSections[] = $section;
+	}
+}
+
+$catalogSections = array_unique($catalogSections);
 
 /*
  * Наценка устанавливается в зависимости от сезона. Значения свойства CATEGORY_ID для разнесения товаров по сезонам
