@@ -25,9 +25,10 @@ $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
 
+/*
+ * Привязка товара к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
+ */
+
 BindToSections::bind($itemStatus, $categoryToSection);
-
-//print_r($categoryToSection);
-
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
