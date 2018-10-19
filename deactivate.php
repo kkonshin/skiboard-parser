@@ -21,10 +21,20 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
+/*
+ * Деактивация товаров
+ */
+
 $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
 
 Deactivate::deactivateItems($itemStatus);
+
+/*
+ * Деактивация торговых предложений
+ */
+
+Deactivate::deactivateSkus($itemStatus);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
