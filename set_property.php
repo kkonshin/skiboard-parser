@@ -19,25 +19,14 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-// TODO вынести ID свойств в конфиг
+$itemType = new PropertyTypeList(PROPERTY_SKIBOARD_ITEM_TYPE);
 
-/*
- * Для рабочего сайта
- */
+$itemPurpose = new PropertyTypeList(PROPERTY_SKIBOARD_ITEM_PURPOSE);
 
-//$itemType = new PropertyTypeList(214);
+// Cюда передавать ID товара, ID инфоблока товаров, массив вида ID свойства => ID значения свойства
+// TODO в heredoc
 
-//$itemPurpose = new PropertyTypeList(215);
-
-/*
- * Для тестового сайта
- */
-
-$itemType = new PropertyTypeList(244);
-
-$itemPurpose = new PropertyTypeList(245);
-
-// TODO сюда передавать ID товара, ID инфоблока товаров, массив вида ID свойства => ID значения свойства
-//$itemType->setPropertyValues(109072, 12, ["244" => 20788]);
+$itemType->setPropertyValues(109072, CATALOG_IBLOCK_ID, [PROPERTY_SKIBOARD_ITEM_TYPE => 20789]);
+$itemPurpose->setPropertyValues(109072, CATALOG_IBLOCK_ID, [PROPERTY_SKIBOARD_ITEM_PURPOSE => 20785]);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

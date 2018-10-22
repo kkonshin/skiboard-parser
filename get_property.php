@@ -19,24 +19,12 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-// TODO вынести ID свойств в конфиг
+$itemType = new PropertyTypeList(PROPERTY_SKIBOARD_ITEM_TYPE);
 
-/*
- * Для рабочего сайта
- */
-
-//$itemType = new PropertyTypeList(214);
-
-//$itemPurpose = new PropertyTypeList(215);
-
-/*
- * Для тестового сайта
- */
-
-$itemType = new PropertyTypeList(244);
-
-$itemPurpose = new PropertyTypeList(245);
+$itemPurpose = new PropertyTypeList(PROPERTY_SKIBOARD_ITEM_PURPOSE);
 
 print_r($itemType->getProperty());
+echo "--------------------------------------------------------------" . PHP_EOL;
+print_r($itemPurpose->getProperty());
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
