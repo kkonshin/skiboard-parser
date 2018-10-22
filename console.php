@@ -601,10 +601,10 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // Сохранение товаров
 
-if ($isNewBasicSource || $isAddNewItems) {
+//if ($isNewBasicSource || $isAddNewItems) {
 	echo "\nСохраняем товары" . PHP_EOL;
 	require(__DIR__ . "/add.php");
-}
+//}
 
 register_shutdown_function(function () {
 	global $startExecTime;

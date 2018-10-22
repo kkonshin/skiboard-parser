@@ -29,6 +29,7 @@ foreach ($resultArray as $key => $item) {
 		$obElement = new CIBlockElement;
 
 		foreach ($item as $itemId => $offer) {
+
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
@@ -40,6 +41,52 @@ foreach ($resultArray as $key => $item) {
 					}
 				}
 			}
+
+			if (!empty($offer["CATEGORY_ID"])){
+				switch ($offer["CATEGORY_ID"]){
+
+					/**
+					 *  Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
+					 */
+
+					case 358:
+						$itemTypeId = 1126;
+						break;
+					case 360:
+						$itemTypeId = 1127;
+						break;
+					case 292:
+						$itemTypeId = 1128;
+						break;
+					case 401:
+						$itemTypeId = 1129;
+						break;
+					case 279:
+						$itemTypeId = 1130;
+						break;
+					case 282:
+						$itemTypeId = 1131;
+						break;
+
+					/**
+					 *  Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
+					 */
+
+					case 400:
+						$itemPurposeId = 1132;
+						break;
+					case 414:
+						$itemTypeId = 1133;
+						break;
+					case (415 || 381 || 370):
+						$itemTypeId = 1134;
+						break;
+					case (283 || 366 || 368):
+						$itemTypeId = 1135;
+						break;
+				}
+			}
+
 		}
 
 		// Лог ошибок изображений
@@ -61,6 +108,8 @@ foreach ($resultArray as $key => $item) {
 				"GROUP_ID" => $key,
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
+				"SKIBOARD_ITEM_TYPE" => isset($itemTypeId) ? $itemTypeId : '',
+				"SKIBOARD_ITEM_PURPOSE" => isset($itemPurposeId) ? $itemPurposeId : ''
 			]
 		];
 
