@@ -23,6 +23,7 @@ use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
+use Parser\Source;
 use Parser\Update;
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -49,7 +50,21 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-$xml = file_get_contents(SOURCE);
+//$xml = file_get_contents(SOURCE);
+
+/**
+ * Инициализация объекта для работы с источником
+ */
+
+$source = new Parser\Source(SOURCE);
+
+/**
+ * Получение содержания файла - источника
+ */
+
+$xml = $source->getSource();
+
+
 
 $previousSourceName = "previous.xml";
 $previousSourceDate = "";
@@ -62,6 +77,8 @@ $isAddNewItems = false;
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
 
+
+
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
@@ -70,6 +87,9 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 } else {
 	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
 }
+
+
+
 
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
 
