@@ -65,7 +65,6 @@ $previousResultArrayLength = 0;
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;
 	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
-	// Если источник парсится впервые, запишем все товары во временный инфоблок (пока нет привязки к разделам)
 	$isNewBasicSource = true;
 
 } else {
