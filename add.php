@@ -24,6 +24,10 @@ foreach ($resultArray as $key => $item) {
 	try {
 		$offerPrice = 0;
 
+		$itemTypeId = 0;
+
+		$itemPurposeId = 0;
+
 		$morePhotoArray = []; // Массив дополнительных картинок товара
 
 		$obElement = new CIBlockElement;
@@ -89,6 +93,9 @@ foreach ($resultArray as $key => $item) {
 
 		}
 
+		echo "ID типа товара: " . $itemTypeId . PHP_EOL;
+		echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
+
 		// Лог ошибок изображений
 
 		if (!empty($pictureErrorsArray)) {
@@ -108,8 +115,8 @@ foreach ($resultArray as $key => $item) {
 				"GROUP_ID" => $key,
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
-				"SKIBOARD_ITEM_TYPE" => isset($itemTypeId) ? $itemTypeId : '',
-				"SKIBOARD_ITEM_PURPOSE" => isset($itemPurposeId) ? $itemPurposeId : ''
+				"SKIBOARD_ITEM_TYPE" => $itemTypeId > 0 ? $itemTypeId : '',
+				"SKIBOARD_ITEM_PURPOSE" => $itemPurposeId > 0 ? $itemPurposeId : ''
 			]
 		];
 
