@@ -5,13 +5,13 @@ namespace Parser;
 class BindToSections extends ItemsStatus
 {
 	/**
-	 * Метод привязывает товар к перечню разделов. Принимает объект товара и массив ID разделов для привязки
+	 * Метод привязывает товары к перечню разделов. Принимает объект ItemsStatus и массив ID разделов для привязки
 	 * @param ItemsStatus $object
 	 * @param array $sections
 	 */
 	public static function bind(ItemsStatus $object, Array $sections)
 	{
-		$sectionsArray[] = $object->tempCatalogSection;
+		$sectionsArray = [];
 
 		$itemsList = $object->getList();
 
@@ -24,12 +24,17 @@ class BindToSections extends ItemsStatus
 				}
 			}
 
+			$sectionsArray[] = $object->tempCatalogSection;
+
 			\CIBlockElement::SetElementSection(
 				$itemValue["ID"],
 				$sectionsArray,
 				false,
 				$object->catalogIblockId
 			);
+
+			unset($sectionsArray);
+
 		}
 	}
 }

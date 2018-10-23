@@ -97,8 +97,12 @@ foreach ($resultArray as $key => $item) {
 
 		}
 
-		echo "ID типа товара: " . $itemTypeId . PHP_EOL;
-		echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
+		if ($itemTypeId > 0) {
+			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
+		}
+		if ($itemPurposeId > 0) {
+			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
+		}
 
 		// Лог ошибок изображений
 

@@ -26,7 +26,7 @@ $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 $itemStatus = new ItemsStatus($params);
 
 /*
- * Привязка товара к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
+ * Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
  */
 
 BindToSections::bind($itemStatus, $categoryToSection);
