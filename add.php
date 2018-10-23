@@ -4,14 +4,12 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 5;
+$length = 100;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
 
 echo "Количество товаров для записи: " . count($resultArray) . "\n";
-
-$counter = 0;
 
 $arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
 
@@ -34,6 +32,7 @@ foreach ($resultArray as $key => $item) {
 
 		foreach ($item as $itemId => $offer) {
 
+			/*
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
@@ -45,9 +44,10 @@ foreach ($resultArray as $key => $item) {
 					}
 				}
 			}
+			*/
 
-			if (!empty($offer["CATEGORY_ID"])){
-				switch ($offer["CATEGORY_ID"]){
+			if (!empty($offer["CATEGORY_ID"])) {
+				switch ($offer["CATEGORY_ID"]) {
 
 					/**
 					 *  Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
@@ -82,10 +82,14 @@ foreach ($resultArray as $key => $item) {
 					case 414:
 						$itemTypeId = 1133;
 						break;
-					case (415 || 381 || 370):
+					case 415:
+					case 381:
+					case 370:
 						$itemTypeId = 1134;
 						break;
-					case (283 || 366 || 368):
+					case 283:
+					case 366:
+					case 368:
 						$itemTypeId = 1135;
 						break;
 				}
@@ -192,8 +196,6 @@ foreach ($resultArray as $key => $item) {
 					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
 						throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
 					}
-
-					$counter++;
 
 					echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
 

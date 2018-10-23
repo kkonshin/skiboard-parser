@@ -6,6 +6,11 @@ use \Bitrix\Main\Loader;
 
 class ItemsStatus
 {
+	/**
+	 * Метод создает объект в зависимости от ID инфоблока и ID раздела инфоблока
+	 * ItemsStatus constructor.
+	 * @param SectionParams $params
+	 */
 	function __construct(SectionParams $params)
 
 	{
@@ -18,12 +23,13 @@ class ItemsStatus
 
 	}
 
+	/**
+	 * Метод для получения списка товаров раздела. Возвращает массив, содержащий активность товара и его ID категории
+	 * из файла XML
+	 * @return array|bool
+	 */
 	protected function getList()
 	{
-		/*
-		 * Метод получает список товаров временного раздела
-		 */
-
 		$dbRes = \CIBlockElement::GetList(
 			[],
 			["IBLOCK_ID" => $this->catalogIblockId, "SECTION_ID" => $this->tempCatalogSection],
@@ -48,11 +54,12 @@ class ItemsStatus
 		return false;
 	}
 
+	/**
+	 * Вспомогательный метод, возвращает массив ID товаров для отбора связанных ТП
+	 * @return array|bool
+	 */
 	protected function getItemsIds()
 	{
-		/*
-		 * Вспомогательная функция, получает массив ID товаров для отбора связанных ТП
-		 */
 
 		$itemsList = $this->getList();
 
@@ -70,12 +77,13 @@ class ItemsStatus
 
 	}
 
+	/**
+	 * Возвращает список торговых предложений, связанных с товарами временного раздела
+	 * @return array|bool
+	 */
+
 	public function getSkuList()
 	{
-		/*
-		 * Метод получает список торговых предложений, связанных с товарами временного раздела
-		 */
-
 		$itemsIdsArray = $this->getItemsIds();
 
 		if ($itemsIdsArray){

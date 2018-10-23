@@ -4,6 +4,11 @@ namespace Parser;
 
 class BindToSections extends ItemsStatus
 {
+	/**
+	 * Метод привязывает товар к перечню разделов. Принимает объект товара и массив ID разделов для привязки
+	 * @param ItemsStatus $object
+	 * @param array $sections
+	 */
 	public static function bind(ItemsStatus $object, Array $sections)
 	{
 		$sectionsArray[] = $object->tempCatalogSection;

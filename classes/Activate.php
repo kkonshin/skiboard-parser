@@ -4,6 +4,10 @@ namespace Parser;
 
 class Activate extends ItemsStatus
 {
+	/**
+	 * @param ItemsStatus $object
+	 *
+	 */
 	public static function activateItems(ItemsStatus $object)
 	{
 		$temp = $object->getList();
@@ -13,6 +17,10 @@ class Activate extends ItemsStatus
 		}
 	}
 
+	/**
+	 * @param ItemsStatus $object
+	 */
+
 	public static function activateSkus(ItemsStatus $object)
 	{
 		/*
@@ -20,8 +28,8 @@ class Activate extends ItemsStatus
 		 */
 		$skuList = $object->getSkuList();
 
-		foreach ( $skuList as $item) {
-			foreach ($item as $sku){
+		foreach ($skuList as $item) {
+			foreach ($item as $sku) {
 				$element = new \CIBlockElement();
 				$element->Update($sku["ID"], ["ACTIVE" => "Y"]);
 			}

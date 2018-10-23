@@ -7,6 +7,11 @@ use \Bitrix\Main\Loader;
 
 class PropertyTypeList
 {
+	/**
+	 * Создает объект для работы со свойством инфоблока типа "Список"
+	 * PropertyTypeList constructor.
+	 * @param $propertyId
+	 */
 	function __construct($propertyId)
 	{
 		$this->propertyId = $propertyId;
@@ -16,6 +21,10 @@ class PropertyTypeList
 		}
 	}
 
+	/**
+	 * Возвращает массив значений свойства по ID свойства типа "Список"
+	 * @return array
+	 */
 	public function getProperty()
 	{
 		$propertyArray = [];
@@ -31,6 +40,12 @@ class PropertyTypeList
 		return $propertyArray;
 	}
 
+	/**
+	 * Устанавливает для элемента инфоблока значения свойства типа "Список"
+	 * @param $elementId
+	 * @param $iblockId
+	 * @param array $propertyValues
+	 */
 	public function setPropertyValues($elementId, $iblockId, Array $propertyValues = [])
 	{
 		\CIBlockElement::SetPropertyValuesEx(
