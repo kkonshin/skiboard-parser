@@ -92,7 +92,6 @@ foreach ($resultArray as $key => $item) {
 						break;
 				}
 			}
-
 		}
 
 		if ($itemTypeId > 0) {
@@ -113,7 +112,8 @@ foreach ($resultArray as $key => $item) {
 			"IBLOCK_ID" => $IBlockCatalogId,
 			"IBLOCK_SECTION_ID" => TEMP_CATALOG_SECTION,
 			"NAME" => $item[0]["NAME"],
-			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
+//			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
+			"CODE" => CUtil::translit($item[0]["NAME"], "ru", $translitParams),
 			"ACTIVE" => "N",
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"PROPERTY_VALUES" => [
