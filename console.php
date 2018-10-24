@@ -23,7 +23,7 @@ use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
-use Parser\Source;
+use Parser\Source\Source;
 use Parser\Update;
 use Parser\CatalogDate;
 use Parser\SectionsList;
