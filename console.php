@@ -24,6 +24,7 @@ use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
 use Parser\Source\Source;
+use Parser\Source\Storage;
 use Parser\Update;
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -56,7 +57,7 @@ if (!Loader::includeModule('catalog')) {
  * Инициализация объекта для работы с источником
  */
 
-$source = new Parser\Source(SOURCE);
+$source = new Source(SOURCE);
 
 /**
  * Получение содержания файла - источника
@@ -64,7 +65,11 @@ $source = new Parser\Source(SOURCE);
 
 $xml = $source->getSource();
 
+/**
+ * Сохранение файла - источника
+ */
 
+echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH) . PHP_EOL;
 
 $previousSourceName = "previous.xml";
 $previousSourceDate = "";
@@ -76,8 +81,6 @@ $isNewBasicSource = false;
 $isAddNewItems = false;
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
-
-
 
 if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 	echo "Сохраняем каталог во временный файл" . PHP_EOL;

@@ -14,13 +14,12 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.
 require_once("vendor/autoload.php");
 
 use Parser\Source\Source;
+use Parser\Source\Storage;
 
 while (ob_get_level()) {
 	ob_end_flush();
 }
 
-$source = new Source(SOURCE);
 
-print_r(gettype($source->getSource()));
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
