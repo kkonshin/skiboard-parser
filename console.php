@@ -71,6 +71,22 @@ $xml = $source->getSource();
 
 echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH) . PHP_EOL;
 
+/**
+ * Получение предыдущего сохраненного файла - источника
+ */
+
+$previous = Storage::getPreviousXml(SOURCE_SAVE_PATH);
+
+if ($previous) {
+   // TODO сравнение дат
+} else {
+    echo "Файл предыдущего сохранения previous.xml не найден." . PHP_EOL;
+    // TODO если нет файла - проверяем на пустоту временный каталог
+    // Если раздел пуст - выполняем запись нового каталога
+    // Если раздел не пуст - выполняем update
+}
+
+
 $previousSourceName = "previous.xml";
 $previousSourceDate = "";
 $previousXml = null;
@@ -90,8 +106,6 @@ if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
 } else {
 	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
 }
-
-
 
 
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
