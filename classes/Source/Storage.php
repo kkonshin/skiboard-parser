@@ -15,35 +15,21 @@ class Storage extends Source
 		try {
 
 			$source = $source->getSource();
-
 			$sourceSavePath = $sourceSavePath . "current.xml";
 
 			if (is_file($sourceSavePath)){
-
-				echo "Файл {$sourceSavePath} уже существует." . PHP_EOL;
-
-				$result = false;
-
+				throw new \Exception( "Файл {$sourceSavePath} уже существует.");
 			} else {
-
 				$result = file_put_contents($sourceSavePath, $source);
-
 			}
 
 			if ($result) {
-
 				return "current.xml успешно сохранен.";
-
 			} else {
-
-				throw new \Exception("Ошибка сохранения файла каталога");
-
+				throw new \Exception("Ошибка сохранения файла каталога.");
 			}
-
 		} catch (\Exception $exception) {
-
 			return $exception->getMessage();
-
 		}
 	}
 
