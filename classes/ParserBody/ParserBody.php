@@ -6,6 +6,14 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class ParserBody
 {
+
+	/**
+	 * Метод парсит экземпляр краулера Symfony.
+	 * Возвращается массив вида: ID товара => Торговые предложения
+	 * @param Crawler|null $crawler
+	 * @return array|string
+	 */
+
 	public static function parse(Crawler $crawler = null)
 	{
 		$ta = [];
@@ -88,6 +96,8 @@ class ParserBody
 					$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
 				}
 			}
+
+			// TODO здесь вернуть оригинальный ta, остальные операции вынести в методы
 
 			// Развернем полученный через extract массив атрибутов, извлечем размер
 			foreach ($ta as $key => $value) {

@@ -43,10 +43,6 @@ if (!is_dir(__DIR__ . "/save")) {
 	mkdir(__DIR__ . "/save", 0777, true);
 }
 
-//-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
-
-
-// TODO модули также могут подключаться в отдельных классах
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
 }
@@ -54,8 +50,6 @@ if (!Loader::includeModule('iblock')) {
 if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
-
-//$xml = file_get_contents(SOURCE);
 
 /**
  * Инициализация объекта для работы с источником
@@ -82,12 +76,12 @@ echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH);
 $previousXml = Storage::getPreviousXml(SOURCE_SAVE_PATH);
 
 if ($previousXml) {
-   // TODO сравнение дат
+	// TODO сравнение дат
 } else {
-    echo "Файл предыдущего сохранения previous.xml не найден." . PHP_EOL;
-    // TODO если нет файла - проверяем на пустоту временный каталог
-    // Если раздел пуст - выполняем запись нового каталога
-    // Если раздел не пуст - выполняем update
+	echo "Файл предыдущего сохранения previous.xml не найден." . PHP_EOL;
+	// TODO если нет файла - проверяем на пустоту временный каталог
+	// Если раздел пуст - выполняем запись нового каталога
+	// Если раздел не пуст - выполняем update
 }
 
 
@@ -104,7 +98,7 @@ $previousResultArrayLength = 0;
 
 $crawler = new Crawler($xml);
 
-if (!empty($previousXml)){
+if (!empty($previousXml)) {
 	$previousCrawler = new Crawler($previousXml);
 }
 
@@ -126,7 +120,7 @@ if ($crawler && $previousCrawler) {
 
 if (!empty($previousXml) && $isNewPrice) {
 
-    $previousResultArray = ParserBody::parse($previousCrawler);
+	$previousResultArray = ParserBody::parse($previousCrawler);
 
 	if (!empty($previousResultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
@@ -137,7 +131,15 @@ $resultArray = ParserBody::parse($crawler);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION], false, false, ["ID"]);
+$dbRes = CIBlockElement::GetList(
+	[],
+	[
+		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+		"SECTION_ID" => TEMP_CATALOG_SECTION
+	],
+	false,
+	false, ["ID"]
+);
 
 while ($res = $dbRes->GetNext()) {
 	$catalogIdsTempArray[] = $res;
@@ -147,7 +149,15 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 	$catalogIds[] = $cidsValue["ID"];
 }
 
-$catalogSkus = CCatalogSku::getOffersList($catalogIds, CATALOG_IBLOCK_ID, [], ["*"], ["CODE" => ["EXTERNAL_OFFER_ID"]]);
+$catalogSkus = CCatalogSku::getOffersList(
+	$catalogIds,
+	CATALOG_IBLOCK_ID,
+	[],
+	["*"],
+	[
+		"CODE" => ["EXTERNAL_OFFER_ID"]
+	]
+);
 
 echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
 
@@ -182,31 +192,31 @@ foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]) {
 				echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
 				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
-				    // Цена товара с уже произведенной наценкой из актуального прайса skiboard.ru
+					// Цена товара с уже произведенной наценкой из актуального прайса skiboard.ru
 //					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
 					// Цена товара с наценкой из актуального прайса vs цена товара, записанная в инфоблоке в данный момент
 //					echo "Новая цена с наценкой " . $offerValue["SEASON_PRICE"] . " vs " . " цена в инфоблоке " . $offerIdValue["PRICE"] . PHP_EOL;
 
 					$tmpPriceId = null;
 
-                    $cp = new CPrice();
+					$cp = new CPrice();
 
-                    $dbres = $cp->GetList([], ["PRODUCT_ID" => $offerIdValue["ID"]], false, false, ["ID"]);
+					$dbres = $cp->GetList([], ["PRODUCT_ID" => $offerIdValue["ID"]], false, false, ["ID"]);
 
-                    while ($res = $dbres->GetNext()){
-                        $tmpPriceId = $res;
-                    }
+					while ($res = $dbres->GetNext()) {
+						$tmpPriceId = $res;
+					}
 
 					echo "Обновлена цена {$offerValue["SEASON_PRICE"]} для товарного предложения {$offerIdValue["ID"]} "
-                        . CPrice::Update(
-                                $tmpPriceId["ID"],
-                                [
-                                    "PRODUCT_ID" =>$offerIdValue["ID"],
-                                    "PRICE" => $offerValue["SEASON_PRICE"],
-                                    "CURRENCY" => "RUB"
-                                ]
-                        )
-                        . PHP_EOL;
+						. CPrice::Update(
+							$tmpPriceId["ID"],
+							[
+								"PRODUCT_ID" => $offerIdValue["ID"],
+								"PRICE" => $offerValue["SEASON_PRICE"],
+								"CURRENCY" => "RUB"
+							]
+						)
+						. PHP_EOL;
 				}
 			}
 		}
@@ -488,9 +498,11 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // Сохранение товаров
 
+// FIXME запуск add должен происходить по определенным условиям
+
 //if ($isNewBasicSource || $isAddNewItems) {
-	echo "\nСохраняем товары" . PHP_EOL;
-	require(__DIR__ . "/add.php");
+echo "\nСохраняем товары" . PHP_EOL;
+require(__DIR__ . "/add.php");
 //}
 
 register_shutdown_function(function () {
