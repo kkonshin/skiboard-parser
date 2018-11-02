@@ -7,7 +7,7 @@ $length = count($resultArray) - $offset;
 $length = 5;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
-//file_put_contents(__DIR__ . "/logs/result.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 echo "Количество товаров для записи: " . count($resultArray) . "\n";
 

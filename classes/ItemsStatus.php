@@ -39,6 +39,7 @@ class ItemsStatus
 				"IBLOCK_ID",
 				"ID",
 				"NAME",
+				"CODE",
 				"ACTIVE",
 				"PROPERTY_CATEGORY_ID"
 			]
