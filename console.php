@@ -186,6 +186,8 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 
 // На этом этапе должен быть доступен $resultArray и все торговые предложения
 
+//file_put_contents(__DIR__ . "/logs/catalogSkusWithoutParent.log", print_r($catalogSkusWithoutParent, true));
+
 foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 	foreach ($resultArray as $resultKey => $resultItem) {
 		foreach ($resultItem as $offerKey => $offerValue) {

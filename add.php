@@ -161,20 +161,17 @@ foreach ($resultArray as $key => $item) {
 				$arOfferProps = [
 					$SKUPropertyId => $productId,
 					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
-					'EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
+					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 				];
 
 				foreach ($offer['ATTRIBUTES'] as $propertyName => $propertyValue) {
 					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
 				}
 
-				// TODO проверить отображение детального описания, т.к. приходит htmlescape
-
 				$arOfferFields = [
 					'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
 					'ACTIVE' => 'N',
-//					"DETAIL_TEXT" => (!empty ($offer["DESCRIPTION"])) ? html_entity_decode($offer["DESCRIPTION"]) : "",
 					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
 					'PROPERTY_VALUES' => $arOfferProps
 				];

@@ -2,8 +2,7 @@
 
 <?php
 /*
- * Скрипт активирует все товары во временном разделе skiboard temp. Для запуска набрать php -f activate.php
- * в командной строке в папке парсера
+ * Скрипт обновляет детальные описания товаров во временном разделе
  */
 if (php_sapi_name() !== "cli") {
 	die ('Этот скрипт предназначен для запуска из командной строки');
@@ -35,10 +34,6 @@ $xml = $source->getSource();
 $crawler = new Crawler($xml);
 
 $resultArray = ParserBody::parse($crawler);
-
-/*
- * Добавление детального описания товарам
- */
 
 Description::updateDescription($itemStatus, $resultArray);
 

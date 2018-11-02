@@ -12,7 +12,6 @@ class Description extends \Parser\ItemsStatus
 			foreach ($itemsList as $itemKey => $itemValue) {
 				foreach ($resultArray as $resultArrayKey => $resultArrayValue){
 					if (\CUtil::translit($resultArrayValue[0]["NAME"] . ' ' . $resultArrayValue[0]["OFFER_ID"], "ru", P_TRANSLIT_PARAMS) === $itemValue["CODE"]){
-//						echo $resultArrayValue[0]["DESCRIPTION"] . PHP_EOL;
 						$element = new \CIBlockElement();
 						echo $element->Update($itemValue["ID"], ["DETAIL_TEXT" => html_entity_decode($resultArrayValue[0]["DESCRIPTION"])]);
 					}
