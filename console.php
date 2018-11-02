@@ -191,8 +191,8 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
 	foreach ($resultArray as $resultKey => $resultItem) {
 		foreach ($resultItem as $offerKey => $offerValue) {
-			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]) {
-				echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
+			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"]) {
+//				echo $offerIdValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
 				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
 					// Цена товара с уже произведенной наценкой из актуального прайса skiboard.ru
 //					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
