@@ -89,7 +89,6 @@ $previousSourceDate = "";
 $previousResultArray = [];
 $resultDifferenceArray = [];
 $resultDifferenceArrayKeys = [];
-$isNewBasicSource = false;
 $isAddNewItems = false;
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
@@ -120,14 +119,14 @@ if ($crawler && $previousCrawler) {
 
 if (!empty($previousXml) && $isNewPrice) {
 
-	$previousResultArray = ParserBody::parse($previousCrawler);
+	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл
 
 	if (!empty($previousResultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
 	}
 }
 
-$resultArray = ParserBody::parse($crawler);
+$resultArray = ParserBody::parse($crawler); // Парсим новый файл
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
@@ -155,7 +154,7 @@ $catalogSkus = CCatalogSku::getOffersList(
 	[],
 	["*"],
 	[
-		"CODE" => ["EXTERNAL_OFFER_ID"]
+		"CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]
 	]
 );
 
@@ -502,10 +501,8 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // FIXME запуск add должен происходить по определенным условиям
 
-//if ($isNewBasicSource || $isAddNewItems) {
 echo "\nСохраняем товары" . PHP_EOL;
 require(__DIR__ . "/add.php");
-//}
 
 register_shutdown_function(function () {
 	global $startExecTime;

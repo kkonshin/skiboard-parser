@@ -4,6 +4,12 @@ namespace Parser\Utils;
 
 class Description extends \Parser\ItemsStatus
 {
+	/**
+	 * Обновление детального описания товара
+	 * @param \Parser\ItemsStatus $object
+	 * @param array|null $resultArray
+	 */
+
 	public static function updateDescription(\Parser\ItemsStatus $object, array $resultArray=null)
 	{
 		$itemsList = $object->getList();
@@ -21,6 +27,5 @@ class Description extends \Parser\ItemsStatus
 			echo "Обновить детальное описание не удалось" . PHP_EOL;
 			echo $exception->getMessage() . PHP_EOL;
 		}
-
 	}
 }

@@ -4,10 +4,10 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 5;
+$length = 20;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
-file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 echo "Количество товаров для записи: " . count($resultArray) . "\n";
 
@@ -16,7 +16,6 @@ $arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаро�
 $IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
 
 $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
-
 
 foreach ($resultArray as $key => $item) {
 	try {

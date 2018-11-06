@@ -68,7 +68,7 @@ class ItemsStatus
 
 			$itemsIdsArray = [];
 
-			foreach ($itemsList as $itemKey => $itemValue){
+			foreach ($itemsList as $itemKey => $itemValue) {
 				$itemsIdsArray[] = $itemValue["ID"];
 			}
 			return $itemsIdsArray;
@@ -87,12 +87,33 @@ class ItemsStatus
 	{
 		$itemsIdsArray = $this->getItemsIds();
 
-		if ($itemsIdsArray){
-			$skuList = \CCatalogSku::getOffersList($itemsIdsArray, 0, [], ["ID", "IBLOCK_ID", "ACTIVE"]);
-			if ($skuList){
+		if ($itemsIdsArray) {
+			$skuList = \CCatalogSku::getOffersList($itemsIdsArray, 0, [], ["ID", "IBLOCK_ID", "ACTIVE", "NAME"], ["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]]);
+			if ($skuList) {
 				return $skuList;
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Возвращает массив ТП раздела без привязки к товарам
+	 * @return array
+	 */
+
+	public function getSkuListWithoutParent()
+	{
+		$skuList = $this->getSkuList();
+
+		$skuListWithoutParent = [];
+
+		foreach ($skuList as $itemKey => $itemValue) {
+			foreach ($itemValue as $offerKey => $offerValue){
+				$skuListWithoutParent[$offerKey] = $offerValue;
+			}
+		}
+
+		return $skuListWithoutParent;
+
 	}
 }

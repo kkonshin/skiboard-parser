@@ -2,13 +2,13 @@ Array
 (
     [0] => Array
         (
-            [ID] => 25383
+            [ID] => 27210
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:33
-            [TIMESTAMP_X_UNIX] => 1541145873
+            [TIMESTAMP_X] => 06.11.2018 09:23:31
+            [TIMESTAMP_X_UNIX] => 1541485411
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:33
-            [DATE_CREATE_UNIX] => 1541145873
+            [DATE_CREATE] => 06.11.2018 09:23:31
+            [DATE_CREATE_UNIX] => 1541485411
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -21,7 +21,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119129
+            [DETAIL_PICTURE] => 1120285
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 5 1000
@@ -39,8 +39,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_5_1000
             [TAGS] => 
-            [XML_ID] => 25383
-            [EXTERNAL_ID] => 25383
+            [XML_ID] => 27210
+            [EXTERNAL_ID] => 27210
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -54,21 +54,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => cbffcb408b6ecc0a0786
+                            [PROPERTY_VALUE_ID] => 27210:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => cbffcb408b6ecc0a0786
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [1] => Array
         (
-            [ID] => 25384
+            [ID] => 27211
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:33
-            [TIMESTAMP_X_UNIX] => 1541145873
+            [TIMESTAMP_X] => 06.11.2018 09:23:31
+            [TIMESTAMP_X_UNIX] => 1541485411
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:33
-            [DATE_CREATE_UNIX] => 1541145873
+            [DATE_CREATE] => 06.11.2018 09:23:31
+            [DATE_CREATE_UNIX] => 1541485411
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -81,7 +123,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119130
+            [DETAIL_PICTURE] => 1120286
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 6 1000
@@ -99,8 +141,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_6_1000
             [TAGS] => 
-            [XML_ID] => 25384
-            [EXTERNAL_ID] => 25384
+            [XML_ID] => 27211
+            [EXTERNAL_ID] => 27211
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -114,21 +156,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 5fafc9299c56773cdbcf
+                            [PROPERTY_VALUE_ID] => 27211:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 5fafc9299c56773cdbcf
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [2] => Array
         (
-            [ID] => 25385
+            [ID] => 27212
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:34
-            [TIMESTAMP_X_UNIX] => 1541145874
+            [TIMESTAMP_X] => 06.11.2018 09:23:31
+            [TIMESTAMP_X_UNIX] => 1541485411
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:34
-            [DATE_CREATE_UNIX] => 1541145874
+            [DATE_CREATE] => 06.11.2018 09:23:31
+            [DATE_CREATE_UNIX] => 1541485411
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -141,7 +225,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119131
+            [DETAIL_PICTURE] => 1120287
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 7 1000
@@ -159,8 +243,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_7_1000
             [TAGS] => 
-            [XML_ID] => 25385
-            [EXTERNAL_ID] => 25385
+            [XML_ID] => 27212
+            [EXTERNAL_ID] => 27212
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -174,21 +258,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 4d5021bf85b318db17e4
+                            [PROPERTY_VALUE_ID] => 27212:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 4d5021bf85b318db17e4
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [3] => Array
         (
-            [ID] => 25386
+            [ID] => 27213
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:34
-            [TIMESTAMP_X_UNIX] => 1541145874
+            [TIMESTAMP_X] => 06.11.2018 09:23:32
+            [TIMESTAMP_X_UNIX] => 1541485412
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:34
-            [DATE_CREATE_UNIX] => 1541145874
+            [DATE_CREATE] => 06.11.2018 09:23:32
+            [DATE_CREATE_UNIX] => 1541485412
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -201,7 +327,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119132
+            [DETAIL_PICTURE] => 1120288
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 8 1000
@@ -219,8 +345,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_8_1000
             [TAGS] => 
-            [XML_ID] => 25386
-            [EXTERNAL_ID] => 25386
+            [XML_ID] => 27213
+            [EXTERNAL_ID] => 27213
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -234,21 +360,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => eda001b7539a281869de
+                            [PROPERTY_VALUE_ID] => 27213:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => eda001b7539a281869de
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [4] => Array
         (
-            [ID] => 25387
+            [ID] => 27214
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:34
-            [TIMESTAMP_X_UNIX] => 1541145874
+            [TIMESTAMP_X] => 06.11.2018 09:23:32
+            [TIMESTAMP_X_UNIX] => 1541485412
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:34
-            [DATE_CREATE_UNIX] => 1541145874
+            [DATE_CREATE] => 06.11.2018 09:23:32
+            [DATE_CREATE_UNIX] => 1541485412
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -261,7 +429,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119133
+            [DETAIL_PICTURE] => 1120289
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 9 1000
@@ -279,8 +447,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_9_1000
             [TAGS] => 
-            [XML_ID] => 25387
-            [EXTERNAL_ID] => 25387
+            [XML_ID] => 27214
+            [EXTERNAL_ID] => 27214
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -294,21 +462,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 729bf52d898b1901d8e0
+                            [PROPERTY_VALUE_ID] => 27214:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 729bf52d898b1901d8e0
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [5] => Array
         (
-            [ID] => 25388
+            [ID] => 27215
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:34
-            [TIMESTAMP_X_UNIX] => 1541145874
+            [TIMESTAMP_X] => 06.11.2018 09:23:32
+            [TIMESTAMP_X_UNIX] => 1541485412
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:34
-            [DATE_CREATE_UNIX] => 1541145874
+            [DATE_CREATE] => 06.11.2018 09:23:32
+            [DATE_CREATE_UNIX] => 1541485412
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -321,7 +531,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119134
+            [DETAIL_PICTURE] => 1120290
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 10 1000
@@ -339,8 +549,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_10_1000
             [TAGS] => 
-            [XML_ID] => 25388
-            [EXTERNAL_ID] => 25388
+            [XML_ID] => 27215
+            [EXTERNAL_ID] => 27215
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -354,21 +564,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => b6c609ec6afe18ae2a03
+                            [PROPERTY_VALUE_ID] => 27215:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => b6c609ec6afe18ae2a03
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [6] => Array
         (
-            [ID] => 25389
+            [ID] => 27216
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:35
-            [TIMESTAMP_X_UNIX] => 1541145875
+            [TIMESTAMP_X] => 06.11.2018 09:23:32
+            [TIMESTAMP_X_UNIX] => 1541485412
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:35
-            [DATE_CREATE_UNIX] => 1541145875
+            [DATE_CREATE] => 06.11.2018 09:23:32
+            [DATE_CREATE_UNIX] => 1541485412
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -381,7 +633,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119135
+            [DETAIL_PICTURE] => 1120291
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 11 1000
@@ -399,8 +651,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_11_1000
             [TAGS] => 
-            [XML_ID] => 25389
-            [EXTERNAL_ID] => 25389
+            [XML_ID] => 27216
+            [EXTERNAL_ID] => 27216
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -414,21 +666,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => f58bd96baf4d017cb3d6
+                            [PROPERTY_VALUE_ID] => 27216:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => f58bd96baf4d017cb3d6
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [7] => Array
         (
-            [ID] => 25390
+            [ID] => 27217
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:35
-            [TIMESTAMP_X_UNIX] => 1541145875
+            [TIMESTAMP_X] => 06.11.2018 09:23:33
+            [TIMESTAMP_X_UNIX] => 1541485413
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:35
-            [DATE_CREATE_UNIX] => 1541145875
+            [DATE_CREATE] => 06.11.2018 09:23:33
+            [DATE_CREATE_UNIX] => 1541485413
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -441,7 +735,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119136
+            [DETAIL_PICTURE] => 1120292
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 12 1000
@@ -459,8 +753,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_12_1000
             [TAGS] => 
-            [XML_ID] => 25390
-            [EXTERNAL_ID] => 25390
+            [XML_ID] => 27217
+            [EXTERNAL_ID] => 27217
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -474,21 +768,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 98a6d1cc5c74b701cd19
+                            [PROPERTY_VALUE_ID] => 27217:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 98a6d1cc5c74b701cd19
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [8] => Array
         (
-            [ID] => 25391
+            [ID] => 27218
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:35
-            [TIMESTAMP_X_UNIX] => 1541145875
+            [TIMESTAMP_X] => 06.11.2018 09:23:33
+            [TIMESTAMP_X_UNIX] => 1541485413
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:35
-            [DATE_CREATE_UNIX] => 1541145875
+            [DATE_CREATE] => 06.11.2018 09:23:33
+            [DATE_CREATE_UNIX] => 1541485413
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -501,7 +837,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119137
+            [DETAIL_PICTURE] => 1120293
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОБУВЬ ZEM O2 OXYGEN BLACK/BLACK 13 1000
@@ -519,8 +855,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_o2_oxygen_black_black_13_1000
             [TAGS] => 
-            [XML_ID] => 25391
-            [EXTERNAL_ID] => 25391
+            [XML_ID] => 27218
+            [EXTERNAL_ID] => 27218
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -534,21 +870,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25382
+            [PARENT_ID] => 27209
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 50bc62d6e2def1b613c2
+                            [PROPERTY_VALUE_ID] => 27218:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 50bc62d6e2def1b613c2
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3879.03
         )
 
     [9] => Array
         (
-            [ID] => 25393
+            [ID] => 27220
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:35
-            [TIMESTAMP_X_UNIX] => 1541145875
+            [TIMESTAMP_X] => 06.11.2018 09:23:33
+            [TIMESTAMP_X_UNIX] => 1541485413
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:35
-            [DATE_CREATE_UNIX] => 1541145875
+            [DATE_CREATE] => 06.11.2018 09:23:33
+            [DATE_CREATE_UNIX] => 1541485413
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -579,8 +957,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => obuv_zem_u_cross_black_blue_10_8800
             [TAGS] => 
-            [XML_ID] => 25393
-            [EXTERNAL_ID] => 25393
+            [XML_ID] => 27220
+            [EXTERNAL_ID] => 27220
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -594,21 +972,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25392
+            [PARENT_ID] => 27219
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 8f1136e24c6962421f1e
+                            [PROPERTY_VALUE_ID] => 27220:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 8f1136e24c6962421f1e
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 5866.74
         )
 
     [10] => Array
         (
-            [ID] => 25395
+            [ID] => 27222
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:36
-            [TIMESTAMP_X_UNIX] => 1541145876
+            [TIMESTAMP_X] => 06.11.2018 09:23:34
+            [TIMESTAMP_X_UNIX] => 1541485414
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:36
-            [DATE_CREATE_UNIX] => 1541145876
+            [DATE_CREATE] => 06.11.2018 09:23:34
+            [DATE_CREATE_UNIX] => 1541485414
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -621,7 +1041,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119139
+            [DETAIL_PICTURE] => 1120295
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ПЕРЧАТКИ STRAIGHT LINE PERFORMANCE GLOVE BLK/RED 2XL 213903*S17
@@ -639,8 +1059,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => perchatki_straight_line_performance_glove_blk_red_2xl_213903_s17
             [TAGS] => 
-            [XML_ID] => 25395
-            [EXTERNAL_ID] => 25395
+            [XML_ID] => 27222
+            [EXTERNAL_ID] => 27222
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -654,21 +1074,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25394
+            [PARENT_ID] => 27221
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => de03797db1e12674eaee
+                            [PROPERTY_VALUE_ID] => 27222:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => de03797db1e12674eaee
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3181.96
         )
 
     [11] => Array
         (
-            [ID] => 25396
+            [ID] => 27223
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:37
-            [TIMESTAMP_X_UNIX] => 1541145877
+            [TIMESTAMP_X] => 06.11.2018 09:23:34
+            [TIMESTAMP_X_UNIX] => 1541485414
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:37
-            [DATE_CREATE_UNIX] => 1541145877
+            [DATE_CREATE] => 06.11.2018 09:23:34
+            [DATE_CREATE_UNIX] => 1541485414
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -681,7 +1143,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119140
+            [DETAIL_PICTURE] => 1120296
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ПЕРЧАТКИ STRAIGHT LINE PERFORMANCE GLOVE BLK/RED XL 213903*S17
@@ -699,8 +1161,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => perchatki_straight_line_performance_glove_blk_red_xl_213903_s17
             [TAGS] => 
-            [XML_ID] => 25396
-            [EXTERNAL_ID] => 25396
+            [XML_ID] => 27223
+            [EXTERNAL_ID] => 27223
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -714,21 +1176,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25394
+            [PARENT_ID] => 27221
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 4bab9ee670ab0b4c31d5
+                            [PROPERTY_VALUE_ID] => 27223:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 4bab9ee670ab0b4c31d5
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3181.96
         )
 
     [12] => Array
         (
-            [ID] => 25397
+            [ID] => 27224
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:37
-            [TIMESTAMP_X_UNIX] => 1541145877
+            [TIMESTAMP_X] => 06.11.2018 09:23:35
+            [TIMESTAMP_X_UNIX] => 1541485415
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:37
-            [DATE_CREATE_UNIX] => 1541145877
+            [DATE_CREATE] => 06.11.2018 09:23:35
+            [DATE_CREATE_UNIX] => 1541485415
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -741,7 +1245,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119141
+            [DETAIL_PICTURE] => 1120297
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ПЕРЧАТКИ STRAIGHT LINE PERFORMANCE GLOVE BLK/RED L 213903*S17
@@ -759,8 +1263,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => perchatki_straight_line_performance_glove_blk_red_l_213903_s17
             [TAGS] => 
-            [XML_ID] => 25397
-            [EXTERNAL_ID] => 25397
+            [XML_ID] => 27224
+            [EXTERNAL_ID] => 27224
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -774,21 +1278,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25394
+            [PARENT_ID] => 27221
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 1def41bc0e6612626c32
+                            [PROPERTY_VALUE_ID] => 27224:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 1def41bc0e6612626c32
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3181.96
         )
 
     [13] => Array
         (
-            [ID] => 25398
+            [ID] => 27225
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:38
-            [TIMESTAMP_X_UNIX] => 1541145878
+            [TIMESTAMP_X] => 06.11.2018 09:23:35
+            [TIMESTAMP_X_UNIX] => 1541485415
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:38
-            [DATE_CREATE_UNIX] => 1541145878
+            [DATE_CREATE] => 06.11.2018 09:23:35
+            [DATE_CREATE_UNIX] => 1541485415
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -801,7 +1347,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119142
+            [DETAIL_PICTURE] => 1120298
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ПЕРЧАТКИ STRAIGHT LINE PERFORMANCE GLOVE BLK/RED M 213903*S17
@@ -819,8 +1365,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => perchatki_straight_line_performance_glove_blk_red_m_213903_s17
             [TAGS] => 
-            [XML_ID] => 25398
-            [EXTERNAL_ID] => 25398
+            [XML_ID] => 27225
+            [EXTERNAL_ID] => 27225
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -834,21 +1380,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25394
+            [PARENT_ID] => 27221
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 527d1b1b191babec91b8
+                            [PROPERTY_VALUE_ID] => 27225:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 527d1b1b191babec91b8
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3181.96
         )
 
     [14] => Array
         (
-            [ID] => 25399
+            [ID] => 27226
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:38
-            [TIMESTAMP_X_UNIX] => 1541145878
+            [TIMESTAMP_X] => 06.11.2018 09:23:36
+            [TIMESTAMP_X_UNIX] => 1541485416
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:38
-            [DATE_CREATE_UNIX] => 1541145878
+            [DATE_CREATE] => 06.11.2018 09:23:36
+            [DATE_CREATE_UNIX] => 1541485416
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -861,7 +1449,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119143
+            [DETAIL_PICTURE] => 1120299
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ПЕРЧАТКИ STRAIGHT LINE PERFORMANCE GLOVE BLK/RED S 213903*S17
@@ -879,8 +1467,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => perchatki_straight_line_performance_glove_blk_red_s_213903_s17
             [TAGS] => 
-            [XML_ID] => 25399
-            [EXTERNAL_ID] => 25399
+            [XML_ID] => 27226
+            [EXTERNAL_ID] => 27226
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -894,21 +1482,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25394
+            [PARENT_ID] => 27221
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => e64335c693620b2d386d
+                            [PROPERTY_VALUE_ID] => 27226:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => e64335c693620b2d386d
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3181.96
         )
 
     [15] => Array
         (
-            [ID] => 25400
+            [ID] => 27227
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:39
-            [TIMESTAMP_X_UNIX] => 1541145879
+            [TIMESTAMP_X] => 06.11.2018 09:23:36
+            [TIMESTAMP_X_UNIX] => 1541485416
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:39
-            [DATE_CREATE_UNIX] => 1541145879
+            [DATE_CREATE] => 06.11.2018 09:23:36
+            [DATE_CREATE_UNIX] => 1541485416
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -921,7 +1551,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119144
+            [DETAIL_PICTURE] => 1120300
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ПЕРЧАТКИ STRAIGHT LINE PERFORMANCE GLOVE BLK/RED XS 213903*S17
@@ -939,8 +1569,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => perchatki_straight_line_performance_glove_blk_red_xs_213903_s17
             [TAGS] => 
-            [XML_ID] => 25400
-            [EXTERNAL_ID] => 25400
+            [XML_ID] => 27227
+            [EXTERNAL_ID] => 27227
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -954,21 +1584,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25394
+            [PARENT_ID] => 27221
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 69adf9f91b0490a70ebb
+                            [PROPERTY_VALUE_ID] => 27227:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 69adf9f91b0490a70ebb
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3181.96
         )
 
     [16] => Array
         (
-            [ID] => 25402
+            [ID] => 27229
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:41
-            [TIMESTAMP_X_UNIX] => 1541145881
+            [TIMESTAMP_X] => 06.11.2018 09:23:38
+            [TIMESTAMP_X_UNIX] => 1541485418
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:41
-            [DATE_CREATE_UNIX] => 1541145881
+            [DATE_CREATE] => 06.11.2018 09:23:38
+            [DATE_CREATE_UNIX] => 1541485418
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -981,7 +1653,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119150
+            [DETAIL_PICTURE] => 1120306
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL SENNEN MATTE BLACK/OLIVE GREEN (104P) S18 OS ONS-SENNEN-104P*S18
@@ -999,8 +1671,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => ochki_solntsezashchitnye_o_neill_sennen_matte_black_olive_green_104p_s18_os_ons_sennen_104p_s18
             [TAGS] => 
-            [XML_ID] => 25402
-            [EXTERNAL_ID] => 25402
+            [XML_ID] => 27229
+            [EXTERNAL_ID] => 27229
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -1014,21 +1686,63 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25401
+            [PARENT_ID] => 27228
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => aae52d84f81b8523fe58
+                            [PROPERTY_VALUE_ID] => 27229:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => aae52d84f81b8523fe58
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 3506.68
         )
 
     [17] => Array
         (
-            [ID] => 25404
+            [ID] => 27231
             [IBLOCK_ID] => 13
-            [TIMESTAMP_X] => 02.11.2018 11:04:43
-            [TIMESTAMP_X_UNIX] => 1541145883
+            [TIMESTAMP_X] => 06.11.2018 09:23:40
+            [TIMESTAMP_X_UNIX] => 1541485420
             [MODIFIED_BY] => 0
-            [DATE_CREATE] => 02.11.2018 11:04:43
-            [DATE_CREATE_UNIX] => 1541145883
+            [DATE_CREATE] => 06.11.2018 09:23:40
+            [DATE_CREATE_UNIX] => 1541485420
             [CREATED_BY] => 0
             [IBLOCK_SECTION_ID] => 
             [ACTIVE] => N
@@ -1041,7 +1755,7 @@ Array
             [PREVIEW_PICTURE] => 
             [PREVIEW_TEXT] => 
             [PREVIEW_TEXT_TYPE] => text
-            [DETAIL_PICTURE] => 1119156
+            [DETAIL_PICTURE] => 1120312
             [DETAIL_TEXT] => 
             [DETAIL_TEXT_TYPE] => text
             [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL OFFSHORE GLOSS TORT (102P) S18 OS ONS-OFFSHORE-102P*S18
@@ -1059,8 +1773,8 @@ Array
             [SHOW_COUNTER_START_X] => 
             [CODE] => ochki_solntsezashchitnye_o_neill_offshore_gloss_tort_102p_s18_os_ons_offshore_102p_s18
             [TAGS] => 
-            [XML_ID] => 25404
-            [EXTERNAL_ID] => 25404
+            [XML_ID] => 27231
+            [EXTERNAL_ID] => 27231
             [TMP_ID] => 
             [USER_NAME] => 
             [LOCKED_USER_NAME] => 
@@ -1074,10 +1788,2194 @@ Array
             [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
             [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
             [CANONICAL_PAGE_URL] => 
-            [CREATED_DATE] => 2018.11.02
+            [CREATED_DATE] => 2018.11.06
             [BP_PUBLISHED] => Y
-            [PARENT_ID] => 25403
+            [PARENT_ID] => 27230
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 6e29f70bd4bfaa11ab2d
+                            [PROPERTY_VALUE_ID] => 27231:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 6e29f70bd4bfaa11ab2d
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
             [PRICE] => 2488.61
+        )
+
+    [18] => Array
+        (
+            [ID] => 27233
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:43
+            [TIMESTAMP_X_UNIX] => 1541485423
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:43
+            [DATE_CREATE_UNIX] => 1541485423
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Очки солнцезащитные O'Neill WAKE MATTE SILVER (002P) S18 OS ONS-WAKE-002P*S18
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120318
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL WAKE MATTE SILVER (002P) S18 OS ONS-WAKE-002P*S18
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => ochki_solntsezashchitnye_o_neill_wake_matte_silver_002p_s18_os_ons_wake_002p_s18
+            [TAGS] => 
+            [XML_ID] => 27233
+            [EXTERNAL_ID] => 27233
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27232
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 8fdbda0f59923977120d
+                            [PROPERTY_VALUE_ID] => 27233:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 8fdbda0f59923977120d
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 3846.04
+        )
+
+    [19] => Array
+        (
+            [ID] => 27235
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:45
+            [TIMESTAMP_X_UNIX] => 1541485425
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:45
+            [DATE_CREATE_UNIX] => 1541485425
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Очки солнцезащитные O'Neill COAST RUBBER BLACK (104P) S18 OS ONS-COAST-104P*S18
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120324
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL COAST RUBBER BLACK (104P) S18 OS ONS-COAST-104P*S18
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => ochki_solntsezashchitnye_o_neill_coast_rubber_black_104p_s18_os_ons_coast_104p_s18
+            [TAGS] => 
+            [XML_ID] => 27235
+            [EXTERNAL_ID] => 27235
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27234
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => dace944cb9c384f23631
+                            [PROPERTY_VALUE_ID] => 27235:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => dace944cb9c384f23631
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 2488.61
+        )
+
+    [20] => Array
+        (
+            [ID] => 27237
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:47
+            [TIMESTAMP_X_UNIX] => 1541485427
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:47
+            [DATE_CREATE_UNIX] => 1541485427
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Очки солнцезащитные O'Neill COAST MATTE NAVY TO YELLOW FADE (106P) S18 OS ONS-COAST-106P*S18
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120330
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL COAST MATTE NAVY TO YELLOW FADE (106P) S18 OS ONS-COAST-106P*S18
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => ochki_solntsezashchitnye_o_neill_coast_matte_navy_to_yellow_fade_106p_s18_os_ons_coast_106p_s18
+            [TAGS] => 
+            [XML_ID] => 27237
+            [EXTERNAL_ID] => 27237
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27236
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 6d585d6558a69f2fb06f
+                            [PROPERTY_VALUE_ID] => 27237:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 6d585d6558a69f2fb06f
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 2488.61
+        )
+
+    [21] => Array
+        (
+            [ID] => 27239
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:49
+            [TIMESTAMP_X_UNIX] => 1541485429
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:49
+            [DATE_CREATE_UNIX] => 1541485429
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Очки солнцезащитные O'Neill SHORE MATTE BLACK (127P) S18 OS ONS-SHORE-127P*S18
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120336
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL SHORE MATTE BLACK (127P) S18 OS ONS-SHORE-127P*S18
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => ochki_solntsezashchitnye_o_neill_shore_matte_black_127p_s18_os_ons_shore_127p_s18
+            [TAGS] => 
+            [XML_ID] => 27239
+            [EXTERNAL_ID] => 27239
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27238
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 301ab674819073a8ccd4
+                            [PROPERTY_VALUE_ID] => 27239:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 301ab674819073a8ccd4
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 2488.61
+        )
+
+    [22] => Array
+        (
+            [ID] => 27241
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:51
+            [TIMESTAMP_X_UNIX] => 1541485431
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:51
+            [DATE_CREATE_UNIX] => 1541485431
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Очки солнцезащитные O'Neill SHORE TEXT BLACK (196P) S18 OS ONS-SHORE-196P*S18
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120342
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL SHORE TEXT BLACK (196P) S18 OS ONS-SHORE-196P*S18
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => ochki_solntsezashchitnye_o_neill_shore_text_black_196p_s18_os_ons_shore_196p_s18
+            [TAGS] => 
+            [XML_ID] => 27241
+            [EXTERNAL_ID] => 27241
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27240
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => a505c93852f3b5aa30f2
+                            [PROPERTY_VALUE_ID] => 27241:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => a505c93852f3b5aa30f2
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 2488.61
+        )
+
+    [23] => Array
+        (
+            [ID] => 27243
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:54
+            [TIMESTAMP_X_UNIX] => 1541485434
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:54
+            [DATE_CREATE_UNIX] => 1541485434
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Очки солнцезащитные O'Neill ZEPOL BLUE (107P) S18 OS ONS-ZEPOL-107P*S18
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120348
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => ОЧКИ СОЛНЦЕЗАЩИТНЫЕ O'NEILL ZEPOL BLUE (107P) S18 OS ONS-ZEPOL-107P*S18
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => ochki_solntsezashchitnye_o_neill_zepol_blue_107p_s18_os_ons_zepol_107p_s18
+            [TAGS] => 
+            [XML_ID] => 27243
+            [EXTERNAL_ID] => 27243
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27242
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 0f2fc74863e0fa56855d
+                            [PROPERTY_VALUE_ID] => 27243:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 0f2fc74863e0fa56855d
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 3846.04
+        )
+
+    [24] => Array
+        (
+            [ID] => 27245
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:57
+            [TIMESTAMP_X_UNIX] => 1541485437
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:57
+            [DATE_CREATE_UNIX] => 1541485437
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims KIDWELL RT2 F18 157,5 SM1819TKD
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120357
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS KIDWELL RT2 F18 157,5 SM1819TKD
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_kidwell_rt2_f18_157_5_sm1819tkd
+            [TAGS] => 
+            [XML_ID] => 27245
+            [EXTERNAL_ID] => 27245
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27244
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 7a307d13a4ffff1da440
+                            [PROPERTY_VALUE_ID] => 27245:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 7a307d13a4ffff1da440
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 44547.45
+        )
+
+    [25] => Array
+        (
+            [ID] => 27246
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:23:58
+            [TIMESTAMP_X_UNIX] => 1541485438
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:23:58
+            [DATE_CREATE_UNIX] => 1541485438
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims KIDWELL RT2 F18 160 SM1819TKD
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120358
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS KIDWELL RT2 F18 160 SM1819TKD
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_kidwell_rt2_f18_160_sm1819tkd
+            [TAGS] => 
+            [XML_ID] => 27246
+            [EXTERNAL_ID] => 27246
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27244
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => a965612c166d78893cb2
+                            [PROPERTY_VALUE_ID] => 27246:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => a965612c166d78893cb2
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 44547.45
+        )
+
+    [26] => Array
+        (
+            [ID] => 27248
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:04
+            [TIMESTAMP_X_UNIX] => 1541485444
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:04
+            [DATE_CREATE_UNIX] => 1541485444
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims TOM SIMS PRO F18 155 SM1819TSP
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120366
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS TOM SIMS PRO F18 155 SM1819TSP
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_tom_sims_pro_f18_155_sm1819tsp
+            [TAGS] => 
+            [XML_ID] => 27248
+            [EXTERNAL_ID] => 27248
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27247
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => aa8ae30e92747b2fb7cb
+                            [PROPERTY_VALUE_ID] => 27248:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => aa8ae30e92747b2fb7cb
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [27] => Array
+        (
+            [ID] => 27249
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:05
+            [TIMESTAMP_X_UNIX] => 1541485445
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:05
+            [DATE_CREATE_UNIX] => 1541485445
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims TOM SIMS PRO F18 158 SM1819TSP
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120367
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS TOM SIMS PRO F18 158 SM1819TSP
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_tom_sims_pro_f18_158_sm1819tsp
+            [TAGS] => 
+            [XML_ID] => 27249
+            [EXTERNAL_ID] => 27249
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27247
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => a497b72b515b94dfe366
+                            [PROPERTY_VALUE_ID] => 27249:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => a497b72b515b94dfe366
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [28] => Array
+        (
+            [ID] => 27250
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:05
+            [TIMESTAMP_X_UNIX] => 1541485445
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:05
+            [DATE_CREATE_UNIX] => 1541485445
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims TOM SIMS PRO F18 159X SM1819TSP
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120368
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS TOM SIMS PRO F18 159X SM1819TSP
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_tom_sims_pro_f18_159x_sm1819tsp
+            [TAGS] => 
+            [XML_ID] => 27250
+            [EXTERNAL_ID] => 27250
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27247
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 04de255eea8cf6ad17b0
+                            [PROPERTY_VALUE_ID] => 27250:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 04de255eea8cf6ad17b0
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [29] => Array
+        (
+            [ID] => 27251
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:05
+            [TIMESTAMP_X_UNIX] => 1541485445
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:05
+            [DATE_CREATE_UNIX] => 1541485445
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims TOM SIMS PRO F18 161 SM1819TSP
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120369
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS TOM SIMS PRO F18 161 SM1819TSP
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_tom_sims_pro_f18_161_sm1819tsp
+            [TAGS] => 
+            [XML_ID] => 27251
+            [EXTERNAL_ID] => 27251
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27247
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => d450f00189acbd517471
+                            [PROPERTY_VALUE_ID] => 27251:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => d450f00189acbd517471
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [30] => Array
+        (
+            [ID] => 27252
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:06
+            [TIMESTAMP_X_UNIX] => 1541485446
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:06
+            [DATE_CREATE_UNIX] => 1541485446
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims TOM SIMS PRO F18 162X SM1819TSP
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120370
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS TOM SIMS PRO F18 162X SM1819TSP
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_tom_sims_pro_f18_162x_sm1819tsp
+            [TAGS] => 
+            [XML_ID] => 27252
+            [EXTERNAL_ID] => 27252
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27247
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 19f04d0aaeadb1ad4bb5
+                            [PROPERTY_VALUE_ID] => 27252:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 19f04d0aaeadb1ad4bb5
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [31] => Array
+        (
+            [ID] => 27254
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:12
+            [TIMESTAMP_X_UNIX] => 1541485452
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:12
+            [DATE_CREATE_UNIX] => 1541485452
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims JUICE F18 156 SM1819JUC
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120378
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS JUICE F18 156 SM1819JUC
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_juice_f18_156_sm1819juc
+            [TAGS] => 
+            [XML_ID] => 27254
+            [EXTERNAL_ID] => 27254
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27253
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 4f01df698aaf490a98da
+                            [PROPERTY_VALUE_ID] => 27254:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 4f01df698aaf490a98da
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [32] => Array
+        (
+            [ID] => 27255
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:12
+            [TIMESTAMP_X_UNIX] => 1541485452
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:12
+            [DATE_CREATE_UNIX] => 1541485452
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims JUICE F18 157X SM1819JUC
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120379
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS JUICE F18 157X SM1819JUC
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_juice_f18_157x_sm1819juc
+            [TAGS] => 
+            [XML_ID] => 27255
+            [EXTERNAL_ID] => 27255
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27253
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 27edc148f5ec267766b4
+                            [PROPERTY_VALUE_ID] => 27255:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 27edc148f5ec267766b4
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [33] => Array
+        (
+            [ID] => 27256
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:12
+            [TIMESTAMP_X_UNIX] => 1541485452
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:12
+            [DATE_CREATE_UNIX] => 1541485452
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims JUICE F18 159 SM1819JUC
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120380
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS JUICE F18 159 SM1819JUC
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_juice_f18_159_sm1819juc
+            [TAGS] => 
+            [XML_ID] => 27256
+            [EXTERNAL_ID] => 27256
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27253
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 60b0591fd83c4ba493b8
+                            [PROPERTY_VALUE_ID] => 27256:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 60b0591fd83c4ba493b8
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [34] => Array
+        (
+            [ID] => 27257
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:12
+            [TIMESTAMP_X_UNIX] => 1541485452
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:12
+            [DATE_CREATE_UNIX] => 1541485452
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims JUICE F18 160X SM1819JUC
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120381
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS JUICE F18 160X SM1819JUC
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_juice_f18_160x_sm1819juc
+            [TAGS] => 
+            [XML_ID] => 27257
+            [EXTERNAL_ID] => 27257
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27253
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 324ef6da0b9a26ae8c3b
+                            [PROPERTY_VALUE_ID] => 27257:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 324ef6da0b9a26ae8c3b
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 42426.14
+        )
+
+    [35] => Array
+        (
+            [ID] => 27259
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:16
+            [TIMESTAMP_X_UNIX] => 1541485456
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:16
+            [DATE_CREATE_UNIX] => 1541485456
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims DEALERS CHOICE F18 154 SM1819DRC
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120389
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS DEALERS CHOICE F18 154 SM1819DRC
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_dealers_choice_f18_154_sm1819drc
+            [TAGS] => 
+            [XML_ID] => 27259
+            [EXTERNAL_ID] => 27259
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27258
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => ec52c6778609bef68717
+                            [PROPERTY_VALUE_ID] => 27259:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => ec52c6778609bef68717
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 40304.84
+        )
+
+    [36] => Array
+        (
+            [ID] => 27260
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:16
+            [TIMESTAMP_X_UNIX] => 1541485456
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:16
+            [DATE_CREATE_UNIX] => 1541485456
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims DEALERS CHOICE F18 157 SM1819DRC
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120390
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS DEALERS CHOICE F18 157 SM1819DRC
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_dealers_choice_f18_157_sm1819drc
+            [TAGS] => 
+            [XML_ID] => 27260
+            [EXTERNAL_ID] => 27260
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27258
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 3fd48809eeb685e20d60
+                            [PROPERTY_VALUE_ID] => 27260:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 3fd48809eeb685e20d60
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 40304.84
+        )
+
+    [37] => Array
+        (
+            [ID] => 27262
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:19
+            [TIMESTAMP_X_UNIX] => 1541485459
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:19
+            [DATE_CREATE_UNIX] => 1541485459
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims SOFUN F18 145 SM1819SFN
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120398
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS SOFUN F18 145 SM1819SFN
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_sofun_f18_145_sm1819sfn
+            [TAGS] => 
+            [XML_ID] => 27262
+            [EXTERNAL_ID] => 27262
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27261
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 6c543612c9fdde166366
+                            [PROPERTY_VALUE_ID] => 27262:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 6c543612c9fdde166366
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 40304.84
+        )
+
+    [38] => Array
+        (
+            [ID] => 27263
+            [IBLOCK_ID] => 13
+            [TIMESTAMP_X] => 06.11.2018 09:24:20
+            [TIMESTAMP_X_UNIX] => 1541485460
+            [MODIFIED_BY] => 0
+            [DATE_CREATE] => 06.11.2018 09:24:20
+            [DATE_CREATE_UNIX] => 1541485460
+            [CREATED_BY] => 0
+            [IBLOCK_SECTION_ID] => 
+            [ACTIVE] => N
+            [ACTIVE_FROM] => 
+            [ACTIVE_TO] => 
+            [DATE_ACTIVE_FROM] => 
+            [DATE_ACTIVE_TO] => 
+            [SORT] => 500
+            [NAME] => Сноуборд Sims SOFUN F18 148 SM1819SFN
+            [PREVIEW_PICTURE] => 
+            [PREVIEW_TEXT] => 
+            [PREVIEW_TEXT_TYPE] => text
+            [DETAIL_PICTURE] => 1120399
+            [DETAIL_TEXT] => 
+            [DETAIL_TEXT_TYPE] => text
+            [SEARCHABLE_CONTENT] => СНОУБОРД SIMS SOFUN F18 148 SM1819SFN
+            [WF_STATUS_ID] => 1
+            [WF_PARENT_ELEMENT_ID] => 
+            [WF_LAST_HISTORY_ID] => 
+            [WF_NEW] => 
+            [LOCK_STATUS] => green
+            [WF_LOCKED_BY] => 
+            [WF_DATE_LOCK] => 
+            [WF_COMMENTS] => 
+            [IN_SECTIONS] => N
+            [SHOW_COUNTER] => 
+            [SHOW_COUNTER_START] => 
+            [SHOW_COUNTER_START_X] => 
+            [CODE] => snoubord_sims_sofun_f18_148_sm1819sfn
+            [TAGS] => 
+            [XML_ID] => 27263
+            [EXTERNAL_ID] => 27263
+            [TMP_ID] => 
+            [USER_NAME] => 
+            [LOCKED_USER_NAME] => 
+            [CREATED_USER_NAME] => 
+            [LANG_DIR] => /
+            [LID] => s1
+            [IBLOCK_TYPE_ID] => offers
+            [IBLOCK_CODE] => offers
+            [IBLOCK_NAME] => Предложения
+            [IBLOCK_EXTERNAL_ID] => bxr_offers_s1
+            [DETAIL_PAGE_URL] => #PRODUCT_URL#?offer=#ELEMENT_ID#
+            [LIST_PAGE_URL] => #SITE_DIR#/offers/index.php?ID=#IBLOCK_ID#
+            [CANONICAL_PAGE_URL] => 
+            [CREATED_DATE] => 2018.11.06
+            [BP_PUBLISHED] => Y
+            [PARENT_ID] => 27261
+            [PROPERTIES] => Array
+                (
+                    [SKIBOARD_EXTERNAL_OFFER_ID] => Array
+                        (
+                            [ID] => 216
+                            [IBLOCK_ID] => 13
+                            [NAME] => ID ТП из прайса skiboard
+                            [ACTIVE] => Y
+                            [SORT] => 500
+                            [CODE] => SKIBOARD_EXTERNAL_OFFER_ID
+                            [DEFAULT_VALUE] => 
+                            [PROPERTY_TYPE] => S
+                            [ROW_COUNT] => 1
+                            [COL_COUNT] => 30
+                            [LIST_TYPE] => L
+                            [MULTIPLE] => N
+                            [XML_ID] => 
+                            [FILE_TYPE] => 
+                            [MULTIPLE_CNT] => 5
+                            [LINK_IBLOCK_ID] => 0
+                            [WITH_DESCRIPTION] => N
+                            [SEARCHABLE] => N
+                            [FILTRABLE] => N
+                            [IS_REQUIRED] => N
+                            [VERSION] => 2
+                            [USER_TYPE] => 
+                            [USER_TYPE_SETTINGS] => 
+                            [HINT] => 
+                            [~NAME] => ID ТП из прайса skiboard
+                            [~DEFAULT_VALUE] => 
+                            [VALUE_ENUM] => 
+                            [VALUE_XML_ID] => 
+                            [VALUE_SORT] => 
+                            [VALUE] => 9ef1f67e0d988a4042b3
+                            [PROPERTY_VALUE_ID] => 27263:216
+                            [DESCRIPTION] => 
+                            [~VALUE] => 9ef1f67e0d988a4042b3
+                            [~DESCRIPTION] => 
+                        )
+
+                )
+
+            [PRICE] => 40304.84
         )
 
 )

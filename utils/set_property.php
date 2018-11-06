@@ -23,8 +23,11 @@ $itemType = new PropertyTypeList(PROPERTY_SKIBOARD_ITEM_TYPE);
 
 $itemPurpose = new PropertyTypeList(PROPERTY_SKIBOARD_ITEM_PURPOSE);
 
-// Cюда передавать ID товара, ID инфоблока товаров, массив вида ID свойства => ID значения свойства
-// TODO в heredoc
+
+/**
+ * Обновление значений свойств типа список
+ * Cюда передавать ID товара, ID инфоблока товаров, массив вида ID свойства => ID значения свойства
+ */
 
 $itemType->setPropertyValues(109072, CATALOG_IBLOCK_ID, [PROPERTY_SKIBOARD_ITEM_TYPE => 20789]);
 $itemPurpose->setPropertyValues(109072, CATALOG_IBLOCK_ID, [PROPERTY_SKIBOARD_ITEM_PURPOSE => 20785]);
