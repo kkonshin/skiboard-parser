@@ -34,6 +34,8 @@ use Parser\CatalogDate;
 use Parser\SectionsList;
 use Parser\Mail;
 
+use Parser\Utils\Price;
+
 global $USER;
 
 if (!is_dir(__DIR__ . "/logs")) {
@@ -74,16 +76,6 @@ echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH);
  */
 
 $previousXml = Storage::getPreviousXml(SOURCE_SAVE_PATH);
-
-if ($previousXml) {
-	// TODO сравнение дат
-} else {
-	echo "Файл предыдущего сохранения previous.xml не найден." . PHP_EOL;
-	// TODO если нет файла - проверяем на пустоту временный каталог
-	// Если раздел пуст - выполняем запись нового каталога
-	// Если раздел не пуст - выполняем update
-}
-
 
 $previousSourceDate = "";
 $previousResultArray = [];
@@ -158,7 +150,7 @@ $catalogSkus = CCatalogSku::getOffersList(
 	]
 );
 
-echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
+//echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
 
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	foreach ($skuValue as $key => $value) {
@@ -167,7 +159,7 @@ foreach ($catalogSkus as $skuKey => $skuValue) {
 	}
 }
 
-echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
+//echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
 
 foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	foreach ($skusPrices as $priceKey => $priceValue) {
@@ -177,57 +169,13 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	}
 }
 
-// Проверка изменения цен в новом каталоге
+/**
+ * Обновление цен торговых предложений
+ */
 
-// Проходим по массивам ТП из инфоблока и распарсенному новому прайсу, если внешние ID совпадают,
-// и сезонная цена в новом прайсе (сейчас записывается на этапе разборки XML) не совпадает с ценой,
-// сохраненной в инфоблоке - цену необходимо обновить
-
-// На этом этапе должен быть доступен $resultArray и все торговые предложения
-
-//file_put_contents(__DIR__ . "/logs/catalogSkusWithoutParent.log", print_r($catalogSkusWithoutParent, true));
-
-foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
-	foreach ($resultArray as $resultKey => $resultItem) {
-		foreach ($resultItem as $offerKey => $offerValue) {
-			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"]) {
-//				echo $offerIdValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
-				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
-					// Цена товара с уже произведенной наценкой из актуального прайса skiboard.ru
-//					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
-					// Цена товара с наценкой из актуального прайса vs цена товара, записанная в инфоблоке в данный момент
-//					echo "Новая цена с наценкой " . $offerValue["SEASON_PRICE"] . " vs " . " цена в инфоблоке " . $offerIdValue["PRICE"] . PHP_EOL;
-
-					$tmpPriceId = null;
-
-					$cp = new CPrice();
-
-					$dbres = $cp->GetList([], ["PRODUCT_ID" => $offerIdValue["ID"]], false, false, ["ID"]);
-
-					while ($res = $dbres->GetNext()) {
-						$tmpPriceId = $res;
-					}
-
-					echo "Обновлена цена {$offerValue["SEASON_PRICE"]} для товарного предложения {$offerIdValue["ID"]} "
-						. CPrice::Update(
-							$tmpPriceId["ID"],
-							[
-								"PRODUCT_ID" => $offerIdValue["ID"],
-								"PRICE" => $offerValue["SEASON_PRICE"],
-								"CURRENCY" => "RUB"
-							]
-						)
-						. PHP_EOL;
-				}
-			}
-		}
-	}
+if(!empty($catalogSkusWithoutParent) && !empty($resultArray)){
+	Price::update($catalogSkusWithoutParent, $resultArray);
 }
-
-//file_put_contents("logs/catalog_ids.log", print_r($catalogIds, true));
-//file_put_contents("logs/catalog_skus.log", print_r($catalogSkus, true));
-//file_put_contents("logs/skusPrices.log", print_r($skusPrices, true));
-//file_put_contents("logs/catalogSkusNoParent.log", print_r($catalogSkusWithoutParent, true));
 
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
@@ -277,7 +225,6 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
 		}
 	}
-
 
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));

@@ -24,7 +24,7 @@ class Storage extends Source
 			}
 
 			if ($result) {
-				return "current.xml успешно сохранен.";
+				return "current.xml успешно сохранен." . PHP_EOL;
 			} else {
 				throw new \Exception("Ошибка сохранения файла каталога." . PHP_EOL);
 			}

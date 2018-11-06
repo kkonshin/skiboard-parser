@@ -23,7 +23,6 @@ class ExternalOfferId
 		}
 	}
 
-
 	public function update($elementId, $iblockId, Array $propertyValues = [])
 	{
 		\CIBlockElement::SetPropertyValuesEx(
