@@ -452,6 +452,8 @@ if($isAddNewItems){
 	require(__DIR__ . "/add.php");
 }
 
+// TODO здесь должен остаться previous.xml, в нем - сохраненный каталог
+
 register_shutdown_function(function () {
 	global $startExecTime;
 	$elapsedMemory = (!function_exists('memory_get_usage'))

@@ -10,6 +10,8 @@ class Storage extends Source
 	 * @param $sourceSavePath
 	 * @return string
 	 */
+
+
 	public static function storeCurrentXml(Source $source, $sourceSavePath)
 	{
 		try {
@@ -45,4 +47,10 @@ class Storage extends Source
 		}
 
 	}
+
+	public static function rename()
+	{
+		
+	}
+
 }
