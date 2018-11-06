@@ -41,11 +41,11 @@ $skuList = $itemStatus->getSkuListWithoutParent();
 
 //file_put_contents(__DIR__. "/../logs/skuList.log", print_r($skuList, true));
 
+/*
 foreach ($resultArray as $resultKey => $resultValue){
 	foreach ($resultValue as $offerKey => $offerValue){
 		foreach ($skuList as $skuKey => $skuValue){
 			if ($skuValue["NAME"] === $offerValue["NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"] . " " . $offerValue["ATTRIBUTES"]["Артикул"]){
-				echo $skuValue["NAME"] . PHP_EOL;
 
 				ExternalOfferId::update($skuValue["ID"], 0, ["SKIBOARD_EXTERNAL_OFFER_ID" => [$offerValue["OFFER_ID"]]]);
 
@@ -53,5 +53,9 @@ foreach ($resultArray as $resultKey => $resultValue){
 		}
 	}
 }
+*/
+
+
+ExternalOfferId::updateExternalOfferId($skuList, $resultValue);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

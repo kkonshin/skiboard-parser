@@ -500,9 +500,10 @@ foreach ($manufacturerArray as $manId => $man) {
 // Сохранение товаров
 
 // FIXME запуск add должен происходить по определенным условиям
-
-echo "\nСохраняем товары" . PHP_EOL;
-require(__DIR__ . "/add.php");
+if($isAddNewItems){
+	echo "\nСохраняем товары" . PHP_EOL;
+	require(__DIR__ . "/add.php");
+}
 
 register_shutdown_function(function () {
 	global $startExecTime;
