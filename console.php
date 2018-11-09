@@ -19,7 +19,6 @@ $startExecTime = getmicrotime();
 
 require_once("vendor/autoload.php");
 
-// FIXME убрать после рефактора
 use Symfony\Component\DomCrawler\Crawler;
 
 use \Bitrix\Main\Loader;
@@ -65,11 +64,6 @@ $source = new Source(SOURCE);
 
 $xml = $source->getSource();
 
-/**
- * Сохранение файла - источника
- */
-
-echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH);
 
 /**
  * Получение предыдущего сохраненного файла - источника
@@ -453,6 +447,13 @@ if($isAddNewItems){
 }
 
 // TODO здесь должен остаться previous.xml, в нем - сохраненный каталог
+
+
+/**
+ * Сохранение файла - источника
+ */
+
+echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH);
 
 register_shutdown_function(function () {
 	global $startExecTime;
