@@ -11,22 +11,26 @@ class Storage extends Source
 	 * @return string
 	 */
 
+	private static $sourceSavePath = SOURCE_SAVE_PATH . "previous.xml";
 
-	public static function storeCurrentXml(Source $source, $sourceSavePath)
+	public static function storeCurrentXml(Source $source)
 	{
 		try {
 
 			$source = $source->getSource();
-			$sourceSavePath = $sourceSavePath . "current.xml";
+
+			$sourceSavePath = self::$sourceSavePath;
 
 			if (is_file($sourceSavePath)){
-				throw new \Exception( "Файл {$sourceSavePath} уже существует." . PHP_EOL);
+				echo "Файл {$sourceSavePath} будет перезаписан." . PHP_EOL;
+				$result = file_put_contents($sourceSavePath, $source);
 			} else {
+				echo "Файл {$sourceSavePath} не найден. Будет произведено первичное заполнение временного раздела каталога" . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			}
 
 			if ($result) {
-				return "current.xml успешно сохранен." . PHP_EOL;
+				return "Файл {$sourceSavePath} успешно сохранен." . PHP_EOL;
 			} else {
 				throw new \Exception("Ошибка сохранения файла каталога." . PHP_EOL);
 			}
@@ -35,13 +39,10 @@ class Storage extends Source
 		}
 	}
 
-	public static function getPreviousXml($sourceSavePath)
+	public static function getPreviousXml()
 	{
-
-		$sourceSavePath = $sourceSavePath . "previous.xml";
-
-		if (is_file($sourceSavePath)){
-			return file_get_contents($sourceSavePath);
+		if (is_file(self::$sourceSavePath)){
+			return file_get_contents(self::$sourceSavePath);
 		} else {
 			return false;
 		}

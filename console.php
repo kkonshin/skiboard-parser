@@ -64,18 +64,19 @@ $source = new Source(SOURCE);
 
 $xml = $source->getSource();
 
-
 /**
  * Получение предыдущего сохраненного файла - источника
  */
 
-$previousXml = Storage::getPreviousXml(SOURCE_SAVE_PATH);
+$previousXml = Storage::getPreviousXml();
 
-$previousSourceDate = "";
 $previousResultArray = [];
+
 $resultDifferenceArray = [];
 $resultDifferenceArrayKeys = [];
+
 $isAddNewItems = false;
+
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
 
@@ -98,6 +99,7 @@ echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_
 */
 
 // если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
+// TODO убрать дублирование парсинга нового файла?
 
 if ($crawler && $previousCrawler) {
 	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
@@ -112,7 +114,7 @@ if (!empty($previousXml) && $isNewPrice) {
 	}
 }
 
-$resultArray = ParserBody::parse($crawler); // Парсим новый файл
+$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
@@ -453,7 +455,7 @@ if($isAddNewItems){
  * Сохранение файла - источника
  */
 
-echo Storage::storeCurrentXml($source, SOURCE_SAVE_PATH);
+echo Storage::storeCurrentXml($source);
 
 register_shutdown_function(function () {
 	global $startExecTime;
