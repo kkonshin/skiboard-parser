@@ -116,7 +116,7 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 
 $dbRes = CIBlockElement::GetList(
@@ -396,6 +396,7 @@ foreach ($resultArray as $key => $item) {
 		if (!empty($offer["ATTRIBUTES"]["Бренд"])) {
 			$sourceBrandsArray[] = trim($offer["ATTRIBUTES"]["Бренд"]);
 		}
+
 	}
 }
 

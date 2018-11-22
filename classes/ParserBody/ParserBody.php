@@ -88,6 +88,8 @@ class ParserBody
 						$ta[$key]['DESCRIPTION'] = $v->nodeValue;
 					}
 					$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
+
+					$ta[$key]['ATTRIBUTES']['Бренд'] = $item->filter('param')->extract('_text');
 				}
 			}
 
