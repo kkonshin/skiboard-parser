@@ -118,6 +118,7 @@ $resultArray = ParserBody::parse($crawler); // Парсим новый файл 
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
+
 $dbRes = CIBlockElement::GetList(
 	[],
 	[
@@ -164,6 +165,7 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 		}
 	}
 }
+
 
 /**
  * Обновление цен торговых предложений
@@ -443,10 +445,10 @@ foreach ($manufacturerArray as $manId => $man) {
 // Сохранение товаров
 
 // FIXME запуск add должен происходить по определенным условиям
-if($isAddNewItems){
+//if($isAddNewItems){
 	echo "\nСохраняем товары" . PHP_EOL;
 	require(__DIR__ . "/add.php");
-}
+//}
 
 // TODO здесь должен остаться previous.xml, в нем - сохраненный каталог
 
@@ -454,6 +456,7 @@ if($isAddNewItems){
 /**
  * Сохранение файла - источника
  */
+
 
 echo Storage::storeCurrentXml($source);
 

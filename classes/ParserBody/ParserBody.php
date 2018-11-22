@@ -34,7 +34,6 @@ class ParserBody
 				return $node->children();
 			});
 
-			// ID родительского товара
 			$groupIds = $offers->each(function (Crawler $node, $i) {
 				return $node->attr('group_id');
 			});
@@ -48,29 +47,23 @@ class ParserBody
 			foreach ($allItems as $key => $item) {
 				foreach ($item as $k => $v) {
 
-					$ta[$key]["PARENT_ITEM_ID"] = $groupIds[$key];
+					$ta[$key]["PARENT_ITEM_ID"] = (!empty($groupIds[$key])) ? $groupIds[$key] : $offerIds[$key];
 
 					$ta[$key]["OFFER_ID"] = $offerIds[$key];
 
 					if ($v->nodeName === 'name') {
 						$ta[$key]['NAME'] = $v->nodeValue;
 					}
+
 					if ($v->nodeName === 'price') {
 						$ta[$key]['PRICE'] = $v->nodeValue;
 					}
 
 					// Исключаем категории
+
 					if ($v->nodeName === 'categoryId' && !in_array(trim((string)$v->nodeValue),
 							[
-								'374',
-								'375',
-								'376',
-								'377',
-								'378',
-								'379',
-								'380',
-								'366',
-								'357'
+								// Здесь список исключаемых категорий
 							]
 						)
 					) {
@@ -78,6 +71,7 @@ class ParserBody
 
 					}
 
+					/*
 					if (in_array((int)$ta[$key]['CATEGORY_ID'], SUMMER)) {
 						$ta[$key]["SEASON_PRICE"] = (string)round($ta[$key]["PRICE"] * 1.5, 2);
 					}
@@ -85,7 +79,7 @@ class ParserBody
 					if (in_array((int)$ta[$key]['CATEGORY_ID'], WINTER)) {
 						$ta[$key]["SEASON_PRICE"] = (string)round($ta[$key]["PRICE"] * 1.6, 2);
 					}
-
+					*/
 
 					if ($v->nodeName === 'picture') {
 						$ta[$key]['PICTURES'][] = $v->nodeValue;
@@ -97,9 +91,8 @@ class ParserBody
 				}
 			}
 
-			// TODO здесь вернуть оригинальный ta, остальные операции вынести в методы
-
 			// Развернем полученный через extract массив атрибутов, извлечем размер
+
 			foreach ($ta as $key => $value) {
 				foreach ($value as $k => $v) {
 					if ($k === "ATTRIBUTES") {

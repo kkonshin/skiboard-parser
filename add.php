@@ -4,7 +4,7 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 20;
+$length = 80;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
@@ -116,7 +116,7 @@ foreach ($resultArray as $key => $item) {
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"DETAIL_TEXT" => (!empty ($item[0]["DESCRIPTION"])) ? html_entity_decode($item[0]["DESCRIPTION"]) : "",
 			"PROPERTY_VALUES" => [
-				"SITE_NAME" => "skiboard.ru",
+				"SITE_NAME" => P_SITE_NAME,
 				"GROUP_ID" => $key,
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
@@ -148,7 +148,7 @@ foreach ($resultArray as $key => $item) {
 				$obElement = new CIBlockElement();
 
 				// Цена торгового предложения в зависимости от сезона
-
+				/*
 				if (in_array((int)$offer["CATEGORY_ID"], SUMMER)) {
 					$offerPrice = $offer["PRICE"] * 1.5;
 				}
@@ -156,6 +156,9 @@ foreach ($resultArray as $key => $item) {
 				if (in_array((int)$offer["CATEGORY_ID"], WINTER)) {
 					$offerPrice = $offer["PRICE"] * 1.6;
 				}
+				*/
+
+				$offerPrice = $offer["PRICE"];
 
 				$arOfferProps = [
 					$SKUPropertyId => $productId,
@@ -167,8 +170,14 @@ foreach ($resultArray as $key => $item) {
 					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
 				}
 
+				if (!empty($offer["ATTRIBUTES"]["variation_sku"])){
+					$offerName = $offer["ATTRIBUTES"]["variation_sku"];
+				} else {
+					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"];
+				}
+
 				$arOfferFields = [
-					'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
+					'NAME' => $offerName,
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
 					'ACTIVE' => 'N',
 					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",

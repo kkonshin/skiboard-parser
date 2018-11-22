@@ -23,16 +23,17 @@ define("NOT_CHECK_PERMISSIONS", true);
 define("BX_BUFFER_USED", true);
 define("BX_CLUSTER_GROUP", 2); // Отключает исполнение агентов
 
-define('SOURCE', "http://b2b.skiboard.ru/yml_get/uzvev7kr159d");
+define('SOURCE', "https://www.gssport.ru/beeshop/data-exchange/export_for_dillers/diller2");
 //define('SOURCE', __DIR__ . "/save/previous_.xml"); // для разработки
 define('SOURCE_SAVE_PATH', __DIR__ . "/save/"); // для сохранения временных файлов
 define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
-define('TEMP_CATALOG_SECTION', 361); // ID раздела для временного сохранения товаров
+define('TEMP_CATALOG_SECTION', 386); // ID раздела для временного сохранения товаров
 define('SIZE_PROPERTY_ID', 120); // ID свойства "Размер"
 define('PROPERTY_SKIBOARD_ITEM_TYPE', 214); // ID свойства "Тип"
 define('PROPERTY_SKIBOARD_ITEM_PURPOSE', 215); // ID свойства "Назначение"
+define('P_SITE_NAME', 'gssport.ru'); // Свойство товара "Сайт" - сайт с которого происходит товар
 
 $translitParams = Array(
 	"max_len" => "600", // обрезает символьный код до 100 символов
