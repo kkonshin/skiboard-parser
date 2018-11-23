@@ -118,7 +118,6 @@ $resultArray = ParserBody::parse($crawler); // Парсим новый файл 
 
 file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-
 $dbRes = CIBlockElement::GetList(
 	[],
 	[
@@ -137,6 +136,8 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 	$catalogIds[] = $cidsValue["ID"];
 }
 
+// TODO - проверить свойство для каталога gssport
+
 $catalogSkus = CCatalogSku::getOffersList(
 	$catalogIds,
 	CATALOG_IBLOCK_ID,
@@ -147,7 +148,7 @@ $catalogSkus = CCatalogSku::getOffersList(
 	]
 );
 
-//echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
+//echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
 
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	foreach ($skuValue as $key => $value) {
@@ -165,7 +166,6 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 		}
 	}
 }
-
 
 /**
  * Обновление цен торговых предложений
@@ -321,6 +321,9 @@ foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
 			if (!in_array($attribute, $allSourcePropertiesArray)) {
+
+			    // TODO массив свойств, исключенных из записи в конфиге
+
 				$allSourcePropertiesArray[] = $attribute;
 			}
 		}
@@ -396,7 +399,6 @@ foreach ($resultArray as $key => $item) {
 		if (!empty($offer["ATTRIBUTES"]["Бренд"])) {
 			$sourceBrandsArray[] = trim($offer["ATTRIBUTES"]["Бренд"]);
 		}
-
 	}
 }
 
@@ -451,14 +453,9 @@ foreach ($manufacturerArray as $manId => $man) {
 	require(__DIR__ . "/add.php");
 //}
 
-// TODO здесь должен остаться previous.xml, в нем - сохраненный каталог
-
-
 /**
  * Сохранение файла - источника
  */
-
-
 echo Storage::storeCurrentXml($source);
 
 register_shutdown_function(function () {
