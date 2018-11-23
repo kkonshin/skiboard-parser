@@ -89,7 +89,9 @@ class ParserBody
 					}
 					$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
 
-					$ta[$key]['ATTRIBUTES']['Бренд'] = $item->filter('param')->extract('_text');
+					if ($v->nodeName === 'vendor'){
+						$ta[$key]['BRAND'] = $v->nodeValue;
+					}
 				}
 			}
 
@@ -100,6 +102,7 @@ class ParserBody
 					if ($k === "ATTRIBUTES") {
 						foreach ($v as $i => $attribute) {
 							$ta[$key][$k][$i] = array_flip($ta[$key][$k][$i]);
+
 							if ($attribute[0] === "Размер") {
 								$patterns = ['/"{1}/', '/<{1}/', '/>{1}/'];
 								$replacement = ['\'\'', ' менее ', ' более '];
@@ -114,6 +117,7 @@ class ParserBody
 												$attribute[1])[1])[1])
 								);
 							}
+
 							$ta[$key][$k][$attribute[0]] = $attribute[1];
 							unset($ta[$key][$k][$i]);
 						}

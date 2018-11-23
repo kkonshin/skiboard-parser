@@ -321,10 +321,9 @@ foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
 			if (!in_array($attribute, $allSourcePropertiesArray)) {
-
-			    // TODO массив свойств, исключенных из записи в конфиге
-
-				$allSourcePropertiesArray[] = $attribute;
+                if (!in_array($attribute, P_PROPERTIES_TO_EXCLUDE)){
+					$allSourcePropertiesArray[] = $attribute;
+                }
 			}
 		}
 	}
@@ -396,8 +395,8 @@ $manufacturerXmlIds = [];
 
 foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
-		if (!empty($offer["ATTRIBUTES"]["Бренд"])) {
-			$sourceBrandsArray[] = trim($offer["ATTRIBUTES"]["Бренд"]);
+		if (!empty($offer["BRAND"])) {
+			$sourceBrandsArray[] = trim($offer["BRAND"]);
 		}
 	}
 }
@@ -449,8 +448,8 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
-	echo "\nСохраняем товары" . PHP_EOL;
-	require(__DIR__ . "/add.php");
+//	echo "\nСохраняем товары" . PHP_EOL;
+//	require(__DIR__ . "/add.php");
 //}
 
 /**
