@@ -403,9 +403,13 @@ foreach ($resultArray as $key => $item) {
 
 $sourceBrandsArray = array_values(array_unique($sourceBrandsArray));
 
+//file_put_contents(__DIR__ . "/logs/sourceBrandsArray.log", print_r($sourceBrandsArray, true));
+
 foreach ($manufacturerArray as $manId => $man) {
 	$manufacturerXmlIds[] = $man["UF_XML_ID"];
 }
+
+//file_put_contents(__DIR__ . "/logs/manXmlIds.log", print_r($manufacturerXmlIds, true));
 
 // Цикл для записи брендов в HL
 
@@ -444,12 +448,14 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
+//file_put_contents(__DIR__ . "/logs/manValueIdPairsArray.log", print_r($manValueIdPairsArray, true));
+
 // Сохранение товаров
 
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
-//	echo "\nСохраняем товары" . PHP_EOL;
-//	require(__DIR__ . "/add.php");
+	echo "\nСохраняем товары" . PHP_EOL;
+	require(__DIR__ . "/add.php");
 //}
 
 /**

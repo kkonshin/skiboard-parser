@@ -4,7 +4,7 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 60;
+$length = 30;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
@@ -134,9 +134,23 @@ foreach ($resultArray as $key => $item) {
 
 		if ($productId) {
 
-			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])]))
-				? ($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])])
-				: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
+			// FIXME uppercase
+
+			if (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])){
+				$manXmlId = $manValueIdPairsArray[strtoupper($item[0]["BRAND"])];
+			} else if (!empty($manValueIdPairsArray[$item[0]["BRAND"]])) {
+				$manXmlId = $manValueIdPairsArray[$item[0]["BRAND"]];
+			} else if (!empty($manValueIdPairsArray[strtolower($item[0]["BRAND"])])){
+				$manXmlId = $manValueIdPairsArray[strtolower($item[0]["BRAND"])];
+			} else if (!empty($manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))])){
+				$manXmlId = $manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))];
+			}
+
+			/*
+			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])]))
+				? ($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])
+				: ($manValueIdPairsArray[$item[0]["BRAND"]]);
+			*/
 
 			// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
 			if (!empty ($manXmlId)) {

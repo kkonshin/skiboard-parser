@@ -81,6 +81,10 @@ class ParserBody
 					}
 					*/
 
+					if ($v->nodeName === 'vendor'){
+						$ta[$key]['BRAND'] = $v->nodeValue;
+					}
+
 					if ($v->nodeName === 'picture') {
 						$ta[$key]['PICTURES'][] = $v->nodeValue;
 					}
@@ -88,10 +92,6 @@ class ParserBody
 						$ta[$key]['DESCRIPTION'] = $v->nodeValue;
 					}
 					$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
-
-					if ($v->nodeName === 'vendor'){
-						$ta[$key]['BRAND'] = $v->nodeValue;
-					}
 				}
 			}
 
