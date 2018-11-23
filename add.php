@@ -4,7 +4,7 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 30;
+$length = 80;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
