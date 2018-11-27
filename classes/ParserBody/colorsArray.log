@@ -75,15 +75,6 @@ Array
 
         )
 
-    [Подростковая шапочка “АСГАРД”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
     [Подростковая шапочка “ГРЕТА”] => Array
         (
             [COLORS] => Array
@@ -92,15 +83,6 @@ Array
                     [1] => Синий
                     [2] => Оливковый
                     [3] => Коричневый
-                )
-
-        )
-
-    [ALPINE SKI MERINO] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -115,75 +97,12 @@ Array
 
         )
 
-    [Горнолыжная куртка 8848 Altitude «TOTAL ECLIPSE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [Брюки  8848 Altitude «DON»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
-    [Горнолыжные брюки HYRA. Арт "HMP 204"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Женские сноубордические брюки MEATFLY «MERCURY»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
     [Сноубордические брюки MEATFLY "UNI"] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Розовый
                     [1] => Черный
-                )
-
-        )
-
-    [Городская куртка MEATFLY "VANILLA GUERILLA "] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Разноцветный
-                )
-
-        )
-
-    [Зимняя куртка MEATFLY "CRYSTAL"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Сноубордическая куртка MEATFLY "MONO"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
                 )
 
         )
@@ -208,15 +127,6 @@ Array
 
         )
 
-    [Горнолыжные перчатки 8848 ALTITUDE  “BLAISE”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
     [Горнолыжные перчатки 8848 ALTITUDE  “Hawk“] => Array
         (
             [COLORS] => Array
@@ -233,15 +143,6 @@ Array
                 (
                     [0] => Синий
                     [1] => Фиолетовый
-                )
-
-        )
-
-    [Горнолыжные перчатки 8848 ALTITUDE  “CARPI”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -351,15 +252,6 @@ Array
 
         )
 
-    [Толстовка из полиестра  8848 ALTITUDE “Mei”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
     [Толстовка  флисовая 8848 ALTITUDE  “AIKO”] => Array
         (
             [COLORS] => Array
@@ -401,30 +293,12 @@ Array
 
         )
 
-    [Горнолыжные брюки 8848 Altitude "Mila"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
     [Термобелье (куртка) 8848 ALTITUDE "JAMES"] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Красный
                     [1] => Черный
-                )
-
-        )
-
-    [Горнолыжные брюки 8848 Altitude  “BRAVA”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
                 )
 
         )
@@ -445,24 +319,6 @@ Array
                 (
                     [0] => Белый
                     [1] => Розовый
-                )
-
-        )
-
-    [Термобелье (брюки) 8848 ALTITUDE "Saturn function crew"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [Термобелье (куртка) HYRA] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -539,42 +395,6 @@ Array
 
         )
 
-    [Детская  куртка "HYRA" Арт. HJG 2381] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Детская  куртка "HYRA"  Арт. HJG  4375] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [Термобелье (брюки) HYRA] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Перчатки женские 8848 ALTITUDE  “TINDRA”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
     [Куртка из прималофта 8848 Altitude «ESTER»] => Array
         (
             [COLORS] => Array
@@ -595,30 +415,12 @@ Array
 
         )
 
-    [Толстовка 8848 ALTITUDE «ABI»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Толстовка 8848 ALTITUDE “AUSTIN HOOD”] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Серый
                     [1] => Красный
-                )
-
-        )
-
-    [Парка-аляска 8848 Altitude “BRUSON”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
                 )
 
         )
@@ -631,24 +433,6 @@ Array
                     [1] => Синий
                     [2] => Черный
                     [3] => Зеленый
-                )
-
-        )
-
-    [Горнолыжные брюки HYRA. Арт.3387] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [Горнолыжные брюки HYRA. Арт.HLP 5393] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
                 )
 
         )
@@ -696,15 +480,6 @@ Array
 
         )
 
-    [Куртка ALMRAUSH «LAAS»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Желтый
-                )
-
-        )
-
     [Брюки женские ALMRAUSH «LOIS»] => Array
         (
             [COLORS] => Array
@@ -723,15 +498,6 @@ Array
                     [0] => Черный
                     [1] => Красный
                     [2] => Белый
-                )
-
-        )
-
-    [Футболка  8848 ALTITUDE  «NORMAN»  Арт: 7954] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
                 )
 
         )
@@ -811,24 +577,6 @@ Array
 
         )
 
-    [Спортивный костюм  8848 ALTITUDE “AUSTIN + CLINTON” Арт. 7855/7929] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "JUNE" + БРЮКИ "MIMMI"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
     [Зимняя куртка-парка 8848 Altitude “BEATA WS ZIP-IN PARKA” Арт:6981] => Array
         (
             [COLORS] => Array
@@ -836,51 +584,6 @@ Array
                     [0] => Темно-синий
                     [1] => Синий
                     [2] => Зеленый
-                )
-
-        )
-
-    [Толстовка 8848 ALTITUDE «FLOXIE» Арт:8604] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
-    [Перчатки подростковые 8848 ALTITUDE “ANT JUNIOR” Арт:1852] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Перчатки мужские 8848 ALTITUDE “ADIGE“ Арт:1851] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
-    [Толстовка женская  «PAYERBACH»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [Зимняя куртка-парка 8848 Altitude “MOUNTAIN”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Фиолетовый
                 )
 
         )
@@ -927,57 +630,12 @@ Array
 
         )
 
-    [Детские брюки 8848 Altitude «TRACK-2»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Детские брюки 8848 Altitude «WARM UP»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «EGO»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «RAMBLER»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оранжевый
-                )
-
-        )
-
     [Сноуборд. брюки LIGHT BOARD «PROJECTION»] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Синий
                     [1] => Оранжевый
-                )
-
-        )
-
-    [Сноуборд. брюки LIGHT BOARD «CERN»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Хаки
                 )
 
         )
@@ -999,123 +657,6 @@ Array
                 (
                     [0] => Синий
                     [1] => Желтый
-                )
-
-        )
-
-    [Сноуборд. брюки LIGHT BOARD «SWING»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Коричневый
-                )
-
-        )
-
-    [Сноуборд. брюки LIGHT BOARD «CAT»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «CRUSADER»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оранжевый
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «BEBOP»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «BLOOM»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Желтый
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «LUNA»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [Костюм 8848 Altitude «MOLLY»+ «ESTER»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Ярко-Розовый
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «ELECTRA» Арт. 6077] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [СПАСАТЕЛЬНЫЙ ЖИЛЕТ SOÖRUZ «FIGHT» (FRONT ZIP)] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Желтый
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «ANDINA» Арт. 6151] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Толстовка 8848 ALTITUDE «BETTY» Арт: 6136] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Коричневый
-                )
-
-        )
-
-    [Термобелье 8848 ALTITUDE «JAQUIE» куртка Арт: 6138] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
-    [Термобелье 8848 ALTITUDE «DOBBIE 3/4» брюки Арт: 6137] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
                 )
 
         )
@@ -1165,30 +706,12 @@ Array
 
         )
 
-    [Толстовка 8848 ALTITUDE «TURBO» Арт: 8728] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Коричневый
-                )
-
-        )
-
     [Детская куртка 8848 Altitude «MOLLY» Арт. 8731] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Розовый
                     [1] => Синий
-                )
-
-        )
-
-    [Куртка-парка Alpine Crown «VAN HELSING»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
                 )
 
         )
@@ -1213,33 +736,6 @@ Array
 
         )
 
-    [Зимняя утепленная куртка Alpine Crown «SOLO»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Желтый
-                )
-
-        )
-
-    [Зимняя куртка-парка Alpine Crown «ALISE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [Куртка-парка Alpine Crown «SAMANTHA»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
     [Зимнее пуховое пальто Alpine Crown «TERRA»] => Array
         (
             [COLORS] => Array
@@ -1257,51 +753,6 @@ Array
                     [0] => Серебристый
                     [1] => Красный
                     [2] => Розовый
-                )
-
-        )
-
-    [Брюки ALMGWAND «HEIMKOFEL»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => темно-серый
-                )
-
-        )
-
-    [Брюки ALMGWAND «STEINPISTE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => темно-серый
-                )
-
-        )
-
-    [Куртка ALMGWAND «GEHERENKOPF»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => темно-серый
-                )
-
-        )
-
-    [Куртка ALMGWAND «BLOCKSPITZE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Куртка ALMGWAND «GOLDKAR»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
                 )
 
         )
@@ -1339,33 +790,6 @@ Array
 
         )
 
-    [Гидрокостюм MORMAII - со встроенным жилетом "JET SKI" - 2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм длинный MORMAII "CROSS" 4/3мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм MORMAII со встроенным жилетом-"JET SKI Stream Line" (дл. рукав) 4/3 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
     [Гидрокостюм  длинный  Mormaii  «EXTRA LINE» 3/2 мм] => Array
         (
             [COLORS] => Array
@@ -1376,39 +800,12 @@ Array
 
         )
 
-    [Гидрокостюм MORMAII – «Zipless» 3мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
     [Гидрокостюм MORMAII – «JET SKI Stream Line Novo» 2мм] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Желтый
                     [1] => Синий
-                )
-
-        )
-
-    [Гидрокостюм MORMAII - "JET SKI Stream Line" 2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Желтый
-                )
-
-        )
-
-    [Неопреновая поддевка 1-ый слой MORMAII «FIRST SKIN» - 1 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -1446,87 +843,6 @@ Array
 
         )
 
-    [Футболка женская арт.3939201] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Лайкра женская MORMAII LISA] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [Футболка мужская MORMAII "STYLE"  арт.19458] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Бордшорты Mormaii 17006] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Бордшорты Mormaii арт. 17019] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Бордшорты Mormaii арт. 170172] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Бордшорты Mormaii арт. 170171] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Бордшорты Mormaii арт. 170156] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Разноцветный
-                )
-
-        )
-
-    [Бордшорты Mormaii арт. 170155] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
     [Лайкровая рубашка мужская короткий рукав MORMAII VENTUS] => Array
         (
             [COLORS] => Array
@@ -1558,123 +874,6 @@ Array
 
         )
 
-    [Гидрокостюм для дайвинга муж. Mormaii «ATLANTIS G2» 1352] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм для дайвинга жен. Mormaii «ATLANTIS G2» 1352] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм  длинный  Mormaii  «FLEXXA» 3/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Шорты для триатлона лайкровые Mormaii  «BERMUDA ATHLON»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
-    [Майка для триатлона лайкровая Mormaii  «REGATA ATHLON»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм  для триатлона без рук  Mormaii  «TRIATLHON» 3/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Лайкровая рубашка MORMAII «VULCANUS» с коротким рукавом] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
-    [S508FC Лайкровая рубашка MORMAII длинный рукав] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
-    [S508BC Лайкра MORMAII детская голубая кор. рукав] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Лайкровая рубашка MORMAII «DIVA» арт. S508DVP1] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Голубой
-                )
-
-        )
-
-    [Гидрокостюм детск. длин. MORMAII "CROSS" 4/3мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм детск. длин. MORMAII "CROSS" 3/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм  муж. SOÖRUZ  «FLY» 5/3 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
     [RSD472 Лайкра NP детская JUNIOR RASHGUARD дл. рукав] => Array
         (
             [COLORS] => Array
@@ -1695,201 +894,12 @@ Array
 
         )
 
-    [ГИДРОКОСТЮМ МУЖ.  SOORUZ «FIGHTER» 2/2 ММ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [ГИДРОКОСТЮМ МУЖ. SOORUZ «FLY» 5/3 ММ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Гидрокостюм женск. короткий SOÖRUZ  «DIVINE» 2/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
-    [Гидрокостюм детск. SOÖRUZ «FLY» 3/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Гидрокостюм детск. SOÖRUZ «FLY» 2/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [ГИДРОКОСТЮМ МУЖ. КОРОТКИЙ SOÖRUZ «FIGHTER CUT» 3/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [ГИДРОТАПКИ  SOORUZ «FIGHTER»  2 ММ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [ЛАЙКРОВАЯ РУБАШКА SOORUZ «MASTER»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
     [БОРДШОРТЫ  ЖЕНСК.  SOORUZ «VIPER»] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Синий
                     [1] => Черный
-                )
-
-        )
-
-    [БОРДШОРТЫ  МУЖСК.  SOORUZ «TINE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [БОРДШОРТЫ  МУЖСК.  SOORUZ «BUDDY»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [БОРДШОРТЫ  МУЖСК.  SOORUZ «COMBO»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [БОРДШОРТЫ  МУЖСК.  SOORUZ «CAMOPIX»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
-    [БОРДШОРТЫ  МУЖСК.  SOORUZ «PAINT»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [БОРДШОРТЫ  МУЖСК.  SOORUZ «VHS»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [ГИДРОКОСТЮМ МУЖ. SOORUZ «FIGHTER» 4/3 ММ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Голубой
-                )
-
-        )
-
-    [ГИДРОКОСТЮМ МУЖ. SOORUZ «FIGHTER» 5/4/3 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [ГИДРОКОСТЮМ ЖЕНСК. КОРОТКИЙ SOORUZ «ABYSS» 2/2 мм С ДЛИННЫМИ РУКАМИ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [ЛАЙКРОВАЯ РУБАШКА SOORUZ «ACTIVE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [НЕОПРЕНОВЫЕ ШОРТЫ  МУЖСК.  SOORUZ «FIGHTER»  1 ММ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [НЕОПРЕНОВАЯ КУРТКА ЖЕНСК. SOORUZ «DIVINE ZIP»  2 ММ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Горнолыжный комбинезон 8848 Altitude «STRIKE SKI SUIT»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
                 )
 
         )
@@ -1912,15 +922,6 @@ Array
                     [0] => Разноцветный
                     [1] => Фиолетовый
                     [2] => Золотистый
-                )
-
-        )
-
-    [Сноубордические перчатки для пайпа MEATFLY «PIPE GLOVE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -1957,33 +958,6 @@ Array
 
         )
 
-    [Неопреновые ботинки Mormaii  3 мм c плотной подошвой] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидроботинки высокие MORMAII 3 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «JASMIN»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
     [Брюки  8848 Altitude «66»] => Array
         (
             [COLORS] => Array
@@ -2004,15 +978,6 @@ Array
 
         )
 
-    [Горнолыжные брюки 8848 Altitude «MURRAY»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Сноубордические брюки MEATFLY “BERETTA”] => Array
         (
             [COLORS] => Array
@@ -2029,33 +994,6 @@ Array
                 (
                     [0] => Красный
                     [1] => Синий
-                )
-
-        )
-
-    [Сноубордические брюки MEATFLY «SPECTRUM»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Варежки подростк. 8848 ALTITUDE “ROCKY JUNIOR”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
-    [Перчатки 8848 ALTITUDE “COSTA“] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-Зеленый
                 )
 
         )
@@ -2097,15 +1035,6 @@ Array
                 (
                     [0] => Бирюзовый
                     [1] => Черный
-                )
-
-        )
-
-    [Толстовка  8848 ALTITUDE  “HAMPTON”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
                 )
 
         )
@@ -2234,15 +1163,6 @@ Array
 
         )
 
-    [Комплект для беговых лыж  8848 Altitude (куртка-брюки) “MAIN RAINSET”] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-Зеленый
-                )
-
-        )
-
     [Детская куртка HYRA. Арт. HJG 1377] => Array
         (
             [COLORS] => Array
@@ -2253,30 +1173,12 @@ Array
 
         )
 
-    [Детские брюки  HYRA. Арт. HJP 1369] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Фиолетовый
-                )
-
-        )
-
     [Брюки 8848 Altitude «CORON»] => Array
         (
             [COLORS] => Array
                 (
                     [0] => салатовый
                     [1] => Синий
-                )
-
-        )
-
-    [Сноубордические брюки MEATFLY MUERTE stock] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Разноцветный
                 )
 
         )
@@ -2323,24 +1225,6 @@ Array
 
         )
 
-    [Флисовая кофта  HYRA  Арт: HLF7008] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
-    [Флисовая кофта  HYRA  Арт: HLF7007] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
     [Флисовая кофта  HYRA  Арт: HMF7001] => Array
         (
             [COLORS] => Array
@@ -2378,15 +1262,6 @@ Array
                 (
                     [0] => Синий
                     [1] => салатовый
-                )
-
-        )
-
-    [Толстовка из полиестера  8848 ALTITUDE  «STONE»  Арт: 7915] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
                 )
 
         )
@@ -2495,24 +1370,6 @@ Array
 
         )
 
-    [Перчатки подростковые 8848 ALTITUDE “PLURA JUNIOR” Арт: 1832] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [Спортивный костюм  8848  “AUSTIN + CLINTON” Арт. 7855/7929] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Лыжный костюм 8848 Altitude куртка «STEAM» + брюки «VENTURE»] => Array
         (
             [COLORS] => Array
@@ -2537,42 +1394,6 @@ Array
 
         )
 
-    [Костюм 8848 Altitude КУРТКА "COOPER" + БРЮКИ "BASE 68"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [Костюм 8848 Altitude КУРТКА "BRUSON"  + БРЮКИ "BASE 68"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Костюм 8848 Altitude КУРТКА "BRUSON" + БРЮКИ "BASE 68"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "TEKSAS" + БРЮКИ "WEI"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
     [КОСТЮМ 8848 ALTITUDE КУРТКА "CHARLIE" + БРЮКИ "POPPY"] => Array
         (
             [COLORS] => Array
@@ -2580,51 +1401,6 @@ Array
                     [0] => Темно-синий
                     [1] => Серый
                     [2] => Белый
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "CARLIN" + БРЮКИ "BRITNEY"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Голубой
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "CARLIN" + БРЮКИ "BRAVA"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "CARLIN" + БРЮКИ "WANNA"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Костюм 8848 Altitude КУРТКА VANICE+ БРЮКИ MIMMI black] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Голубой
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "JUNE" + БРЮКИ "BRITNEY"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Голубой
                 )
 
         )
@@ -2685,15 +1461,6 @@ Array
                 (
                     [0] => Красный
                     [1] => Белый
-                )
-
-        )
-
-    [ЖИЛЕТ SOÖRUZ  «OPEN» FRONT ZIP] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Желтый
                 )
 
         )
@@ -2760,15 +1527,6 @@ Array
 
         )
 
-    [Куртка 8848 Altitude «MIVA»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
-                )
-
-        )
-
     [Куртка для беговых лыж 8848 Altitude «BAY»] => Array
         (
             [COLORS] => Array
@@ -2789,30 +1547,12 @@ Array
 
         )
 
-    [Сноуборд. куртка LIGHT BOARD «SLICE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оранжевый
-                )
-
-        )
-
     [Брюки-полукомбинезон LIGHT BOARD «CLASH BIP»] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Черный
                     [1] => Темно-синий
-                )
-
-        )
-
-    [Сноуборд. куртка LIGHT BOARD «MIA»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Коричневый
                 )
 
         )
@@ -2838,24 +1578,6 @@ Array
 
         )
 
-    [Костюм 8848 Altitude «REBECCA»+ «INCA»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
-                )
-
-        )
-
-    [Костюм 8848 Altitude «AVANTI»+ «TRACK»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Бордовый
-                )
-
-        )
-
     [Костюм 8848 Altitude «ZAMSAR»+ «DEFENDER»] => Array
         (
             [COLORS] => Array
@@ -2877,66 +1599,12 @@ Array
 
         )
 
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "FOLVEN" + БРЮКИ "EWE"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Зеленый
-                )
-
-        )
-
     [КОСТЮМ 8848 ALTITUDE КУРТКА "MAXIMILIA" + БРЮКИ "POPPY"] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Красный
                     [1] => Темно-синий
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "JASMIN" + БРЮКИ "POPPY"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "ELECTRA" + БРЮКИ "MIMMI"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "ELECTRA" + БРЮКИ "POPPY"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [Костюм 8848 Altitude КУРТКА VANICE+ БРЮКИ MIMMI] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «MEILER»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
                 )
 
         )
@@ -2983,30 +1651,12 @@ Array
 
         )
 
-    [Куртка лыжи/сноуборд  8848 Altitude «GAINER»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
-                )
-
-        )
-
     [Куртка для беговых лыж 8848 Altitude «DAFT SOFTSHELL»] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Синий
                     [1] => Темно-синий
-                )
-
-        )
-
-    [Куртка-толстовка 8848 Altitude «PRINCE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -3020,15 +1670,6 @@ Array
                     [2] => Темно-синий
                     [3] => Серый
                     [4] => Оливковый
-                )
-
-        )
-
-    [Толстовка 8848 Altitude «JEAN MELANGE HOODIE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
                 )
 
         )
@@ -3110,15 +1751,6 @@ Array
 
         )
 
-    [Толстовка 8848 ALTITUDE «LAUREN»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
-                )
-
-        )
-
     [Брюки 8848 Altitude «EWE» Арт.6155] => Array
         (
             [COLORS] => Array
@@ -3184,15 +1816,6 @@ Array
                 (
                     [0] => Коричневый
                     [1] => Оливковый
-                )
-
-        )
-
-    [Куртка-толстовка 8848 ALTITUDE «RINCO» Арт: 8725] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
                 )
 
         )
@@ -3282,15 +1905,6 @@ Array
 
         )
 
-    [Зимняя куртка-парка Alpine Crown «ASHTON»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Золотистый
-                )
-
-        )
-
     [Брюки ALMGWAND «HEITERWAND»] => Array
         (
             [COLORS] => Array
@@ -3298,33 +1912,6 @@ Array
                     [0] => Серый
                     [1] => Красный
                     [2] => Розовый
-                )
-
-        )
-
-    [Куртка ALMGWAND «STUHLECK»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [Куртка ALMGWAND «SULZKAR»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
-                )
-
-        )
-
-    [КОСТЮМ 8848 ALTITUDE КУРТКА "ANDINA" + БРЮКИ "POPPY"] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
                 )
 
         )
@@ -3371,51 +1958,6 @@ Array
 
         )
 
-    [Гидрокостюм для дайвинга муж. Mormaii «DIVING SUIT» 61352] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Черный
-                )
-
-        )
-
-    [Гидрокостюм для дайвинга муж. Mormaii «ATLANTIS G2» 1232] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Гидрокостюм длинный MORMAII «DIVA» 3/2 мм арт. S306DIVF3] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Гидрокостюм  муж.  SOÖRUZ  «FLY» 2/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [ГИДРОКОСТЮМ ЖЕНСК. КОРОТКИЙ SOÖRUZ «DIVINE» 2/2 мм] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Хаки
-                )
-
-        )
-
     [Куртка лыжи/сноуборд 8848 Altitude «KENSIN»] => Array
         (
             [COLORS] => Array
@@ -3447,39 +1989,12 @@ Array
 
         )
 
-    [Комплект 8848 Altitude «AVANTI» + «DEFENDER» guacomole 120] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
-                )
-
-        )
-
-    [Комплект 8848 Altitude «MOLLY» + «INCA-17» blue-fuchsia 140] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
     [Комплект 8848 Altitude «HARPER»+«INCA-17» blue 130] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Синий
                     [1] => Розовый
-                )
-
-        )
-
-    [Комплект 8848 Altitude «GAINER»+«CADORE» S] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
                 )
 
         )
@@ -3491,15 +2006,6 @@ Array
                     [0] => Оливковый
                     [1] => Коричневый
                     [2] => Красный
-                )
-
-        )
-
-    [Комплект 8848 Altitude GAIO»+«CADORE» Guacamole M] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
                 )
 
         )
@@ -3520,15 +2026,6 @@ Array
                 (
                     [0] => Серый
                     [1] => Красный
-                )
-
-        )
-
-    [Комплект 8848 Altitude «MEILER»+«VENTURE-17» Black M] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => темно-серый
                 )
 
         )
@@ -3564,15 +2061,6 @@ Array
 
         )
 
-    [Горнолыжная куртка 8848 Altitude «CUDA»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
     [Горнолыжная куртка 8848 Altitude «DIMON» ] => Array
         (
             [COLORS] => Array
@@ -3601,15 +2089,6 @@ Array
                     [1] => Красный
                     [2] => Голубой
                     [3] => Черный
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «LONG DRIVE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
                 )
 
         )
@@ -3655,15 +2134,6 @@ Array
                     [1] => Голубой
                     [2] => Черный
                     [3] => Красный
-                )
-
-        )
-
-    [Толстовка 8848 Altitude «DUB SWEAT»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
                 )
 
         )
@@ -3810,48 +2280,12 @@ Array
 
         )
 
-    [Детская  куртка 8848 Altitude «VERA»  Арт. 8819] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
     [Детская  куртка 8848 Altitude «TUCKETT»  Арт. 8809] => Array
         (
             [COLORS] => Array
                 (
                     [0] => Красный
                     [1] => Синий
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «CRISTAL» ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Серый
-                )
-
-        )
-
-    [Горнолыжная куртка 8848 Altitude «TYRA» ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [Куртка 8848 Altitude «SIENNA-2» ] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Голубой
                 )
 
         )
@@ -3878,15 +2312,6 @@ Array
 
         )
 
-    [Детская  куртка 8848 Altitude «LYKKE»] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
     [Куртка-парка 8848 Altitude “PASSION”-black] => Array
         (
             [COLORS] => Array
@@ -3896,24 +2321,6 @@ Array
                     [2] => Красный
                     [3] => Темно-синий
                     [4] => Голубой
-                )
-
-        )
-
-    [Куртка-парка 8848 Altitude “DERCIA” navy] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [Куртка-парка 8848 Altitude “HILMA” Арт: 6269] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Оливковый
                 )
 
         )
@@ -4001,15 +2408,6 @@ Array
                 (
                     [0] => Синий
                     [1] => Темно-синий
-                )
-
-        )
-
-    [Толстовка 8848 ALTITUDE «BUD-2» pink] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Розовый
                 )
 
         )
@@ -4131,15 +2529,6 @@ Array
 
         )
 
-    [Костюм 8848 Altitude: куртка FAYSTONE red + брюки VENTURE-18] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Костюм 8848 Altitude: куртка WESTMOUNT black + брюки CADORE-18] => Array
         (
             [COLORS] => Array
@@ -4158,15 +2547,6 @@ Array
                 (
                     [0] => Красный
                     [1] => Голубой
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка WESTMOUNT red clay + брюки CADORE-18] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
                 )
 
         )
@@ -4192,15 +2572,6 @@ Array
 
         )
 
-    [Костюм 8848 Altitude: куртка LONG DRIVE red clay + брюки VENTURE-18] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Костюм 8848 Altitude: куртка EMMYLOU black + брюки EWE] => Array
         (
             [COLORS] => Array
@@ -4208,15 +2579,6 @@ Array
                     [0] => Черный
                     [1] => Розовый
                     [2] => Разноцветный
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка EMMYLOU blanc + брюки EWE] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Белый
                 )
 
         )
@@ -4358,24 +2720,6 @@ Array
 
         )
 
-    [Костюм 8848 Altitude: куртка TUCKETT red clay + брюки DEFENDER-2] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка ARAGON red clay + брюки DEFENDER-2] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Костюм 8848 Altitude: куртка TUCKETT blue + брюки DEFENDER-2] => Array
         (
             [COLORS] => Array
@@ -4416,15 +2760,6 @@ Array
 
         )
 
-    [Костюм 8848 Altitude: куртка JAYDEN-2 red clay + брюки DEFENDER-2] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
     [Костюм 8848 Altitude: куртка LYKKE flower + брюки GRACE] => Array
         (
             [COLORS] => Array
@@ -4433,42 +2768,6 @@ Array
                     [1] => Голубой
                     [2] => Темно-синий
                     [3] => Желтый
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка JAYDEN-2 red clay + брюки INCA] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка JAYDEN-2 navy + брюки INCA] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Темно-синий
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка TUCKETT blue + брюки INCA 18] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Синий
-                )
-
-        )
-
-    [Костюм 8848 Altitude: куртка TUCKETT red clay + брюки INCA 18] => Array
-        (
-            [COLORS] => Array
-                (
-                    [0] => Красный
                 )
 
         )

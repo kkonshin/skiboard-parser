@@ -17,6 +17,7 @@ class ParserBody
 	private static $colorsCount = 0;
 	private static $oneOfferGoodsCount = 0;
 	private static $colorsArray = [];
+	private static $itemsToSplit = [];
 
 	public static function parse(Crawler $crawler = null)
 	{
@@ -136,7 +137,6 @@ class ParserBody
 						}
 					}
 
-
 					// Для каждого товара суммируем количество цветов
 
 				} elseif (count($value) === 1 && !empty($value[0]['ATTRIBUTES']['Цвет'])){
@@ -145,14 +145,37 @@ class ParserBody
 				}
 			}
 
-			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsArray, true));
-//			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsCount, true));
+			// удаляем элементы из массива товаров, у которых есть цвет, если цвет только один
+			foreach (self::$colorsArray as $name => $colors) {
+				if (count($colors['COLORS']) === 1){
+					unset (self::$colorsArray[$name]);
+				}
+			}
 
+//			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsArray, true));
+//			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsCount, true));
 
 			// Возможен товар у которого несколько ТП по размерам, но все они одного цвета
 
-			echo "Всего товаров с одним торговым предложением и атрибутом 'Цвет': " . self::$oneOfferGoodsCount . PHP_EOL;
-			echo "Всего товаров с атрибутом 'Цвет' с несколькими торговыми предложениями: " . self::$colorsCount . PHP_EOL;
+			// выберем из $groupedItemsArray товары из массива self::$colorsArray
+
+			foreach ($groupedItemsArray as $key => $groupedItem){
+				foreach (self::$colorsArray as $name => $colors){
+					if ($groupedItem[0]['NAME'] === $name){
+						// Массив для отладки
+//						self::$itemsToSplit[] = $groupedItem;
+					$groupedItemsArray[$key]['PARTS'] = count($colors['COLORS']);
+					}
+				}
+			}
+
+			// Для каждого из 269 товаров нужно создать разбиение внутри товара, количество подмассивов
+			// будет равно количеству цветов для этого товара
+
+//			file_put_contents(__DIR__ . "/itemsToSplit.log", print_r(self::$itemsToSplit, true));
+
+//			echo "Всего товаров с одним торговым предложением и атрибутом 'Цвет': " . self::$oneOfferGoodsCount . PHP_EOL;
+//			echo "Всего товаров с атрибутом 'Цвет' с несколькими торговыми предложениями: " . self::$colorsCount . PHP_EOL;
 
 			return $groupedItemsArray;
 
