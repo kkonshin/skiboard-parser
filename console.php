@@ -118,7 +118,7 @@ $resultArray = ParserBody::parse($crawler); // Парсим новый файл 
 
 file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-//exit();
+exit();
 
 $dbRes = CIBlockElement::GetList(
 	[],
