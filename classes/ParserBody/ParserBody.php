@@ -95,29 +95,13 @@ class ParserBody
 				}
 			}
 
-			// Развернем полученный через extract массив атрибутов, извлечем размер
-
+			// Развернем полученный через extract массив атрибутов
+			
 			foreach ($ta as $key => $value) {
 				foreach ($value as $k => $v) {
 					if ($k === "ATTRIBUTES") {
 						foreach ($v as $i => $attribute) {
 							$ta[$key][$k][$i] = array_flip($ta[$key][$k][$i]);
-
-							if ($attribute[0] === "Размер") {
-								$patterns = ['/"{1}/', '/<{1}/', '/>{1}/'];
-								$replacement = ['\'\'', ' менее ', ' более '];
-								$attribute[1] = preg_replace(
-									$patterns,
-									$replacement,
-									trim(
-										explode(
-											":",
-											preg_split(
-												"/;\s+/",
-												$attribute[1])[1])[1])
-								);
-							}
-
 							$ta[$key][$k][$attribute[0]] = $attribute[1];
 							unset($ta[$key][$k][$i]);
 						}
