@@ -18,6 +18,7 @@ class ParserBody
 	private static $oneOfferGoodsCount = 0;
 	private static $colorsArray = [];
 	private static $itemsToSplit = [];
+	private static $groupedItemsArray = [];
 
 	public static function parse(Crawler $crawler = null)
 	{
@@ -31,7 +32,7 @@ class ParserBody
 
 		$parentItemsIdsArray = [];
 
-		$groupedItemsArray = [];
+//		$groupedItemsArray = [];
 
 		try {
 			// Все параметры всех офферов
@@ -115,14 +116,14 @@ class ParserBody
 			foreach ($parentItemsIdsArray as $key => $id) {
 				foreach ($ta as $k => $item) {
 					if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
-						$groupedItemsArray[$id][] = $item;
+						self::$groupedItemsArray[$id][] = $item;
 					}
 				}
 			}
 
 			// Возможны товары у которых 1 ТП и есть свойство цвет
 
-			foreach ($groupedItemsArray as $key => $value) {
+			foreach (self::$groupedItemsArray as $key => $value) {
 
 				if (count($value) > 1) {
 
@@ -160,16 +161,16 @@ class ParserBody
 
 			// Возможен товар у которого несколько ТП по размерам, но все они одного цвета
 
-			// выберем из $groupedItemsArray товары из массива self::$colorsArray
+			// выберем из self::$groupedItemsArray товары из массива self::$colorsArray
+			// TODO temporary, удалить в процессе рефакторинга
 
-			foreach ($groupedItemsArray as $key => $groupedItem) {
+			foreach (self::$groupedItemsArray as $key => $groupedItem) {
 				foreach (self::$colorsArray as $name => $colors) {
 					if ($groupedItem[0]['NAME'] === $name) {
 						// Массив для отладки
 						self::$itemsToSplit[] = $groupedItem;
 						// Количество групп разбиения
-						$groupedItemsArray[$key]['PARTS_COUNT'] = count($colors);
-//						$groupedItemsArray[$key]['PARTS_COUNT'] = count($colors['COLORS']);
+						self::$groupedItemsArray[$key]['PARTS_COUNT'] = count($colors);
 					}
 				}
 			}
@@ -177,13 +178,26 @@ class ParserBody
 			// Временно разобъем массив self::$itemsToSplit
 
 
-			// TODO !!!
-
+			// TODO !!! Удалить после переноса в groupedItemsArray
+			/*
 			foreach (self::$itemsToSplit as $itemKey => $itemValue){
 				foreach ($itemValue as $offerKey => $offerValue){
 //					foreach (self::$colorsArray[$offerValue['NAME']]['COLORS'] as $colorKey => $colorValue){
 					foreach (self::$colorsArray[$offerValue['NAME']] as $colorKey => $colorValue){
 						if($colorValue === $offerValue['ATTRIBUTES']['Цвет']){
+//							echo $offerValue['NAME'] . ' ' . $offerValue['ATTRIBUTES']['Цвет'] . ' размер ' . $offerValue['ATTRIBUTES']['Размер'] . PHP_EOL;
+//							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue] = $offerValue;
+							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue][] = $offerValue;
+						}
+					}
+				}
+			}
+			*/
+			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
+				foreach ($itemValue as $offerKey => $offerValue) {
+//					foreach (self::$colorsArray[$offerValue['NAME']]['COLORS'] as $colorKey => $colorValue){
+					foreach (self::$colorsArray[$offerValue['NAME']] as $colorKey => $colorValue) {
+						if ($colorValue === $offerValue['ATTRIBUTES']['Цвет']) {
 //							echo $offerValue['NAME'] . ' ' . $offerValue['ATTRIBUTES']['Цвет'] . ' размер ' . $offerValue['ATTRIBUTES']['Размер'] . PHP_EOL;
 //							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue] = $offerValue;
 							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue][] = $offerValue;
@@ -197,12 +211,12 @@ class ParserBody
 			// Для каждого из 269 товаров нужно создать разбиение внутри товара, количество подмассивов
 			// будет равно количеству цветов для этого товара
 
-			file_put_contents(__DIR__ . "/itemsToSplit.log", print_r(self::$itemsToSplit, true));
+//			file_put_contents(__DIR__ . "/itemsToSplit.log", print_r(self::$itemsToSplit, true));
 
 //			echo "Всего товаров с одним торговым предложением и атрибутом 'Цвет': " . self::$oneOfferGoodsCount . PHP_EOL;
 //			echo "Всего товаров с атрибутом 'Цвет' с несколькими торговыми предложениями: " . self::$colorsCount . PHP_EOL;
 
-			return $groupedItemsArray;
+			return self::$groupedItemsArray;
 
 		} catch (\Exception $e) {
 			return $e->getMessage();
