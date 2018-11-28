@@ -76,7 +76,7 @@ class ParserBody
 
 					}
 
-					if ($v->nodeName === 'vendor'){
+					if ($v->nodeName === 'vendor') {
 						$ta[$key]['BRAND'] = $v->nodeValue;
 					}
 
@@ -122,24 +122,26 @@ class ParserBody
 
 			// Возможны товары у которых 1 ТП и есть свойство цвет
 
-			foreach ($groupedItemsArray as $key => $value){
+			foreach ($groupedItemsArray as $key => $value) {
 
-				if (count($value) > 1){
+				if (count($value) > 1) {
 
-					foreach ($value as $k => $offer){
+					foreach ($value as $k => $offer) {
 
-						if (isset($offer['ATTRIBUTES']['Цвет']) && strlen($offer['ATTRIBUTES']['Цвет']) > 0){
+						if (isset($offer['ATTRIBUTES']['Цвет']) && strlen($offer['ATTRIBUTES']['Цвет']) > 0) {
 							// Количество товаров у которых есть атрибут 'Цвет' и количество ТП больше одного
 							self::$colorsCount += 1;
-							if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['NAME']]['COLORS'])){
-								self::$colorsArray[$value[0]['NAME']]['COLORS'][] = $offer['ATTRIBUTES']['Цвет'];
+//							if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['NAME']]['COLORS'])) {
+							if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['NAME']])) {
+//								self::$colorsArray[$value[0]['NAME']]['COLORS'][] = $offer['ATTRIBUTES']['Цвет'];
+								self::$colorsArray[$value[0]['NAME']][] = $offer['ATTRIBUTES']['Цвет'];
 							}
 						}
 					}
 
 					// Для каждого товара суммируем количество цветов
 
-				} elseif (count($value) === 1 && !empty($value[0]['ATTRIBUTES']['Цвет'])){
+				} elseif (count($value) === 1 && !empty($value[0]['ATTRIBUTES']['Цвет'])) {
 //					echo $value[0]['NAME'] . ' ' . $value[0]['ATTRIBUTES']['Цвет'] .  PHP_EOL;
 					self::$oneOfferGoodsCount += 1;
 				}
@@ -147,7 +149,8 @@ class ParserBody
 
 			// удаляем элементы из массива товаров, у которых есть цвет, если цвет только один
 			foreach (self::$colorsArray as $name => $colors) {
-				if (count($colors['COLORS']) === 1){
+//				if (count($colors['COLORS']) === 1) {
+				if (count($colors) === 1) {
 					unset (self::$colorsArray[$name]);
 				}
 			}
@@ -159,20 +162,42 @@ class ParserBody
 
 			// выберем из $groupedItemsArray товары из массива self::$colorsArray
 
-			foreach ($groupedItemsArray as $key => $groupedItem){
-				foreach (self::$colorsArray as $name => $colors){
-					if ($groupedItem[0]['NAME'] === $name){
+			foreach ($groupedItemsArray as $key => $groupedItem) {
+				foreach (self::$colorsArray as $name => $colors) {
+					if ($groupedItem[0]['NAME'] === $name) {
 						// Массив для отладки
-//						self::$itemsToSplit[] = $groupedItem;
-					$groupedItemsArray[$key]['PARTS'] = count($colors['COLORS']);
+						self::$itemsToSplit[] = $groupedItem;
+						// Количество групп разбиения
+						$groupedItemsArray[$key]['PARTS_COUNT'] = count($colors);
+//						$groupedItemsArray[$key]['PARTS_COUNT'] = count($colors['COLORS']);
 					}
 				}
 			}
 
+			// Временно разобъем массив self::$itemsToSplit
+
+
+			// TODO !!!
+
+			foreach (self::$itemsToSplit as $itemKey => $itemValue){
+				foreach ($itemValue as $offerKey => $offerValue){
+//					foreach (self::$colorsArray[$offerValue['NAME']]['COLORS'] as $colorKey => $colorValue){
+					foreach (self::$colorsArray[$offerValue['NAME']] as $colorKey => $colorValue){
+						if($colorValue === $offerValue['ATTRIBUTES']['Цвет']){
+//							echo $offerValue['NAME'] . ' ' . $offerValue['ATTRIBUTES']['Цвет'] . ' размер ' . $offerValue['ATTRIBUTES']['Размер'] . PHP_EOL;
+//							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue] = $offerValue;
+							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue][] = $offerValue;
+						}
+					}
+				}
+			}
+
+//			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsArray, true));
+
 			// Для каждого из 269 товаров нужно создать разбиение внутри товара, количество подмассивов
 			// будет равно количеству цветов для этого товара
 
-//			file_put_contents(__DIR__ . "/itemsToSplit.log", print_r(self::$itemsToSplit, true));
+			file_put_contents(__DIR__ . "/itemsToSplit.log", print_r(self::$itemsToSplit, true));
 
 //			echo "Всего товаров с одним торговым предложением и атрибутом 'Цвет': " . self::$oneOfferGoodsCount . PHP_EOL;
 //			echo "Всего товаров с атрибутом 'Цвет' с несколькими торговыми предложениями: " . self::$colorsCount . PHP_EOL;
@@ -182,5 +207,5 @@ class ParserBody
 		} catch (\Exception $e) {
 			return $e->getMessage();
 		}
-	}
+}
 }
