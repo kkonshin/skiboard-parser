@@ -200,7 +200,7 @@ class ParserBody
 						if ($colorValue === $offerValue['ATTRIBUTES']['Цвет']) {
 //							echo $offerValue['NAME'] . ' ' . $offerValue['ATTRIBUTES']['Цвет'] . ' размер ' . $offerValue['ATTRIBUTES']['Размер'] . PHP_EOL;
 //							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue] = $offerValue;
-							self::$itemsToSplit[$itemKey]['PARTS'][$colorValue][] = $offerValue;
+							self::$groupedItemsArray[$itemKey]['PARTS'][$colorValue][] = $offerValue;
 						}
 					}
 				}
