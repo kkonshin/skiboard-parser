@@ -17,6 +17,8 @@ class ParserBody
 	private static $colorsArray = [];
 	private static $groupedItemsArray = [];
 	private static $ta = [];
+	private static $parentItemsIdsArray = [];
+	private static $partsArray = [];
 
 	public static function parse(Crawler $crawler = null)
 	{
@@ -25,8 +27,6 @@ class ParserBody
 		echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
 
 		$offers = $crawler->filter('offer');
-
-		$parentItemsIdsArray = [];
 
 		try {
 			// Все параметры всех офферов
@@ -102,14 +102,14 @@ class ParserBody
 			// Получим массив уникальных ID родительских товаров
 
 			foreach (self::$ta as $key => $value) {
-				$parentItemsIdsArray[] = $value["PARENT_ITEM_ID"];
+				self::$parentItemsIdsArray[] = $value["PARENT_ITEM_ID"];
 			}
 
-			$parentItemsIdsArray = array_unique($parentItemsIdsArray);
+			self::$parentItemsIdsArray = array_unique(self::$parentItemsIdsArray);
 
 			// Разобъем исходный массив по родительским товарам, исключая товары с ценой 0 и товары без категории
 
-			foreach ($parentItemsIdsArray as $key => $id) {
+			foreach (self::$parentItemsIdsArray as $key => $id) {
 				foreach (self::$ta as $k => $item) {
 					if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
 						self::$groupedItemsArray[$id][] = $item;
@@ -140,6 +140,20 @@ class ParserBody
 					foreach (self::$colorsArray[$offerValue['NAME']] as $colorKey => $colorValue) {
 						if ($colorValue === $offerValue['ATTRIBUTES']['Цвет']) {
 							self::$groupedItemsArray[$itemKey]['PARTS'][$colorValue][] = $offerValue;
+							unset(self::$groupedItemsArray[$itemKey][$offerKey]);
+						}
+					}
+				}
+			}
+
+			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
+				foreach ($itemValue as $offerKey => $offerValue) {
+					if ($offerKey === 'PARTS') {
+						foreach ($offerValue as $colorKey => $colorValue){
+							// Создаем новый товар с ключом Родительский ID + $colorKey;
+							self::$groupedItemsArray[$itemKey . '_' . $colorKey][] = $colorValue;
+							// Оригинальный товар удаляем
+							unset(self::$groupedItemsArray[$itemKey]);
 						}
 					}
 				}
