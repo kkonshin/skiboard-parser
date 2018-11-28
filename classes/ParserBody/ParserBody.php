@@ -18,7 +18,6 @@ class ParserBody
 	private static $groupedItemsArray = [];
 	private static $ta = [];
 	private static $parentItemsIdsArray = [];
-	private static $partsArray = [];
 
 	public static function parse(Crawler $crawler = null)
 	{
@@ -150,8 +149,10 @@ class ParserBody
 				foreach ($itemValue as $offerKey => $offerValue) {
 					if ($offerKey === 'PARTS') {
 						foreach ($offerValue as $colorKey => $colorValue){
+							// Добавляем в название ТП цвет
+							$colorValue[0]['NAME'] = $colorValue[0]['NAME'] . ' ' . $colorValue[0]['ATTRIBUTES']['Цвет'];
 							// Создаем новый товар с ключом Родительский ID + $colorKey;
-							self::$groupedItemsArray[$itemKey . '_' . $colorKey][] = $colorValue;
+							self::$groupedItemsArray[$itemKey . '_' . $colorKey] = $colorValue;
 							// Оригинальный товар удаляем
 							unset(self::$groupedItemsArray[$itemKey]);
 						}

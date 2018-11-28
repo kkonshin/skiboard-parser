@@ -2,10 +2,10 @@
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 
 // Ограничение длины массива для разработки
-$offset = 0;
-$length = count($resultArray) - $offset;
-$length = 80;
-$resultArray = array_slice($resultArray, $offset, $length, true);
+//$offset = 0;
+//$length = count($resultArray) - $offset;
+//$length = 80;
+//$resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
@@ -30,7 +30,6 @@ foreach ($resultArray as $key => $item) {
 		$obElement = new CIBlockElement;
 
 		foreach ($item as $itemId => $offer) {
-
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
