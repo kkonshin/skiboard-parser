@@ -120,8 +120,8 @@ class ParserBody
 				if (count($value) > 1) {
 					foreach ($value as $k => $offer) {
 						if (isset($offer['ATTRIBUTES']['Цвет']) && strlen($offer['ATTRIBUTES']['Цвет']) > 0) {
-							if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['NAME']])) {
-								self::$colorsArray[$value[0]['NAME']][] = $offer['ATTRIBUTES']['Цвет'];
+							if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['PARENT_ITEM_ID']])) {
+								self::$colorsArray[$value[0]['PARENT_ITEM_ID']][] = $offer['ATTRIBUTES']['Цвет'];
 							}
 						}
 					}
@@ -135,9 +135,12 @@ class ParserBody
 			}
 
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
+
 				foreach ($itemValue as $offerKey => $offerValue) {
-					foreach (self::$colorsArray[$offerValue['NAME']] as $colorKey => $colorValue) {
-						if ($colorValue === $offerValue['ATTRIBUTES']['Цвет']) {
+
+					foreach (self::$colorsArray[$offerValue['PARENT_ITEM_ID']] as $colorKey => $colorValue) {
+
+						if (strtolower(trim($colorValue)) === strtolower(trim($offerValue['ATTRIBUTES']['Цвет']))) {
 							self::$groupedItemsArray[$itemKey]['PARTS'][$colorValue][] = $offerValue;
 							unset(self::$groupedItemsArray[$itemKey][$offerKey]);
 						}
@@ -159,6 +162,8 @@ class ParserBody
 					}
 				}
 			}
+
+//			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsArray, true));
 
 			return self::$groupedItemsArray;
 
