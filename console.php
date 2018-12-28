@@ -20,8 +20,20 @@ $startExecTime = getmicrotime();
 require_once("vendor/autoload.php");
 
 use Symfony\Component\DomCrawler\Crawler;
+
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
+
+use Parser\Source\Source;
+use Parser\Source\Storage;
+use Parser\ParserBody\ParserBody;
+
+use Parser\Update;
+use Parser\CatalogDate;
+use Parser\SectionsList;
+use Parser\Mail;
+
+use Parser\Utils\Price;
 
 global $USER;
 
@@ -32,8 +44,6 @@ if (!is_dir(__DIR__ . "/save")) {
 	mkdir(__DIR__ . "/save", 0777, true);
 }
 
-//-------------------------------------------------ПАРСЕР-------------------------------------------------------------//
-
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
 }
@@ -42,212 +52,83 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-$xml = file_get_contents(SOURCE);
+/**
+ * Инициализация объекта для работы с источником
+ */
 
-$previousSourceName = "previous.xml";
-$previousSourceDate = "";
-$previousXml = null;
+$source = new Source(SOURCE);
+
+/**
+ * Получение содержания файла - источника
+ */
+
+$xml = $source->getSource();
+
+/**
+ * Получение предыдущего сохраненного файла - источника
+ */
+
+$previousXml = Storage::getPreviousXml();
+
 $previousResultArray = [];
+
 $resultDifferenceArray = [];
 $resultDifferenceArrayKeys = [];
-$isNewBasicSource = false;
+
 $isAddNewItems = false;
+
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
 
-$translitParams = Array(
-	"max_len" => "600", // обрезает символьный код до 100 символов
-	"change_case" => "L", // буквы преобразуются к нижнему регистру
-	"replace_space" => "_", // меняем пробелы на нижнее подчеркивание
-	"replace_other" => "_", // меняем левые символы на нижнее подчеркивание
-	"delete_repeat_replace" => "true", // удаляем повторяющиеся нижние подчеркивания
-	"use_google" => "false", // отключаем использование google
-);
-
-if (!is_file(SOURCE_SAVE_PATH . $previousSourceName)) {
-	echo "Сохраняем каталог во временный файл" . PHP_EOL;
-	file_put_contents(SOURCE_SAVE_PATH . $previousSourceName, $xml);
-	// Если источник парсится впервые, запишем все товары во временный инфоблок (пока нет привязки к разделам)
-	$isNewBasicSource = true;
-
-} else {
-	$previousXml = file_get_contents(SOURCE_SAVE_PATH . $previousSourceName);
-}
-
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
 
-if (!function_exists("checkCatalogDate")) {
-	function checkCatalogDate($xml, $previousXml)
-	{
-		$crawler = new Crawler($xml);
-		$previousCrawler = new Crawler($previousXml);
+$crawler = new Crawler($xml);
 
-		$sourceDate = $crawler->filter('yml_catalog')->attr('date');
-		$previousSourceDate = $previousCrawler->filter('yml_catalog')->attr('date');
-
-		if ($sourceDate === $previousSourceDate) {
-			echo "Обновление каталога не требуется" . PHP_EOL;
-			die();
-		} else if (!empty($sourceDate)) {
-			echo "Будет произведено обновление товаров каталога" . PHP_EOL;
-			return true;
-		}
-		return false;
-	}
+if (!empty($previousXml)) {
+	$previousCrawler = new Crawler($previousXml);
 }
 
+// TODO удалить после тестирования
 
-function parse($xml)
-{
-	$ta = [];
+/*
+$newSectionsList = [123,321,145];
 
-	$crawler = new Crawler($xml);
+$mailSendResult = Parser\Mail::sendMail($newSectionsList);
 
-	$sourceDate = $crawler->filter('yml_catalog')->attr('date');
+echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_event при удачном добавлении письма в очередь отправки
+*/
 
-	echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
+// если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
+// TODO убрать дублирование парсинга нового файла?
 
-	$offers = $crawler->filter('offer');
-
-	$parentItemsIdsArray = [];
-
-	$groupedItemsArray = [];
-
-	try {
-		// Все параметры всех офферов
-		$allItems = $offers->each(function (Crawler $node, $i) {
-			return $node->children();
-		});
-
-		// ID родительского товара
-		$groupIds = $offers->each(function (Crawler $node, $i) {
-			return $node->attr('group_id');
-		});
-
-		$offerIds = $offers->each(function (Crawler $node, $i) {
-			return $node->attr('id');
-		});
-
-		// Получаем массив свойств для каждого оффера
-
-		foreach ($allItems as $key => $item) {
-			foreach ($item as $k => $v) {
-
-				$ta[$key]["PARENT_ITEM_ID"] = $groupIds[$key];
-
-				$ta[$key]["OFFER_ID"] = $offerIds[$key];
-
-				if ($v->nodeName === 'name') {
-					$ta[$key]['NAME'] = $v->nodeValue;
-				}
-				if ($v->nodeName === 'price') {
-					$ta[$key]['PRICE'] = $v->nodeValue;
-				}
-
-
-				// Исключаем категории
-				if ($v->nodeName === 'categoryId' && !in_array(trim((string)$v->nodeValue),
-						[
-							'374',
-							'375',
-							'376',
-							'377',
-							'378',
-							'379',
-							'380',
-							'366',
-							'357'
-						]
-					)
-				) {
-					$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
-
-				}
-
-				if (in_array((int)$ta[$key]['CATEGORY_ID'], SUMMER)) {
-					$ta[$key]["SEASON_PRICE"] = (string)round($ta[$key]["PRICE"] * 1.5, 2);
-				}
-
-				if (in_array((int)$ta[$key]['CATEGORY_ID'], WINTER)) {
-					$ta[$key]["SEASON_PRICE"] = (string)round($ta[$key]["PRICE"] * 1.6, 2);
-				}
-
-
-				if ($v->nodeName === 'picture') {
-					$ta[$key]['PICTURES'][] = $v->nodeValue;
-				}
-				if ($v->nodeName === 'description') {
-					$ta[$key]['DESCRIPTION'] = $v->nodeValue;
-				}
-				$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
-			}
-		}
-
-		// Развернем полученный через extract массив атрибутов, извлечем размер
-		foreach ($ta as $key => $value) {
-			foreach ($value as $k => $v) {
-				if ($k === "ATTRIBUTES") {
-					foreach ($v as $i => $attribute) {
-						$ta[$key][$k][$i] = array_flip($ta[$key][$k][$i]);
-						if ($attribute[0] === "Размер") {
-							$patterns = ['/"{1}/', '/<{1}/', '/>{1}/'];
-							$replacement = ['\'\'', ' менее ', ' более '];
-							$attribute[1] = preg_replace(
-								$patterns,
-								$replacement,
-								trim(
-									explode(
-										":",
-										preg_split(
-											"/;\s+/",
-											$attribute[1])[1])[1])
-							);
-						}
-						$ta[$key][$k][$attribute[0]] = $attribute[1];
-						unset($ta[$key][$k][$i]);
-					}
-				}
-			}
-		}
-
-		// Получим массив уникальных ID родительских товаров
-		foreach ($ta as $key => $value) {
-			$parentItemsIdsArray[] = $value["PARENT_ITEM_ID"];
-		}
-
-		$parentItemsIdsArray = array_unique($parentItemsIdsArray);
-
-		// Разобъем исходный массив по родительским товарам, исключая товары с ценой 0 и товары без категории
-		foreach ($parentItemsIdsArray as $key => $id) {
-			foreach ($ta as $k => $item) {
-				if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
-					$groupedItemsArray[$id][] = $item;
-				}
-			}
-		}
-
-		return $groupedItemsArray;
-
-	} catch (Exception $e) {
-		return $e->getMessage();
-	}
+if ($crawler && $previousCrawler) {
+	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
-//-----------------------------------------function parse($xml) КОНЕЦ-------------------------------------------------//
+if (!empty($previousXml) && $isNewPrice) {
 
+	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл
 
-if (!empty($previousXml) && checkCatalogDate($xml, $previousXml)) {
-	$previousResultArray = parse($previousXml);
 	if (!empty($previousResultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
 	}
 }
 
-$resultArray = parse($xml);
+$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-//file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-$dbRes = CIBlockElement::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "ACTIVE" => "Y", "SECTION_ID" => 345], false, false, ["ID"]);
+//exit();
+
+$dbRes = CIBlockElement::GetList(
+	[],
+	[
+		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+		"SECTION_ID" => TEMP_CATALOG_SECTION
+	],
+	false,
+	false, ["ID"]
+);
 
 while ($res = $dbRes->GetNext()) {
 	$catalogIdsTempArray[] = $res;
@@ -257,9 +138,19 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 	$catalogIds[] = $cidsValue["ID"];
 }
 
-$catalogSkus = CCatalogSku::getOffersList($catalogIds, CATALOG_IBLOCK_ID, [], ["*"], ["CODE" => ["EXTERNAL_OFFER_ID"]]);
+// TODO - проверить свойство для каталога gssport
 
-echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
+$catalogSkus = CCatalogSku::getOffersList(
+	$catalogIds,
+	CATALOG_IBLOCK_ID,
+	[],
+	["*"],
+	[
+		"CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]
+	]
+);
+
+//echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
 
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	foreach ($skuValue as $key => $value) {
@@ -268,7 +159,7 @@ foreach ($catalogSkus as $skuKey => $skuValue) {
 	}
 }
 
-echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
+//echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
 
 foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	foreach ($skusPrices as $priceKey => $priceValue) {
@@ -278,30 +169,13 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	}
 }
 
-// Проверка изменения цен в новом каталоге
+/**
+ * Обновление цен торговых предложений
+ */
 
-// FIXME update в данный момент не работает, несмотря на возвращаемый код удачного завершения
-
-foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
-	foreach ($resultArray as $resultKey => $resultItem) {
-		foreach ($resultItem as $offerKey => $offerValue) {
-			if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"]) {
-//				echo $offerIdValue["PROPERTIES"]["EXTERNAL_OFFER_ID"]["VALUE"] . "  ";
-				if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
-//					echo $offerValue["SEASON_PRICE"] . PHP_EOL;
-//					echo $offerValue["SEASON_PRICE"] . " vs " . $offerIdValue["PRICE"] . PHP_EOL;
-//					echo CPrice::Update(1, ["PRODUCT_ID" =>$offerIdValue["ID"], "PRICE" => $offerValue["SEASON_PRICE"], "CURRENCY" => "RUB"]) . PHP_EOL;
-				}
-			}
-		}
-	}
+if(!empty($catalogSkusWithoutParent) && !empty($resultArray)){
+	Price::update($catalogSkusWithoutParent, $resultArray);
 }
-
-
-//file_put_contents("logs/catalog_ids.log", print_r($catalogIds, true));
-//file_put_contents("logs/catalog_skus.log", print_r($catalogSkus, true));
-//file_put_contents("logs/skusPrices.log", print_r($skusPrices, true));
-//file_put_contents("logs/catalogSkusNoParent.log", print_r($catalogSkusWithoutParent, true));
 
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
@@ -336,7 +210,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 		$dbRes = CIBlockElement::GetList(
 			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => 345, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
+			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
 			false,
 			false,
 			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
@@ -351,7 +225,6 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
 		}
 	}
-
 
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
@@ -383,7 +256,7 @@ $sourceSizesArray = array_unique($sourceSizesArray);
 // Получаем массив существующих значений свойства "SIZE"
 $sizePropArray = [];
 
-$dbRes = CIBlockProperty::GetPropertyEnum(120,
+$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID,
 	[], []
 );
 
@@ -411,7 +284,7 @@ $tmpValueIdPairsArray = [];
 foreach ($newSizesArray as $key => $sizeValue) {
 	if (!in_array($sizeValue, $tmpSizeArray)) {
 		$tmpValue = new CIBlockPropertyEnum;
-		$tmpValue->Add(['PROPERTY_ID' => 120, 'VALUE' => $sizeValue]);
+		$tmpValue->Add(['PROPERTY_ID' => SIZE_PROPERTY_ID, 'VALUE' => $sizeValue]);
 	}
 }
 
@@ -420,7 +293,7 @@ foreach ($newSizesArray as $key => $sizeValue) {
 $sizePropArray = [];
 $valueIdPairsArray = [];
 
-$dbRes = CIBlockProperty::GetPropertyEnum(120,
+$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID,
 	[], []
 );
 
@@ -450,7 +323,9 @@ foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
 			if (!in_array($attribute, $allSourcePropertiesArray)) {
-				$allSourcePropertiesArray[] = $attribute;
+                if (!in_array($attribute, P_PROPERTIES_TO_EXCLUDE)){
+					$allSourcePropertiesArray[] = $attribute;
+                }
 			}
 		}
 	}
@@ -522,17 +397,21 @@ $manufacturerXmlIds = [];
 
 foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
-		if (!empty($offer["ATTRIBUTES"]["Бренд"])) {
-			$sourceBrandsArray[] = trim($offer["ATTRIBUTES"]["Бренд"]);
+		if (!empty($offer["BRAND"])) {
+			$sourceBrandsArray[] = trim($offer["BRAND"]);
 		}
 	}
 }
 
 $sourceBrandsArray = array_values(array_unique($sourceBrandsArray));
 
+//file_put_contents(__DIR__ . "/logs/sourceBrandsArray.log", print_r($sourceBrandsArray, true));
+
 foreach ($manufacturerArray as $manId => $man) {
 	$manufacturerXmlIds[] = $man["UF_XML_ID"];
 }
+
+//file_put_contents(__DIR__ . "/logs/manXmlIds.log", print_r($manufacturerXmlIds, true));
 
 // Цикл для записи брендов в HL
 
@@ -571,17 +450,23 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
+//file_put_contents(__DIR__ . "/logs/manValueIdPairsArray.log", print_r($manValueIdPairsArray, true));
+
 // Сохранение товаров
 
-if ($isNewBasicSource || $isAddNewItems) {
+// FIXME запуск add должен происходить по определенным условиям
+//if($isAddNewItems){
 	echo "\nСохраняем товары" . PHP_EOL;
 	require(__DIR__ . "/add.php");
-}
+//}
+
+/**
+ * Сохранение файла - источника
+ */
+echo Storage::storeCurrentXml($source);
 
 register_shutdown_function(function () {
-	global $counter;
 	global $startExecTime;
-	file_put_contents(__DIR__ . "/counter.log", $counter);
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';

@@ -1,6 +1,21 @@
 # skiboard-parser
 ### skiboard.ru parser
 
+ВНИМАНИЕ!
+
+После изменений в структуре сайта необходимо проверять настройки в файле config.php
+
+Предварительные настройки:
+
+1 - Создать временный раздел. ID временного раздела прописать в config.php
+
+2 - В config.php прописать:
+ 
+- ID свойства "Размер" инфоблока торговых предложений
+- ID инфоблока каталога товаров
+- ID инфоблока торговых предложений
+- ID хайлоад-блока производителей
+ 
 Для разбора DOM парсер использует компонент symfony/dom-crawler
 
 Для ручного запуска парсера скопировать репозиторий, перейти в папку 
@@ -9,7 +24,7 @@ skiboard-parser и запустить скрипт командой консол
 Для настройки автоматического запуска необходимо в файл
 /www/bitrix/crontab/crontab.cfg добавить (или раскомментировать) строку:
 
-0 1 * * * /usr/bin/php -f /home/bitrix/www/test/skiboard-parser/ > /home/bitrix/www/test/skiboard-parser/logs/crontab.log 2>&1
+0 1 * * * /usr/bin/php -f /home/bitrix/www/test/skiboard-parser/console.php > /home/bitrix/www/test/skiboard-parser/logs/crontab.log 2>&1
 
 , где 0 1 - запуск в 01:00 ежедневно,
  
