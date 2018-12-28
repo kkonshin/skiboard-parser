@@ -2,10 +2,10 @@
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 
 // Ограничение длины массива для разработки
-//$offset = 0;
-//$length = count($resultArray) - $offset;
-//$length = 80;
-//$resultArray = array_slice($resultArray, $offset, $length, true);
+$offset = 0;
+$length = count($resultArray) - $offset;
+$length = 40;
+$resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
@@ -186,7 +186,11 @@ foreach ($resultArray as $key => $item) {
 				if (!empty($offer["ATTRIBUTES"]["variation_sku"])){
 					$offerName = $offer["ATTRIBUTES"]["variation_sku"];
 				} else {
-					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"];
+
+					// TODO на данный момент офферы не имеют атрибутов размер и цвет, они включены в название
+
+//					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"];
+					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"];
 				}
 
 				$arOfferFields = [

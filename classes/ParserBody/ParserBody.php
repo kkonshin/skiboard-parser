@@ -6,6 +6,10 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class ParserBody
 {
+	private static $colorsArray = [];
+	private static $groupedItemsArray = [];
+	private static $ta = [];
+	private static $parentItemsIdsArray = [];
 
 	/**
 	 * Метод парсит экземпляр краулера Symfony.
@@ -13,11 +17,6 @@ class ParserBody
 	 * @param Crawler|null $crawler
 	 * @return array|string
 	 */
-
-	private static $colorsArray = [];
-	private static $groupedItemsArray = [];
-	private static $ta = [];
-	private static $parentItemsIdsArray = [];
 
 	public static function parse(Crawler $crawler = null)
 	{
@@ -81,6 +80,8 @@ class ParserBody
 						self::$ta[$key]['DESCRIPTION'] = $v->nodeValue;
 					}
 					self::$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
+
+
 				}
 			}
 
@@ -98,23 +99,27 @@ class ParserBody
 				}
 			}
 
-			// Получим массив уникальных ID родительских товаров
+			//  Из временного массива получаем группы товаров с одинаковым артикулом
 
 			foreach (self::$ta as $key => $value) {
-				self::$parentItemsIdsArray[] = $value["PARENT_ITEM_ID"];
+				self::$parentItemsIdsArray[] = $value["ATTRIBUTES"]['Артикул'];
 			}
 
 			self::$parentItemsIdsArray = array_unique(self::$parentItemsIdsArray);
 
-			// Разобъем исходный массив по родительским товарам, исключая товары с ценой 0 и товары без категории
-
 			foreach (self::$parentItemsIdsArray as $key => $id) {
 				foreach (self::$ta as $k => $item) {
-					if ($id === $item["PARENT_ITEM_ID"] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
+					if ($id === $item["ATTRIBUTES"]['Артикул'] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
 						self::$groupedItemsArray[$id][] = $item;
 					}
 				}
 			}
+
+//			file_put_contents(__DIR__ . "/goupedItemsArray__fromArticle.log", print_r(self::$groupedItemsArray, true));
+
+			// TODO цвета и размера в атрибутах нет - парсить из названия также невозможно
+
+			// TODO проверить ['PARENT_ITEM_ID']
 
 			foreach (self::$groupedItemsArray as $key => $value) {
 				if (count($value) > 1) {
@@ -134,6 +139,8 @@ class ParserBody
 				}
 			}
 
+			// TODO проверить ['PARENT_ITEM_ID']
+
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
 
 				foreach ($itemValue as $offerKey => $offerValue) {
@@ -147,6 +154,8 @@ class ParserBody
 					}
 				}
 			}
+
+			// TODO название товара сейчас включает размер и цвет первого оффера
 
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
 				foreach ($itemValue as $offerKey => $offerValue) {
