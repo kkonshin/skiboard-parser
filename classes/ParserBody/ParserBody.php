@@ -50,7 +50,7 @@ class ParserBody
 					self::$ta[$key]["OFFER_ID"] = $offerIds[$key];
 
 					if ($v->nodeName === 'name') {
-						self::$ta[$key]['NAME'] = $v->nodeValue;
+						self::$ta[$key]['NAME'] = trim($v->nodeValue);
 					}
 
 					if ($v->nodeName === 'price') {
@@ -115,10 +115,30 @@ class ParserBody
 				}
 			}
 
+
+			// Вырезаем из названий ТП цвет и размер, записываем в соответствующие атрибуты
+
+            foreach (self::$groupedItemsArray as $key => $value){
+			    if (count($value) > 1) {
+			        foreach ($value as $skuKey => $sku){
+                        $match = preg_match_all('/(\(([^()]|(?R))*\))/', $sku["NAME"], $matches);
+                        if ($match){
+
+                            // FIXME - это для случая, когда есть цвет и размер, предусмотреть только один параметр
+                            // FIXME санитизировать эти атрибуты (в тч убрать переносы строк)
+
+                            self::$groupedItemsArray[$key][$skuKey]['ATTRIBUTES']['Размер'] = trim(substr(explode(",", $matches[0][count($matches[0])-1])[0], 1));
+                            self::$groupedItemsArray[$key][$skuKey]['ATTRIBUTES']['Цвет'] = trim(substr(explode(",", $matches[0][count($matches[0])-1])[count(count($matches[0])-1)], 0, -1));
+                        }
+                    }
+
+                }
+            }
+
+
 //			file_put_contents(__DIR__ . "/goupedItemsArray__fromArticle.log", print_r(self::$groupedItemsArray, true));
 
-			// TODO цвета и размера в атрибутах нет - парсить из названия также невозможно
-
+			// TODO цвета и размера в атрибутах нет - парсить из названия
 			// TODO проверить ['PARENT_ITEM_ID']
 
 			foreach (self::$groupedItemsArray as $key => $value) {
