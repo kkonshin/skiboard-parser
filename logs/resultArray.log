@@ -626,8 +626,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 143510--
-                            [Размер] => 12 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 12 - поперечные
                         )
 
                     [PRICE] => 5100
@@ -640,6 +639,7 @@ Metal Bales
                     [NAME] => Баллон Slingshot 2014 - 2015 Rally Bladders - Strut (12 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2014 - 2015 Rally Bladders - Strut 
                 )
 
             [1] => Array
@@ -649,8 +649,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 143510--
-                            [Размер] => 08 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 08 - поперечные
                         )
 
                     [PRICE] => 5100
@@ -663,6 +662,7 @@ Metal Bales
                     [NAME] => Баллон Slingshot 2014 - 2015 Rally Bladders - Strut (08 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2014 - 2015 Rally Bladders - Strut 
                 )
 
         )
@@ -676,8 +676,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 143500--
-                            [Размер] => 08 - центральный)
-                            [Цвет] => 
+                            [Размер] => 08 - центральный
                         )
 
                     [PRICE] => 7800
@@ -690,6 +689,7 @@ Metal Bales
                     [NAME] => Баллон Slingshot 2014 - 2015 Rally LE Bladders (08 - центральный)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2014 - 2015 Rally LE Bladders 
                 )
 
             [1] => Array
@@ -699,8 +699,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 143500--
-                            [Размер] => 12 - центральный)
-                            [Цвет] => 
+                            [Размер] => 12 - центральный
                         )
 
                     [PRICE] => 9400
@@ -713,6 +712,7 @@ Metal Bales
                     [NAME] => Баллон Slingshot 2014 - 2015 Rally LE Bladders (12 - центральный)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2014 - 2015 Rally LE Bladders 
                 )
 
         )
@@ -751,8 +751,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1152--
-                            [Размер] => 08 - центральный)
-                            [Цвет] => 
+                            [Размер] => 08 - центральный
                         )
 
                     [PRICE] => 5300
@@ -764,6 +763,7 @@ Metal Bales
 
                     [NAME] => Баллон Slingshot 2011-2014 RPM LE Bladders (08 - центральный)
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011-2014 RPM LE Bladders 
                 )
 
             [1] => Array
@@ -773,8 +773,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1152--
-                            [Размер] => 07 - центральный)
-                            [Цвет] => 
+                            [Размер] => 07 - центральный
                         )
 
                     [PRICE] => 6000
@@ -786,6 +785,7 @@ Metal Bales
 
                     [NAME] => Баллон Slingshot 2011-2014 RPM LE Bladders (07 - центральный)
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011-2014 RPM LE Bladders 
                 )
 
         )
@@ -874,8 +874,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 15227---
-                            [Размер] => 4'8”)
-                            [Цвет] => 
+                            [Размер] => 4'8”
                         )
 
                     [PRICE] => 39500
@@ -888,6 +887,7 @@ Metal Bales
                     [NAME] => Кайт Серф борд Slingshot 2015 Alien Twitster FX (4'8”)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Серф борд Slingshot 2015 Alien Twitster FX 
                 )
 
             [1] => Array
@@ -897,8 +897,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 15227---
-                            [Размер] => 5'0”)
-                            [Цвет] => 
+                            [Размер] => 5'0”
                         )
 
                     [PRICE] => 39500
@@ -911,6 +910,7 @@ Metal Bales
                     [NAME] => Кайт Серф борд Slingshot 2015 Ankle Biter FX (5'0”)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Серф борд Slingshot 2015 Ankle Biter FX 
                 )
 
         )
@@ -924,8 +924,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13119
-                            [Размер] => M (50)
-                            [Цвет] => Lemon/Grey
+                            [Размер] => M (50), Lemon/Grey
                         )
 
                     [PRICE] => 11800
@@ -939,6 +938,8 @@ Metal Bales
 (M (50), Lemon/Grey)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Method 2.0 Bk/Zip 3/2 Fullsuit Green 
+
                 )
 
             [1] => Array
@@ -948,8 +949,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13119
-                            [Размер] => L (52)
-                            [Цвет] => Lemon/Grey
+                            [Размер] => L (52), Lemon/Grey
                         )
 
                     [PRICE] => 11800
@@ -963,6 +963,8 @@ Metal Bales
 (L (52), Lemon/Grey)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Method 2.0 Bk/Zip 3/2 Fullsuit Green 
+
                 )
 
             [2] => Array
@@ -972,8 +974,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13119
-                            [Размер] => XL (54)
-                            [Цвет] => Lemon/Grey
+                            [Размер] => XL (54), Lemon/Grey
                         )
 
                     [PRICE] => 11800
@@ -987,6 +988,8 @@ Metal Bales
 (XL (54), Lemon/Grey)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Method 2.0 Bk/Zip 3/2 Fullsuit Green 
+
                 )
 
         )
@@ -1027,8 +1030,7 @@ Metal Bales
                         (
                             [Артикул] => 9135/black
                             [Размер] => L 
-(52)
-                            [Цвет] => Black
+(52), Black
                         )
 
                     [PRICE] => 9100
@@ -1042,6 +1044,7 @@ Metal Bales
 (52), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Grey 
                 )
 
             [1] => Array
@@ -1052,8 +1055,7 @@ Metal Bales
                         (
                             [Артикул] => 9135/black
                             [Размер] => XL 
-(54)
-                            [Цвет] => Black
+(54), Black
                         )
 
                     [PRICE] => 9100
@@ -1067,6 +1069,7 @@ Metal Bales
 (54), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Grey 
                 )
 
             [2] => Array
@@ -1077,8 +1080,7 @@ Metal Bales
                         (
                             [Артикул] => 9135/black
                             [Размер] => XXL 
-(56)
-                            [Цвет] => Black
+(56), Black
                         )
 
                     [PRICE] => 9100
@@ -1092,6 +1094,7 @@ Metal Bales
 (56), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Grey 
                 )
 
             [3] => Array
@@ -1102,8 +1105,7 @@ Metal Bales
                         (
                             [Артикул] => 9135/black
                             [Размер] => S 
-(48)
-                            [Цвет] => Black
+(48), Black
                         )
 
                     [PRICE] => 9100
@@ -1117,6 +1119,7 @@ Metal Bales
 (48), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Grey 
                 )
 
         )
@@ -1130,8 +1133,8 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 9135/red
-                            [Размер] => M (50)
-                            [Цвет] => Black/Red
+                            [Размер] => M (50), 
+Black/Red
                         )
 
                     [PRICE] => 9100
@@ -1145,6 +1148,7 @@ Metal Bales
 Black/Red)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Red 
                 )
 
             [1] => Array
@@ -1154,8 +1158,8 @@ Black/Red)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 9135/red
-                            [Размер] => L (52)
-                            [Цвет] => Black/Red
+                            [Размер] => L (52), 
+Black/Red
                         )
 
                     [PRICE] => 9100
@@ -1169,6 +1173,7 @@ Black/Red)
 Black/Red)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Red 
                 )
 
         )
@@ -1182,8 +1187,8 @@ Black/Red)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 9135/lime
-                            [Размер] => S (48)
-                            [Цвет] => Grey/Lime
+                            [Размер] => S (48), 
+Grey/Lime
                         )
 
                     [PRICE] => 9100
@@ -1197,6 +1202,7 @@ Black/Red)
 Grey/Lime)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Grey/Lime 
                 )
 
             [1] => Array
@@ -1207,8 +1213,7 @@ Grey/Lime)
                         (
                             [Артикул] => 9135/lime
                             [Размер] => XL 
-(54)
-                            [Цвет] => Grey/Lime
+(54), Grey/Lime
                         )
 
                     [PRICE] => 9100
@@ -1222,6 +1227,7 @@ Grey/Lime)
 (54), Grey/Lime)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Grey/Lime 
                 )
 
             [2] => Array
@@ -1231,8 +1237,8 @@ Grey/Lime)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 9135/lime
-                            [Размер] => M (50)
-                            [Цвет] => Grey/Lime
+                            [Размер] => M (50), 
+Grey/Lime
                         )
 
                     [PRICE] => 9100
@@ -1246,6 +1252,61 @@ Grey/Lime)
 Grey/Lime)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Grey/Lime 
+                )
+
+        )
+
+    [13115] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 67866
+                    [OFFER_ID] => 67866
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 13115
+                            [Размер] => L (52), Black
+                        )
+
+                    [PRICE] => 15700
+                    [CATEGORY_ID] => 1654
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/e9b/e9be9f1ad3ef0ca6addd72bc30b09119.jpeg
+                        )
+
+                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Black 
+(L (52), Black)
+                    [BRAND] => Body Glove
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Black 
+
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 71142
+                    [OFFER_ID] => 71142
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 13115
+                            [Размер] => Новый. Есть дефект., L (52), Black
+                        )
+
+                    [PRICE] => 9900
+                    [CATEGORY_ID] => 1654
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/e9b/e9be9f1ad3ef0ca6addd72bc30b09119.jpeg
+                        )
+
+                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Black 
+(Новый. Есть дефект., L (52), Black)
+                    [BRAND] => Body Glove
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Black 
+
                 )
 
         )
@@ -1276,6 +1337,85 @@ Grey/Lime)
 
         )
 
+    [13113] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 67860
+                    [OFFER_ID] => 67860
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 13113
+                            [Размер] => L 
+(52), Red
+                        )
+
+                    [PRICE] => 15700
+                    [CATEGORY_ID] => 1654
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/7bd/7bd66f026880ea5f9c38fa6722f2f733.jpeg
+                        )
+
+                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red (L 
+(52), Red)
+                    [BRAND] => Body Glove
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 67859
+                    [OFFER_ID] => 67859
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 13113
+                            [Размер] => M 
+(50), Red
+                        )
+
+                    [PRICE] => 15700
+                    [CATEGORY_ID] => 1654
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/7bd/7bd66f026880ea5f9c38fa6722f2f733.jpeg
+                        )
+
+                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red (M 
+(50), Red)
+                    [BRAND] => Body Glove
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 72166
+                    [OFFER_ID] => 72166
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 13113
+                            [Размер] => M 
+(50), Новый, есть дефект, Red
+                        )
+
+                    [PRICE] => 10900
+                    [CATEGORY_ID] => 1654
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/7bd/7bd66f026880ea5f9c38fa6722f2f733.jpeg
+                        )
+
+                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red (M 
+(50), Новый, есть дефект, Red)
+                    [BRAND] => Body Glove
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red 
+                )
+
+        )
+
     [9167W] => Array
         (
             [0] => Array
@@ -1285,8 +1425,7 @@ Grey/Lime)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 9167W
-                            [Размер] => XS (3/4)
-                            [Цвет] => Black
+                            [Размер] => XS (3/4), Black
                         )
 
                     [PRICE] => 5900
@@ -1300,6 +1439,8 @@ Grey/Lime)
 Shoty Black (XS (3/4), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 (Женский) Pro3 2/1MM Springsuit 
+Shoty Black 
                 )
 
             [1] => Array
@@ -1309,8 +1450,7 @@ Shoty Black (XS (3/4), Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 9167W
-                            [Размер] => S (5/6)
-                            [Цвет] => Black
+                            [Размер] => S (5/6), Black
                         )
 
                     [PRICE] => 5900
@@ -1324,6 +1464,8 @@ Shoty Black (XS (3/4), Black)
 Shoty Black (S (5/6), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 (Женский) Pro3 2/1MM Springsuit 
+Shoty Black 
                 )
 
         )
@@ -1337,8 +1479,7 @@ Shoty Black (S (5/6), Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12100/red
-                            [Размер] => M (50)
-                            [Цвет] => Black/Red
+                            [Размер] => M (50), Black/Red
                         )
 
                     [PRICE] => 14500
@@ -1351,6 +1492,7 @@ Shoty Black (S (5/6), Black)
                     [NAME] => Гидрокостюм Body Glove 2015 Torque Combo 3/3 Red (M (50), Black/Red)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Torque Combo 3/3 Red 
                 )
 
             [1] => Array
@@ -1360,8 +1502,7 @@ Shoty Black (S (5/6), Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12100/red
-                            [Размер] => S (48)
-                            [Цвет] => Black/Red
+                            [Размер] => S (48), Black/Red
                         )
 
                     [PRICE] => 14500
@@ -1374,6 +1515,7 @@ Shoty Black (S (5/6), Black)
                     [NAME] => Гидрокостюм Body Glove 2015 Torque Combo 3/3 Red (S (48), Black/Red)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм Body Glove 2015 Torque Combo 3/3 Red 
                 )
 
         )
@@ -1387,8 +1529,7 @@ Shoty Black (S (5/6), Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13211W
-                            [Размер] => XS
-                            [Цвет] => White
+                            [Размер] => XS, White
                         )
 
                     [PRICE] => 2100
@@ -1401,6 +1542,7 @@ Shoty Black (S (5/6), Black)
                     [NAME] => Гидромайка Body Glove 2015 Basic L/A Fitted Rashguard (XS, White)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Basic L/A Fitted Rashguard 
                 )
 
             [1] => Array
@@ -1410,8 +1552,7 @@ Shoty Black (S (5/6), Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13211W
-                            [Размер] => S
-                            [Цвет] => White
+                            [Размер] => S, White
                         )
 
                     [PRICE] => 2100
@@ -1424,6 +1565,7 @@ Shoty Black (S (5/6), Black)
                     [NAME] => Гидромайка Body Glove 2015 Basic L/A Fitted Rashguard (S, White)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Basic L/A Fitted Rashguard 
                 )
 
         )
@@ -1437,8 +1579,8 @@ Shoty Black (S (5/6), Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14183
-                            [Размер] => M
-                            [Цвет] => Viridian/Silver
+                            [Размер] => M, 
+Viridian/Silver
                         )
 
                     [PRICE] => 2900
@@ -1452,6 +1594,7 @@ Shoty Black (S (5/6), Black)
 Viridian/Silver)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Performance Loosefit L/A Shirt 
                 )
 
             [1] => Array
@@ -1461,8 +1604,8 @@ Viridian/Silver)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14183
-                            [Размер] => S
-                            [Цвет] => Viridian/Silver
+                            [Размер] => S, 
+Viridian/Silver
                         )
 
                     [PRICE] => 2900
@@ -1476,6 +1619,7 @@ Viridian/Silver)
 Viridian/Silver)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Performance Loosefit L/A Shirt 
                 )
 
             [2] => Array
@@ -1485,8 +1629,8 @@ Viridian/Silver)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14183
-                            [Размер] => L
-                            [Цвет] => Viridian/Silver
+                            [Размер] => L, 
+Viridian/Silver
                         )
 
                     [PRICE] => 2900
@@ -1500,6 +1644,7 @@ Viridian/Silver)
 Viridian/Silver)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Performance Loosefit L/A Shirt 
                 )
 
         )
@@ -1513,8 +1658,8 @@ Viridian/Silver)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14105
-                            [Размер] => S
-                            [Цвет] => White
+                            [Размер] => S, 
+White
                         )
 
                     [PRICE] => 3200
@@ -1528,6 +1673,7 @@ Viridian/Silver)
 White)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Prime L/A 6oz Fitted Rashguard 
                 )
 
             [1] => Array
@@ -1537,8 +1683,8 @@ White)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14105
-                            [Размер] => M
-                            [Цвет] => White
+                            [Размер] => M, 
+White
                         )
 
                     [PRICE] => 3200
@@ -1552,6 +1698,7 @@ White)
 White)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка Body Glove 2015 Prime L/A 6oz Fitted Rashguard 
                 )
 
         )
@@ -1591,8 +1738,7 @@ White)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14156
-                            [Размер] => 8 (39-40))
-                            [Цвет] => 
+                            [Размер] => 8 (39-40)
                         )
 
                     [PRICE] => 4600
@@ -1605,6 +1751,7 @@ White)
                     [NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm (8 (39-40))
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm 
                 )
 
             [1] => Array
@@ -1614,8 +1761,7 @@ White)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14156
-                            [Размер] => 6 (35-36))
-                            [Цвет] => 
+                            [Размер] => 6 (35-36)
                         )
 
                     [PRICE] => 4600
@@ -1628,6 +1774,7 @@ White)
                     [NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm (6 (35-36))
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm 
                 )
 
             [2] => Array
@@ -1637,8 +1784,7 @@ White)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14156
-                            [Размер] => 7 (37-38))
-                            [Цвет] => 
+                            [Размер] => 7 (37-38)
                         )
 
                     [PRICE] => 4600
@@ -1651,6 +1797,7 @@ White)
                     [NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm (7 (37-38))
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm 
                 )
 
             [3] => Array
@@ -1660,8 +1807,7 @@ White)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 14156
-                            [Размер] => 9 (41-42))
-                            [Цвет] => 
+                            [Размер] => 9 (41-42)
                         )
 
                     [PRICE] => 4600
@@ -1674,6 +1820,7 @@ White)
                     [NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm (9 (41-42))
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm 
                 )
 
         )
@@ -1687,8 +1834,8 @@ White)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1615
-                            [Размер] => S
-                            [Цвет] => Black
+                            [Размер] => S, 
+Black
                         )
 
                     [PRICE] => 950
@@ -1702,6 +1849,7 @@ White)
 Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошлем Body Glove 2015 Super Beanie Neoprene Beanie 3mm 
                 )
 
             [1] => Array
@@ -1711,8 +1859,8 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1615
-                            [Размер] => L
-                            [Цвет] => Black
+                            [Размер] => L, 
+Black
                         )
 
                     [PRICE] => 950
@@ -1726,6 +1874,7 @@ Black)
 Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошлем Body Glove 2015 Super Beanie Neoprene Beanie 3mm 
                 )
 
             [2] => Array
@@ -1735,8 +1884,8 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1615
-                            [Размер] => M
-                            [Цвет] => Black
+                            [Размер] => M, 
+Black
                         )
 
                     [PRICE] => 950
@@ -1750,6 +1899,7 @@ Black)
 Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошлем Body Glove 2015 Super Beanie Neoprene Beanie 3mm 
                 )
 
         )
@@ -1788,8 +1938,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12187
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 1900
@@ -1802,6 +1951,7 @@ Black)
                     [NAME] => Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm (XL)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm 
                 )
 
             [1] => Array
@@ -1811,8 +1961,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12187
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 1900
@@ -1825,6 +1974,7 @@ Black)
                     [NAME] => Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm (M)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm 
                 )
 
             [2] => Array
@@ -1834,8 +1984,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12187
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 1900
@@ -1848,6 +1997,7 @@ Black)
                     [NAME] => Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm (L)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm 
                 )
 
         )
@@ -1886,8 +2036,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13220
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 5900
@@ -1900,6 +2049,7 @@ Black)
                     [NAME] => Спас. жилет Body Glove 2015 Vapor Comp Vest (M)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Спас. жилет Body Glove 2015 Vapor Comp Vest 
                 )
 
             [1] => Array
@@ -1909,8 +2059,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 13220
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 5900
@@ -1923,6 +2072,7 @@ Black)
                     [NAME] => Спас. жилет Body Glove 2015 Vapor Comp Vest (S)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Спас. жилет Body Glove 2015 Vapor Comp Vest 
                 )
 
         )
@@ -1936,8 +2086,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12150
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 3400
@@ -1950,6 +2099,7 @@ Black)
                     [NAME] => Гидрошорты Body Glove 2015 Fusion Men's Pullover Short (S)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты Body Glove 2015 Fusion Men's Pullover Short 
                 )
 
             [1] => Array
@@ -1959,8 +2109,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12150
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 3400
@@ -1973,6 +2122,7 @@ Black)
                     [NAME] => Гидрошорты Body Glove 2015 Fusion Men's Pullover Short (M)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты Body Glove 2015 Fusion Men's Pullover Short 
                 )
 
             [2] => Array
@@ -1982,8 +2132,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 12150
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 3400
@@ -1996,6 +2145,7 @@ Black)
                     [NAME] => Гидрошорты Body Glove 2015 Fusion Men's Pullover Short (L)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты Body Glove 2015 Fusion Men's Pullover Short 
                 )
 
         )
@@ -2009,8 +2159,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153590--
-                            [Размер] => 12 - центральный)
-                            [Цвет] => 
+                            [Размер] => 12 - центральный
                         )
 
                     [PRICE] => 10300
@@ -2023,6 +2172,7 @@ Black)
                     [NAME] => Баллон Slingshot 2015-2016 RPM LE Bladder (12 - центральный)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2015-2016 RPM LE Bladder 
                 )
 
             [1] => Array
@@ -2032,8 +2182,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153590--
-                            [Размер] => 08 - центральный)
-                            [Цвет] => 
+                            [Размер] => 08 - центральный
                         )
 
                     [PRICE] => 8500
@@ -2046,6 +2195,7 @@ Black)
                     [NAME] => Баллон Slingshot 2015-2016 RPM LE Bladder (08 - центральный)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2015-2016 RPM LE Bladder 
                 )
 
         )
@@ -2059,8 +2209,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153600--
-                            [Размер] => 09 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 09 - поперечные
                         )
 
                     [PRICE] => 4200
@@ -2073,6 +2222,7 @@ Black)
                     [NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set (09 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set 
                 )
 
             [1] => Array
@@ -2082,8 +2232,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153600--
-                            [Размер] => 14 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 14 - поперечные
                         )
 
                     [PRICE] => 5000
@@ -2096,6 +2245,7 @@ Black)
                     [NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set (14 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set 
                 )
 
             [2] => Array
@@ -2105,8 +2255,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153600--
-                            [Размер] => 12 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 12 - поперечные
                         )
 
                     [PRICE] => 4700
@@ -2119,6 +2268,7 @@ Black)
                     [NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set (12 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set 
                 )
 
             [3] => Array
@@ -2128,8 +2278,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153600--
-                            [Размер] => 08 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 08 - поперечные
                         )
 
                     [PRICE] => 4100
@@ -2142,6 +2291,7 @@ Black)
                     [NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set (08 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set 
                 )
 
             [4] => Array
@@ -2151,8 +2301,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 153600--
-                            [Размер] => 10 - поперечные)
-                            [Цвет] => 
+                            [Размер] => 10 - поперечные
                         )
 
                     [PRICE] => 4400
@@ -2165,6 +2314,7 @@ Black)
                     [NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set (10 - поперечные)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set 
                 )
 
         )
@@ -2337,8 +2487,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1560000
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 2600
@@ -2351,6 +2500,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 First Tee Burgundy (XL)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 First Tee Burgundy 
                 )
 
             [1] => Array
@@ -2360,8 +2510,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1560000
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 2600
@@ -2374,6 +2523,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 First Tee Burgundy (M)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 First Tee Burgundy 
                 )
 
         )
@@ -2387,8 +2537,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1561000
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 2600
@@ -2401,6 +2550,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 First Tee Royal Blue (S)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 First Tee Royal Blue 
                 )
 
             [1] => Array
@@ -2410,8 +2560,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1561000
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 2600
@@ -2424,6 +2573,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 First Tee Royal Blue (M)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 First Tee Royal Blue 
                 )
 
         )
@@ -2437,8 +2587,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1562000
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 2600
@@ -2451,6 +2600,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 USA Wood Core Tee Grey (S)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 USA Wood Core Tee Grey 
                 )
 
             [1] => Array
@@ -2460,8 +2610,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1562000
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 2600
@@ -2474,6 +2623,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 USA Wood Core Tee Grey (XL)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 USA Wood Core Tee Grey 
                 )
 
             [2] => Array
@@ -2483,8 +2633,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 1562000
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 2600
@@ -2497,6 +2646,7 @@ Black)
                     [NAME] => Футболка Slingshot 2015 USA Wood Core Tee Grey (M)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Футболка Slingshot 2015 USA Wood Core Tee Grey 
                 )
 
         )
@@ -2626,6 +2776,56 @@ Black)
 
         )
 
+    [162261--] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 69838
+                    [OFFER_ID] => 69838
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 162261--
+                            [Размер] => NO STRAPS/PAD, 138 cm х 42 cm
+                        )
+
+                    [PRICE] => 29500
+                    [CATEGORY_ID] => 1515
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/cd8/cd8da11c085fefedcf3165bb866f355c.jpeg
+                        )
+
+                    [NAME] => Кайтборд Slingshot 2016 Asylum (NO STRAPS/PAD, 138 cm х 42 cm)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайтборд Slingshot 2016 Asylum 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 70090
+                    [OFFER_ID] => 70090
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 162261--
+                            [Размер] => NO STRAPS/PAD, 141 x 43.1 cm
+                        )
+
+                    [PRICE] => 29500
+                    [CATEGORY_ID] => 1515
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/cd8/cd8da11c085fefedcf3165bb866f355c.jpeg
+                        )
+
+                    [NAME] => Кайтборд Slingshot 2016 Asylum (NO STRAPS/PAD, 141 x 43.1 cm)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайтборд Slingshot 2016 Asylum 
+                )
+
+        )
+
     [16230] => Array
         (
             [0] => Array
@@ -2723,6 +2923,56 @@ Black)
                     [NAME] => Крюк RideEngine Metal (8" (20,32 см))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                )
+
+        )
+
+    [360000msb] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 69929
+                    [OFFER_ID] => 69929
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 360000msb
+                            [Размер] => 8" (20,32 см)
+                        )
+
+                    [PRICE] => 3300
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/0fd/0fd3384026ed2ec7ac8b1ac144d794d8.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine Metal (8" (20,32 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine Metal 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 69930
+                    [OFFER_ID] => 69930
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 360000msb
+                            [Размер] => 10" (25,4 см)
+                        )
+
+                    [PRICE] => 3300
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/0fd/0fd3384026ed2ec7ac8b1ac144d794d8.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine Metal (10" (25,4 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine Metal 
                 )
 
         )
@@ -2866,8 +3116,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 360180
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 16500
@@ -2881,6 +3130,8 @@ Black)
 (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2016 Spinal Tap Pro Harness + слайдер 
+
                 )
 
             [1] => Array
@@ -2890,8 +3141,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 360180
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 16500
@@ -2905,6 +3155,8 @@ Black)
 (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2016 Spinal Tap Pro Harness + слайдер 
+
                 )
 
         )
@@ -3066,8 +3318,7 @@ Black)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 36123003
-                            [Размер] => S (4))
-                            [Цвет] => 
+                            [Размер] => S (4)
                         )
 
                     [PRICE] => 10700
@@ -3081,6 +3332,8 @@ Black)
 Frontzip 2/2 (S (4))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2016 WMS Almar booty shorty long sleeve 
+Frontzip 2/2 
                 )
 
             [1] => Array
@@ -3090,8 +3343,7 @@ Frontzip 2/2 (S (4))
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 36123003
-                            [Размер] => M (6))
-                            [Цвет] => 
+                            [Размер] => M (6)
                         )
 
                     [PRICE] => 10700
@@ -3105,6 +3357,8 @@ Frontzip 2/2 (S (4))
 Frontzip 2/2 (M (6))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2016 WMS Almar booty shorty long sleeve 
+Frontzip 2/2 
                 )
 
             [2] => Array
@@ -3114,8 +3368,7 @@ Frontzip 2/2 (M (6))
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 36123003
-                            [Размер] => L (8))
-                            [Цвет] => 
+                            [Размер] => L (8)
                         )
 
                     [PRICE] => 10700
@@ -3129,6 +3382,8 @@ Frontzip 2/2 (M (6))
 Frontzip 2/2 (L (8))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2016 WMS Almar booty shorty long sleeve 
+Frontzip 2/2 
                 )
 
         )
@@ -3183,6 +3438,56 @@ Frontzip 2/2 (L (8))
 
         )
 
+    [1612] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 70175
+                    [OFFER_ID] => 70175
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 1612
+                            [Размер] => Kite Only, 07 m
+                        )
+
+                    [PRICE] => 39000
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ade/ade932d9008d4067c46891756c3e47aa.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2016 RPM (Kite Only, 07 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2016 RPM 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 70180
+                    [OFFER_ID] => 70180
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 1612
+                            [Размер] => Kite Only, 12 m
+                        )
+
+                    [PRICE] => 47000
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ade/ade932d9008d4067c46891756c3e47aa.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2016 RPM (Kite Only, 12 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2016 RPM 
+                )
+
+        )
+
     [16224] => Array
         (
             [0] => Array
@@ -3218,8 +3523,7 @@ Frontzip 2/2 (L (8))
                         (
                             [Артикул] => 14166/Black
                             [Размер] => 6 
-(35-36)
-                            [Цвет] => Black
+(35-36), Black
                         )
 
                     [PRICE] => 3500
@@ -3233,6 +3537,7 @@ Frontzip 2/2 (L (8))
 (35-36), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm 
                 )
 
             [1] => Array
@@ -3243,8 +3548,7 @@ Frontzip 2/2 (L (8))
                         (
                             [Артикул] => 14166/Black
                             [Размер] => 7 
-(37-38)
-                            [Цвет] => Black
+(37-38), Black
                         )
 
                     [PRICE] => 3500
@@ -3258,6 +3562,7 @@ Frontzip 2/2 (L (8))
 (37-38), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm 
                 )
 
             [2] => Array
@@ -3268,8 +3573,7 @@ Frontzip 2/2 (L (8))
                         (
                             [Артикул] => 14166/Black
                             [Размер] => 9 
-(41-42)
-                            [Цвет] => Black
+(41-42), Black
                         )
 
                     [PRICE] => 3500
@@ -3283,6 +3587,7 @@ Frontzip 2/2 (L (8))
 (41-42), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm 
                 )
 
             [3] => Array
@@ -3293,8 +3598,7 @@ Frontzip 2/2 (L (8))
                         (
                             [Артикул] => 14166/Black
                             [Размер] => 10 
-(42-43)
-                            [Цвет] => Black
+(42-43), Black
                         )
 
                     [PRICE] => 3500
@@ -3308,6 +3612,7 @@ Frontzip 2/2 (L (8))
 (42-43), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm 
                 )
 
             [4] => Array
@@ -3318,8 +3623,7 @@ Frontzip 2/2 (L (8))
                         (
                             [Артикул] => 14166/Black
                             [Размер] => 11 
-(44-45)
-                            [Цвет] => Black
+(44-45), Black
                         )
 
                     [PRICE] => 3500
@@ -3333,6 +3637,7 @@ Frontzip 2/2 (L (8))
 (44-45), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm 
                 )
 
             [5] => Array
@@ -3343,8 +3648,7 @@ Frontzip 2/2 (L (8))
                         (
                             [Артикул] => 14166/Black
                             [Размер] => 12 
-(46-47)
-                            [Цвет] => Black
+(46-47), Black
                         )
 
                     [PRICE] => 3500
@@ -3358,6 +3662,7 @@ Frontzip 2/2 (L (8))
 (46-47), Black)
                     [BRAND] => Body Glove
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm 
                 )
 
         )
@@ -3496,8 +3801,7 @@ rubber
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 15364--
-                            [Размер] => 17 - центральный)
-                            [Цвет] => 
+                            [Размер] => 17 - центральный
                         )
 
                     [PRICE] => 10900
@@ -3509,6 +3813,7 @@ rubber
 
                     [NAME] => Баллон Slingshot 2015 Turbine LE Bladder (17 - центральный)
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2015 Turbine LE Bladder 
                 )
 
             [1] => Array
@@ -3518,8 +3823,7 @@ rubber
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 15364--
-                            [Размер] => 15 - центральный)
-                            [Цвет] => 
+                            [Размер] => 15 - центральный
                         )
 
                     [PRICE] => 9900
@@ -3531,6 +3835,7 @@ rubber
 
                     [NAME] => Баллон Slingshot 2015 Turbine LE Bladder (15 - центральный)
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Баллон Slingshot 2015 Turbine LE Bladder 
                 )
 
         )
@@ -3568,8 +3873,7 @@ rubber
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 17100--
-                            [Размер] => 07 m)
-                            [Цвет] => 
+                            [Размер] => 07 m
                         )
 
                     [PRICE] => 26200
@@ -3582,6 +3886,7 @@ rubber
                     [NAME] => Кайт Slingshot 2017 Fuel (07 m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Fuel 
                 )
 
             [1] => Array
@@ -3591,8 +3896,7 @@ rubber
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 17100--
-                            [Размер] => 09 m)
-                            [Цвет] => 
+                            [Размер] => 09 m
                         )
 
                     [PRICE] => 28200
@@ -3605,6 +3909,7 @@ rubber
                     [NAME] => Кайт Slingshot 2017 Fuel (09 m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Fuel 
                 )
 
             [2] => Array
@@ -3614,8 +3919,7 @@ rubber
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 17100--
-                            [Размер] => 11 m)
-                            [Цвет] => 
+                            [Размер] => 11 m
                         )
 
                     [PRICE] => 30200
@@ -3628,6 +3932,7 @@ rubber
                     [NAME] => Кайт Slingshot 2017 Fuel (11 m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Fuel 
                 )
 
         )
@@ -3763,8 +4068,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 17384--
-                            [Размер] => 20'' (51 cm) x 23m)
-                            [Цвет] => 
+                            [Размер] => 20'' (51 cm) x 23m
                         )
 
                     [PRICE] => 10900
@@ -3776,6 +4080,7 @@ Metal Bales
 
                     [NAME] => Планка Slingshot 2017 Base Bar (20'' (51 cm) x 23m)
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Base Bar 
                 )
 
         )
@@ -3789,8 +4094,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173820--
-                            [Размер] => 17'' (43 cm) x 20m)
-                            [Цвет] => 
+                            [Размер] => 17'' (43 cm) x 20m
                         )
 
                     [PRICE] => 31990
@@ -3803,6 +4107,7 @@ Metal Bales
                     [NAME] => Планка Slingshot 2017 Compstick w/ Guardian (17'' (43 cm) x 20m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Compstick w/ Guardian 
                 )
 
             [1] => Array
@@ -3812,8 +4117,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173820--
-                            [Размер] => 20'' (51 cm) x 23m)
-                            [Цвет] => 
+                            [Размер] => 20'' (51 cm) x 23m
                         )
 
                     [PRICE] => 31990
@@ -3826,6 +4130,7 @@ Metal Bales
                     [NAME] => Планка Slingshot 2017 Compstick w/ Guardian (20'' (51 cm) x 23m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Compstick w/ Guardian 
                 )
 
             [2] => Array
@@ -3835,8 +4140,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173820--
-                            [Размер] => 23'' (58 cm) x 27m)
-                            [Цвет] => 
+                            [Размер] => 23'' (58 cm) x 27m
                         )
 
                     [PRICE] => 31990
@@ -3849,6 +4153,7 @@ Metal Bales
                     [NAME] => Планка Slingshot 2017 Compstick w/ Guardian (23'' (58 cm) x 27m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Compstick w/ Guardian 
                 )
 
         )
@@ -3862,8 +4167,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173830--
-                            [Размер] => 17'' (43 cm) x 20m)
-                            [Цвет] => 
+                            [Размер] => 17'' (43 cm) x 20m
                         )
 
                     [PRICE] => 31990
@@ -3876,6 +4180,7 @@ Metal Bales
                     [NAME] => Планка Slingshot 2017 Compstick w/ Sentinel (17'' (43 cm) x 20m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Compstick w/ Sentinel 
                 )
 
             [1] => Array
@@ -3885,8 +4190,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173830--
-                            [Размер] => 20'' (51 cm) x 23m)
-                            [Цвет] => 
+                            [Размер] => 20'' (51 cm) x 23m
                         )
 
                     [PRICE] => 31990
@@ -3899,6 +4203,7 @@ Metal Bales
                     [NAME] => Планка Slingshot 2017 Compstick w/ Sentinel (20'' (51 cm) x 23m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Compstick w/ Sentinel 
                 )
 
             [2] => Array
@@ -3908,8 +4213,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173830--
-                            [Размер] => 23'' (58 cm) x 27m)
-                            [Цвет] => 
+                            [Размер] => 23'' (58 cm) x 27m
                         )
 
                     [PRICE] => 31990
@@ -3922,6 +4226,7 @@ Metal Bales
                     [NAME] => Планка Slingshot 2017 Compstick w/ Sentinel (23'' (58 cm) x 27m)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Планка Slingshot 2017 Compstick w/ Sentinel 
                 )
 
         )
@@ -3961,8 +4266,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 163700
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 14500
@@ -3975,6 +4279,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция Slingshot Ballistic Harness Yellow (M)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция Slingshot Ballistic Harness Yellow 
                 )
 
             [1] => Array
@@ -3984,8 +4289,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 163700
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 14500
@@ -3998,6 +4302,176 @@ Metal Bales
                     [NAME] => Кайт Трапеция Slingshot Ballistic Harness Yellow (L)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция Slingshot Ballistic Harness Yellow 
+                )
+
+        )
+
+    [17223] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 71029
+                    [OFFER_ID] => 71029
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 17223
+                            [Размер] => NO STRAPS/PAD, 138 cm
+                        )
+
+                    [PRICE] => 39000
+                    [CATEGORY_ID] => 1515
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/6c6/6c6991eac503cdf45e64ea9fcf19289f.jpeg
+                        )
+
+                    [NAME] => Кайтборд Slingshot 2017 Vision (NO STRAPS/PAD, 138 cm)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайтборд Slingshot 2017 Vision 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 71030
+                    [OFFER_ID] => 71030
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 17223
+                            [Размер] => NO STRAPS/PAD, 140 cm
+                        )
+
+                    [PRICE] => 39000
+                    [CATEGORY_ID] => 1515
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/6c6/6c6991eac503cdf45e64ea9fcf19289f.jpeg
+                        )
+
+                    [NAME] => Кайтборд Slingshot 2017 Vision (NO STRAPS/PAD, 140 cm)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайтборд Slingshot 2017 Vision 
+                )
+
+        )
+
+    [171500(05-17)] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 71147
+                    [OFFER_ID] => 71147
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 171500(05-17)
+                            [Размер] => Kite Only, 17 m
+                        )
+
+                    [PRICE] => 78900
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/c10/c108aa5c1657b5ac096042164763211a.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2017 Turbine (Kite Only, 17 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Turbine 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 71461
+                    [OFFER_ID] => 71461
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 171500(05-17)
+                            [Размер] => Kite Only, 19 m
+                        )
+
+                    [PRICE] => 65500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/c10/c108aa5c1657b5ac096042164763211a.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2017 Turbine (Kite Only, 19 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Turbine 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 71462
+                    [OFFER_ID] => 71462
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 171500(05-17)
+                            [Размер] => Kite Only, 07 m
+                        )
+
+                    [PRICE] => 35500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/c10/c108aa5c1657b5ac096042164763211a.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2017 Turbine (Kite Only, 07 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Turbine 
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 71464
+                    [OFFER_ID] => 71464
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 171500(05-17)
+                            [Размер] => Kite Only, 09 m
+                        )
+
+                    [PRICE] => 41800
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/c10/c108aa5c1657b5ac096042164763211a.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2017 Turbine (Kite Only, 09 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Turbine 
+                )
+
+            [4] => Array
+                (
+                    [PARENT_ITEM_ID] => 72036
+                    [OFFER_ID] => 72036
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 171500(05-17)
+                            [Размер] => Kite Only, 05 m
+                        )
+
+                    [PRICE] => 38900
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/c10/c108aa5c1657b5ac096042164763211a.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2017 Turbine (Kite Only, 05 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2017 Turbine 
                 )
 
         )
@@ -4314,8 +4788,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173700
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 17000
@@ -4328,6 +4801,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция Slingshot Ballistic Harness Lemon (S)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция Slingshot Ballistic Harness Lemon 
                 )
 
             [1] => Array
@@ -4337,8 +4811,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173700
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 17000
@@ -4351,6 +4824,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция Slingshot Ballistic Harness Lemon (M)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция Slingshot Ballistic Harness Lemon 
                 )
 
             [2] => Array
@@ -4360,8 +4834,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 173700
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 17000
@@ -4374,6 +4847,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция Slingshot Ballistic Harness Lemon (L)
                     [BRAND] => Slingshot
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция Slingshot Ballistic Harness Lemon 
                 )
 
         )
@@ -4437,8 +4911,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 370100
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 19500
@@ -4452,6 +4925,8 @@ Metal Bales
 (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2017 Bamboo Elite Harness + слайдер 
+
                 )
 
             [1] => Array
@@ -4461,8 +4936,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 370100
-                            [Размер] => XXL)
-                            [Цвет] => 
+                            [Размер] => XXL
                         )
 
                     [PRICE] => 19500
@@ -4476,6 +4950,8 @@ Metal Bales
 (XXL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2017 Bamboo Elite Harness + слайдер 
+
                 )
 
         )
@@ -4555,6 +5031,79 @@ Metal Bales
 
         )
 
+    [370030] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 71669
+                    [OFFER_ID] => 71669
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 370030
+                            [Размер] => 8" (20,32 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/5ea/5ea402c538e9ad2678cab7d1127c0c4c.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar (8" (20,32 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 71670
+                    [OFFER_ID] => 71670
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 370030
+                            [Размер] => 12'' (30,5 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/5ea/5ea402c538e9ad2678cab7d1127c0c4c.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar (12'' (30,5 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 71671
+                    [OFFER_ID] => 71671
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 370030
+                            [Размер] => 10" (25,4 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/5ea/5ea402c538e9ad2678cab7d1127c0c4c.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar (10" (25,4 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar 
+                )
+
+        )
+
     [370110] => Array
         (
             [0] => Array
@@ -4590,8 +5139,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 370150
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 16500
@@ -4605,6 +5153,8 @@ Metal Bales
 (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2017 Hex Core Iridium Harness + слайдер 
+
                 )
 
             [1] => Array
@@ -4614,8 +5164,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 370150
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 16500
@@ -4629,6 +5178,8 @@ Metal Bales
 (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2017 Hex Core Iridium Harness + слайдер 
+
                 )
 
         )
@@ -4668,8 +5219,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 370140
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 16500
@@ -4683,6 +5233,8 @@ Metal Bales
 + слайдер (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2017 Hex Core Space Grape Harness 
++ слайдер 
                 )
 
             [1] => Array
@@ -4692,8 +5244,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 370140
-                            [Размер] => XXL)
-                            [Цвет] => 
+                            [Размер] => XXL
                         )
 
                     [PRICE] => 16500
@@ -4707,6 +5258,8 @@ Metal Bales
 + слайдер (XXL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2017 Hex Core Space Grape Harness 
++ слайдер 
                 )
 
         )
@@ -4912,6 +5465,56 @@ Metal Bales
 
         )
 
+    [181500(05-19)] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 72046
+                    [OFFER_ID] => 72046
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 181500(05-19)
+                            [Размер] => Kite Only, 13 m
+                        )
+
+                    [PRICE] => 90300
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/3bc/3bc097502a0277e0d93b80f9ff9baf70.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2018 Turbine (Kite Only, 13 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2018 Turbine 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 72048
+                    [OFFER_ID] => 72048
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 181500(05-19)
+                            [Размер] => Kite Only, 17 m
+                        )
+
+                    [PRICE] => 101600
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/3bc/3bc097502a0277e0d93b80f9ff9baf70.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2018 Turbine (Kite Only, 17 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2018 Turbine 
+                )
+
+        )
+
     [181600--] => Array
         (
             [0] => Array
@@ -4946,8 +5549,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38012
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 23000
@@ -4960,6 +5562,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness 
                 )
 
             [1] => Array
@@ -4969,8 +5572,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38012
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 23000
@@ -4983,6 +5585,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness 
                 )
 
             [2] => Array
@@ -4992,8 +5595,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38012
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 23000
@@ -5006,6 +5608,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness 
                 )
 
         )
@@ -5045,8 +5648,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38013
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 17500
@@ -5060,6 +5662,8 @@ Metal Bales
 (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 Hex Core Sea Engine Green Harness 
+
                 )
 
             [1] => Array
@@ -5069,8 +5673,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38013
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 17500
@@ -5084,6 +5687,8 @@ Metal Bales
 (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 Hex Core Sea Engine Green Harness 
+
                 )
 
             [2] => Array
@@ -5093,8 +5698,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38013
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 17500
@@ -5108,6 +5712,8 @@ Metal Bales
 (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 Hex Core Sea Engine Green Harness 
+
                 )
 
         )
@@ -5121,8 +5727,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38010
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 23000
@@ -5135,6 +5740,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness 
                 )
 
             [1] => Array
@@ -5144,8 +5750,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38010
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 23000
@@ -5158,6 +5763,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness 
                 )
 
             [2] => Array
@@ -5167,8 +5773,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38010
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 23000
@@ -5181,6 +5786,7 @@ Metal Bales
                     [NAME] => Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness 
                 )
 
         )
@@ -5261,6 +5867,392 @@ Metal Bales
 
         )
 
+    [380010] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 72211
+                    [OFFER_ID] => 72211
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380010
+                            [Размер] => 12'' (30,48 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/354/3546e3c3da8ce8f13c4b9d8314b3849e.jpeg
+                        )
+
+                    [NAME] => Крюк RideEngine 2018 Kite Fixed Hook (12'' (30,48 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Крюк RideEngine 2018 Kite Fixed Hook 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 72210
+                    [OFFER_ID] => 72210
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380010
+                            [Размер] => 10'' (25,4 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/354/3546e3c3da8ce8f13c4b9d8314b3849e.jpeg
+                        )
+
+                    [NAME] => Крюк RideEngine 2018 Kite Fixed Hook (10'' (25,4 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Крюк RideEngine 2018 Kite Fixed Hook 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 72209
+                    [OFFER_ID] => 72209
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380010
+                            [Размер] => 8" (20,32 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/354/3546e3c3da8ce8f13c4b9d8314b3849e.jpeg
+                        )
+
+                    [NAME] => Крюк RideEngine 2018 Kite Fixed Hook (8" (20,32 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Крюк RideEngine 2018 Kite Fixed Hook 
+                )
+
+        )
+
+    [380020] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 72212
+                    [OFFER_ID] => 72212
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380020
+                            [Размер] => 10'' (25,4 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/549/5497913d0c489a1daf7f2b4367fb21b4.jpeg
+                        )
+
+                    [NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook (10'' (25,4 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 72495
+                    [OFFER_ID] => 72495
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380020
+                            [Размер] => 8'' (20,32 см )
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/549/5497913d0c489a1daf7f2b4367fb21b4.jpeg
+                        )
+
+                    [NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook (8'' (20,32 см ))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 72496
+                    [OFFER_ID] => 72496
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380020
+                            [Размер] => 12'' (30,48 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/549/5497913d0c489a1daf7f2b4367fb21b4.jpeg
+                        )
+
+                    [NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook (12'' (30,48 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook 
+                )
+
+        )
+
+    [380030] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 72215
+                    [OFFER_ID] => 72215
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380030
+                            [Размер] => 12'' (30,48 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/d22/d226f2915d6690c97fd0fdf74910892f.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar (12'' (30,48 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 72214
+                    [OFFER_ID] => 72214
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380030
+                            [Размер] => 10'' (25,4 см)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/d22/d226f2915d6690c97fd0fdf74910892f.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar (10'' (25,4 см))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 72213
+                    [OFFER_ID] => 72213
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 380030
+                            [Размер] => 8'' (20,32 см 
+)
+                        )
+
+                    [PRICE] => 3900
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/d22/d226f2915d6690c97fd0fdf74910892f.jpeg
+                        )
+
+                    [NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar (8'' (20,32 см 
+))
+                    [BRAND] => RideEngine
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar 
+                )
+
+        )
+
+    [191300 --] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 72303
+                    [OFFER_ID] => 72303
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 07 m
+                        )
+
+                    [PRICE] => 75500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 07 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+            [1] => Array
+                (
+                    [PARENT_ITEM_ID] => 72304
+                    [OFFER_ID] => 72304
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 08 m
+                        )
+
+                    [PRICE] => 81500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 08 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+            [2] => Array
+                (
+                    [PARENT_ITEM_ID] => 72305
+                    [OFFER_ID] => 72305
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 09 m
+                        )
+
+                    [PRICE] => 85500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 09 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+            [3] => Array
+                (
+                    [PARENT_ITEM_ID] => 72306
+                    [OFFER_ID] => 72306
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 10 m
+                        )
+
+                    [PRICE] => 91500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 10 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+            [4] => Array
+                (
+                    [PARENT_ITEM_ID] => 72307
+                    [OFFER_ID] => 72307
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 11 m
+                        )
+
+                    [PRICE] => 95000
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 11 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+            [5] => Array
+                (
+                    [PARENT_ITEM_ID] => 72308
+                    [OFFER_ID] => 72308
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 12 m
+                        )
+
+                    [PRICE] => 98500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 12 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+            [6] => Array
+                (
+                    [PARENT_ITEM_ID] => 72309
+                    [OFFER_ID] => 72309
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 191300 --
+                            [Размер] => Kite Only, 14 m
+                        )
+
+                    [PRICE] => 104500
+                    [CATEGORY_ID] => 1521
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
+                        )
+
+                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 14 m)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Slingshot 2019 Rally 
+                )
+
+        )
+
     [19supshamAUR10] => Array
         (
             [0] => Array
@@ -5291,8 +6283,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 19supshamAUR10
-                            [Размер] => 10’)
-                            [Цвет] => 
+                            [Размер] => 10’
                         )
 
                     [PRICE] => 35800
@@ -5305,6 +6296,7 @@ Metal Bales
                     [NAME] => SUP борд Shaman 2019 Aurum AirLight 10' (10’)
                     [BRAND] => Shaman
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => SUP борд Shaman 2019 Aurum AirLight 10' 
                 )
 
         )
@@ -5339,8 +6331,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 19supshamAUR11
-                            [Размер] => 11’)
-                            [Цвет] => 
+                            [Размер] => 11’
                         )
 
                     [PRICE] => 37700
@@ -5353,6 +6344,7 @@ Metal Bales
                     [NAME] => SUP борд Shaman 2019 Aurum AirLight 11' (11’)
                     [BRAND] => Shaman
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => SUP борд Shaman 2019 Aurum AirLight 11' 
                 )
 
         )
@@ -5387,8 +6379,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 19supshamAUR12
-                            [Размер] => 12’)
-                            [Цвет] => 
+                            [Размер] => 12’
                         )
 
                     [PRICE] => 40600
@@ -5401,6 +6392,7 @@ Metal Bales
                     [NAME] => SUP борд Shaman 2019 Aurum AirLight 12' (12’)
                     [BRAND] => Shaman
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => SUP борд Shaman 2019 Aurum AirLight 12' 
                 )
 
         )
@@ -5439,8 +6431,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39010
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 26500
@@ -5454,6 +6445,8 @@ Metal Bales
 (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Infrared Harness 
+
                 )
 
             [1] => Array
@@ -5463,8 +6456,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39010
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 26500
@@ -5478,6 +6470,8 @@ Metal Bales
 (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Infrared Harness 
+
                 )
 
             [2] => Array
@@ -5487,8 +6481,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39010
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 26500
@@ -5502,6 +6495,8 @@ Metal Bales
 (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Infrared Harness 
+
                 )
 
             [3] => Array
@@ -5511,8 +6506,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39010
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 26500
@@ -5526,6 +6520,8 @@ Metal Bales
 (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Infrared Harness 
+
                 )
 
             [4] => Array
@@ -5535,8 +6531,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39010
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 26500
@@ -5550,6 +6545,8 @@ Metal Bales
 (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Infrared Harness 
+
                 )
 
         )
@@ -5563,8 +6560,7 @@ Metal Bales
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39011
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 26500
@@ -5578,6 +6574,8 @@ Metal Bales
 Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Sea Engine Green 
+Harness 
                 )
 
             [1] => Array
@@ -5587,8 +6585,7 @@ Harness (XS)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39011
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 26500
@@ -5602,6 +6599,8 @@ Harness (XS)
 Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Sea Engine Green 
+Harness 
                 )
 
             [2] => Array
@@ -5611,8 +6610,7 @@ Harness (S)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39011
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 26500
@@ -5626,6 +6624,8 @@ Harness (S)
 Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Sea Engine Green 
+Harness 
                 )
 
             [3] => Array
@@ -5635,8 +6635,7 @@ Harness (M)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39011
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 26500
@@ -5650,6 +6649,8 @@ Harness (M)
 Harness (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Sea Engine Green 
+Harness 
                 )
 
             [4] => Array
@@ -5659,8 +6660,7 @@ Harness (L)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39011
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 26500
@@ -5674,6 +6674,8 @@ Harness (L)
 Harness (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon Sea Engine Green 
+Harness 
                 )
 
         )
@@ -5687,8 +6689,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39012
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 26500
@@ -5701,6 +6702,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness 
                 )
 
             [1] => Array
@@ -5710,8 +6712,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39012
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 26500
@@ -5724,6 +6725,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness 
                 )
 
             [2] => Array
@@ -5733,8 +6735,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39012
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 26500
@@ -5747,6 +6748,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness 
                 )
 
             [3] => Array
@@ -5756,8 +6758,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39012
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 26500
@@ -5770,6 +6771,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness 
                 )
 
             [4] => Array
@@ -5779,8 +6781,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39012
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 26500
@@ -5793,6 +6794,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Elite Carbon White Harness 
                 )
 
         )
@@ -5806,8 +6808,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39014
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 19900
@@ -5820,6 +6821,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness 
                 )
 
             [1] => Array
@@ -5829,8 +6831,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39014
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 19900
@@ -5843,6 +6844,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness 
                 )
 
             [2] => Array
@@ -5852,8 +6854,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39014
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 19900
@@ -5866,6 +6867,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness 
                 )
 
             [3] => Array
@@ -5875,8 +6877,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39014
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 19900
@@ -5889,6 +6890,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Coast Harness 
                 )
 
         )
@@ -5902,8 +6904,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39017
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 19900
@@ -5916,6 +6917,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness 
                 )
 
             [1] => Array
@@ -5925,8 +6927,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39017
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 19900
@@ -5939,6 +6940,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness 
                 )
 
             [2] => Array
@@ -5948,8 +6950,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39017
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 19900
@@ -5962,6 +6963,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness 
                 )
 
         )
@@ -5975,8 +6977,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39016
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 19900
@@ -5989,6 +6990,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness 
                 )
 
             [1] => Array
@@ -5998,8 +7000,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39016
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 19900
@@ -6012,6 +7013,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness 
                 )
 
             [2] => Array
@@ -6021,8 +7023,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39016
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 19900
@@ -6035,6 +7036,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness 
                 )
 
             [3] => Array
@@ -6044,8 +7046,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39016
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 19900
@@ -6058,6 +7059,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness 
                 )
 
             [4] => Array
@@ -6067,8 +7069,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39016
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 19900
@@ -6081,6 +7082,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Island Time Harness 
                 )
 
         )
@@ -6094,8 +7096,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39015
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 19900
@@ -6108,6 +7109,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness 
                 )
 
             [1] => Array
@@ -6117,8 +7119,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39015
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 19900
@@ -6131,6 +7132,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness 
                 )
 
             [2] => Array
@@ -6140,8 +7142,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39015
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 19900
@@ -6154,6 +7155,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness 
                 )
 
             [3] => Array
@@ -6163,8 +7165,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39015
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 19900
@@ -6177,6 +7178,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness 
                 )
 
             [4] => Array
@@ -6186,8 +7188,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39015
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 19900
@@ -6200,6 +7201,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness 
                 )
 
         )
@@ -6213,8 +7215,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39013
-                            [Размер] => XS)
-                            [Цвет] => 
+                            [Размер] => XS
                         )
 
                     [PRICE] => 19900
@@ -6227,6 +7228,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Sunset Harness (XS)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Sunset Harness 
                 )
 
             [1] => Array
@@ -6236,8 +7238,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 39013
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 19900
@@ -6250,6 +7251,7 @@ Harness (XL)
                     [NAME] => Кайт Трапеция RideEngine 2019 Prime Sunset Harness (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Кайт Трапеция RideEngine 2019 Prime Sunset Harness 
                 )
 
         )
@@ -6263,8 +7265,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911200
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 24000
@@ -6277,6 +7278,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 3/2 BZ full (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 3/2 BZ full 
                 )
 
             [1] => Array
@@ -6286,8 +7288,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911200
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 24000
@@ -6300,6 +7301,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 3/2 BZ full (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 3/2 BZ full 
                 )
 
         )
@@ -6313,8 +7315,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911100
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 26500
@@ -6327,6 +7328,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 4/3 BZ full (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 4/3 BZ full 
                 )
 
             [1] => Array
@@ -6336,8 +7338,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911100
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 26500
@@ -6350,6 +7351,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 4/3 BZ full (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 4/3 BZ full 
                 )
 
             [2] => Array
@@ -6359,8 +7361,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911100
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 26500
@@ -6373,6 +7374,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 4/3 BZ full (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 4/3 BZ full 
                 )
 
         )
@@ -6386,8 +7388,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911000
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 32000
@@ -6400,6 +7401,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full 
                 )
 
             [1] => Array
@@ -6409,8 +7411,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911000
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 32000
@@ -6423,6 +7424,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full 
                 )
 
             [2] => Array
@@ -6432,8 +7434,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911000
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 32000
@@ -6446,6 +7447,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full 
                 )
 
             [3] => Array
@@ -6455,8 +7457,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3911000
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 32000
@@ -6469,6 +7470,7 @@ Harness (XL)
                     [NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрокостюм RideEngine 2019 Silo 5/4 BZ full 
                 )
 
         )
@@ -6482,8 +7484,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912000
-                            [Размер] => S (4))
-                            [Цвет] => 
+                            [Размер] => S (4)
                         )
 
                     [PRICE] => 7500
@@ -6496,6 +7497,7 @@ Harness (XL)
                     [NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top (S (4))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top 
                 )
 
             [1] => Array
@@ -6505,8 +7507,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912000
-                            [Размер] => M (6))
-                            [Цвет] => 
+                            [Размер] => M (6)
                         )
 
                     [PRICE] => 7500
@@ -6519,6 +7520,7 @@ Harness (XL)
                     [NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top (M (6))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top 
                 )
 
             [2] => Array
@@ -6528,8 +7530,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912000
-                            [Размер] => L (8))
-                            [Цвет] => 
+                            [Размер] => L (8)
                         )
 
                     [PRICE] => 7500
@@ -6542,6 +7543,7 @@ Harness (XL)
                     [NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top (L (8))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top 
                 )
 
             [3] => Array
@@ -6551,8 +7553,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912000
-                            [Размер] => XL (10))
-                            [Цвет] => 
+                            [Размер] => XL (10)
                         )
 
                     [PRICE] => 7500
@@ -6565,6 +7566,7 @@ Harness (XL)
                     [NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top (XL (10))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидромайка RideEngine 2019 Cora 2mm Tank Top 
                 )
 
         )
@@ -6578,8 +7580,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 6)
-                            [Цвет] => 
+                            [Размер] => 6
                         )
 
                     [PRICE] => 6500
@@ -6592,6 +7593,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (6)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
             [1] => Array
@@ -6601,8 +7603,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 7)
-                            [Цвет] => 
+                            [Размер] => 7
                         )
 
                     [PRICE] => 6500
@@ -6615,6 +7616,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (7)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
             [2] => Array
@@ -6624,8 +7626,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 8)
-                            [Цвет] => 
+                            [Размер] => 8
                         )
 
                     [PRICE] => 6500
@@ -6638,6 +7639,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (8)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
             [3] => Array
@@ -6647,8 +7649,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 9)
-                            [Цвет] => 
+                            [Размер] => 9
                         )
 
                     [PRICE] => 6500
@@ -6661,6 +7662,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (9)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
             [4] => Array
@@ -6670,8 +7672,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 10)
-                            [Цвет] => 
+                            [Размер] => 10
                         )
 
                     [PRICE] => 6500
@@ -6684,6 +7685,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (10)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
             [5] => Array
@@ -6693,8 +7695,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 11)
-                            [Цвет] => 
+                            [Размер] => 11
                         )
 
                     [PRICE] => 6500
@@ -6707,6 +7708,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (11)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
             [6] => Array
@@ -6716,8 +7718,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912100
-                            [Размер] => 12)
-                            [Цвет] => 
+                            [Размер] => 12
                         )
 
                     [PRICE] => 6500
@@ -6730,6 +7731,7 @@ Harness (XL)
                     [NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties (12)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрообувь RideEngine 2019 4mm Aire Booties 
                 )
 
         )
@@ -6743,8 +7745,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3910900
-                            [Размер] => S (4))
-                            [Цвет] => 
+                            [Размер] => S (4)
                         )
 
                     [PRICE] => 7500
@@ -6757,6 +7758,7 @@ Harness (XL)
                     [NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts (S (4))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts 
                 )
 
             [1] => Array
@@ -6766,8 +7768,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3910900
-                            [Размер] => M (6))
-                            [Цвет] => 
+                            [Размер] => M (6)
                         )
 
                     [PRICE] => 7500
@@ -6780,6 +7781,7 @@ Harness (XL)
                     [NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts (M (6))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts 
                 )
 
             [2] => Array
@@ -6789,8 +7791,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3910900
-                            [Размер] => L (8))
-                            [Цвет] => 
+                            [Размер] => L (8)
                         )
 
                     [PRICE] => 7500
@@ -6803,6 +7804,7 @@ Harness (XL)
                     [NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts (L (8))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts 
                 )
 
             [3] => Array
@@ -6812,8 +7814,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3910900
-                            [Размер] => XL (10))
-                            [Цвет] => 
+                            [Размер] => XL (10)
                         )
 
                     [PRICE] => 7500
@@ -6826,6 +7827,7 @@ Harness (XL)
                     [NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts (XL (10))
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Гидрошорты RideEngine 2019 Harlo 2mm Shorts 
                 )
 
         )
@@ -6839,8 +7841,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912200
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 16000
@@ -6854,6 +7855,8 @@ Harness (XL)
 (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Неопреновая куртка RideEngine Layover 2.5mm Neo Hoodie 
+
                 )
 
             [1] => Array
@@ -6863,8 +7866,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912200
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 16000
@@ -6878,6 +7880,8 @@ Harness (XL)
 (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Неопреновая куртка RideEngine Layover 2.5mm Neo Hoodie 
+
                 )
 
             [2] => Array
@@ -6887,8 +7891,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3912200
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 16000
@@ -6902,6 +7905,8 @@ Harness (XL)
 (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Неопреновая куртка RideEngine Layover 2.5mm Neo Hoodie 
+
                 )
 
         )
@@ -6915,8 +7920,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3812500
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 5000
@@ -6929,6 +7933,7 @@ Harness (XL)
                     [NAME] => Перчатки RideEngine 2018 2mm Gloves (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки RideEngine 2018 2mm Gloves 
                 )
 
             [1] => Array
@@ -6938,8 +7943,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3812500
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 5000
@@ -6952,6 +7956,7 @@ Harness (XL)
                     [NAME] => Перчатки RideEngine 2018 2mm Gloves (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки RideEngine 2018 2mm Gloves 
                 )
 
             [2] => Array
@@ -6961,8 +7966,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3812500
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 5000
@@ -6975,6 +7979,7 @@ Harness (XL)
                     [NAME] => Перчатки RideEngine 2018 2mm Gloves (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки RideEngine 2018 2mm Gloves 
                 )
 
             [3] => Array
@@ -6984,8 +7989,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 3812500
-                            [Размер] => XL)
-                            [Цвет] => 
+                            [Размер] => XL
                         )
 
                     [PRICE] => 5000
@@ -6998,6 +8002,7 @@ Harness (XL)
                     [NAME] => Перчатки RideEngine 2018 2mm Gloves (XL)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Перчатки RideEngine 2018 2mm Gloves 
                 )
 
         )
@@ -7086,8 +8091,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38018001
-                            [Размер] => S)
-                            [Цвет] => 
+                            [Размер] => S
                         )
 
                     [PRICE] => 10500
@@ -7100,6 +8104,7 @@ Harness (XL)
                     [NAME] => Спас. жилет RideEngine Empax Vest (S)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Спас. жилет RideEngine Empax Vest 
                 )
 
             [1] => Array
@@ -7109,8 +8114,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38018001
-                            [Размер] => M)
-                            [Цвет] => 
+                            [Размер] => M
                         )
 
                     [PRICE] => 10500
@@ -7123,6 +8127,7 @@ Harness (XL)
                     [NAME] => Спас. жилет RideEngine Empax Vest (M)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Спас. жилет RideEngine Empax Vest 
                 )
 
             [2] => Array
@@ -7132,8 +8137,7 @@ Harness (XL)
                     [ATTRIBUTES] => Array
                         (
                             [Артикул] => 38018001
-                            [Размер] => L)
-                            [Цвет] => 
+                            [Размер] => L
                         )
 
                     [PRICE] => 10500
@@ -7146,6 +8150,7 @@ Harness (XL)
                     [NAME] => Спас. жилет RideEngine Empax Vest (L)
                     [BRAND] => RideEngine
                     [DESCRIPTION] => 
+                    [SHORT_NAME] => Спас. жилет RideEngine Empax Vest 
                 )
 
         )
@@ -7170,360 +8175,6 @@ Harness (XL)
 
                     [NAME] => Сумка RideEngine Changing Mat
                     [BRAND] => RideEngine
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [13115_Black] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 67866
-                    [OFFER_ID] => 67866
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 13115
-                            [Размер] => L (52)
-                            [Цвет] => Black
-                        )
-
-                    [PRICE] => 15700
-                    [CATEGORY_ID] => 1654
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/e9b/e9be9f1ad3ef0ca6addd72bc30b09119.jpeg
-                        )
-
-                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Black 
-(L (52), Black) Black
-                    [BRAND] => Body Glove
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [13113_Red] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 67860
-                    [OFFER_ID] => 67860
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 13113
-                            [Размер] => L 
-(52)
-                            [Цвет] => Red
-                        )
-
-                    [PRICE] => 15700
-                    [CATEGORY_ID] => 1654
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/7bd/7bd66f026880ea5f9c38fa6722f2f733.jpeg
-                        )
-
-                    [NAME] => Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red (L 
-(52), Red) Red
-                    [BRAND] => Body Glove
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [162261--_138 cm х 42 cm] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 69838
-                    [OFFER_ID] => 69838
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 162261--
-                            [Размер] => NO STRAPS/PAD
-                            [Цвет] => 138 cm х 42 cm
-                        )
-
-                    [PRICE] => 29500
-                    [CATEGORY_ID] => 1515
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/cd8/cd8da11c085fefedcf3165bb866f355c.jpeg
-                        )
-
-                    [NAME] => Кайтборд Slingshot 2016 Asylum (NO STRAPS/PAD, 138 cm х 42 cm) 138 cm х 42 cm
-                    [BRAND] => Slingshot
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [360000msb_32 см)] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 69929
-                    [OFFER_ID] => 69929
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 360000msb
-                            [Размер] => 8" (20
-                            [Цвет] => 32 см)
-                        )
-
-                    [PRICE] => 3300
-                    [CATEGORY_ID] => 2051
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/0fd/0fd3384026ed2ec7ac8b1ac144d794d8.jpeg
-                        )
-
-                    [NAME] => Слайдербар RideEngine Metal (8" (20,32 см)) 32 см)
-                    [BRAND] => RideEngine
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [1612_07 m] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 70175
-                    [OFFER_ID] => 70175
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 1612
-                            [Размер] => Kite Only
-                            [Цвет] => 07 m
-                        )
-
-                    [PRICE] => 39000
-                    [CATEGORY_ID] => 1521
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/ade/ade932d9008d4067c46891756c3e47aa.jpeg
-                        )
-
-                    [NAME] => Кайт Slingshot 2016 RPM (Kite Only, 07 m) 07 m
-                    [BRAND] => Slingshot
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [17223_138 cm] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 71029
-                    [OFFER_ID] => 71029
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 17223
-                            [Размер] => NO STRAPS/PAD
-                            [Цвет] => 138 cm
-                        )
-
-                    [PRICE] => 39000
-                    [CATEGORY_ID] => 1515
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/6c6/6c6991eac503cdf45e64ea9fcf19289f.jpeg
-                        )
-
-                    [NAME] => Кайтборд Slingshot 2017 Vision (NO STRAPS/PAD, 138 cm) 138 cm
-                    [BRAND] => Slingshot
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [171500(05-17)_17 m] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 71147
-                    [OFFER_ID] => 71147
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 171500(05-17)
-                            [Размер] => Kite Only
-                            [Цвет] => 17 m
-                        )
-
-                    [PRICE] => 78900
-                    [CATEGORY_ID] => 1521
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/c10/c108aa5c1657b5ac096042164763211a.jpeg
-                        )
-
-                    [NAME] => Кайт Slingshot 2017 Turbine (Kite Only, 17 m) 17 m
-                    [BRAND] => Slingshot
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [370030_32 см)] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 71669
-                    [OFFER_ID] => 71669
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 370030
-                            [Размер] => 8" (20
-                            [Цвет] => 32 см)
-                        )
-
-                    [PRICE] => 3900
-                    [CATEGORY_ID] => 2051
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/5ea/5ea402c538e9ad2678cab7d1127c0c4c.jpeg
-                        )
-
-                    [NAME] => Слайдербар RideEngine 2017 Metal Sliding Bar (8" (20,32 см)) 32 см)
-                    [BRAND] => RideEngine
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [181500(05-19)_13 m] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 72046
-                    [OFFER_ID] => 72046
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 181500(05-19)
-                            [Размер] => Kite Only
-                            [Цвет] => 13 m
-                        )
-
-                    [PRICE] => 90300
-                    [CATEGORY_ID] => 1521
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/3bc/3bc097502a0277e0d93b80f9ff9baf70.jpeg
-                        )
-
-                    [NAME] => Кайт Slingshot 2018 Turbine (Kite Only, 13 m) 13 m
-                    [BRAND] => Slingshot
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [380010_48 см)] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 72211
-                    [OFFER_ID] => 72211
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 380010
-                            [Размер] => 12'' (30
-                            [Цвет] => 48 см)
-                        )
-
-                    [PRICE] => 3900
-                    [CATEGORY_ID] => 2051
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/354/3546e3c3da8ce8f13c4b9d8314b3849e.jpeg
-                        )
-
-                    [NAME] => Крюк RideEngine 2018 Kite Fixed Hook (12'' (30,48 см)) 48 см)
-                    [BRAND] => RideEngine
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [380020_4 см)] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 72212
-                    [OFFER_ID] => 72212
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 380020
-                            [Размер] => 10'' (25
-                            [Цвет] => 4 см)
-                        )
-
-                    [PRICE] => 3900
-                    [CATEGORY_ID] => 2051
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/549/5497913d0c489a1daf7f2b4367fb21b4.jpeg
-                        )
-
-                    [NAME] => Крюк RideEngine 2018 Windsurf Fixed Hook (10'' (25,4 см)) 4 см)
-                    [BRAND] => RideEngine
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [380030_48 см)] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 72215
-                    [OFFER_ID] => 72215
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 380030
-                            [Размер] => 12'' (30
-                            [Цвет] => 48 см)
-                        )
-
-                    [PRICE] => 3900
-                    [CATEGORY_ID] => 2051
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/d22/d226f2915d6690c97fd0fdf74910892f.jpeg
-                        )
-
-                    [NAME] => Слайдербар RideEngine 2018 Metal Sliding Bar (12'' (30,48 см)) 48 см)
-                    [BRAND] => RideEngine
-                    [DESCRIPTION] => 
-                )
-
-        )
-
-    [191300 --_07 m] => Array
-        (
-            [0] => Array
-                (
-                    [PARENT_ITEM_ID] => 72303
-                    [OFFER_ID] => 72303
-                    [ATTRIBUTES] => Array
-                        (
-                            [Артикул] => 191300 --
-                            [Размер] => Kite Only
-                            [Цвет] => 07 m
-                        )
-
-                    [PRICE] => 75500
-                    [CATEGORY_ID] => 1521
-                    [PICTURES] => Array
-                        (
-                            [0] => https://www.kite.ru/upload/iblock/ddf/ddf675c17b942506c9ca435761d818fe.jpeg
-                        )
-
-                    [NAME] => Кайт Slingshot 2019 Rally (Kite Only, 07 m) 07 m
-                    [BRAND] => Slingshot
                     [DESCRIPTION] => 
                 )
 

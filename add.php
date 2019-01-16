@@ -4,7 +4,7 @@
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 0;
+$length = 80;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
@@ -41,55 +41,6 @@ foreach ($resultArray as $key => $item) {
 					}
 				}
 			}
-
-			if (!empty($offer["CATEGORY_ID"])) {
-				switch ($offer["CATEGORY_ID"]) {
-
-					/**
-					 *  Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
-					 */
-
-					case 358:
-						$itemTypeId = 1126;
-						break;
-					case 360:
-						$itemTypeId = 1127;
-						break;
-					case 292:
-						$itemTypeId = 1128;
-						break;
-					case 401:
-						$itemTypeId = 1129;
-						break;
-					case 279:
-						$itemTypeId = 1130;
-						break;
-					case 282:
-						$itemTypeId = 1131;
-						break;
-
-					/**
-					 *  Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
-					 */
-
-					case 400:
-						$itemPurposeId = 1132;
-						break;
-					case 414:
-						$itemTypeId = 1133;
-						break;
-					case 415:
-					case 381:
-					case 370:
-						$itemTypeId = 1134;
-						break;
-					case 283:
-					case 366:
-					case 368:
-						$itemTypeId = 1135;
-						break;
-				}
-			}
 		}
 
 		if ($itemTypeId > 0) {
@@ -105,12 +56,16 @@ foreach ($resultArray as $key => $item) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
 
+		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
+
+//		echo "shortName " . $item[0]["SHORT_NAME"] . PHP_EOL;
+
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
 			"IBLOCK_ID" => $IBlockCatalogId,
 			"IBLOCK_SECTION_ID" => TEMP_CATALOG_SECTION,
-			"NAME" => $item[0]["NAME"],
-			"CODE" => CUtil::translit($item[0]["NAME"] . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
+			"NAME" => $itemName,
+			"CODE" => CUtil::translit($itemName . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "N",
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"DETAIL_TEXT" => (!empty ($item[0]["DESCRIPTION"])) ? html_entity_decode($item[0]["DESCRIPTION"]) : "",
@@ -160,17 +115,6 @@ foreach ($resultArray as $key => $item) {
 
 				$obElement = new CIBlockElement();
 
-				// Цена торгового предложения в зависимости от сезона
-				/*
-				if (in_array((int)$offer["CATEGORY_ID"], SUMMER)) {
-					$offerPrice = $offer["PRICE"] * 1.5;
-				}
-
-				if (in_array((int)$offer["CATEGORY_ID"], WINTER)) {
-					$offerPrice = $offer["PRICE"] * 1.6;
-				}
-				*/
-
 				$offerPrice = $offer["PRICE"];
 
 				$arOfferProps = [
@@ -186,11 +130,7 @@ foreach ($resultArray as $key => $item) {
 				if (!empty($offer["ATTRIBUTES"]["variation_sku"])){
 					$offerName = $offer["ATTRIBUTES"]["variation_sku"];
 				} else {
-
-					// TODO на данный момент офферы не имеют атрибутов размер и цвет, они включены в название
-
-//					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"];
-					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"];
+					$offerName = (!empty($offer["SHORT_NAME"])) ? $offer["SHORT_NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] : $offer["NAME"];
 				}
 
 				$arOfferFields = [

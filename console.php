@@ -460,9 +460,7 @@ foreach ($manufacturerArray as $manId => $man) {
 	require(__DIR__ . "/add.php");
 //}
 
-/**
- * Сохранение файла - источника
- */
+// Сохранение файла - источника
 echo Storage::storeCurrentXml($source);
 
 register_shutdown_function(function () {
