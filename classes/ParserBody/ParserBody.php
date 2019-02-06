@@ -70,6 +70,10 @@ class ParserBody
 
                     }
 
+                    if ($v->nodeName === 'url'){
+                    	self::$ta[$key]['URL'] = $v->nodeValue;
+					}
+
                     if ($v->nodeName === 'vendor') {
                         self::$ta[$key]['BRAND'] = $v->nodeValue;
                     }
