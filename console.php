@@ -118,28 +118,30 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-foreach ($resultArray as $key => $value){
+$resultArray = array_slice($resultArray, 0, 5); // Для отладки
 
-    foreach ($value as $k => $v){
+// Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
 
-//        echo $v["URL"] . PHP_EOL;
+// TODO вынести в отдельный класс или метод класса HtmlParser?
 
-        $htmlBody = HtmlParser::getBody($v["URL"]);
+foreach ($resultArray as $key => $value) {
 
-		if (!empty($htmlBody)) {
-		    $relativePath = HtmlParser::getDetailPicture($htmlBody);
-            if (!empty($relativePath)){
-				$pictureUrl = P_SITE_BASE_NAME . $relativePath;
-				echo $pictureUrl . PHP_EOL;
-            }
+	foreach ($value as $k => $v) {
+
+		$body = HtmlParser::getBody($v["URL"]);
+
+		if (!empty($body)) {
+
+			$resultArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
+
+            $resultArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
+
+            $resultArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
 		}
-		$resultArray[$key][$k]["PICTURES"]["HTML_PICTURE_URL"] = $pictureUrl;
-    }
+	}
 }
 
-
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-//file_put_contents(__DIR__ . "/logs/pictureUrl.log", print_r($pictureUrl, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 //exit();
 
@@ -196,7 +198,7 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
  * Обновление цен торговых предложений
  */
 
-if(!empty($catalogSkusWithoutParent) && !empty($resultArray)){
+if (!empty($catalogSkusWithoutParent) && !empty($resultArray)) {
 	Price::update($catalogSkusWithoutParent, $resultArray);
 }
 
@@ -346,9 +348,9 @@ foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
 			if (!in_array($attribute, $allSourcePropertiesArray)) {
-                if (!in_array($attribute, P_PROPERTIES_TO_EXCLUDE)){
+				if (!in_array($attribute, P_PROPERTIES_TO_EXCLUDE)) {
 					$allSourcePropertiesArray[] = $attribute;
-                }
+				}
 			}
 		}
 	}
@@ -479,12 +481,11 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
-	echo "\nСохраняем товары" . PHP_EOL;
-	require(__DIR__ . "/add.php");
+echo "\nСохраняем товары" . PHP_EOL;
+require(__DIR__ . "/add.php");
 //}
 
-// Сохранение файла - источника
-echo Storage::storeCurrentXml($source);
+//echo Storage::storeCurrentXml($source); // Сохранение файла - источника
 
 register_shutdown_function(function () {
 	global $startExecTime;

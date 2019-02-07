@@ -29,9 +29,27 @@ foreach ($resultArray as $key => $item) {
 
 		$obElement = new CIBlockElement;
 
+		/*
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
+					$tempPicture = CFile::MakeFileArray($picture);
+					if (strlen($err = CFile::CheckImageFile($tempPicture)) > 0) {
+						$pictureErrorsArray[] = $err;
+						continue;
+					} else {
+						$item[$itemId]["MORE_PHOTO"][$pictureId] = $tempPicture;
+					}
+				}
+			}
+		}
+		*/
+
+		// MORE_PHOTO из Html - парсера
+
+		foreach ($item as $itemId => $offer){
+			if (count($offer["HTML_MORE_PHOTO"]) > 1) {
+				foreach ($offer["HTML_MORE_PHOTO"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
 					if (strlen($err = CFile::CheckImageFile($tempPicture)) > 0) {
 						$pictureErrorsArray[] = $err;
@@ -68,7 +86,8 @@ foreach ($resultArray as $key => $item) {
 			"CODE" => CUtil::translit($itemName . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "N",
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
-			"DETAIL_TEXT" => (!empty ($item[0]["DESCRIPTION"])) ? html_entity_decode($item[0]["DESCRIPTION"]) : "",
+//			"DETAIL_TEXT" => (!empty ($item[0]["DESCRIPTION"])) ? html_entity_decode($item[0]["DESCRIPTION"]) : "",
+			"DETAIL_TEXT" => (!empty ($item[0]["HTML_DESCRIPTION"])) ? html_entity_decode($item[0]["HTML_DESCRIPTION"]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => P_SITE_NAME,
 				"GROUP_ID" => $key,
@@ -82,7 +101,7 @@ foreach ($resultArray as $key => $item) {
 		if ($productId = $obElement->Add($itemFieldsArray)) {
 			echo "Добавлен товар " . $productId . "\n";
 		} else {
-			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . "\n";
+			echo "Ошибка добавления товара: " . str_replace("<br>", "", $obElement->LAST_ERROR) . "\n";
 			continue;
 		}
 
