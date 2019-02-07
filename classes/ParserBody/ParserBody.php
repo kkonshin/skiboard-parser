@@ -200,7 +200,7 @@ class ParserBody
                 }
             }
 
-//			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsArray, true));
+//            file_put_contents(__DIR__ . "/groupedItemsArray__source.log", print_r(self::$groupedItemsArray, true));
 
             return self::$groupedItemsArray;
 

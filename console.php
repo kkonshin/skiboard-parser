@@ -28,6 +28,8 @@ use Parser\Source\Source;
 use Parser\Source\Storage;
 use Parser\ParserBody\ParserBody;
 
+use Parser\HtmlParser\HtmlParser;
+
 use Parser\Update;
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -116,7 +118,28 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+foreach ($resultArray as $key => $value){
+
+    foreach ($value as $k => $v){
+
+//        echo $v["URL"] . PHP_EOL;
+
+        $htmlBody = HtmlParser::getBody($v["URL"]);
+
+		if (!empty($htmlBody)) {
+		    $relativePath = HtmlParser::getDetailPicture($htmlBody);
+            if (!empty($relativePath)){
+				$pictureUrl = P_SITE_BASE_NAME . $relativePath;
+				echo $pictureUrl . PHP_EOL;
+            }
+		}
+		$resultArray[$key][$k]["PICTURES"]["HTML_PICTURE_URL"] = $pictureUrl;
+    }
+}
+
+
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/pictureUrl.log", print_r($pictureUrl, true));
 
 //exit();
 

@@ -34,6 +34,8 @@ define('SIZE_PROPERTY_ID', 120); // ID свойства "Размер"
 define('PROPERTY_SKIBOARD_ITEM_TYPE', 214); // ID свойства "Тип"
 define('PROPERTY_SKIBOARD_ITEM_PURPOSE', 215); // ID свойства "Назначение"
 define('P_SITE_NAME', 'kite.ru'); // Свойство товара "Сайт" - сайт с которого происходит товар
+define('P_SITE_BASE_NAME', 'https://www.kite.ru'); // Префикс для путей к картинкам донорского сайта и т.п.
+
 
 $translitParams = Array(
 	"max_len" => "600", // обрезает символьный код до 100 символов
