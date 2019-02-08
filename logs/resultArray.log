@@ -28,37 +28,27 @@ Array
                         )
 
                     [HTML_DESCRIPTION] => 
-    <div itemprop="description" class="element-description">
       <p></p>
 <div align="center">
 	<img src="../../upload/iblock/919/919a7be0694a3668ec6aaaa316196544.jpeg" alt="" border="0"><br><div align="left">
 		Холодная сварка для ремонта оборудования <br>
 </div>
 </div>
-    </div>
-    <div class="element-news">
-                      
-    </div>
-    <div class="comments">
-      <ul data-tab class="tabs">
-<li class="tab-title">
-          <h4 class="comments_title">Оставить комментарий</h4>
-        </li>
-        <li class="tab-title active"><a href="#commentsVK">Вконтакте</a></li>
-        <li class="tab-title"><a href="#commentsFB">Facebook</a></li>
-      </ul>
-<div class="tabs-content">
-        <div id="commentsVK" class="content active">
-                              <!-- Put this div tag to the place, where the Comments block will be -->
-          <div id="vk_comments"></div>
-                  </div>
-        <div id="commentsFB" class="content">
-          <div id="fb-root"></div>
-                    <div class="fb-comments" data-href="http://www.kite.ru:443/catalog/aksessuary/slingshot_1/aksessuar_slingshot_2009_dr_ding_s_stick_200gr__50569/" data-numposts="10" data-width="800" data-colorscheme="light"></div>
-        </div>
-      </div>
-    </div>
-  
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p><div align="center">	<img src="../../upload/iblock/919/919a7be0694a3668ec6aaaa316196544.jpeg" alt="" border="0"><br><div align="left">		Холодная сварка для ремонта оборудования <br></div></div>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => /upload/iblock/919/919a7be0694a3668ec6aaaa316196544.jpeg
+                                )
+
+                        )
+
                 )
 
         )
@@ -79,7 +69,7 @@ Array
                     [CATEGORY_ID] => 1535
                     [PICTURES] => Array
                         (
-                            [0] => https://www.kite.ru/upload/iblock/197/1973ec954a01e77ebef4957123e087d5.jpeg
+                            [0] => https://www.kite.ru/upload/iblock/ad0/ad055d8ab1cefc88d6d8b8145f62860c.jpeg
                         )
 
                     [NAME] => Тренировочный кайт Slingshot B3 Trainer Kite Package
@@ -89,16 +79,15 @@ Array
 свои силы как просто в управление, так и 
 в своем первом катании с использованием 
 кайта.
-                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/197/1973ec954a01e77ebef4957123e087d5.jpeg
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/ad0/ad055d8ab1cefc88d6d8b8145f62860c.jpeg
                     [HTML_MORE_PHOTO] => Array
                         (
-                            [1] => https://www.kite.ru/upload/resize_cache/iblock/029/1200_800_1/0292d12556f3aee964945e3eb24833e8.jpeg
-                            [2] => https://www.kite.ru/upload/resize_cache/iblock/f40/1200_800_1/f403c44c7ab16e2b1a2f02100ca1754d.jpeg
-                            [3] => https://www.kite.ru/upload/resize_cache/iblock/2e7/1200_800_1/2e7bf1a2d1d6fdee7ee8798bf7b95481.jpeg
+                            [1] => https://www.kite.ru/upload/resize_cache/iblock/641/1200_800_1/64122daa5a0270f91b7d950fc6b1df3a.jpeg
+                            [2] => https://www.kite.ru/upload/resize_cache/iblock/be6/1200_800_1/be6079714851b7d9ce0dd6a20510e817.jpeg
+                            [3] => https://www.kite.ru/upload/resize_cache/iblock/e96/1200_800_1/e96c1633e589a3003a47e96ecb9f6146.jpeg
                         )
 
                     [HTML_DESCRIPTION] => 
-    <div itemprop="description" class="element-description">
       <p></p>
 <p>
 </p>
@@ -139,30 +128,24 @@ Array
  <b><a href="http://kite.ru/news/detail.php?ID=62762">Пилотажный кайт, как окно в мир кайтсерфинга.</a></b>
 </p>
  <br>
-</div>
-    <div class="element-news">
-                      
-    </div>
-    <div class="comments">
-      <ul data-tab class="tabs">
-<li class="tab-title">
-          <h4 class="comments_title">Оставить комментарий</h4>
-        </li>
-        <li class="tab-title active"><a href="#commentsVK">Вконтакте</a></li>
-        <li class="tab-title"><a href="#commentsFB">Facebook</a></li>
-      </ul>
-<div class="tabs-content">
-        <div id="commentsVK" class="content active">
-                              <!-- Put this div tag to the place, where the Comments block will be -->
-          <div id="vk_comments"></div>
-                  </div>
-        <div id="commentsFB" class="content">
-          <div id="fb-root"></div>
-                    <div class="fb-comments" data-href="http://www.kite.ru:443/catalog/pilotazhki/trenirovochnyy_kayt_slingshot_b3_trainer_kite_package__50776/" data-numposts="10" data-width="800" data-colorscheme="light"></div>
-        </div>
-      </div>
-    </div>
-  
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p><p></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;">	 Тренировочный кайт – это луший способ для начала обучению кайтингу. Тренировочные кайты – это малая версия больших и мощных кайтов. Размеры тренировочных кайтов варьируются от 1 до 3 метров. Но, не смотря на относительно небольшие размеры, с тренировочными кайтами лучше не валять дурака, так как они достаточно энергичны и мощны при правильном использовании и быстром ветре. Кайты B2 и B3 имеют неопровержимую репутацию лучших когда-либо произведенных тренировочных кайтов. В данном случае кайт B3 - площадью 3 кв.м. Кайт оснащен страховкой и планкой управления, что заставит вас сразу привыкать к правильному управлению. </p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;" align="center"> <img alt="Тренировочный-кайт-Slingshot-B3Trainer-Kite-Package.jpg" src="/upload/medialibrary/b18/b183a1451d12bfe35a4d120ae6caac8d.jpg" title="Тренировочный-кайт-Slingshot-B3Trainer-Kite-Package.jpg" width="500" border="0" height="500"></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;" align="center"> <br></p><p class="MsoNormal" style="margin-bottom: 0.0001pt; line-height: normal;" align="left"> <i><b><a target="_blank"><u>Обзор пилотажного кайта</u></a></b></i></p><p></p><ul class="accordion" data-accordion=""><li class="accordion-navigation"> <a>Комплектация</a>	<div id="panel1a" class="content"> <strong>Комплектация:</strong>		<p>		</p>		<p> <strong>- Купол - 3 квадратных метра</strong> <br><strong><strong>- Планка</strong> <br>			 - Стропы <br>			 - Страховочный лиш<br>			 - Удобная сумка для хранения и переноски <br></strong>		</p>	</div> </li></ul><p style="margin-bottom: 0.0001pt; line-height: normal;" class="MsoNormal"> <b>Статьи / обзоры </b></p><p style="margin-bottom: 0.0001pt; line-height: normal;" class="MsoNormal"> <a><b>Slingshot B3 — обзор пилотажного кайта</b></a></p><p style="margin-bottom: 0.0001pt; line-height: normal;" class="MsoNormal"> <b><a>Пилотажный кайт, как окно в мир кайтсерфинга.</a></b></p> <br>
+                            [LINKS] => Array
+                                (
+                                    [0] => http://www.kite.ru/news/detail.php?ID=64141
+                                    [1] => #panel1a
+                                    [2] => http://www.kite.ru/information_channel/news/slingshot_b3_obzor_pilotazhnogo_kayta/
+                                    [3] => http://kite.ru/news/detail.php?ID=62762
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => /upload/medialibrary/b18/b183a1451d12bfe35a4d120ae6caac8d.jpg
+                                )
+
+                        )
+
                 )
 
         )
@@ -195,34 +178,24 @@ Array
                         )
 
                     [HTML_DESCRIPTION] => 
-    <div itemprop="description" class="element-description">
       <p><br><b>Comp Stick Leader Line</b> - это две направляющие стропы от планки, связующее звено управляющих строп с планкой.<br></p>
 <p style="text-align: center;">
  <img width="459" alt="Leader_lines.png" src="/upload/medialibrary/b9c/b9c932c95618bf86353bcc03c29cb4f8.png" height="600" title="Leader_lines.png"></p>
-    </div>
-    <div class="element-news">
-                      
-    </div>
-    <div class="comments">
-      <ul data-tab class="tabs">
-<li class="tab-title">
-          <h4 class="comments_title">Оставить комментарий</h4>
-        </li>
-        <li class="tab-title active"><a href="#commentsVK">Вконтакте</a></li>
-        <li class="tab-title"><a href="#commentsFB">Facebook</a></li>
-      </ul>
-<div class="tabs-content">
-        <div id="commentsVK" class="content active">
-                              <!-- Put this div tag to the place, where the Comments block will be -->
-          <div id="vk_comments"></div>
-                  </div>
-        <div id="commentsFB" class="content">
-          <div id="fb-root"></div>
-                    <div class="fb-comments" data-href="http://www.kite.ru:443/catalog/aksessuary/slingshot_1/aksessuar_slingshot_comp_stick_leader_line__51548/" data-numposts="10" data-width="800" data-colorscheme="light"></div>
-        </div>
-      </div>
-    </div>
-  
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p><br><b>Comp Stick Leader Line</b> - это две направляющие стропы от планки, связующее звено управляющих строп с планкой.<br></p><p style="text-align: center;"> <img width="459" alt="Leader_lines.png" src="/upload/medialibrary/b9c/b9c932c95618bf86353bcc03c29cb4f8.png" height="600" title="Leader_lines.png"></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => /upload/medialibrary/b9c/b9c932c95618bf86353bcc03c29cb4f8.png
+                                )
+
+                        )
+
                 )
 
         )
@@ -258,32 +231,21 @@ Array
                         )
 
                     [HTML_DESCRIPTION] => 
-    <div itemprop="description" class="element-description">
       <p>Комплект из 5 шлангов 19 см, диаметр внеш 1см, диаметр внутр. 0,6см. Так же в комплект входят зажимы, чехлы, стяжки.</p>
-    </div>
-    <div class="element-news">
-                      
-    </div>
-    <div class="comments">
-      <ul data-tab class="tabs">
-<li class="tab-title">
-          <h4 class="comments_title">Оставить комментарий</h4>
-        </li>
-        <li class="tab-title active"><a href="#commentsVK">Вконтакте</a></li>
-        <li class="tab-title"><a href="#commentsFB">Facebook</a></li>
-      </ul>
-<div class="tabs-content">
-        <div id="commentsVK" class="content active">
-                              <!-- Put this div tag to the place, where the Comments block will be -->
-          <div id="vk_comments"></div>
-                  </div>
-        <div id="commentsFB" class="content">
-          <div id="fb-root"></div>
-                    <div class="fb-comments" data-href="http://www.kite.ru:443/catalog/aksessuary/slingshot_1/remkomplekt_slingshot_one_pump_parts_kit__51549/" data-numposts="10" data-width="800" data-colorscheme="light"></div>
-        </div>
-      </div>
-    </div>
-  
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p>Комплект из 5 шлангов 19 см, диаметр внеш 1см, диаметр внутр. 0,6см. Так же в комплект входят зажимы, чехлы, стяжки.</p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
                 )
 
         )
@@ -316,32 +278,21 @@ Array
                         )
 
                     [HTML_DESCRIPTION] => 
-    <div itemprop="description" class="element-description">
       <p></p>
-    </div>
-    <div class="element-news">
-                      
-    </div>
-    <div class="comments">
-      <ul data-tab class="tabs">
-<li class="tab-title">
-          <h4 class="comments_title">Оставить комментарий</h4>
-        </li>
-        <li class="tab-title active"><a href="#commentsVK">Вконтакте</a></li>
-        <li class="tab-title"><a href="#commentsFB">Facebook</a></li>
-      </ul>
-<div class="tabs-content">
-        <div id="commentsVK" class="content active">
-                              <!-- Put this div tag to the place, where the Comments block will be -->
-          <div id="vk_comments"></div>
-                  </div>
-        <div id="commentsFB" class="content">
-          <div id="fb-root"></div>
-                    <div class="fb-comments" data-href="http://www.kite.ru:443/catalog/aksessuary/slingshot_1/kosichki_slingshot_standard_kite_pigtails_kit__51551/" data-numposts="10" data-width="800" data-colorscheme="light"></div>
-        </div>
-      </div>
-    </div>
-  
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
                 )
 
         )

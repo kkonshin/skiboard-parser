@@ -137,6 +137,8 @@ foreach ($resultArray as $key => $value) {
             $resultArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
 
             $resultArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
+
+            $resultArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($resultArray[$key][$k]["HTML_DESCRIPTION"]);
 		}
 	}
 }

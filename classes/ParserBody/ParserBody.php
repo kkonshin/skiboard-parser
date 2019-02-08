@@ -20,13 +20,14 @@ class ParserBody
 
     public static function parse(Crawler $crawler = null)
     {
-        $sourceDate = $crawler->filter('yml_catalog')->attr('date');
-
-        echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
-
-        $offers = $crawler->filter('offer');
-
         try {
+
+			$sourceDate = $crawler->filter('yml_catalog')->attr('date');
+
+			echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
+
+			$offers = $crawler->filter('offer');
+
             // Все параметры всех офферов
             $allItems = $offers->each(function (Crawler $node, $i) {
                 return $node->children();

@@ -2,9 +2,9 @@
 
 namespace Parser\HtmlParser;
 
-use Composer\Command\CreateProjectCommand;
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
+use voku\helper\HtmlDomParser;
 
 class HtmlParser
 {
@@ -44,10 +44,11 @@ class HtmlParser
 	 * @return array|bool
 	 */
 
-	public static function getMorePhoto($body){
+	public static function getMorePhoto($body)
+	{
 		try {
 			$crawler = new Crawler($body);
-			$links = $crawler->filter('.element-slide-main .fancybox-thumbs')->each(function(Crawler $node){
+			$links = $crawler->filter('.element-slide-main .fancybox-thumbs')->each(function (Crawler $node) {
 				return P_SITE_BASE_NAME . $node->attr('href');
 			});
 			unset($links[0]);
@@ -67,7 +68,7 @@ class HtmlParser
 	{
 		try {
 			$crawler = new Crawler($body);
-			$links = $crawler->filter('.element-slide-main .fancybox-thumbs')->each(function(Crawler $node){
+			$links = $crawler->filter('.element-slide-main .fancybox-thumbs')->each(function (Crawler $node) {
 				return P_SITE_BASE_NAME . $node->attr('href');
 			});
 			return $links[0];
@@ -81,7 +82,7 @@ class HtmlParser
 	{
 		try {
 			$crawler = new Crawler($body);
-			$descriptionHtml = $crawler->filter('#description')->html();
+			$descriptionHtml = $crawler->filter('.element-description')->html();
 			return $descriptionHtml;
 		} catch (\Exception $e) {
 			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
@@ -91,9 +92,44 @@ class HtmlParser
 
 	public static function parseDescription($descriptionHtml)
 	{
-		// TODO нужно ли парсить доступные картинки?
+		try {
 
-		$crawler = new Crawler($descriptionHtml);
+			$parsedDescription = [];
+
+			$crawler = new Crawler($descriptionHtml);
+
+			$links = $crawler->filter('a')->each(function (Crawler $node) {
+				return $node->attr('href');
+			});
+
+			$images = $crawler->filter('img')->each(function (Crawler $node) {
+
+				$src = str_replace('../..', '', $node->attr('src'));
+
+				return $src;
+
+			});
+
+			$dom = new HtmlDomParser($descriptionHtml);
+
+			foreach ($dom->find('a') as $img) {
+				$img->href = '';
+			}
+
+			$parsedDescription["HTML"] = $dom->html();
+			$parsedDescription["LINKS"] = $links;
+			$parsedDescription["IMAGES"] = $images;
+
+			return $parsedDescription;
+
+		} catch (\Exception $e) {
+			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
+			return false;
+		}
 	}
 
+	public static function modifyDescription($descriptionHtml)
+	{
+
+	}
 }
