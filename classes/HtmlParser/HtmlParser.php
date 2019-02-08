@@ -106,7 +106,7 @@ class HtmlParser
 
 				$src = str_replace('../..', '', $node->attr('src'));
 
-				return $src;
+				return P_SITE_BASE_NAME . $src;
 
 			});
 
@@ -116,7 +116,7 @@ class HtmlParser
 				$img->href = '';
 			}
 
-			$parsedDescription["HTML"] = $dom->html();
+			$parsedDescription["HTML"] = trim($dom->html());
 			$parsedDescription["LINKS"] = $links;
 			$parsedDescription["IMAGES"] = $images;
 

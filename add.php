@@ -29,22 +29,6 @@ foreach ($resultArray as $key => $item) {
 
 		$obElement = new CIBlockElement;
 
-		/*
-		foreach ($item as $itemId => $offer) {
-			if (count($offer["PICTURES"]) > 1) {
-				foreach ($offer["PICTURES"] as $pictureId => $picture) {
-					$tempPicture = CFile::MakeFileArray($picture);
-					if (strlen($err = CFile::CheckImageFile($tempPicture)) > 0) {
-						$pictureErrorsArray[] = $err;
-						continue;
-					} else {
-						$item[$itemId]["MORE_PHOTO"][$pictureId] = $tempPicture;
-					}
-				}
-			}
-		}
-		*/
-
 		// MORE_PHOTO из Html - парсера
 
 		foreach ($item as $itemId => $offer){
@@ -61,12 +45,12 @@ foreach ($resultArray as $key => $item) {
 			}
 		}
 
-		if ($itemTypeId > 0) {
-			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
-		}
-		if ($itemPurposeId > 0) {
-			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
-		}
+//		if ($itemTypeId > 0) {
+//			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
+//		}
+//		if ($itemPurposeId > 0) {
+//			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
+//		}
 
 		// Лог ошибок изображений
 
@@ -76,7 +60,15 @@ foreach ($resultArray as $key => $item) {
 
 		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
 
-//		echo "shortName " . $item[0]["SHORT_NAME"] . PHP_EOL;
+
+		// Обработка детального описания товара
+
+		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage){
+			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] =  CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
+			echo $item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] . PHP_EOL;
+		}
+
+		// TODO в описании товара заменить в тегах img src на путь к файлу
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),

@@ -44,7 +44,7 @@ Array
 
                             [IMAGES] => Array
                                 (
-                                    [0] => /upload/iblock/919/919a7be0694a3668ec6aaaa316196544.jpeg
+                                    [0] => https://www.kite.ru/upload/iblock/919/919a7be0694a3668ec6aaaa316196544.jpeg
                                 )
 
                         )
@@ -141,7 +141,7 @@ Array
 
                             [IMAGES] => Array
                                 (
-                                    [0] => /upload/medialibrary/b18/b183a1451d12bfe35a4d120ae6caac8d.jpg
+                                    [0] => https://www.kite.ru/upload/medialibrary/b18/b183a1451d12bfe35a4d120ae6caac8d.jpg
                                 )
 
                         )
@@ -191,7 +191,7 @@ Array
 
                             [IMAGES] => Array
                                 (
-                                    [0] => /upload/medialibrary/b9c/b9c932c95618bf86353bcc03c29cb4f8.png
+                                    [0] => https://www.kite.ru/upload/medialibrary/b9c/b9c932c95618bf86353bcc03c29cb4f8.png
                                 )
 
                         )
@@ -283,6 +283,826 @@ Array
                     [HTML_PARSED_DESCRIPTION] => Array
                         (
                             [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [4] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 51552
+                    [OFFER_ID] => 51552
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/remkomplekt_slingshot_super_patch_kit__51552/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 73085
+                        )
+
+                    [PRICE] => 300
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/6cb/6cb47497c4e0cdca998f12105c573ee7.jpeg
+                        )
+
+                    [NAME] => Ремкомплект Slingshot Super Patch Kit
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Ремкомплект Slingshot Super Patch Kit - набор силиконовых 
+"заплаток" для ремонта баллона кайта
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/6cb/6cb47497c4e0cdca998f12105c573ee7.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+<p>
+	 Самоклеющиеся заплатки для оперативного ремонта баллона и ткани купола.
+</p>
+<p>
+	 Размер 2 см на 2 см
+</p>
+<p>
+	 В комплекте 6 шт
+</p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p><p>	 Самоклеющиеся заплатки для оперативного ремонта баллона и ткани купола.</p><p>	 Размер 2 см на 2 см</p><p>	 В комплекте 6 шт</p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [5] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 53181
+                    [OFFER_ID] => 53181
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/palets_chikenlupa_slingshot_comp_stick_donkey_dick_2010_2013__53181/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14380020
+                        )
+
+                    [PRICE] => 1700
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/b93/b93b07a48d4bc936e37360ba675bed9f.jpeg
+                        )
+
+                    [NAME] => Палец Чикенлупа Slingshot 2010 - 2013 Donkey Dik with Velcro 
+attachment
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Палец Чикенлупа с липучкой Slingshot 2014 Donkey 
+Dik with Velcro attachment
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/b93/b93b07a48d4bc936e37360ba675bed9f.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p><br><b>
+Палец Чикенлупа Slingshot 2010 - 2013 Donkey Dik with Velcro attachment<br></b><br>
+ Фиксатор для петли чикенлупа на крюке трапеции. Универсальный, на липучке, подходит ко всем моделям кайта.<br><br><img title="DonkeyDickwithvelcro.png" src="/upload/medialibrary/eff/eff09129b84b4d7ab07dbd5b917d5ea2.png" alt="DonkeyDickwithvelcro.png" height="900" width="918"><br><br><br></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p><br><b>Палец Чикенлупа Slingshot 2010 - 2013 Donkey Dik with Velcro attachment<br></b><br> Фиксатор для петли чикенлупа на крюке трапеции. Универсальный, на липучке, подходит ко всем моделям кайта.<br><br><img title="DonkeyDickwithvelcro.png" src="/upload/medialibrary/eff/eff09129b84b4d7ab07dbd5b917d5ea2.png" alt="DonkeyDickwithvelcro.png" height="900" width="918"><br><br><br></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => https://www.kite.ru/upload/medialibrary/eff/eff09129b84b4d7ab07dbd5b917d5ea2.png
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [6] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 53185
+                    [OFFER_ID] => 53185
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/verevka_trimmera_slingshot_2010_2014_comp_stick_chicken_loop_rope__53185/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 107916
+                        )
+
+                    [PRICE] => 2500
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/72e/72e956345472240eab437e7ddc582078.jpeg
+                        )
+
+                    [NAME] => Веревка триммера Slingshot 2010- 2017 Comp Stick DePower 
+Trim Rope 4 Guardian
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Веревка триммера Slingshot 2010- 2014 Comp Stick Chicken 
+Loop Rope
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/72e/72e956345472240eab437e7ddc582078.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p><br><span style="background-color: #ffffff;"><b>Веревка триммера Slingshot 2010- 2015 Comp Stick Chicken Loop Rope<br></b></span><span style="background-color: #ffffff;"><b><br></b></span><span style="background-color: #ffffff;">Если дэпауэрная веревка успела порваться за предшествующий сезон, Вы можете без труда ее заменить на новую, продлив таким образом жизнь и кайта, и планки. </span><span style="background-color: #ffffff;">Возможность сбрасывать тягу кайта с помощью дэпауэра делает управление более простым и обеспечивает Вашу безопасность в случае утраты контроля над змеем. Поэтому подбирайте только оригинальные запчасти для своего снаряжения.<br></span><br>
+* Длина веревки триммера равна 150 см<br>
+**Веревка имеет утолщение с одного конца<br><span style="background-color: #ffffff;"><br></span>
+</p>
+<p style="text-align: center;">
+ <img width="500" alt="a5810e38aa0ce3e7b13bcf18cf6b8e60.jpeg" src="/upload/medialibrary/70b/70b02589638ceb5f28c35ac9dd1e5c01.jpeg" height="500" title="a5810e38aa0ce3e7b13bcf18cf6b8e60.jpeg"></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p><br><span style="background-color: #ffffff;"><b>Веревка триммера Slingshot 2010- 2015 Comp Stick Chicken Loop Rope<br></b></span><span style="background-color: #ffffff;"><b><br></b></span><span style="background-color: #ffffff;">Если дэпауэрная веревка успела порваться за предшествующий сезон, Вы можете без труда ее заменить на новую, продлив таким образом жизнь и кайта, и планки. </span><span style="background-color: #ffffff;">Возможность сбрасывать тягу кайта с помощью дэпауэра делает управление более простым и обеспечивает Вашу безопасность в случае утраты контроля над змеем. Поэтому подбирайте только оригинальные запчасти для своего снаряжения.<br></span><br>* Длина веревки триммера равна 150 см<br>**Веревка имеет утолщение с одного конца<br><span style="background-color: #ffffff;"><br></span></p><p style="text-align: center;"> <img width="500" alt="a5810e38aa0ce3e7b13bcf18cf6b8e60.jpeg" src="/upload/medialibrary/70b/70b02589638ceb5f28c35ac9dd1e5c01.jpeg" height="500" title="a5810e38aa0ce3e7b13bcf18cf6b8e60.jpeg"></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => https://www.kite.ru/upload/medialibrary/70b/70b02589638ceb5f28c35ac9dd1e5c01.jpeg
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [7] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 53193
+                    [OFFER_ID] => 53193
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/kosichki_slingshot_2010_800lb_pigtail__53193/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 107908
+                        )
+
+                    [PRICE] => 200
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/d60/d60114f8531072a7b9a8edfc76f1a4a7.jpeg
+                        )
+
+                    [NAME] => Косички Slingshot 2010 800lb Pigtail
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Косички Slingshot 2010 800lb Pigtail для кайтов Slingshot
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/d60/d60114f8531072a7b9a8edfc76f1a4a7.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [8] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 64115
+                    [OFFER_ID] => 64115
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/aksessuar_slingshot_2010_2014_center_of_the_universe_swivel__64115/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 107910
+                        )
+
+                    [PRICE] => 7000
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/005/0057231d6c101c835462c1a9de3a5e48.jpeg
+                        )
+
+                    [NAME] => Аксессуар Slingshot 2010 - 2017 Center of the Universe Swivel
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Аксессуар Slingshot 2010 - 2014 Center of the Universe Swivel 
+- вертлюг
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/005/0057231d6c101c835462c1a9de3a5e48.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [Sure Fit Valve Clip - US] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 64118
+                    [OFFER_ID] => 64118
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/aksessuar_sure_fit_valve_clip_us__64118/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => Sure Fit Valve Clip - US
+                        )
+
+                    [PRICE] => 300
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/7d2/7d2cad1a3316a7408428de51c71bcbde.jpeg
+                        )
+
+                    [NAME] => Аксессуар Sure Fit Valve Clip - US
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Аксессуар Sure Fit Valve Clip - US
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/7d2/7d2cad1a3316a7408428de51c71bcbde.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [9] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 64610
+                    [OFFER_ID] => 64610
+                    [URL] => https://www.kite.ru/catalog/aksessuary/kaytbordovye_krepleniya_i_botinki/plavniki_slingshot_2011_arcane_fin_pack__64610/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 113805
+                        )
+
+                    [PRICE] => 3300
+                    [CATEGORY_ID] => 1882
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/0a2/0a2ef8ba56019f3227cf4f9654625c2d.jpeg
+                        )
+
+                    [NAME] => Плавники Slingshot Arcane Fin Pack
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Плавники Slingshot Arcane Fin Pack
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/0a2/0a2ef8ba56019f3227cf4f9654625c2d.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p><img title="IMG_20150821_140714.jpg" src="/upload/medialibrary/365/365fee086f8ad4fc8dc02f9e5202429b.jpg" alt="IMG_20150821_140714.jpg" height="801" width="1024"><br><br><img title="IMG_20150821_140714.jpg" src="/upload/medialibrary/9ea/9eac48afdcffbca9d1e2e98fe5e630d9.jpg" alt="IMG_20150821_140714.jpg" height="801" width="1024"><br><br></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p><img title="IMG_20150821_140714.jpg" src="/upload/medialibrary/365/365fee086f8ad4fc8dc02f9e5202429b.jpg" alt="IMG_20150821_140714.jpg" height="801" width="1024"><br><br><img title="IMG_20150821_140714.jpg" src="/upload/medialibrary/9ea/9eac48afdcffbca9d1e2e98fe5e630d9.jpg" alt="IMG_20150821_140714.jpg" height="801" width="1024"><br><br></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => https://www.kite.ru/upload/medialibrary/365/365fee086f8ad4fc8dc02f9e5202429b.jpg
+                                    [1] => https://www.kite.ru/upload/medialibrary/9ea/9eac48afdcffbca9d1e2e98fe5e630d9.jpg
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [крюкSS] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 64745
+                    [OFFER_ID] => 64745
+                    [URL] => https://www.kite.ru/catalog/aksessuary/rideengine/kryuk_slingshot_kite_kryuk_dlya_trapetsii__64742/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => крюкSS
+                        )
+
+                    [PRICE] => 2600
+                    [CATEGORY_ID] => 2051
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/d8e/d8e672458a2018d53a7c374a7c646759.jpeg
+                        )
+
+                    [NAME] => Крюк Slingshot Kite (Крюк для трапеции) 25см (M/L)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/d8e/d8e672458a2018d53a7c374a7c646759.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p>25 см</p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p>25 см</p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [10] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 65498
+                    [OFFER_ID] => 65498
+                    [URL] => https://www.kite.ru/catalog/aksessuary/kaytbordovye_krepleniya_i_botinki/padsy_2013_the_joint_kite_binding__65493/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 13400
+                        )
+
+                    [PRICE] => 6500
+                    [CATEGORY_ID] => 1882
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/dc2/dc294425c12f545149c10a8af02cafc1.jpeg
+                        )
+
+                    [NAME] => Крепления Slingshot 2013 The Joint -(Kite Binding) (S/M)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => 
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/dc2/dc294425c12f545149c10a8af02cafc1.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                            [1] => https://www.kite.ru/upload/iblock/8c5/8c53121a18569d817573e61fb106c849.jpeg
+                            [2] => https://www.kite.ru/upload/iblock/f68/f6803e527c7211c5abb9e4f1885a2aed.jpeg
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+<h2>2013 Joint S/M, M/L, L/XL Крепления</h2>
+<p>
+	<b>Обзор</b>
+</p>
+<p>
+	Главная особенность это небольшое возвышение закрывающее пятку, двойные неопреновые петли, пена двойной плотности и инновационная система крепления Bolt-on, все это делает Joint лучшим выбором для райдеров, которым нудно все и сразу. 2013 Joint - это революция в характеристиках креплений и трендовый стиль!
+</p>
+<p>
+	<b>Особенности</b>
+</p>
+<p>
+	Универсальная система крепления. Сделана для быстрой и простой установки.
+</p>
+<p>
+	2-х ступенчатая система липучек. Быстрая и легкая настройка, хорошая поддержка даже на самых жестких приземлениях. Комфорт с полным контролем доски, и петли можно заменить.
+</p>
+<p>
+	Петли с прослойкой из неопрена. Максимальный комфорт и поддержка.
+</p>
+<p>
+	Пена двойной плотности. Мягкий комфорт. Лучшие характеристики и непревзойденная поддержка.
+</p>
+<p>
+	Инновационная система крепления Bolt on. Быстрая и легкая установка. Универсальная постановка.
+</p>
+<p>
+	Возвышение, закрывающее пятку. Контурный дизайн и текстура не скользящей поверхности, чтобы нога лучше фиксировалась.
+</p>
+<p>
+	Возможность определять места крепления. Теперь райдеры могут сами выбрать стойку.
+</p>
+<p>
+	Структура встроенной базы. Прочность и изгибы - никогда раньше установка не была такой легкой.
+</p>
+<p>
+	Легендарная конструкция Slingshot
+</p>
+<p>
+	Материалы класса премиум, инновационный дизайн и постоянно тестирование обеспечивают прочность и отличные качества.
+</p>
+<p>
+	<b>Комплектация</b>
+</p>
+<p>
+	+Петли, фиксирующиеся липучкой.
+</p>
+<p>
+	+ Коврики из пены двойной плотности
+</p>
+<p>
+	+ 4 болта и стальной набор для крепления Fastrack
+</p>
+ <b>Размерный ряд </b>
+<p>
+	S/M US 4 - 8 EURO 37 - 41 UK 3.5 - 7.5 CM 22.5 - 25.4
+</p>
+<p>
+	M/L US 8 - 11EURO 41 - 44 UK 7.5 - 10.5 CM 25.4 - 27.9
+</p>
+<p>
+	L/XL US 11+ EURO 44+ UK 10.5+ CM 27.9+
+</p>
+<p>
+	<a href="http://www.kite.ru/information_channel/news/test_kayta_slingshot_rally_2014_v_samare/"><b>The Joint в Самаре</b></a>
+</p>
+<p>
+	<b><a href="http://www.kite.ru/news/detail.php?ID=57425" id="bxid_811230">The Joint -(Kite Shoe) отзывы от Кайтпанков(Владивосток)</a></b>
+</p>
+ <b><a rel="nofollow" href="http://kiteforum.spb.ru/viewtopic.php?id=8658" id="bxid_560284">Обсуждение http://kiteforum.spb.ru/viewtopic.php?id=8658</a> </b> <br><p>
+	<br></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p><h2>2013 Joint S/M, M/L, L/XL Крепления</h2><p>	<b>Обзор</b></p><p>	Главная особенность это небольшое возвышение закрывающее пятку, двойные неопреновые петли, пена двойной плотности и инновационная система крепления Bolt-on, все это делает Joint лучшим выбором для райдеров, которым нудно все и сразу. 2013 Joint - это революция в характеристиках креплений и трендовый стиль!</p><p>	<b>Особенности</b></p><p>	Универсальная система крепления. Сделана для быстрой и простой установки.</p><p>	2-х ступенчатая система липучек. Быстрая и легкая настройка, хорошая поддержка даже на самых жестких приземлениях. Комфорт с полным контролем доски, и петли можно заменить.</p><p>	Петли с прослойкой из неопрена. Максимальный комфорт и поддержка.</p><p>	Пена двойной плотности. Мягкий комфорт. Лучшие характеристики и непревзойденная поддержка.</p><p>	Инновационная система крепления Bolt on. Быстрая и легкая установка. Универсальная постановка.</p><p>	Возвышение, закрывающее пятку. Контурный дизайн и текстура не скользящей поверхности, чтобы нога лучше фиксировалась.</p><p>	Возможность определять места крепления. Теперь райдеры могут сами выбрать стойку.</p><p>	Структура встроенной базы. Прочность и изгибы - никогда раньше установка не была такой легкой.</p><p>	Легендарная конструкция Slingshot</p><p>	Материалы класса премиум, инновационный дизайн и постоянно тестирование обеспечивают прочность и отличные качества.</p><p>	<b>Комплектация</b></p><p>	+Петли, фиксирующиеся липучкой.</p><p>	+ Коврики из пены двойной плотности</p><p>	+ 4 болта и стальной набор для крепления Fastrack</p> <b>Размерный ряд </b><p>	S/M US 4 - 8 EURO 37 - 41 UK 3.5 - 7.5 CM 22.5 - 25.4</p><p>	M/L US 8 - 11EURO 41 - 44 UK 7.5 - 10.5 CM 25.4 - 27.9</p><p>	L/XL US 11+ EURO 44+ UK 10.5+ CM 27.9+</p><p>	<a><b>The Joint в Самаре</b></a></p><p>	<b><a id="bxid_811230">The Joint -(Kite Shoe) отзывы от Кайтпанков(Владивосток)</a></b></p> <b><a rel="nofollow" id="bxid_560284">Обсуждение http://kiteforum.spb.ru/viewtopic.php?id=8658</a> </b> <br><p>	<br></p>
+                            [LINKS] => Array
+                                (
+                                    [0] => http://www.kite.ru/information_channel/news/test_kayta_slingshot_rally_2014_v_samare/
+                                    [1] => http://www.kite.ru/news/detail.php?ID=57425
+                                    [2] => http://kiteforum.spb.ru/viewtopic.php?id=8658
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [11] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 65767
+                    [OFFER_ID] => 65767
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/ruchka_trimmera_slingshot_2014_depower_trim_rope_handle_w_soft_grip__65767/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14383013
+                        )
+
+                    [PRICE] => 300
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/3bb/3bbcd1074bc2037956e20a8e14a0fe76.jpeg
+                        )
+
+                    [NAME] => Ручка триммера Slingshot 2010 - 2014 Depower Trim Rope Handle 
+w/Soft Grip
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Ручка триммера Slingshot 2010 - 2014 Depower Trim Rope Handle 
+w/Soft Grip
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/3bb/3bbcd1074bc2037956e20a8e14a0fe76.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [12] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 65955
+                    [OFFER_ID] => 65955
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/palets_chikenlupa_slingshot_2014_donkey_dik_molded_black_plastic_stick_w_4mm_screw__65955/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14383009
+                        )
+
+                    [PRICE] => 700
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/60e/60e39763b651bafa858d7b91ec4f0bc1.jpeg
+                        )
+
+                    [NAME] => Палец Чикенлупа Slingshot 2014-2018 Donkey Dik - Molded Black 
+Plastic Stick w/4mm Screw
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Палец Чикенлупа Slingshot 2014 Donkey Dik - Molded Black 
+Plastic Stick w/4mm Screw    
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/60e/60e39763b651bafa858d7b91ec4f0bc1.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [13] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 65956
+                    [OFFER_ID] => 65956
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/aksessuar_slingshot_2014_guardian_box_w_sure_grip_butterbox__65956/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14383010
+                        )
+
+                    [PRICE] => 1000
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/a23/a236df0e792ad4337fbad231b2f30a59.jpeg
+                        )
+
+                    [NAME] => Аксессуар Slingshot 2014 Guardian Box w/Sure Grip (Butterbox)
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Аксессуар Slingshot 2014 Guardian Box w/Sure Grip (Butterbox)
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/a23/a236df0e792ad4337fbad231b2f30a59.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [14] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 65957
+                    [OFFER_ID] => 65957
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/petlya_chikenlupa_slingshot_2014_medium_chicken_loop_w_angled_metal_bales__65957/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14383005
+                        )
+
+                    [PRICE] => 2000
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/457/45774b8046062164b13ec42bc6fa837d.jpeg
+                        )
+
+                    [NAME] => Петля Чикенлупа Slingshot Guardian 2014-2017 Medium Chicken 
+Loop w/Angled Metal Bales
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Петля Чикенлупа Slingshot 2014 Medium Chicken Loop w/Angled 
+Metal Bales
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/457/45774b8046062164b13ec42bc6fa837d.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p><br>
+ Универсальная <b>Петля Чикенлупа Slingshot 2014 Medium Chicken Loop w/Angled Metal Bales </b>подходит для всех моделей планок с нижним триммером.<br></p>
+<p style="text-align: center;">
+ <img width="459" alt="Chicken_Loop.png" src="/upload/medialibrary/c38/c383a7ce8310989d0aac1fb928244291.png" height="600" title="Chicken_Loop.png"></p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p><br> Универсальная <b>Петля Чикенлупа Slingshot 2014 Medium Chicken Loop w/Angled Metal Bales </b>подходит для всех моделей планок с нижним триммером.<br></p><p style="text-align: center;"> <img width="459" alt="Chicken_Loop.png" src="/upload/medialibrary/c38/c383a7ce8310989d0aac1fb928244291.png" height="600" title="Chicken_Loop.png"></p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                    [0] => https://www.kite.ru/upload/medialibrary/c38/c383a7ce8310989d0aac1fb928244291.png
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [15] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 65959
+                    [OFFER_ID] => 65959
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/stropy_slingshot_4_line_kite_replacement_line_set_27m__65959/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14345027
+                        )
+
+                    [PRICE] => 17400
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/6c9/6c9c25c277507a6eea64c360a9d98a19.jpeg
+                        )
+
+                    [NAME] => Стропы Slingshot 4-line kite replacement line set 27m
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Стропы Slingshot 4-line kite replacement line set 27m
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/6c9/6c9c25c277507a6eea64c360a9d98a19.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p>Длина строп 27м<br>
+Длина управляющих строп 27м<br>
+Длина силовых строп 27м 65см</p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p>Длина строп 27м<br>Длина управляющих строп 27м<br>Длина силовых строп 27м 65см</p>
+                            [LINKS] => Array
+                                (
+                                )
+
+                            [IMAGES] => Array
+                                (
+                                )
+
+                        )
+
+                )
+
+        )
+
+    [16] => Array
+        (
+            [0] => Array
+                (
+                    [PARENT_ITEM_ID] => 66563
+                    [OFFER_ID] => 66563
+                    [URL] => https://www.kite.ru/catalog/aksessuary/slingshot_1/stropy_slingshot_4_line_kite_replacement_line_set_20m_fits_model_yrs_10_11_12_13_14__66563/
+                    [ATTRIBUTES] => Array
+                        (
+                            [Артикул] => 14345020
+                        )
+
+                    [PRICE] => 14200
+                    [CATEGORY_ID] => 1505
+                    [PICTURES] => Array
+                        (
+                            [0] => https://www.kite.ru/upload/iblock/a62/a62f7af9a5a83651d1736cf7e9167942.jpeg
+                        )
+
+                    [NAME] => Стропы Slingshot 4-line kite replacement line set 20m
+                    [BRAND] => Slingshot
+                    [DESCRIPTION] => Стропы Slingshot 4-line kite replacement line set 20m
+                    [HTML_DETAIL_PICTURE_URL] => https://www.kite.ru/upload/iblock/a62/a62f7af9a5a83651d1736cf7e9167942.jpeg
+                    [HTML_MORE_PHOTO] => Array
+                        (
+                        )
+
+                    [HTML_DESCRIPTION] => 
+      <p>Длина строп 20м<br>
+Длина управляющих строп 20м<br>
+Длина силовых строп 20м 65см</p>
+    
+                    [HTML_PARSED_DESCRIPTION] => Array
+                        (
+                            [HTML] => <p>Длина строп 20м<br>Длина управляющих строп 20м<br>Длина силовых строп 20м 65см</p>
                             [LINKS] => Array
                                 (
                                 )

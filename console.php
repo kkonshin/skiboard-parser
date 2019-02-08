@@ -118,7 +118,7 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-$resultArray = array_slice($resultArray, 0, 5); // Для отладки
+$resultArray = array_slice($resultArray, 0, 20); // Для отладки
 
 // Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
 
