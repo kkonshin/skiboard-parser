@@ -118,7 +118,7 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-$resultArray = array_slice($resultArray, 0, 20); // Для отладки
+$resultArray = array_slice($resultArray, 0, 10); // Для отладки
 
 // Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
 
@@ -138,7 +138,9 @@ foreach ($resultArray as $key => $value) {
 
             $resultArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
 
-            $resultArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($resultArray[$key][$k]["HTML_DESCRIPTION"]);
+            if (!empty($resultArray[$key][$k]["HTML_DESCRIPTION"])) {
+				$resultArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($resultArray[$key][$k]["HTML_DESCRIPTION"]);
+			}
 		}
 	}
 }
@@ -494,7 +496,7 @@ register_shutdown_function(function () {
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
-	echo "\nВремя работы скрипта: " . (getmicrotime() - $startExecTime) . " сек\n";
+	echo "\nВремя работы скрипта: " . number_format((getmicrotime() - $startExecTime), 2) . " сек\n";
 	echo "Использованная память: " . $elapsedMemory . PHP_EOL;
 });
 

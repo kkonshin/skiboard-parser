@@ -1,4 +1,8 @@
 <?php
+
+use Parser\HtmlParser\HtmlParser;
+use voku\helper\HtmlDomParser;
+
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 
 // Ограничение длины массива для разработки
@@ -6,6 +10,8 @@ $offset = 0;
 $length = count($resultArray) - $offset;
 $length = 20;
 $resultArray = array_slice($resultArray, $offset, $length, true);
+
+$linksArray = []; // Для разработки, массив ссылков в описании товара, подлежащих замене
 
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
@@ -31,7 +37,7 @@ foreach ($resultArray as $key => $item) {
 
 		// MORE_PHOTO из Html - парсера
 
-		foreach ($item as $itemId => $offer){
+		foreach ($item as $itemId => $offer) {
 			if (count($offer["HTML_MORE_PHOTO"]) > 1) {
 				foreach ($offer["HTML_MORE_PHOTO"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
@@ -60,15 +66,35 @@ foreach ($resultArray as $key => $item) {
 
 		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
 
-
 		// Обработка детального описания товара
 
-		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage){
-			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] =  CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
-			echo $item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] . PHP_EOL;
+		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage) {
+			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
+//			$resultArray[$key][0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = $item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey];
+//			echo $resultArray[$key][0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] . PHP_EOL;
 		}
 
-		// TODO в описании товара заменить в тегах img src на путь к файлу
+		if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['HTML'])) {
+
+			$dom = new HtmlDomParser($item[0]['HTML_PARSED_DESCRIPTION']['HTML']);
+
+			// Заменяем пути к изображениям на сохраненные
+			if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['SAVED_IMAGES'])) {
+				foreach ($dom->find('img') as $imageKey => $image) {
+					$image->src = $item[0]['HTML_PARSED_DESCRIPTION']['SAVED_IMAGES'][$imageKey];
+				}
+				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
+			}
+
+			foreach ($dom->find('a') as $linkKey => $link) {
+				if (!in_array($link->outertext, $linksArray)) {
+					$linksArray[$item[0]['NAME']][] = $link->outertext;
+				}
+			}
+
+			$dom->clear();
+			unset($dom);
+		}
 
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
@@ -78,8 +104,7 @@ foreach ($resultArray as $key => $item) {
 			"CODE" => CUtil::translit($itemName . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "N",
 			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
-//			"DETAIL_TEXT" => (!empty ($item[0]["DESCRIPTION"])) ? html_entity_decode($item[0]["DESCRIPTION"]) : "",
-			"DETAIL_TEXT" => (!empty ($item[0]["HTML_DESCRIPTION"])) ? html_entity_decode($item[0]["HTML_DESCRIPTION"]) : "",
+			"DETAIL_TEXT" => (!empty ($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"])) ? html_entity_decode($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => P_SITE_NAME,
 				"GROUP_ID" => $key,
@@ -101,13 +126,13 @@ foreach ($resultArray as $key => $item) {
 
 			// FIXME uppercase
 
-			if (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])){
+			if (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])) {
 				$manXmlId = $manValueIdPairsArray[strtoupper($item[0]["BRAND"])];
 			} else if (!empty($manValueIdPairsArray[$item[0]["BRAND"]])) {
 				$manXmlId = $manValueIdPairsArray[$item[0]["BRAND"]];
-			} else if (!empty($manValueIdPairsArray[strtolower($item[0]["BRAND"])])){
+			} else if (!empty($manValueIdPairsArray[strtolower($item[0]["BRAND"])])) {
 				$manXmlId = $manValueIdPairsArray[strtolower($item[0]["BRAND"])];
-			} else if (!empty($manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))])){
+			} else if (!empty($manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))])) {
 				$manXmlId = $manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))];
 			}
 
@@ -138,7 +163,7 @@ foreach ($resultArray as $key => $item) {
 					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
 				}
 
-				if (!empty($offer["ATTRIBUTES"]["variation_sku"])){
+				if (!empty($offer["ATTRIBUTES"]["variation_sku"])) {
 					$offerName = $offer["ATTRIBUTES"]["variation_sku"];
 				} else {
 					$offerName = (!empty($offer["SHORT_NAME"])) ? $offer["SHORT_NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] : $offer["NAME"];
@@ -181,5 +206,8 @@ foreach ($resultArray as $key => $item) {
 		echo $e->getMessage() . PHP_EOL;
 	}
 }
+
+file_put_contents(__DIR__ . "/logs/LinksArray.log", print_r($linksArray, true));
+file_put_contents(__DIR__ . "/logs/resultArrayAfterAdd.log", print_r($resultArray, true));
 
 //--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//

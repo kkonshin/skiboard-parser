@@ -26,15 +26,12 @@ class HtmlParser
 		try {
 			$response = $client->request('GET', $url);
 			$body = $response->getBody();
-
 			while (!$body->eof()) {
 				$result .= $body->read(1024);
 			}
-
 			return $result;
-
 		} catch (\Exception $e) {
-			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
+			echo $e->getMessage() . PHP_EOL;
 			return false;
 		}
 	}
@@ -54,7 +51,7 @@ class HtmlParser
 			unset($links[0]);
 			return $links;
 		} catch (\Exception $e) {
-			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
+			echo $e->getMessage() . PHP_EOL;
 			return false;
 		}
 	}
@@ -69,11 +66,15 @@ class HtmlParser
 		try {
 			$crawler = new Crawler($body);
 			$links = $crawler->filter('.element-slide-main .fancybox-thumbs')->each(function (Crawler $node) {
-				return P_SITE_BASE_NAME . $node->attr('href');
+				if (substr($node->attr('href'), 0, 4) === 'http') {
+					return $node->attr('href');
+				} else {
+					return P_SITE_BASE_NAME . $node->attr('href');
+				}
 			});
 			return $links[0];
 		} catch (\Exception $e) {
-			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
+			echo $e->getMessage() . PHP_EOL;
 			return false;
 		}
 	}
@@ -85,7 +86,8 @@ class HtmlParser
 			$descriptionHtml = $crawler->filter('.element-description')->html();
 			return $descriptionHtml;
 		} catch (\Exception $e) {
-			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
+//			echo $e->getTraceAsString() . ' ' . $e->getMessage() . PHP_EOL;
+			echo $e->getMessage() . PHP_EOL;
 			return false;
 		}
 	}
@@ -93,9 +95,7 @@ class HtmlParser
 	public static function parseDescription($descriptionHtml)
 	{
 		try {
-
 			$parsedDescription = [];
-
 			$crawler = new Crawler($descriptionHtml);
 
 			$links = $crawler->filter('a')->each(function (Crawler $node) {
@@ -103,33 +103,38 @@ class HtmlParser
 			});
 
 			$images = $crawler->filter('img')->each(function (Crawler $node) {
-
 				$src = str_replace('../..', '', $node->attr('src'));
-
-				return P_SITE_BASE_NAME . $src;
-
+				if (substr($src, 0, 4) === 'http') {
+					return $src;
+				} else {
+					return P_SITE_BASE_NAME . $src;
+				}
 			});
 
 			$dom = new HtmlDomParser($descriptionHtml);
 
-			foreach ($dom->find('a') as $img) {
-				$img->href = '';
+			// TODO удаляем ссылки
+
+			foreach ($dom->find('a') as $link) {
+//				echo $link . PHP_EOL;
+				if (stripos($link, '/upload/') === false) {
+					$link->outertext = '';
+				}
 			}
 
 			$parsedDescription["HTML"] = trim($dom->html());
 			$parsedDescription["LINKS"] = $links;
 			$parsedDescription["IMAGES"] = $images;
 
+			$dom->clear();
+
+			unset($dom);
+
 			return $parsedDescription;
 
 		} catch (\Exception $e) {
-			echo $e->getCode() . ' ' . $e->getMessage() . PHP_EOL;
+			echo $e->getMessage() . PHP_EOL;
 			return false;
 		}
-	}
-
-	public static function modifyDescription($descriptionHtml)
-	{
-
 	}
 }
