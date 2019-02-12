@@ -113,7 +113,7 @@ class HtmlParser
 
 			$dom = new HtmlDomParser($descriptionHtml);
 
-			// TODO удаляем ссылки
+			// TODO удаляем ссылки, перенести в add?
 
 			foreach ($dom->find('a') as $link) {
 //				echo $link . PHP_EOL;

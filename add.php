@@ -8,7 +8,7 @@ use voku\helper\HtmlDomParser;
 // Ограничение длины массива для разработки
 $offset = 0;
 $length = count($resultArray) - $offset;
-$length = 20;
+$length = 30;
 $resultArray = array_slice($resultArray, $offset, $length, true);
 
 $linksArray = []; // Для разработки, массив ссылков в описании товара, подлежащих замене
@@ -74,15 +74,20 @@ foreach ($resultArray as $key => $item) {
 //			echo $resultArray[$key][0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] . PHP_EOL;
 		}
 
-		if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['HTML'])) {
+//		if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['HTML'])) {
+		if (!empty($item[0]['HTML_DESCRIPTION'])) {
 
-			$dom = new HtmlDomParser($item[0]['HTML_PARSED_DESCRIPTION']['HTML']);
+//			$dom = new HtmlDomParser($item[0]['HTML_PARSED_DESCRIPTION']['HTML']);
+			$dom = new HtmlDomParser($item[0]['HTML_DESCRIPTION']);
 
 			// Заменяем пути к изображениям на сохраненные
+
 			if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['SAVED_IMAGES'])) {
+
 				foreach ($dom->find('img') as $imageKey => $image) {
 					$image->src = $item[0]['HTML_PARSED_DESCRIPTION']['SAVED_IMAGES'][$imageKey];
 				}
+
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
 
@@ -155,7 +160,7 @@ foreach ($resultArray as $key => $item) {
 
 				$arOfferProps = [
 					$SKUPropertyId => $productId,
-					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
+					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']] ?: SIZE_PROPERTY_VALUE__ONE_SIZE,
 					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 				];
 
