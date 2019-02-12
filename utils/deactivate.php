@@ -21,20 +21,22 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-$params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+try {
 
-$itemStatus = new ItemsStatus($params);
+	$params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+	$itemStatus = new ItemsStatus($params);
 
-/*
- * Деактивация товаров
- */
+	//Деактивация товаров
 
-Deactivate::deactivateItems($itemStatus);
+	Deactivate::deactivateItems($itemStatus);
+    echo "Товары раздела " . TEMP_CATALOG_SECTION . " деактивированы" . PHP_EOL;
 
-/*
- * Деактивация торговых предложений
- */
+    // Деактивация торговых предложений
 
-Deactivate::deactivateSkus($itemStatus);
+	Deactivate::deactivateSkus($itemStatus);
+	echo "Торговые предложения раздела " . TEMP_CATALOG_SECTION . " деактивированы" . PHP_EOL;
 
+} catch (Exception $e){
+    echo $e->getMessage() . PHP_EOL;
+}
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
