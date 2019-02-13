@@ -92,10 +92,21 @@ foreach ($resultArray as $key => $item) {
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
 
+
+			// FIXME временно сохраняем список ссылок
 			foreach ($dom->find('a') as $linkKey => $link) {
 				if (!in_array($link->outertext, $linksArray)) {
 					$linksArray[$item[0]['NAME']][] = $link->outertext;
 				}
+			}
+
+			// TODO получать ссылку на этот файл?
+			// Заменяем ссылку на таблицу размеров BodyGlove
+			foreach ($dom->find('a') as $linkKey => $link){
+				if (stripos($link, '/info/body-glove/') !== false){
+					$link->href = '/include/size_table.php';
+				}
+				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
 
 			$dom->clear();
@@ -109,7 +120,8 @@ foreach ($resultArray as $key => $item) {
 			"NAME" => $itemName,
 			"CODE" => CUtil::translit($itemName . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "N",
-			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
+//			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
+			"DETAIL_PICTURE" => (isset($item[0]["HTML_DETAIL_PICTURE_URL"])) ? CFile::MakeFileArray($item[0]["HTML_DETAIL_PICTURE_URL"]) : "",
 			"DETAIL_TEXT" => (!empty ($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"])) ? html_entity_decode($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => P_SITE_NAME,
@@ -215,7 +227,7 @@ foreach ($resultArray as $key => $item) {
 	}
 }
 
-file_put_contents(__DIR__ . "/logs/LinksArray.log", print_r($linksArray, true));
-file_put_contents(__DIR__ . "/logs/resultArrayAfterAdd.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/LinksArray.log", print_r($linksArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArrayAfterAdd.log", print_r($resultArray, true));
 
 //--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//

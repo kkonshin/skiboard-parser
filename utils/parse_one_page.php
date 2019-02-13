@@ -24,7 +24,6 @@ while (ob_get_level()) {
 $url = "//www.kite.ru/info/body-glove/size-chart-body-glove.php";
 $linksArray = []; // Ссылки на css, шрифты, иконки
 
-
 try {
 
     $body = HtmlParser::getBody($url);

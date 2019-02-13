@@ -118,7 +118,7 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-$resultArray = array_slice($resultArray, 23, 30); // Для отладки
+$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
 // Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
 
@@ -145,7 +145,7 @@ foreach ($resultArray as $key => $value) {
 	}
 }
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 //exit();
 
