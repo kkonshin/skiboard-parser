@@ -65,6 +65,7 @@ foreach ($resultArray as $key => $item) {
 		}
 
 		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
+		$itemName = preg_replace( "/\r|\n/", "", $itemName); // удалим из названия товара переносы строк
 
 		// Обработка детального описания товара
 
@@ -173,6 +174,8 @@ foreach ($resultArray as $key => $item) {
 				} else {
 					$offerName = (!empty($offer["SHORT_NAME"])) ? $offer["SHORT_NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] : $offer["NAME"];
 				}
+
+				$offerName = preg_replace( "/\r|\n/", "", $offerName); // удалим переносы строк
 
 				$arOfferFields = [
 					'NAME' => $offerName,

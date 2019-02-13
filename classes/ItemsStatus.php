@@ -4,6 +4,8 @@ namespace Parser;
 
 use \Bitrix\Main\Loader;
 
+// FIXME Неудачное название класса - сделать рефактор.
+
 class ItemsStatus
 {
 	/**

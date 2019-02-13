@@ -10,12 +10,15 @@ interface SectionsListInterface
 
 	public static function compareSections(); // Сравниваем списки из старого и нового прайса, принимаем объекты списка категорий?
 }
+
 class SectionsList implements SectionsListInterface
 {
 	public function getSections()
 	{
 		// Если существует сохраненный файл прайса с датой, отличной от даты текущего прайса - извлечь список
 		// старых категорий
+
+		// TODO Вынести класс в отдельный файл
 
 		// TODO использовать результат проверки класса CatalogDate
 

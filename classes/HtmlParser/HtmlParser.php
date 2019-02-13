@@ -116,7 +116,6 @@ class HtmlParser
 			// TODO удаляем ссылки, перенести в add?
 
 			foreach ($dom->find('a') as $link) {
-//				echo $link . PHP_EOL;
 				if (stripos($link, '/upload/') === false) {
 					$link->outertext = '';
 				}
@@ -136,5 +135,22 @@ class HtmlParser
 			echo $e->getMessage() . PHP_EOL;
 			return false;
 		}
+	}
+
+	/**
+	 * Обернуть содержание HTML в теги, например require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
+	 * @param $html string
+	 * @param $tags mixed
+	 */
+	public static function wrap($html, $tags)
+	{
+		$header = <<<'HEAD'
+		<?require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");?>
+HEAD;
+		$footer = <<<'FOOT'
+		<?require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");?>
+FOOT;
+		$result = $header . "\n" . $html . "\n" . $footer;
+		return $result;
 	}
 }
