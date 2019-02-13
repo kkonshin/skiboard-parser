@@ -118,7 +118,7 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-$resultArray = array_slice($resultArray, 23, 5); // Для отладки
+//$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
 // Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
 
@@ -489,7 +489,7 @@ echo "\nСохраняем товары" . PHP_EOL;
 require(__DIR__ . "/add.php");
 //}
 
-//echo Storage::storeCurrentXml($source); // Сохранение файла - источника
+echo Storage::storeCurrentXml($source); // Сохранение файла - источника
 
 register_shutdown_function(function () {
 	global $startExecTime;

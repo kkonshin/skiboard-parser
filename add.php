@@ -6,10 +6,10 @@ use voku\helper\HtmlDomParser;
 //-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
 
 // Ограничение длины массива для разработки
-$offset = 0;
-$length = count($resultArray) - $offset;
-$length = 30;
-$resultArray = array_slice($resultArray, $offset, $length, true);
+//$offset = 0;
+//$length = count($resultArray) - $offset;
+//$length = 30;
+//$resultArray = array_slice($resultArray, $offset, $length, true);
 
 $linksArray = []; // Для разработки, массив ссылков в описании товара, подлежащих замене
 
@@ -92,7 +92,6 @@ foreach ($resultArray as $key => $item) {
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
 
-
 			// FIXME временно сохраняем список ссылок
 			foreach ($dom->find('a') as $linkKey => $link) {
 				if (!in_array($link->outertext, $linksArray)) {
@@ -104,7 +103,9 @@ foreach ($resultArray as $key => $item) {
 			// Заменяем ссылку на таблицу размеров BodyGlove
 			foreach ($dom->find('a') as $linkKey => $link){
 				if (stripos($link, '/info/body-glove/') !== false){
+//					echo $link . PHP_EOL;
 					$link->href = '/include/size_table.php';
+//					echo "Изменение адреса ссылки на таблицу размеров: " . $link . PHP_EOL;
 				}
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}

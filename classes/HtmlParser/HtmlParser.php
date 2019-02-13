@@ -116,7 +116,7 @@ class HtmlParser
 			// TODO удаляем ссылки, перенести в add?
 
 			foreach ($dom->find('a') as $link) {
-				if (stripos($link, '/upload/') === false || stripos($link, '/info/body-glove/')) {
+				if (stripos($link, '/upload/') === false && stripos($link, '/info/body-glove/') === false) {
 					$link->outertext = '';
 				}
 			}
