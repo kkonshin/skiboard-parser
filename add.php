@@ -110,6 +110,7 @@ foreach ($resultArray as $key => $item) {
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
 
+
 			$dom->clear();
 			unset($dom);
 		}
@@ -194,7 +195,7 @@ foreach ($resultArray as $key => $item) {
 					'NAME' => $offerName,
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
 					'ACTIVE' => 'N',
-					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
+					"DETAIL_PICTURE" => (isset($offer["HTML_DETAIL_PICTURE_URL"])) ? CFile::MakeFileArray($offer["HTML_DETAIL_PICTURE_URL"]) : "",
 					'PROPERTY_VALUES' => $arOfferProps
 				];
 
