@@ -39,11 +39,18 @@ use Parser\Utils\Price;
 
 global $USER;
 
+$previousResultArray = [];
+$resultDifferenceArray = [];
+$resultDifferenceArrayKeys = [];
+$isAddNewItems = false;
+$resultArrayLength = 0;
+$previousResultArrayLength = 0;
+
 if (!is_dir(__DIR__ . "/logs")) {
-	mkdir(__DIR__ . "/logs", 0777, true);
+	mkdir(__DIR__ . "/logs", 0775, true);
 }
 if (!is_dir(__DIR__ . "/save")) {
-	mkdir(__DIR__ . "/save", 0777, true);
+	mkdir(__DIR__ . "/save", 0775, true);
 }
 
 if (!Loader::includeModule('iblock')) {
@@ -54,41 +61,22 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-/**
- * Инициализация объекта для работы с источником
- */
-
+// Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
 
+//TEMP
 //$sourceFile = Storage::storeCurrentXml($source); // Не вызывать до реализации сохранения временного файла?
+//if(is_file($sourceFile)) {
+//	echo $sourceFile . " успешно сохранен" . PHP_EOL; // Сохранение файла - источника
+//}
+//ENDTEMP
 
-if(is_file($sourceFile)) {
-	echo $sourceFile . " успешно сохранен" . PHP_EOL; // Сохранение файла - источника
-}
-
-/**
- * Получение содержания файла - источника
- */
-
+// Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
 
-// TODO сохранить временный файл, получить его размер, удалить файл
-
-/**
- * Получение предыдущего сохраненного файла - источника
- */
-
+// Проверяем, сохраенен ли предыдущий файл каталога
 $previousXml = Storage::getPreviousXml();
 
-$previousResultArray = [];
-
-$resultDifferenceArray = [];
-$resultDifferenceArrayKeys = [];
-
-$isAddNewItems = false;
-
-$resultArrayLength = 0;
-$previousResultArrayLength = 0;
 
 // TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
 
@@ -116,21 +104,22 @@ if ($crawler && $previousCrawler) {
 	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
+// Сравниваем длины старого и нового массивов
 if (!empty($previousXml) && $isNewPrice) {
 
-	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл
+	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл, не запуская HTML-парсер
+	$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
-	if (!empty($previousResultArray)) {
+	if (!empty($previousResultArray) && !empty($resultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
 	}
+
 }
 
-$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/previousResultArray.log", print_r($previousResultArray, true));
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-//file_put_contents(__DIR__ . "/logs/previousResultArray.log", print_r($previousResultArray, true));
-
-//exit("Выход перед запуском HTML-парсера" . PHP_EOL);
+exit("Выход перед запуском HTML-парсера" . PHP_EOL);
 
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 

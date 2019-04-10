@@ -34,7 +34,7 @@
                 "dev-master": "6.3-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "files": [
                 "src/functions_include.php"
@@ -94,7 +94,7 @@
                 "dev-master": "1.4-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "GuzzleHttp\\Promise\\": "src/"
@@ -152,7 +152,7 @@
                 "dev-master": "1.5-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "GuzzleHttp\\Psr7\\": "src/"
@@ -213,7 +213,7 @@
                 "dev-master": "1.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Psr\\Http\\Message\\": "src/"
@@ -265,7 +265,7 @@
                 "dev-master": "1.0.x-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Psr\\Log\\": "Psr/Log/"
@@ -313,7 +313,7 @@
         },
         "time": "2016-02-11T07:05:27+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "files": [
                 "src/getallheaders.php"
@@ -333,8 +333,8 @@
     },
     {
         "name": "symfony/css-selector",
-        "version": "v3.4.22",
-        "version_normalized": "3.4.22.0",
+        "version": "v3.4.24",
+        "version_normalized": "3.4.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/css-selector.git",
@@ -356,7 +356,7 @@
                 "dev-master": "3.4-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Component\\CssSelector\\": ""
@@ -388,17 +388,17 @@
     },
     {
         "name": "symfony/dom-crawler",
-        "version": "v3.4.22",
-        "version_normalized": "3.4.22.0",
+        "version": "v3.4.24",
+        "version_normalized": "3.4.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/dom-crawler.git",
-            "reference": "32cb577c07bd900ee883a9d4b55d4098aa02e422"
+            "reference": "d40023c057393fb25f7ca80af2a56ed948c45a09"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/32cb577c07bd900ee883a9d4b55d4098aa02e422",
-            "reference": "32cb577c07bd900ee883a9d4b55d4098aa02e422",
+            "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/d40023c057393fb25f7ca80af2a56ed948c45a09",
+            "reference": "d40023c057393fb25f7ca80af2a56ed948c45a09",
             "shasum": ""
         },
         "require": {
@@ -412,14 +412,14 @@
         "suggest": {
             "symfony/css-selector": ""
         },
-        "time": "2019-01-16T13:27:11+00:00",
+        "time": "2019-02-23T15:06:07+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "3.4-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Component\\DomCrawler\\": ""
@@ -447,17 +447,17 @@
     },
     {
         "name": "symfony/polyfill-ctype",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v1.11.0",
+        "version_normalized": "1.11.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-ctype.git",
-            "reference": "e3d826245268269cd66f8326bd8bc066687b4a19"
+            "reference": "82ebae02209c21113908c229e9883c419720738a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
-            "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
+            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/82ebae02209c21113908c229e9883c419720738a",
+            "reference": "82ebae02209c21113908c229e9883c419720738a",
             "shasum": ""
         },
         "require": {
@@ -466,14 +466,14 @@
         "suggest": {
             "ext-ctype": "For best performance"
         },
-        "time": "2018-08-06T14:22:27+00:00",
+        "time": "2019-02-06T07:57:58+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.9-dev"
+                "dev-master": "1.11-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Polyfill\\Ctype\\": ""
@@ -493,7 +493,7 @@
             },
             {
                 "name": "Gert de Pagter",
-                "email": "BackEndTea@gmail.com"
+                "email": "backendtea@gmail.com"
             }
         ],
         "description": "Symfony polyfill for ctype functions",
@@ -507,17 +507,17 @@
     },
     {
         "name": "symfony/polyfill-iconv",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v1.11.0",
+        "version_normalized": "1.11.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-iconv.git",
-            "reference": "97001cfc283484c9691769f51cdf25259037eba2"
+            "reference": "f037ea22acfaee983e271dd9c3b8bb4150bd8ad7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/97001cfc283484c9691769f51cdf25259037eba2",
-            "reference": "97001cfc283484c9691769f51cdf25259037eba2",
+            "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/f037ea22acfaee983e271dd9c3b8bb4150bd8ad7",
+            "reference": "f037ea22acfaee983e271dd9c3b8bb4150bd8ad7",
             "shasum": ""
         },
         "require": {
@@ -526,14 +526,14 @@
         "suggest": {
             "ext-iconv": "For best performance"
         },
-        "time": "2018-09-21T06:26:08+00:00",
+        "time": "2019-02-06T07:57:58+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.9-dev"
+                "dev-master": "1.11-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Polyfill\\Iconv\\": ""
@@ -568,17 +568,17 @@
     },
     {
         "name": "symfony/polyfill-intl-grapheme",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v1.11.0",
+        "version_normalized": "1.11.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-            "reference": "378c8743ff5352fe124c9c2b32d5f03e798f33d3"
+            "reference": "d4b2e06aed3f7a4e3de06f9ad9189cd6a1f0a2ec"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/378c8743ff5352fe124c9c2b32d5f03e798f33d3",
-            "reference": "378c8743ff5352fe124c9c2b32d5f03e798f33d3",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/d4b2e06aed3f7a4e3de06f9ad9189cd6a1f0a2ec",
+            "reference": "d4b2e06aed3f7a4e3de06f9ad9189cd6a1f0a2ec",
             "shasum": ""
         },
         "require": {
@@ -587,14 +587,14 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2018-09-21T06:26:08+00:00",
+        "time": "2019-01-07T19:39:47+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "1.9-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
@@ -630,17 +630,17 @@
     },
     {
         "name": "symfony/polyfill-intl-normalizer",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v1.11.0",
+        "version_normalized": "1.11.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-            "reference": "f8ed52909fc049b42a772c64ec1e6b31792abad6"
+            "reference": "d570b8ea2cb7f33f217832339a181a206cf54a04"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/f8ed52909fc049b42a772c64ec1e6b31792abad6",
-            "reference": "f8ed52909fc049b42a772c64ec1e6b31792abad6",
+            "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/d570b8ea2cb7f33f217832339a181a206cf54a04",
+            "reference": "d570b8ea2cb7f33f217832339a181a206cf54a04",
             "shasum": ""
         },
         "require": {
@@ -649,14 +649,14 @@
         "suggest": {
             "ext-intl": "For best performance"
         },
-        "time": "2018-09-21T06:26:08+00:00",
+        "time": "2019-01-07T19:39:47+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
                 "dev-master": "1.9-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
@@ -695,17 +695,17 @@
     },
     {
         "name": "symfony/polyfill-mbstring",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v1.11.0",
+        "version_normalized": "1.11.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "c79c051f5b3a46be09205c73b80b346e4153e494"
+            "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/c79c051f5b3a46be09205c73b80b346e4153e494",
-            "reference": "c79c051f5b3a46be09205c73b80b346e4153e494",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fe5e94c604826c35a32fa832f35bd036b6799609",
+            "reference": "fe5e94c604826c35a32fa832f35bd036b6799609",
             "shasum": ""
         },
         "require": {
@@ -714,14 +714,14 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2018-09-21T13:07:52+00:00",
+        "time": "2019-02-06T07:57:58+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.9-dev"
+                "dev-master": "1.11-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Polyfill\\Mbstring\\": ""
@@ -756,30 +756,30 @@
     },
     {
         "name": "symfony/polyfill-php72",
-        "version": "v1.10.0",
-        "version_normalized": "1.10.0.0",
+        "version": "v1.11.0",
+        "version_normalized": "1.11.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/polyfill-php72.git",
-            "reference": "9050816e2ca34a8e916c3a0ae8b9c2fccf68b631"
+            "reference": "ab50dcf166d5f577978419edd37aa2bb8eabce0c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/9050816e2ca34a8e916c3a0ae8b9c2fccf68b631",
-            "reference": "9050816e2ca34a8e916c3a0ae8b9c2fccf68b631",
+            "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/ab50dcf166d5f577978419edd37aa2bb8eabce0c",
+            "reference": "ab50dcf166d5f577978419edd37aa2bb8eabce0c",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.3"
         },
-        "time": "2018-09-21T13:07:52+00:00",
+        "time": "2019-02-06T07:57:58+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.9-dev"
+                "dev-master": "1.11-dev"
             }
         },
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Symfony\\Polyfill\\Php72\\": ""
@@ -813,17 +813,17 @@
     },
     {
         "name": "voku/portable-utf8",
-        "version": "5.4.0",
-        "version_normalized": "5.4.0.0",
+        "version": "5.4.3",
+        "version_normalized": "5.4.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/voku/portable-utf8.git",
-            "reference": "6eb2544c5b991463095b34ec137b0433d710afb9"
+            "reference": "6b890c1a9acc513eb311c88eede51f1d4e84bc32"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/voku/portable-utf8/zipball/6eb2544c5b991463095b34ec137b0433d710afb9",
-            "reference": "6eb2544c5b991463095b34ec137b0433d710afb9",
+            "url": "https://api.github.com/repos/voku/portable-utf8/zipball/6b890c1a9acc513eb311c88eede51f1d4e84bc32",
+            "reference": "6b890c1a9acc513eb311c88eede51f1d4e84bc32",
             "shasum": ""
         },
         "require": {
@@ -845,9 +845,9 @@
             "ext-json": "Use JSON for string detection",
             "ext-mbstring": "Use Mbstring for best performance"
         },
-        "time": "2019-01-22T12:44:56+00:00",
+        "time": "2019-03-05T19:40:20+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "voku\\": "src/voku/",
@@ -888,17 +888,17 @@
     },
     {
         "name": "voku/simple_html_dom",
-        "version": "4.2.1",
-        "version_normalized": "4.2.1.0",
+        "version": "4.4.0",
+        "version_normalized": "4.4.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/voku/simple_html_dom.git",
-            "reference": "73f2f5f90bb2452ff98c5cb7035c75e1cd6da9f9"
+            "reference": "809b01f691b6d543aa765d099625ddaea50aa970"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/voku/simple_html_dom/zipball/73f2f5f90bb2452ff98c5cb7035c75e1cd6da9f9",
-            "reference": "73f2f5f90bb2452ff98c5cb7035c75e1cd6da9f9",
+            "url": "https://api.github.com/repos/voku/simple_html_dom/zipball/809b01f691b6d543aa765d099625ddaea50aa970",
+            "reference": "809b01f691b6d543aa765d099625ddaea50aa970",
             "shasum": ""
         },
         "require": {
@@ -914,9 +914,9 @@
         "suggest": {
             "voku/portable-utf8": "~4.0"
         },
-        "time": "2019-01-06T07:50:30+00:00",
+        "time": "2019-03-31T23:23:19+00:00",
         "type": "library",
-        "installation-source": "source",
+        "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "voku\\helper\\": "src/voku/helper/"
