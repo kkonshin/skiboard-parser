@@ -60,10 +60,10 @@ if (!Loader::includeModule('catalog')) {
 
 $source = new Source(SOURCE);
 
-$sourceFile = Storage::storeCurrentXml($source);
+//$sourceFile = Storage::storeCurrentXml($source); // Не вызывать до реализации сохранения временного файла?
+
 if(is_file($sourceFile)) {
 	echo $sourceFile . " успешно сохранен" . PHP_EOL; // Сохранение файла - источника
-
 }
 
 /**
@@ -127,6 +127,11 @@ if (!empty($previousXml) && $isNewPrice) {
 
 $resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
 
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/previousResultArray.log", print_r($previousResultArray, true));
+
+//exit("Выход перед запуском HTML-парсера" . PHP_EOL);
+
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
 // Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
@@ -154,10 +159,8 @@ foreach ($resultArray as $key => $value) {
 	}
 }
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-//file_put_contents(__DIR__ . "/logs/previousResultArray.log", print_r($previousResultArray, true));
 
-//exit();
+//exit("Выход после окончания работы HTML-парсера");
 
 $dbRes = CIBlockElement::GetList(
 	[],
