@@ -55,10 +55,12 @@ if (!Loader::includeModule('catalog')) {
 $previousResultArray = [];
 $resultDifferenceArray = [];
 $resultDifferenceArrayKeys = [];
+
+$isNewPrice = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
 $isAddNewItems = false;
+
 $resultArrayLength = 0;
 $previousResultArrayLength = 0;
-
 // TODO возможно инициализировать объекты через $crawler = new stdClass(),
 // если реализована проверка на принадлежность к конкретному классу
 $crawler = null;
@@ -66,17 +68,6 @@ $previousCrawler = null;
 
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Dirs::make(__DIR__);
-
-/*
-if (!is_dir(__DIR__ . "/logs")) {
-	mkdir(__DIR__ . "/logs", 0775, true);
-}
-if (!is_dir(__DIR__ . "/save")) {
-	mkdir(__DIR__ . "/save", 0775, true);
-}
-*/
-
-
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
 
@@ -91,13 +82,20 @@ $source = new Source(SOURCE);
 $xml = $source->getSource();
 // Проверяем, сохранен ли предыдущий файл каталога
 $previousXml = Storage::getPreviousXml();
-// Если старый файл есть - создаем ему краулер симфони
+// Если старый файл есть - создаем ему краулер симфони...
 if (!empty($previousXml)) {
-	$previousCrawler = new Crawler($previousXml);
+    $previousCrawler = new Crawler($previousXml);
+    // TODO можно переименовать старый файл на этом этапе?
+    // TODO не сохранять старые файлы с датой
+    //	Storage::rename(Storage::getSourceSavePath());
 }
 // Создаем краулер для нового каталога
 $crawler = new Crawler($xml);
 
+// Сразу парсим новый файл.
+// TODO вызвать парсер HTML для получения описаний и дополнительных картинок
+// TODO описание содержимого массива
+$resultArray = ParserBody::parse($crawler);
 
 // TEMP отправщик писем об обновлениях. Не реализован
 /*
@@ -109,19 +107,18 @@ echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_
 */
 
 if ($crawler && $previousCrawler) {
+    // Сравниваем даты в сохраненном файле и новом
+    // TODO если есть старый файл - переименовать его перед сохранением нового
 	$isNewPrice = CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
 // Сравниваем длины старого и нового массивов
 if (!empty($previousXml) && $isNewPrice) {
-
-	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл, не запуская HTML-парсер
-	$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
-
+	// Парсим старый файл, не запуская HTML-парсер
+	$previousResultArray = ParserBody::parse($previousCrawler);
 	if (!empty($previousResultArray) && !empty($resultArray)) {
 		$previousResultArrayLength = count($previousResultArray);
 	}
-
 }
 
 file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));

@@ -13,6 +13,16 @@ class Storage extends Source
 
 	private static $sourceSavePath = SOURCE_SAVE_PATH . "previous.xml";
 
+	/**
+	 * Возвращает путь к последнему сохраненому файлу каталога
+	 * @return string
+	 */
+	
+	public static function getSourceSavePath()
+	{
+		return self::$sourceSavePath;
+	}
+
 	public static function storeCurrentXml(Source $source)
 	{
 		try {
@@ -40,6 +50,11 @@ class Storage extends Source
 		}
 	}
 
+	/**
+	 * Возвращает содержимое последнего сохраненного файла каталога
+	 * @return bool|string
+	 */
+
 	public static function getPreviousXml()
 	{
 		if (is_file(self::$sourceSavePath)) {
@@ -47,12 +62,31 @@ class Storage extends Source
 		} else {
 			return false;
 		}
-
 	}
 
-	public static function rename()
+	/**
+	 * Переименовывает старый файл каталога перед сохранением нового
+	 * @param $pathToFile
+	 * @return bool
+	 */
+
+	public static function rename($pathToFile)
 	{
-
+		$result = false;
+		if (is_file($pathToFile)) {
+			$result = rename($pathToFile,
+				__DIR__
+				. "/save/"
+				. explode('.', basename($pathToFile))[0]
+				. "__"
+				. date("Y_m_d__H_i_s")
+				. ".xml"
+			);
+		}
+		if ($result) {
+			return $result;
+		} else {
+			return false;
+		}
 	}
-
 }

@@ -35,20 +35,12 @@ class File
 
 	public static function getFileSize($file)
 	{
-
 		if (is_file($file)) {
-
 			$size = filesize($file);
-
 			$formattedSize = self::formatSizeUnits($size);
-
 			return $formattedSize;
-
 		} else {
 			return false;
 		}
 	}
-
-
-
 }
