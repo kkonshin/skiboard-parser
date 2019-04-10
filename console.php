@@ -10,13 +10,15 @@ require(__DIR__ . "/config.php");  // настройки и константы
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
-// Очищаем все 3 буфера
+// Очищаем все 3 уровня буфера битрикса
 while (ob_get_level()) {
 	ob_end_flush();
 }
 
+// Засекаем время выполнения скрипта
 $startExecTime = getmicrotime();
 
+// Подключаем классы через composer
 require_once("vendor/autoload.php");
 
 use Symfony\Component\DomCrawler\Crawler;
@@ -26,32 +28,21 @@ use \Bitrix\Highloadblock as HL;
 
 use Parser\Source\Source;
 use Parser\Source\Storage;
+
 use Parser\ParserBody\ParserBody;
 
 use Parser\HtmlParser\HtmlParser;
 
 use Parser\Update;
+
 use Parser\CatalogDate;
 use Parser\SectionsList;
 use Parser\Mail;
 
 use Parser\Utils\Price;
+use Parser\Utils\Dirs;
 
 global $USER;
-
-$previousResultArray = [];
-$resultDifferenceArray = [];
-$resultDifferenceArrayKeys = [];
-$isAddNewItems = false;
-$resultArrayLength = 0;
-$previousResultArrayLength = 0;
-
-if (!is_dir(__DIR__ . "/logs")) {
-	mkdir(__DIR__ . "/logs", 0775, true);
-}
-if (!is_dir(__DIR__ . "/save")) {
-	mkdir(__DIR__ . "/save", 0775, true);
-}
 
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
@@ -60,6 +51,31 @@ if (!Loader::includeModule('iblock')) {
 if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
+
+$previousResultArray = [];
+$resultDifferenceArray = [];
+$resultDifferenceArrayKeys = [];
+$isAddNewItems = false;
+$resultArrayLength = 0;
+$previousResultArrayLength = 0;
+
+// TODO возможно инициализировать объекты через $crawler = new stdClass(),
+// если реализована проверка на принадлежность к конкретному классу
+$crawler = null;
+$previousCrawler = null;
+
+// Создаем директории для сохранения файлов каталогов, логирования и т.п.
+Dirs::make(__DIR__);
+
+/*
+if (!is_dir(__DIR__ . "/logs")) {
+	mkdir(__DIR__ . "/logs", 0775, true);
+}
+if (!is_dir(__DIR__ . "/save")) {
+	mkdir(__DIR__ . "/save", 0775, true);
+}
+*/
+
 
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
@@ -73,21 +89,17 @@ $source = new Source(SOURCE);
 
 // Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
-
-// Проверяем, сохраенен ли предыдущий файл каталога
+// Проверяем, сохранен ли предыдущий файл каталога
 $previousXml = Storage::getPreviousXml();
-
-
-// TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
-
-$crawler = new Crawler($xml);
-
+// Если старый файл есть - создаем ему краулер симфони
 if (!empty($previousXml)) {
 	$previousCrawler = new Crawler($previousXml);
 }
+// Создаем краулер для нового каталога
+$crawler = new Crawler($xml);
 
-// TODO удалить после тестирования
 
+// TEMP отправщик писем об обновлениях. Не реализован
 /*
 $newSectionsList = [123,321,145];
 
@@ -96,12 +108,8 @@ $mailSendResult = Parser\Mail::sendMail($newSectionsList);
 echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_event при удачном добавлении письма в очередь отправки
 */
 
-// если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
-
-// TODO убрать дублирование парсинга нового файла
-
 if ($crawler && $previousCrawler) {
-	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
+	$isNewPrice = CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
 // Сравниваем длины старого и нового массивов
