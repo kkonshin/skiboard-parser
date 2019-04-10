@@ -21,7 +21,7 @@ class Storage extends Source
 
 			$sourceSavePath = self::$sourceSavePath;
 
-			if (is_file($sourceSavePath)){
+			if (is_file($sourceSavePath)) {
 				echo "Файл {$sourceSavePath} будет перезаписан." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			} else {
@@ -30,7 +30,8 @@ class Storage extends Source
 			}
 
 			if ($result) {
-				return "Файл {$sourceSavePath} успешно сохранен." . PHP_EOL;
+//				return "Файл {$sourceSavePath} успешно сохранен." . PHP_EOL;
+				return $sourceSavePath;
 			} else {
 				throw new \Exception("Ошибка сохранения файла каталога." . PHP_EOL);
 			}
@@ -41,7 +42,7 @@ class Storage extends Source
 
 	public static function getPreviousXml()
 	{
-		if (is_file(self::$sourceSavePath)){
+		if (is_file(self::$sourceSavePath)) {
 			return file_get_contents(self::$sourceSavePath);
 		} else {
 			return false;
@@ -51,7 +52,7 @@ class Storage extends Source
 
 	public static function rename()
 	{
-		
+
 	}
 
 }

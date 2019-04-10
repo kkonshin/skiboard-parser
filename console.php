@@ -60,11 +60,19 @@ if (!Loader::includeModule('catalog')) {
 
 $source = new Source(SOURCE);
 
+$sourceFile = Storage::storeCurrentXml($source);
+if(is_file($sourceFile)) {
+	echo $sourceFile . " успешно сохранен" . PHP_EOL; // Сохранение файла - источника
+
+}
+
 /**
  * Получение содержания файла - источника
  */
 
 $xml = $source->getSource();
+
+// TODO сохранить временный файл, получить его размер, удалить файл
 
 /**
  * Получение предыдущего сохраненного файла - источника
@@ -101,7 +109,8 @@ echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_
 */
 
 // если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
-// TODO убрать дублирование парсинга нового файла?
+
+// TODO убрать дублирование парсинга нового файла
 
 if ($crawler && $previousCrawler) {
 	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
@@ -145,7 +154,8 @@ foreach ($resultArray as $key => $value) {
 	}
 }
 
-file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/previousResultArray.log", print_r($previousResultArray, true));
 
 //exit();
 
@@ -489,7 +499,7 @@ echo "\nСохраняем товары" . PHP_EOL;
 require(__DIR__ . "/add.php");
 //}
 
-echo Storage::storeCurrentXml($source); // Сохранение файла - источника
+echo "Новый каталог сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
 
 register_shutdown_function(function () {
 	global $startExecTime;
