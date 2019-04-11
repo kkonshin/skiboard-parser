@@ -17,7 +17,7 @@ class Storage extends Source
 	 * Возвращает путь к последнему сохраненому файлу каталога
 	 * @return string
 	 */
-	
+
 	public static function getSourceSavePath()
 	{
 		return self::$sourceSavePath;
