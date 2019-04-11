@@ -147,6 +147,7 @@ file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($pr
 // TODO получаем содержимое временного раздела каталога, куда мы сохраняем товары
 // вынести в класс, получить $catalogIdsTempArray и $catalogIds
 // найти их применения, выпилить лишнее
+
 $dbRes = CIBlockElement::GetList(
 	[],
 	[
@@ -168,7 +169,8 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 
 file_put_contents(__DIR__ . "/logs/catalogIdsTempArray.log", print_r($catalogIdsTempArray, true));
 file_put_contents(__DIR__ . "/logs/catalogIds.log", print_r($catalogIds, true));
-// ACHTUNG используется ли это свойство в других парсерах
+
+// ACHTUNG используется ли это свойство в других парсерах SKIBOARD_EXTERNAL_OFFER_ID
 // зачем оно вообще?
 // На D7 есть реализация?
 
@@ -249,6 +251,9 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
         // TODO вместо деактивации товара нужно установить всем его дочерним ТП количество 0
         // Реализуем так же как в блоке выше, получив массив товаров и ТП
+        // Выборка происходит по свойству GROUP_ID, причем выбираются только активные элементы
+        // TODO проверим наличие заполненного свойства GROUP_ID
+        // - такого свойства нет
 
 		$dbRes = CIBlockElement::GetList(
 			[],
@@ -265,6 +270,10 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		while ($res = $dbRes->GetNext()) {
 			$temp[] = $res;
 		}
+
+		// FIXME результат выборки пуст
+
+		file_put_contents(__DIR__ . "/logs/temp.log", print_r($temp, true));
 
 		foreach ($temp as $tempKey => $tempValue) {
 			$element = new CIBlockElement();

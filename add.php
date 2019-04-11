@@ -121,7 +121,7 @@ foreach ($resultArray as $key => $item) {
 			"IBLOCK_SECTION_ID" => TEMP_CATALOG_SECTION,
 			"NAME" => $itemName,
 			"CODE" => CUtil::translit($itemName . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
-			"ACTIVE" => "N",
+			"ACTIVE" => "Y",
 //			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"DETAIL_PICTURE" => (isset($item[0]["HTML_DETAIL_PICTURE_URL"])) ? CFile::MakeFileArray($item[0]["HTML_DETAIL_PICTURE_URL"]) : "",
 			"DETAIL_TEXT" => (!empty ($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"])) ? html_entity_decode($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"]) : "",
@@ -194,7 +194,7 @@ foreach ($resultArray as $key => $item) {
 				$arOfferFields = [
 					'NAME' => $offerName,
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
-					'ACTIVE' => 'N',
+					'ACTIVE' => 'Y',
 					"DETAIL_PICTURE" => (isset($offer["HTML_DETAIL_PICTURE_URL"])) ? CFile::MakeFileArray($offer["HTML_DETAIL_PICTURE_URL"]) : "",
 					'PROPERTY_VALUES' => $arOfferProps
 				];

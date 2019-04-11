@@ -29,11 +29,13 @@ define('SOURCE_SAVE_PATH', __DIR__ . "/save/"); // для сохранения �
 define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
-define('TEMP_CATALOG_SECTION', 387); // ID раздела для временного сохранения товаров
+define('TEMP_CATALOG_SECTION', 392); // ID раздела для временного сохранения товаров
 define('SIZE_PROPERTY_ID', 120); // ID свойства "Размер"
 define('SIZE_PROPERTY_VALUE__ONE_SIZE', 1498); // ID значение свойства "Размер" = "Единый"
-define('PROPERTY_SKIBOARD_ITEM_TYPE', 214); // ID свойства "Тип"
-define('PROPERTY_SKIBOARD_ITEM_PURPOSE', 215); // ID свойства "Назначение"
+
+// TODO эти свойства из парсеров кроме skiboard - убрать
+//define('PROPERTY_SKIBOARD_ITEM_TYPE', 214); // ID свойства "Тип" (только для skiboard.ru)
+//define('PROPERTY_SKIBOARD_ITEM_PURPOSE', 215); // ID свойства "Назначение" (только для skiboard.ru)
 
 //FIXME дубль
 define('P_SITE_NAME', 'kite.ru'); // Свойство товара "Сайт" - сайт с которого происходит товар
