@@ -56,7 +56,7 @@ $previousResultArray = [];
 $resultDifferenceArray = [];
 $resultDifferenceArrayKeys = [];
 
-$isNewPrice = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
+$isPriceNew = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
 $isAddNewItems = false;
 
 $resultArrayLength = 0;
@@ -93,9 +93,31 @@ if (!empty($previousXml)) {
 $crawler = new Crawler($xml);
 
 // Сразу парсим новый файл.
-// TODO вызвать парсер HTML для получения описаний и дополнительных картинок
 // TODO описание содержимого массива
 $resultArray = ParserBody::parse($crawler);
+// Детальное изображение, дополнительные фотографии, детальное описание забираем с сайта
+// при помощи HTML-парсера
+// TODO вынести в отдельный класс или метод класса HtmlParser?
+foreach ($resultArray as $key => $value) {
+
+	foreach ($value as $k => $v) {
+
+		$body = HtmlParser::getBody($v["URL"]);
+
+		if (!empty($body)) {
+
+			$resultArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
+
+			$resultArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
+
+			$resultArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
+
+			if (!empty($resultArray[$key][$k]["HTML_DESCRIPTION"])) {
+				$resultArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($resultArray[$key][$k]["HTML_DESCRIPTION"]);
+			}
+		}
+	}
+}
 
 // TEMP отправщик писем об обновлениях. Не реализован
 /*
@@ -109,49 +131,21 @@ echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_
 if ($crawler && $previousCrawler) {
     // Сравниваем даты в сохраненном файле и новом
     // TODO если есть старый файл - переименовать его перед сохранением нового
-	$isNewPrice = CatalogDate::checkDate($crawler, $previousCrawler);
+	$isPriceNew = CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
-// Сравниваем длины старого и нового массивов
-if (!empty($previousXml) && $isNewPrice) {
-	// Парсим старый файл, не запуская HTML-парсер
-	$previousResultArray = ParserBody::parse($previousCrawler);
-	if (!empty($previousResultArray) && !empty($resultArray)) {
-		$previousResultArrayLength = count($previousResultArray);
-	}
+if (!empty($previousXml) && $isPriceNew) {
+    // Парсим старый файл, не запуская для него HTML-парсер
+    $previousResultArray = ParserBody::parse($previousCrawler);
+    // Считаем длину получившегося массива
+    $previousResultArrayLength = count($previousResultArray);
 }
 
-file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-file_put_contents(__DIR__ . "/logs/previousResultArray.log", print_r($previousResultArray, true));
-
-exit("Выход перед запуском HTML-парсера" . PHP_EOL);
+//exit("Выход перед запуском HTML-парсера" . PHP_EOL); // для отладки
 
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
-// Детальное изображение, дополнительные фотографии, детальное описание из HTML-парсера
 
-// TODO вынести в отдельный класс или метод класса HtmlParser?
-
-foreach ($resultArray as $key => $value) {
-
-	foreach ($value as $k => $v) {
-
-		$body = HtmlParser::getBody($v["URL"]);
-
-		if (!empty($body)) {
-
-			$resultArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
-
-            $resultArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
-
-            $resultArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
-
-            if (!empty($resultArray[$key][$k]["HTML_DESCRIPTION"])) {
-				$resultArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($resultArray[$key][$k]["HTML_DESCRIPTION"]);
-			}
-		}
-	}
-}
 
 
 //exit("Выход после окончания работы HTML-парсера");
@@ -175,6 +169,8 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 }
 
 // TODO - проверить свойство для каталога gssport
+
+// TODO для остальных парсеров выпилено
 
 $catalogSkus = CCatalogSku::getOffersList(
 	$catalogIds,
@@ -205,9 +201,7 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	}
 }
 
-/**
- * Обновление цен торговых предложений
- */
+// Обновление цен торговых предложений
 
 if (!empty($catalogSkusWithoutParent) && !empty($resultArray)) {
 	Price::update($catalogSkusWithoutParent, $resultArray);
@@ -270,6 +264,8 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 }
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
+
+exit("Выход после завершения парсинга");
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
