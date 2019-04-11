@@ -1,23 +1,19 @@
 #!/usr/bin/php
-
 <?php
 
 if (php_sapi_name() !== "cli") {
-	die ('Этот скрипт предназначен для запуска из командной строки');
+	die ('Этот скрипт предназначен для запуска из командной строки: php -f console.php');
 }
 
 require(__DIR__ . "/config.php");  // настройки и константы
-
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
 // Очищаем все 3 уровня буфера битрикса
 while (ob_get_level()) {
 	ob_end_flush();
 }
-
 // Засекаем время выполнения скрипта
 $startExecTime = getmicrotime();
-
 // Подключаем классы через composer
 require_once("vendor/autoload.php");
 
@@ -47,7 +43,6 @@ global $USER;
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
 }
-
 if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
@@ -57,6 +52,7 @@ $previousResultArray = []; // результат парсинга файла /sa
 $resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
 $resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
 $catalogIdsTempArray = []; // временный рабочий массив
+$temp = []; // временный рабочий массив
 
 $isPriceNew = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
 $isAddNewItems = false; // флаг для запуска скрипта add.php [МЕХАНИЗМ НЕ РЕАЛИЗОВАН]
@@ -102,6 +98,8 @@ $resultArray = ParserBody::parse($crawler);
 // при помощи HTML-парсера
 // TODO вынести в отдельный класс или метод класса HtmlParser?
 
+file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
+
 // TEMP включить после отладки
 /*
 foreach ($resultArray as $key => $value) {
@@ -142,6 +140,8 @@ if (!empty($previousXml) && $isPriceNew) {
     $previousResultArrayLength = count($previousResultArray);
 }
 
+file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($previousResultArray, true));
+
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
 // TODO получаем содержимое временного раздела каталога, куда мы сохраняем товары
@@ -166,11 +166,11 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 }
 
 
-
-
-// TODO - проверить свойство для каталога gssport
-
-// TODO для остальных парсеров выпилено
+file_put_contents(__DIR__ . "/logs/catalogIdsTempArray.log", print_r($catalogIdsTempArray, true));
+file_put_contents(__DIR__ . "/logs/catalogIds.log", print_r($catalogIds, true));
+// ACHTUNG используется ли это свойство в других парсерах
+// зачем оно вообще?
+// На D7 есть реализация?
 
 $catalogSkus = CCatalogSku::getOffersList(
 	$catalogIds,
@@ -184,6 +184,10 @@ $catalogSkus = CCatalogSku::getOffersList(
 
 //echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
 
+// TODO что такое ТП без родителя?
+// TODO здесь получаются базовые цены для ТП
+// посмотреть на получаемые массивы
+// перенести на D7
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	foreach ($skuValue as $key => $value) {
 		$catalogSkusWithoutParent[] = $value;
@@ -202,9 +206,10 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 }
 
 // Обновление цен торговых предложений
+// TODO проверить, какие именно цены будут обновлены, все ?
 
 if (!empty($catalogSkusWithoutParent) && !empty($resultArray)) {
-	Price::update($catalogSkusWithoutParent, $resultArray);
+	Price::update($catalogSkusWithoutParent, $resultArray); // Класс находится в classes/Utils/Price
 }
 
 if (!empty($resultArray)) {
@@ -212,37 +217,46 @@ if (!empty($resultArray)) {
 }
 
 echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
+echo "Длина предыдущего массива обновлений: " . $previousResultArrayLength . PHP_EOL;
 
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
 	$resultArrayKeys = array_keys($resultArray);
 	$previousResultArrayKeys = array_keys($previousResultArray);
 
-	// TODO берем массив с большей длиной для определения разницы
+	// Если новый массив длиннее старого
 	if ($resultArrayLength > $previousResultArrayLength) {
-
+	    // Массив, содержащий ключи новых родительских товаров
 		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
+
+		// TODO убрать промежуточный массив?
+        // Во временный массив выбираются товары вместе с дочерними ТП
+        // Из них создается массив новых товаров для записи в инфоблок
 		foreach ($resultDifferenceArrayKeys as $diffKey => $diffValue) {
 			$temp[$diffValue] = $resultArray[$diffValue];
 		}
+
 		$resultArray = $temp;
-		// Значит нужно записать в инфоблок новые элементы с ключами разницы
-		// т.е. выбрать из нового массива только эти элементы
 
 		$isAddNewItems = true;
 
-	} elseif ($previousResultArrayLength > $resultArrayLength) {
+		file_put_contents(__DIR__ . "/logs/resultArray__after--newLonger.log", print_r($resultArray, true));
 
+	// Если новый массив короче старого
+	} elseif ($previousResultArrayLength > $resultArrayLength) {
+        // Получаем ключи родительских товаров, которые нужно убрать с сайта
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
 
-		// Значит в инфоблоке нужно деактивировать товары с ключами разницы
-
         // TODO вместо деактивации товара нужно установить всем его дочерним ТП количество 0
+        // Реализуем так же как в блоке выше, получив массив товаров и ТП
 
 		$dbRes = CIBlockElement::GetList(
 			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
+			[
+                "IBLOCK_ID" => CATALOG_IBLOCK_ID,
+                "SECTION_ID" => TEMP_CATALOG_SECTION,
+                "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys
+            ],
 			false,
 			false,
 			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
@@ -256,6 +270,11 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			$element = new CIBlockElement();
 			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
 		}
+
+		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter--resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
+		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter.log", print_r($resultArray, true));
+
+
 	}
 
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
@@ -518,3 +537,4 @@ register_shutdown_function(function () {
 });
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
+?>
