@@ -69,6 +69,8 @@ foreach ($resultArray as $key => $item) {
 
 		// Обработка детального описания товара
 
+		// TODO совместить с реализацией в классе Description
+
 		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage) {
 			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
 //			$resultArray[$key][0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = $item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey];
@@ -127,7 +129,7 @@ foreach ($resultArray as $key => $item) {
 			"DETAIL_TEXT" => (!empty ($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"])) ? html_entity_decode($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => P_SITE_NAME,
-				"GROUP_ID" => $key,
+				"P_GROUP_ID" => $key, // Идентификатор, по которому осуществляется связь товаров в XML и торговом каталоге
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 				"SKIBOARD_ITEM_TYPE" => $itemTypeId > 0 ? $itemTypeId : '',

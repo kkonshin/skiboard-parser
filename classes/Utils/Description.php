@@ -20,13 +20,14 @@ class Description extends \Parser\ItemsStatus
 
 					// FIXME изменилась сборка названия товара
 					// Проверить сборку названия
+					// Название возможно SHORT_NAME
 
 //					echo \CUtil::translit($resultArrayValue[0]["NAME"] . ' ' . $resultArrayValue[0]["OFFER_ID"], "ru", P_TRANSLIT_PARAMS) . PHP_EOL;
 //					echo $itemValue["CODE"] . PHP_EOL;
 
 					if (\CUtil::translit($resultArrayValue[0]["NAME"] . ' ' . $resultArrayValue[0]["OFFER_ID"], "ru", P_TRANSLIT_PARAMS) === $itemValue["CODE"]){
 						$element = new \CIBlockElement();
-						echo $element->Update($itemValue["ID"], ["DETAIL_TEXT" => html_entity_decode($resultArrayValue[0]["HTML_PARSED_DESCRIPTION"])]);
+						echo $element->Update($itemValue["ID"], ["DETAIL_TEXT" => html_entity_decode($resultArrayValue[0]["HTML_PARSED_DESCRIPTION"]["HTML"])]);
 					} else {
 						throw new \Exception("Обновить детальное описание не удалось");
 					}

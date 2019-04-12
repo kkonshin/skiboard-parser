@@ -22,6 +22,9 @@ use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
+use Parser\SectionParams; // Класс для создания объектов параметров (DI)
+use Parser\ItemsStatus; // Класс для работы с уже сохраненными в инфоблоки товаров и ТП элементами, принимает SectionParams
+
 use Parser\Source\Source;
 use Parser\Source\Storage;
 
@@ -30,6 +33,8 @@ use Parser\ParserBody\ParserBody;
 use Parser\HtmlParser\HtmlParser;
 
 use Parser\Update;
+
+use Parser\Catalog\Properties; // Класс для работы со свойствами каталога
 
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -60,6 +65,9 @@ $isAddNewItems = false; // флаг для запуска скрипта add.php
 $resultArrayLength = 0; // длина нового массива
 $previousResultArrayLength = 0; // длина старого массива
 
+$pGroupId = ''; //
+
+
 // TODO возможно инициализировать объекты через $crawler = new stdClass(),
 // если реализована проверка на принадлежность к конкретному классу
 $crawler = null; // объект компонента Symfony
@@ -69,6 +77,10 @@ $previousCrawler = null; // объект компонента Symfony
 Dirs::make(__DIR__);
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
+
+// Конфигурируем объект для работы с сохраненными элементами каталога
+$sectionParams = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$itemsStatus = new ItemsStatus($sectionParams);
 
 //TEMP
 //$sourceFile = Storage::storeCurrentXml($source); // Не вызывать до реализации сохранения временного файла?
@@ -83,10 +95,10 @@ $xml = $source->getSource();
 $previousXml = Storage::getPreviousXml();
 // Если старый файл есть - создаем ему краулер симфони...
 if (!empty($previousXml)) {
-    $previousCrawler = new Crawler($previousXml);
-    // TODO можно переименовать старый файл на этом этапе?
-    // TODO не сохранять старые файлы с датой
-    //	Storage::rename(Storage::getSourceSavePath());
+	$previousCrawler = new Crawler($previousXml);
+	// TODO можно переименовать старый файл на этом этапе?
+	// TODO не сохранять старые файлы с датой
+	//	Storage::rename(Storage::getSourceSavePath());
 }
 // Создаем краулер для нового каталога
 $crawler = new Crawler($xml);
@@ -101,7 +113,7 @@ $resultArray = ParserBody::parse($crawler);
 file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
-$resultArray = array_slice($resultArray, 23, 5); // Для отладки
+$resultArray = array_slice($resultArray, 1, 1); // Для отладки
 //ENDTEMP
 
 // TEMP включить после отладки
@@ -132,16 +144,16 @@ file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultA
 //exit("Выход после окончания работы HTML-парсера");
 
 if ($crawler && $previousCrawler) {
-    // Сравниваем даты в сохраненном файле и новом
-    // TODO если есть старый файл - переименовать его перед сохранением нового
+	// Сравниваем даты в сохраненном файле и новом
+	// TODO если есть старый файл - переименовать его перед сохранением нового
 	$isPriceNew = CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
 if (!empty($previousXml) && $isPriceNew) {
-    // Парсим старый файл, не запуская для него HTML-парсер
-    $previousResultArray = ParserBody::parse($previousCrawler);
-    // Считаем длину получившегося массива
-    $previousResultArrayLength = count($previousResultArray);
+	// Парсим старый файл, не запуская для него HTML-парсер
+	$previousResultArray = ParserBody::parse($previousCrawler);
+	// Считаем длину получившегося массива
+	$previousResultArrayLength = count($previousResultArray);
 }
 
 file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($previousResultArray, true));
@@ -170,13 +182,14 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 	$catalogIds[] = $cidsValue["ID"];
 }
 
-
 file_put_contents(__DIR__ . "/logs/catalogIdsTempArray.log", print_r($catalogIdsTempArray, true));
 file_put_contents(__DIR__ . "/logs/catalogIds.log", print_r($catalogIds, true));
 
 // ACHTUNG используется ли это свойство в других парсерах SKIBOARD_EXTERNAL_OFFER_ID
 // зачем оно вообще?
 // На D7 есть реализация?
+
+// TODO Уже есть класс ItemsStatus с реализацией этих методов
 
 $catalogSkus = CCatalogSku::getOffersList(
 	$catalogIds,
@@ -232,12 +245,12 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 	// Если новый массив длиннее старого
 	if ($resultArrayLength > $previousResultArrayLength) {
-	    // Массив, содержащий ключи новых родительских товаров
+		// Массив, содержащий ключи новых родительских товаров
 		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
 
 		// TODO убрать промежуточный массив?
-        // Во временный массив выбираются товары вместе с дочерними ТП
-        // Из них создается массив новых товаров для записи в инфоблок
+		// Во временный массив выбираются товары вместе с дочерними ТП
+		// Из них создается массив новых товаров для записи в инфоблок
 		foreach ($resultDifferenceArrayKeys as $diffKey => $diffValue) {
 			$temp[$diffValue] = $resultArray[$diffValue];
 		}
@@ -248,44 +261,59 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 		file_put_contents(__DIR__ . "/logs/resultArray__after--newLonger.log", print_r($resultArray, true));
 
-	// Если новый массив короче старого
+		// Если новый массив короче старого
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
-        // Получаем ключи родительских товаров, которые нужно убрать с сайта
+		// Получаем ключи родительских товаров, которые нужно убрать с сайта
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
 
-        // TODO вместо деактивации товара нужно установить всем его дочерним ТП количество 0
-        // Реализуем так же как в блоке выше, получив массив товаров и ТП
-        // Выборка происходит по свойству GROUP_ID, причем выбираются только активные элементы
-        // TODO проверим наличие заполненного свойства GROUP_ID
-        // - такого свойства нет
+		// TODO вместо деактивации товара нужно установить всем его дочерним ТП количество 0
+		// Реализуем так же как в блоке выше, получив массив товаров и ТП
+		// Выборка происходит по свойству P_GROUP_ID, причем выбираются только активные элементы
+		// TODO проверим наличие заполненного свойства P_GROUP_ID
+		// - такого свойства нет
+
+		// TODO предварительно проверять наличие свойства, если нет - создавать
+
+		// Проверяем наличие и создаем свойство каталога, хранящее ID товара в каталоге kite.ru
+		Properties::createPGroupId();
+
+		// TODO найти реализацию деактивации в классах, выпилить отсюда
 
 		$dbRes = CIBlockElement::GetList(
 			[],
 			[
-                "IBLOCK_ID" => CATALOG_IBLOCK_ID,
-                "SECTION_ID" => TEMP_CATALOG_SECTION,
-                "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys
-            ],
+				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+				"SECTION_ID" => TEMP_CATALOG_SECTION,
+				"PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys
+			],
 			false,
 			false,
-			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
+			[
+				"IBLOCK_ID",
+				"ID",
+				"NAME",
+				"PROPERTY_P_GROUP_ID"
+			]
 		);
 
 		while ($res = $dbRes->GetNext()) {
 			$temp[] = $res;
 		}
 
-		// FIXME результат выборки пуст
-
-		file_put_contents(__DIR__ . "/logs/temp.log", print_r($temp, true));
+//		file_put_contents(__DIR__ . "/logs/temp.log", print_r($temp, true));
 
 		foreach ($temp as $tempKey => $tempValue) {
 			$element = new CIBlockElement();
 			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
 		}
 
+		// Получаем массив ТП по массиву родительских товаров
+		foreach ($temp as $tempKey => $tempValue) {
+			$skusToSetZeroArray[] = CCatalogSKU::getOffersList($tempValue["ID"], 0, [], ["*"]);
+		}
+
 		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter--resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
-		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter.log", print_r($resultArray, true));
+		file_put_contents(__DIR__ . "/logs/resultArray__after--skusToSetZero.log", print_r($skusToSetZeroArray, true));
 
 
 	}
@@ -299,7 +327,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
-exit("Выход после завершения парсинга");
+//exit("Выход после завершения парсинга");
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
@@ -392,7 +420,48 @@ $allSkuPropertiesArray = []; // Все свойства торговых пре�
 $allSourcePropertiesArray = []; // Все свойства торговых предложений из прайса
 $allSkuPropertiesCodesArray = []; // Массив символьных кодов ТП для проверки уникальности
 
+
+// TODO +
+// Ищем в свойствах инфоблока ТОВАРОВ свойство P_GROUP_ID
+// Если нет - создаем. Это ключ связывающий родительские товары XML kite.ru и сохраненные товары
+// Проверить необходимость для торговых предложений
+
+// Выносим в класс +
+/*
+$catalogIbPropsDb = CIBlockProperty::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "CHECK_PERMISSIONS" => "N", "CODE" => "P_GROUP_ID"]);
+
+if($res=$catalogIbPropsDb->GetNext()){
+    $pGroupId = $res;
+}
+
+if(empty($pGroupId)){
+	$arPropertyFields = [
+		"NAME" => "Идентификатор товара в каталоге kite.ru",
+		"ACTIVE" => "Y",
+		"CODE" => "P_GROUP_ID",
+		"PROPERTY_TYPE" => "S",
+		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+		"SEARCHABLE" => "Y",
+		"FILTRABLE" => "Y",
+		"VALUES" => [
+			0 => [
+				"VALUE" => "",
+				"DEF" => ""
+			]
+		]
+	];
+
+	$propertyPGroupId = new CIBlockProperty;
+	$propertyPGroupId__id = $propertyPGroupId ->Add($arPropertyFields);
+
+	if ($propertyPGroupId__id > 0) {
+		echo "Добавлено свойство инфоблока товаров P_GROUP_ID" . PHP_EOL;
+	}
+
+}
+*/
 $propsResDb = CIBlockProperty::GetList([], ["IBLOCK_ID" => SKU_IBLOCK_ID, "CHECK_PERMISSIONS" => "N"]);
+
 while ($res = $propsResDb->GetNext()) {
 	$allSkuPropertiesArray[] = $res;
 }
@@ -534,11 +603,13 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
-echo "\nСохраняем товары" . PHP_EOL;
-require(__DIR__ . "/add.php");
+//echo "\nСохраняем товары" . PHP_EOL;
+//require(__DIR__ . "/add.php");
 //}
 
-echo "Новый каталог сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
+//TEMP
+//echo "Новый каталог сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
+//ENDTEMP
 
 register_shutdown_function(function () {
 	global $startExecTime;

@@ -4,7 +4,7 @@ namespace Parser;
 
 use \Bitrix\Main\Loader;
 
-// FIXME Неудачное название класса - сделать рефактор.
+// FIXME Неудачное название класса - сделать рефактор. >> \Catalog\Items
 
 class ItemsStatus
 {
@@ -84,6 +84,9 @@ class ItemsStatus
 	 * Возвращает список торговых предложений, связанных с товарами временного раздела
 	 * @return array|bool
 	 */
+
+
+	// FIXME адаптировать для различных парсеров
 
 	public function getSkuList()
 	{

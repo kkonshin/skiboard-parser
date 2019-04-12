@@ -37,7 +37,7 @@ $crawler = new Crawler($xml);
 $resultArray = ParserBody::parse($crawler);
 
 //TEMP
-$resultArray = array_slice($resultArray, 1, 3); // Для отладки
+//$resultArray = array_slice($resultArray, 1, 3); // Для отладки
 //ENDTEMP
 
 
@@ -63,7 +63,7 @@ foreach ($resultArray as $key => $value) {
 }
 
 
-file_put_contents(__DIR__ . "/../logs/add_description__resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/../logs/add_description__resultArray.log", print_r($resultArray, true));
 
 Description::updateDescription($itemStatus, $resultArray);
 
