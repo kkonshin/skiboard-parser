@@ -100,8 +100,11 @@ $resultArray = ParserBody::parse($crawler);
 
 file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
+//TEMP
+$resultArray = array_slice($resultArray, 23, 5); // Для отладки
+//ENDTEMP
+
 // TEMP включить после отладки
-/*
 foreach ($resultArray as $key => $value) {
 
 	foreach ($value as $k => $v) {
@@ -122,8 +125,9 @@ foreach ($resultArray as $key => $value) {
 		}
 	}
 }
-*/
 // ENDTEMP
+
+file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
 
 //exit("Выход после окончания работы HTML-парсера");
 
