@@ -35,6 +35,7 @@ use Parser\HtmlParser\HtmlParser;
 use Parser\Update;
 
 use Parser\Catalog\Properties; // Класс для работы со свойствами каталога
+use Parser\Catalog\Items; // Класс для работы с товарами/ТП каталога
 
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -56,6 +57,8 @@ $resultArray = []; // результат парсинга нового полу�
 $previousResultArray = []; // результат парсинга файла /save/previous.xml
 $resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
 $resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
+$skusToSetZeroArray = []; // Массив ТП, подлежащих деактивации, если родительский товар отсутствует в новом каталоге
+
 $catalogIdsTempArray = []; // временный рабочий массив
 $temp = []; // временный рабочий массив
 
@@ -80,7 +83,7 @@ $source = new Source(SOURCE);
 
 // Конфигурируем объект для работы с сохраненными элементами каталога
 $sectionParams = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
-$itemsStatus = new ItemsStatus($sectionParams);
+$catalogItems = new Items($sectionParams);
 
 //TEMP
 //$sourceFile = Storage::storeCurrentXml($source); // Не вызывать до реализации сохранения временного файла?
@@ -110,10 +113,10 @@ $resultArray = ParserBody::parse($crawler);
 // при помощи HTML-парсера
 // TODO вынести в отдельный класс или метод класса HtmlParser?
 
-file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
-$resultArray = array_slice($resultArray, 1, 1); // Для отладки
+$resultArray = array_slice($resultArray, 1, 2); // Для отладки
 //ENDTEMP
 
 // TEMP включить после отладки
@@ -139,7 +142,7 @@ foreach ($resultArray as $key => $value) {
 }
 // ENDTEMP
 
-file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
 
 //exit("Выход после окончания работы HTML-парсера");
 
@@ -156,7 +159,7 @@ if (!empty($previousXml) && $isPriceNew) {
 	$previousResultArrayLength = count($previousResultArray);
 }
 
-file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($previousResultArray, true));
+//file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($previousResultArray, true));
 
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
@@ -171,7 +174,10 @@ $dbRes = CIBlockElement::GetList(
 		"SECTION_ID" => TEMP_CATALOG_SECTION
 	],
 	false,
-	false, ["ID"]
+	false,
+	[
+		"ID"
+	]
 );
 
 while ($res = $dbRes->GetNext()) {
@@ -182,8 +188,10 @@ foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
 	$catalogIds[] = $cidsValue["ID"];
 }
 
-file_put_contents(__DIR__ . "/logs/catalogIdsTempArray.log", print_r($catalogIdsTempArray, true));
-file_put_contents(__DIR__ . "/logs/catalogIds.log", print_r($catalogIds, true));
+
+
+//file_put_contents(__DIR__ . "/logs/catalogIdsTempArray.log", print_r($catalogIdsTempArray, true));
+//file_put_contents(__DIR__ . "/logs/catalogIds.log", print_r($catalogIds, true));
 
 // ACHTUNG используется ли это свойство в других парсерах SKIBOARD_EXTERNAL_OFFER_ID
 // зачем оно вообще?
@@ -238,6 +246,7 @@ if (!empty($resultArray)) {
 echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
 echo "Длина предыдущего массива обновлений: " . $previousResultArrayLength . PHP_EOL;
 
+// Ищем разницу между новым и старым каталогом
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
 	$resultArrayKeys = array_keys($resultArray);
@@ -259,63 +268,38 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 		$isAddNewItems = true;
 
-		file_put_contents(__DIR__ . "/logs/resultArray__after--newLonger.log", print_r($resultArray, true));
+//		file_put_contents(__DIR__ . "/logs/resultArray__after--newLonger.log", print_r($resultArray, true));
 
 		// Если новый массив короче старого
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 		// Получаем ключи родительских товаров, которые нужно убрать с сайта
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
+		// Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID товара в каталоге kite.ru
+		Properties::createPGroupId(); // P_GROUP_ID
 
-		// TODO вместо деактивации товара нужно установить всем его дочерним ТП количество 0
-		// Реализуем так же как в блоке выше, получив массив товаров и ТП
-		// Выборка происходит по свойству P_GROUP_ID, причем выбираются только активные элементы
-		// TODO проверим наличие заполненного свойства P_GROUP_ID
-		// - такого свойства нет
-
-		// TODO предварительно проверять наличие свойства, если нет - создавать
-
-		// Проверяем наличие и создаем свойство каталога, хранящее ID товара в каталоге kite.ru
-		Properties::createPGroupId();
-
-		// TODO найти реализацию деактивации в классах, выпилить отсюда
-
-		$dbRes = CIBlockElement::GetList(
-			[],
-			[
-				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-				"SECTION_ID" => TEMP_CATALOG_SECTION,
-				"PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys
-			],
-			false,
-			false,
-			[
-				"IBLOCK_ID",
-				"ID",
-				"NAME",
-				"PROPERTY_P_GROUP_ID"
-			]
+		$temp = $catalogItems->getList(
+			["PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys],
+			["PROPERTY_P_GROUP_ID"]
 		);
 
-		while ($res = $dbRes->GetNext()) {
-			$temp[] = $res;
-		}
-
-//		file_put_contents(__DIR__ . "/logs/temp.log", print_r($temp, true));
-
-		foreach ($temp as $tempKey => $tempValue) {
-			$element = new CIBlockElement();
-			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
-		}
-
+		// Деактивация заменена на установку количества всех ТП товара в 0
 		// Получаем массив ТП по массиву родительских товаров
 		foreach ($temp as $tempKey => $tempValue) {
-			$skusToSetZeroArray[] = CCatalogSKU::getOffersList($tempValue["ID"], 0, [], ["*"]);
+			$skusToSetZeroArray = CCatalogSKU::getOffersList($tempValue["ID"]);
 		}
 
-		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter--resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
-		file_put_contents(__DIR__ . "/logs/resultArray__after--skusToSetZero.log", print_r($skusToSetZeroArray, true));
+		foreach ($skusToSetZeroArray as $itemKey => $itemValue) {
+			echo PHP_EOL;
+			echo "Товар {$itemKey} отсутствует в новом каталоге" . PHP_EOL;
+			foreach ($itemValue as $offerKey => $offerValue) {
+				CCatalogProduct::Update($offerKey, ["QUANTITY" => 0]);
+				echo "Количество ТП {$offerKey} установлено в 0" . PHP_EOL;
+			}
+		}
+		echo PHP_EOL;
 
-
+//		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter--resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
+//		file_put_contents(__DIR__ . "/logs/resultArray__after--skusToSetZero.log", print_r($skusToSetZeroArray, true));
 	}
 
 //	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));

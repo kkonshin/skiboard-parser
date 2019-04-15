@@ -6,6 +6,8 @@ use \Bitrix\Main\Loader;
 
 // FIXME Неудачное название класса - сделать рефактор. >> \Catalog\Items
 
+// FIXME нужен ли вообще экземпляр?
+
 class ItemsStatus
 {
 	/**
@@ -26,25 +28,43 @@ class ItemsStatus
 	}
 
 	/**
-	 * Метод для получения списка товаров раздела. Возвращает массив, содержащий активность товара и его ID категории
-	 * из файла XML
+	 * Получает список элементов инфоблока с базовыми установками + дополнительный фильтр и свойства 
+	 * @param $additionalFilter
+	 * @param array $properties
 	 * @return array|bool
 	 */
-	protected function getList()
+
+	public function getList($additionalFilter = [], $properties = [])
 	{
+
+		$filter = [
+			"IBLOCK_ID" => $this->catalogIblockId,
+			"SECTION_ID" => $this->tempCatalogSection
+		];
+
+		$fields = [
+			"IBLOCK_ID",
+			"ID",
+			"NAME",
+			"CODE",
+			"ACTIVE",
+			"PROPERTY_CATEGORY_ID"
+		];
+
+		if (count($additionalFilter) > 0){
+			$filter = array_merge($filter, $additionalFilter);
+		}
+
+		if (count($properties) > 0){
+			$fields = array_merge($fields, $properties);
+		}
+
 		$dbRes = \CIBlockElement::GetList(
 			[],
-			["IBLOCK_ID" => $this->catalogIblockId, "SECTION_ID" => $this->tempCatalogSection],
+			$filter,
 			false,
 			false,
-			[
-				"IBLOCK_ID",
-				"ID",
-				"NAME",
-				"CODE",
-				"ACTIVE",
-				"PROPERTY_CATEGORY_ID"
-			]
+			$fields
 		);
 
 		while ($res = $dbRes->GetNext()) {
@@ -58,13 +78,15 @@ class ItemsStatus
 	}
 
 	/**
-	 * Вспомогательный метод, возвращает массив ID товаров для отбора связанных ТП
+	 * Возвращает массив ID родительских товаров
+	 * @param array $itemsList
 	 * @return array|bool
 	 */
-	protected function getItemsIds()
+
+	public function getItemsIds(Array $itemsList)
 	{
 
-		$itemsList = $this->getList();
+//		$itemsList = $this->getList();
 
 		if (is_array($itemsList)) {
 
@@ -81,19 +103,29 @@ class ItemsStatus
 	}
 
 	/**
-	 * Возвращает список торговых предложений, связанных с товарами временного раздела
+	 * Возвращает список ТП для списка родительских товаров
+	 * @param array $itemsIds
+	 * @param array $extraParameters
 	 * @return array|bool
 	 */
-
-
-	// FIXME адаптировать для различных парсеров
-
-	public function getSkuList()
+	public function getSkuList(Array $itemsIds, $extraParameters = [])
 	{
-		$itemsIdsArray = $this->getItemsIds();
+		// FIXME Для skiboard. Рассмотреть необходимость для других парсеров
+		$extraParameters = ["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]];
 
-		if ($itemsIdsArray) {
-			$skuList = \CCatalogSku::getOffersList($itemsIdsArray, 0, [], ["ID", "IBLOCK_ID", "ACTIVE", "NAME"], ["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]]);
+		if (count($itemsIds) > 0) {
+			$skuList = \CCatalogSku::getOffersList(
+				$itemsIds,
+				0,
+				[],
+				[
+					"ID",
+					"IBLOCK_ID",
+					"ACTIVE",
+					"NAME"
+				],
+				$extraParameters
+			);
 			if ($skuList) {
 				return $skuList;
 			}
@@ -102,14 +134,13 @@ class ItemsStatus
 	}
 
 	/**
-	 * Возвращает массив ТП раздела без привязки к товарам
+	 * Возвращает массив ТП раздела без привязки к товарам, т.е. удаляет уровень вложенности,
+	 * содержащий ID родительского товара
 	 * @return array
 	 */
 
-	public function getSkuListWithoutParent()
+	public function getSkuListWithoutParent(Array $skuList)
 	{
-		$skuList = $this->getSkuList();
-
 		$skuListWithoutParent = [];
 
 		foreach ($skuList as $itemKey => $itemValue) {
