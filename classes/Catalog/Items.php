@@ -4,22 +4,25 @@ namespace Parser\Catalog;
 
 use \Bitrix\Main\Loader;
 
-// FIXME Неудачное название класса - сделать рефактор. >> \Catalog\Items
-
-// FIXME нужен ли вообще экземпляр?
-
 class Items
 {
 	/**
-	 * Метод создает объект в зависимости от ID инфоблока и ID раздела инфоблока
-	 * ItemsStatus constructor.
-	 * @param SectionParams $params
+	 * Items constructor.
+	 * Принимает объект настроек
+	 * @param \Parser\SectionParams $params
 	 */
 	function __construct(\Parser\SectionParams $params)
 
 	{
 		$this->catalogIblockId = $params->catalogIblockId;
 		$this->tempCatalogSection = $params->tempCatalogSection;
+
+		// Инициализация параметров для шаблона "Chaining"
+
+		$this->list = [];
+		$this->itemsIds = [];
+		$this->skusList = [];
+		$this->skusListFlatten = [];
 
 		if (!Loader::includeModule('iblock')) {
 			die('Не удалось загрузить модуль инфоблоки');
@@ -28,10 +31,11 @@ class Items
 	}
 
 	/**
-	 * Получает список элементов инфоблока с базовыми установками + дополнительный фильтр и свойства
-	 * @param $additionalFilter
+	 * Получает список товаров временного раздела, принимает дополнительные параметры
+	 * в зависимости от конкретного парсера
+	 * @param array $additionalFilter
 	 * @param array $properties
-	 * @return array|bool
+	 * @return $this
 	 */
 
 	public function getList($additionalFilter = [], $properties = [])
@@ -48,14 +52,13 @@ class Items
 			"NAME",
 			"CODE",
 			"ACTIVE",
-			"PROPERTY_CATEGORY_ID"
 		];
 
-		if (count($additionalFilter) > 0){
+		if (count($additionalFilter) > 0) {
 			$filter = array_merge($filter, $additionalFilter);
 		}
 
-		if (count($properties) > 0){
+		if (count($properties) > 0) {
 			$fields = array_merge($fields, $properties);
 		}
 
@@ -68,54 +71,36 @@ class Items
 		);
 
 		while ($res = $dbRes->GetNext()) {
-			$itemsList[] = $res;
+			$this->list[] = $res;
 		}
 
-		if (!empty($itemsList)) {
-			return $itemsList;
-		}
-		return false;
+		return $this;
 	}
 
 	/**
-	 * Возвращает массив ID родительских товаров
-	 * @param array $itemsList
-	 * @return array|bool
+	 * Получает массив ID для массива товаров
+	 * @return $this
 	 */
-
-	public function getItemsIds(Array $itemsList)
+	public function getItemsIds()
 	{
-
-//		$itemsList = $this->getList();
-
-		if (is_array($itemsList)) {
-
-			$itemsIdsArray = [];
-
-			foreach ($itemsList as $itemKey => $itemValue) {
-				$itemsIdsArray[] = $itemValue["ID"];
+		if (is_array($this->list)) {
+			foreach ($this->list as $itemKey => $itemValue) {
+				$this->itemsIds[] = $itemValue["ID"];
 			}
-			return $itemsIdsArray;
 		}
-
-		return false;
-
+		return $this;
 	}
 
 	/**
-	 * Возвращает список ТП для списка родительских товаров
-	 * @param array $itemsIds
+	 * Получает список торговых предложений для списка ID родительских товаров.
 	 * @param array $extraParameters
-	 * @return array|bool
+	 * @return $this
 	 */
-	public function getSkuList(Array $itemsIds, $extraParameters = [])
+	public function getSkusList($extraParameters = [])
 	{
-		// FIXME Для skiboard. Рассмотреть необходимость для других парсеров
-		$extraParameters = ["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]];
-
-		if (count($itemsIds) > 0) {
-			$skuList = \CCatalogSku::getOffersList(
-				$itemsIds,
+		if (count($this->itemsIds) > 0) {
+			$this->skusList = \CCatalogSku::getOffersList(
+				$this->itemsIds,
 				0,
 				[],
 				[
@@ -126,30 +111,22 @@ class Items
 				],
 				$extraParameters
 			);
-			if ($skuList) {
-				return $skuList;
-			}
 		}
-		return false;
+		return $this;
 	}
 
 	/**
-	 * Возвращает массив ТП раздела без привязки к товарам, т.е. удаляет уровень вложенности,
-	 * содержащий ID родительского товара
-	 * @return array
+	 * Уменьшает вложенность массива родительский товар => торговые предложения на 1 уровень
+	 * @return $this
 	 */
 
-	public function getSkuListWithoutParent(Array $skuList)
+	public function getSkusListFlatten()
 	{
-		$skuListWithoutParent = [];
-
-		foreach ($skuList as $itemKey => $itemValue) {
-			foreach ($itemValue as $offerKey => $offerValue){
-				$skuListWithoutParent[$offerKey] = $offerValue;
+		foreach ($this->skusList as $itemKey => $itemValue) {
+			foreach ($itemValue as $offerKey => $offerValue) {
+				$this->skusListFlatten[$offerKey] = $offerValue;
 			}
 		}
-
-		return $skuListWithoutParent;
-
+		return $this;
 	}
 }

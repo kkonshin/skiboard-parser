@@ -58,6 +58,7 @@ $previousResultArray = []; // результат парсинга файла /sa
 $resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
 $resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
 $skusToSetZeroArray = []; // Массив ТП, подлежащих деактивации, если родительский товар отсутствует в новом каталоге
+$skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
 
 $catalogIdsTempArray = []; // временный рабочий массив
 $temp = []; // временный рабочий массив
@@ -69,7 +70,6 @@ $resultArrayLength = 0; // длина нового массива
 $previousResultArrayLength = 0; // длина старого массива
 
 $pGroupId = ''; //
-
 
 // TODO возможно инициализировать объекты через $crawler = new stdClass(),
 // если реализована проверка на принадлежность к конкретному классу
@@ -83,6 +83,7 @@ $source = new Source(SOURCE);
 
 // Конфигурируем объект для работы с сохраненными элементами каталога
 $sectionParams = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+// Создаем объект для работы с товарами временного раздела
 $catalogItems = new Items($sectionParams);
 
 //TEMP
@@ -163,81 +164,49 @@ if (!empty($previousXml) && $isPriceNew) {
 
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
 
-// TODO получаем содержимое временного раздела каталога, куда мы сохраняем товары
-// вынести в класс, получить $catalogIdsTempArray и $catalogIds
-// найти их применения, выпилить лишнее
-
-$dbRes = CIBlockElement::GetList(
-	[],
-	[
-		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-		"SECTION_ID" => TEMP_CATALOG_SECTION
-	],
-	false,
-	false,
-	[
-		"ID"
-	]
-);
-
-while ($res = $dbRes->GetNext()) {
-	$catalogIdsTempArray[] = $res;
-}
-
-foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
-	$catalogIds[] = $cidsValue["ID"];
-}
-
-
-
-//file_put_contents(__DIR__ . "/logs/catalogIdsTempArray.log", print_r($catalogIdsTempArray, true));
-//file_put_contents(__DIR__ . "/logs/catalogIds.log", print_r($catalogIds, true));
-
-// ACHTUNG используется ли это свойство в других парсерах SKIBOARD_EXTERNAL_OFFER_ID
-// зачем оно вообще?
-// На D7 есть реализация?
-
-// TODO Уже есть класс ItemsStatus с реализацией этих методов
-
-$catalogSkus = CCatalogSku::getOffersList(
-	$catalogIds,
-	CATALOG_IBLOCK_ID,
-	[],
-	["*"],
-	[
-		"CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]
-	]
-);
-
+// TODO реализовать метод для подсчета количества товаров и ТП
 //echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
 
-// TODO что такое ТП без родителя?
-// TODO здесь получаются базовые цены для ТП
-// посмотреть на получаемые массивы
-// перенести на D7
+// -------------------------------------Обновление цен ТП---------------------------------------------------------------
+
+$params = [
+	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+	"SECTION_ID" => TEMP_CATALOG_SECTION
+];
+
+$catalogSkus = $catalogItems->getList($params)
+	->getItemsIds()
+	->getSkusList()
+	->getSkusListFlatten()->skusListFlatten;
+
 foreach ($catalogSkus as $skuKey => $skuValue) {
-	foreach ($skuValue as $key => $value) {
-		$catalogSkusWithoutParent[] = $value;
-		$skusPrices[] = CPrice::GetBasePrice($key);
-	}
+		$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }
 
-//echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
+//file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
+//file_put_contents(__DIR__ . "/logs/console__skusPrices.log", print_r($skusPrices, true));
 
-foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
+echo "Количество торговых предложений, для которых будут обновлены цены: " . count($catalogSkus) . PHP_EOL;
+
+// TODO вынести в отдельный метод подготовки цен для записи Price::prepare()
+foreach ($catalogSkus as $skuKey => $skuValue) {
 	foreach ($skusPrices as $priceKey => $priceValue) {
 		if ($skuValue["ID"] == $priceValue["PRODUCT_ID"]) {
-			$catalogSkusWithoutParent[$skuKey]["PRICE"] = $priceValue["PRICE"];
+			$catalogSkus[$skuKey]["PRICE"] = $priceValue["PRICE"];
 		}
 	}
 }
 
-// Обновление цен торговых предложений
-// TODO проверить, какие именно цены будут обновлены, все ?
+file_put_contents(__DIR__ . "/logs/console__catalogSkus--prices.log", print_r($catalogSkus, true));
 
-if (!empty($catalogSkusWithoutParent) && !empty($resultArray)) {
-	Price::update($catalogSkusWithoutParent, $resultArray); // Класс находится в classes/Utils/Price
+// Обновление цен торговых предложений
+
+if (!empty($catalogSkus) && !empty($resultArray)) {
+	Price::update($catalogSkus, $resultArray);
 }
+
+//--------------------------------------Конец обновления цен------------------------------------------------------------
+
 
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
@@ -284,7 +253,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 		// Деактивация заменена на установку количества всех ТП товара в 0
 		// Получаем массив ТП по массиву родительских товаров
-		foreach ($temp as $tempKey => $tempValue) {
+		foreach ($temp->list as $tempKey => $tempValue) {
 			$skusToSetZeroArray = CCatalogSKU::getOffersList($tempValue["ID"]);
 		}
 
