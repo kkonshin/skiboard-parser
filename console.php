@@ -187,7 +187,7 @@ $params = [
 
 $catalogSkus = $catalogItems->getList($params)
 	->getItemsIds()
-	->getSkusList()
+	->getSkusList(["P_KITERU_EXTERNAL_OFFER_ID"])
 	->getSkusListFlatten()->skusListFlatten;
 
 // Есть смысл выносить в метод класса Price?
