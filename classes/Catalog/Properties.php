@@ -43,10 +43,14 @@ class Properties
 			$propertyPGroupId__id = $propertyPGroupId ->Add($arPropertyFields);
 
 			if ($propertyPGroupId__id > 0) {
-				echo "Добавлено свойство инфоблока товаров P_GROUP_ID" . PHP_EOL;
+				echo PHP_EOL;
+				echo "Добавлено свойство инфоблока товаров P_GROUP_ID";
+				echo PHP_EOL;
 			}
 		} else {
-			echo "Свойство {$pGroupId["NAME"]} - {$pGroupId["CODE"]} уже существует" . PHP_EOL;
+			echo PHP_EOL;
+			echo "Свойство {$pGroupId["NAME"]} - {$pGroupId["CODE"]} уже существует";
+			echo PHP_EOL;
 		}
 	}
 
@@ -91,10 +95,14 @@ class Properties
 			$propertyPKiteruExternalOfferId__id = $propertyPKiteruExternalOfferId ->Add($arPropertyFields);
 
 			if ($propertyPKiteruExternalOfferId__id > 0) {
-				echo "Добавлено свойство инфоблока товаров P_KITERU_EXTERNAL_OFFER_ID" . PHP_EOL;
+				echo PHP_EOL;
+				echo "Добавлено свойство инфоблока товаров P_KITERU_EXTERNAL_OFFER_ID" ;
+				echo PHP_EOL;
 			}
 		} else {
-			echo "Свойство {$PKiteruExternalOfferId["NAME"]} - {$PKiteruExternalOfferId["CODE"]} уже существует" . PHP_EOL;
+			echo PHP_EOL;
+			echo "Свойство {$PKiteruExternalOfferId["NAME"]} - {$PKiteruExternalOfferId["CODE"]} уже существует";
+			echo PHP_EOL;
 		}
 	}
 }

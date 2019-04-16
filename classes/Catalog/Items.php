@@ -93,6 +93,9 @@ class Items
 
 	/**
 	 * Получает список торговых предложений для списка ID родительских товаров.
+	 *
+	 * $extraParameters имеет вид ["CODE" => ["WHAT_PARAMETER_WE_WANT"]]
+	 *
 	 * @param array $extraParameters
 	 * @return $this
 	 */

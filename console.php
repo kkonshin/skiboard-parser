@@ -183,42 +183,30 @@ $params = [
 	"SECTION_ID" => TEMP_CATALOG_SECTION
 ];
 
-// TODO получить для ТП cвойство P_KITERU_EXTERNAL_OFFER_ID
-// Реализовать запись значений этого свойства для уже существующих торговых предложений
-
 $catalogSkus = $catalogItems->getList($params)
 	->getItemsIds()
-	->getSkusList(["P_KITERU_EXTERNAL_OFFER_ID"])
+	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()->skusListFlatten;
 
 // Есть смысл выносить в метод класса Price?
 foreach ($catalogSkus as $skuKey => $skuValue) {
 		$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }
-
-// TODO Перед обновлением цен убедимся что внешние ключи заполнены
+// TODO
 // Перенести общую для всех апдейтов выборку в подходящее место
+// Перед обновлением цен убедимся что внешние ключи заполнены
 ExternalOfferId::updateExternalOfferId($catalogSkus, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
 
-// Обновляем цены у всех ТП товаров временного раздела
-
-// TODO в данном случае это просто количестов ТП для всех родительских товаров, которые записаны во временном разделе
-// ACHTUNG временный раздел сейчас - это kiteru-temp-2 - кол-во товаров в нем невелико
-
+echo PHP_EOL;
 echo "Количество торговых предложений, для которых будут обновлены цены: " . count($catalogSkus) . PHP_EOL;
+echo PHP_EOL;
 
 // Добавляем в массив торговых предложений цены
-
-// TODO бессмысленно применять здесь - это вспомогательный метод класса?
 $catalogSkus = Prices::prepare($catalogSkus, $skusPrices);
-// Обновляем цены
+// Обновляем цены у всех ТП временного раздела
 Prices::update($catalogSkus, $resultArray);
 
 //file_put_contents(__DIR__ . "/logs/console__catalogSkus--afterPricesPrepare.log", print_r($catalogSkus, true));
-
-// Обновляем цены всех торговых предложений, полученных из нового файла XML
-// FIXME класс перенесен в Prices
-//Price::update($catalogSkus, $resultArray);
 
 //--------------------------------------Конец обновления цен------------------------------------------------------------
 
@@ -241,7 +229,7 @@ if (!empty($resultArray)) {
 }
 
 echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Количество товаров в предыдущем файле каталога: " . $previousResultArrayLength . PHP_EOL;
+echo "Количество товаров в предыдущем XML файле каталога: " . $previousResultArrayLength . PHP_EOL;
 
 // Ищем разницу между новым и старым каталогом
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
@@ -399,46 +387,6 @@ $allSkuPropertiesArray = []; // Все свойства торговых пре�
 $allSourcePropertiesArray = []; // Все свойства торговых предложений из прайса
 $allSkuPropertiesCodesArray = []; // Массив символьных кодов ТП для проверки уникальности
 
-
-// TODO +
-// Ищем в свойствах инфоблока ТОВАРОВ свойство P_GROUP_ID
-// Если нет - создаем. Это ключ связывающий родительские товары XML kite.ru и сохраненные товары
-// Проверить необходимость для торговых предложений
-
-// Выносим в класс +
-/*
-$catalogIbPropsDb = CIBlockProperty::GetList([], ["IBLOCK_ID" => CATALOG_IBLOCK_ID, "CHECK_PERMISSIONS" => "N", "CODE" => "P_GROUP_ID"]);
-
-if($res=$catalogIbPropsDb->GetNext()){
-    $pGroupId = $res;
-}
-
-if(empty($pGroupId)){
-	$arPropertyFields = [
-		"NAME" => "Идентификатор товара в каталоге kite.ru",
-		"ACTIVE" => "Y",
-		"CODE" => "P_GROUP_ID",
-		"PROPERTY_TYPE" => "S",
-		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-		"SEARCHABLE" => "Y",
-		"FILTRABLE" => "Y",
-		"VALUES" => [
-			0 => [
-				"VALUE" => "",
-				"DEF" => ""
-			]
-		]
-	];
-
-	$propertyPGroupId = new CIBlockProperty;
-	$propertyPGroupId__id = $propertyPGroupId ->Add($arPropertyFields);
-
-	if ($propertyPGroupId__id > 0) {
-		echo "Добавлено свойство инфоблока товаров P_GROUP_ID" . PHP_EOL;
-	}
-
-}
-*/
 $propsResDb = CIBlockProperty::GetList([], ["IBLOCK_ID" => SKU_IBLOCK_ID, "CHECK_PERMISSIONS" => "N"]);
 
 while ($res = $propsResDb->GetNext()) {
