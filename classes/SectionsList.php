@@ -2,6 +2,11 @@
 
 namespace Parser;
 
+/**
+ * Только публичные методы, пока существует только для примера
+ * Interface SectionsListInterface
+ * @package Parser
+ */
 interface SectionsListInterface
 {
 	// TODO нужен не только список новых индексов разделов, но их названия
@@ -22,7 +27,11 @@ class SectionsList implements SectionsListInterface
 
 		// TODO использовать результат проверки класса CatalogDate
 
-		
-
 	}
+
+	public static function compareSections()
+	{
+		// TODO: Implement compareSections() method.
+	}
+
 }

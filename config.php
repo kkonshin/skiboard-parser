@@ -24,7 +24,7 @@ define("BX_BUFFER_USED", true);
 define("BX_CLUSTER_GROUP", 2); // Отключает исполнение агентов
 
 //define('SOURCE', "http://www.kite.ru/yaexport/yandexv2.xml");
-define('SOURCE', __DIR__ . "/save/new.xml"); // для разработки
+define('SOURCE', __DIR__ . "/save/prices_update_test/previous.xml"); // для разработки
 define('SOURCE_SAVE_PATH', __DIR__ . "/save/"); // для сохранения временных файлов
 define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);

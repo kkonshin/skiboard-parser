@@ -23,19 +23,20 @@ use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
 use Parser\SectionParams; // Класс для создания объектов параметров (DI)
-use Parser\ItemsStatus; // Класс для работы с уже сохраненными в инфоблоки товаров и ТП элементами, принимает SectionParams
 
 use Parser\Source\Source;
 use Parser\Source\Storage;
 
-use Parser\ParserBody\ParserBody;
+use Parser\ParserBody\ParserBody; // Основной парсер XML. Различается для разных сайтов-источников
 
 use Parser\HtmlParser\HtmlParser;
 
+// FIXME - Такого класса не существует
 use Parser\Update;
 
 use Parser\Catalog\Properties; // Класс для работы со свойствами каталога
 use Parser\Catalog\Items; // Класс для работы с товарами/ТП каталога
+use Parser\Catalog\Prices; // Класс для работы с ценами каталога
 
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -117,10 +118,11 @@ $resultArray = ParserBody::parse($crawler);
 //file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
-$resultArray = array_slice($resultArray, 1, 2); // Для отладки
+$resultArray = array_slice($resultArray, 0, 10); // Для отладки
 //ENDTEMP
 
 // TEMP включить после отладки
+/*
 foreach ($resultArray as $key => $value) {
 
 	foreach ($value as $k => $v) {
@@ -141,6 +143,7 @@ foreach ($resultArray as $key => $value) {
 		}
 	}
 }
+*/
 // ENDTEMP
 
 //file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
@@ -179,31 +182,24 @@ $catalogSkus = $catalogItems->getList($params)
 	->getSkusList()
 	->getSkusListFlatten()->skusListFlatten;
 
+// Есть смысл выносить в метод класса Price?
 foreach ($catalogSkus as $skuKey => $skuValue) {
 		$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }
 
-//file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
-//file_put_contents(__DIR__ . "/logs/console__skusPrices.log", print_r($skusPrices, true));
+// Обновляем цены у всех ТП товаров временного раздела
+
+// TODO в данном случае это просто количестов ТП для всех родительских товаров, которые записаны во временном разделе
+// ACHTUNG временный раздел сейчас - это kiteru-temp-2 - кол-во товаров в нем невелико
 
 echo "Количество торговых предложений, для которых будут обновлены цены: " . count($catalogSkus) . PHP_EOL;
 
-// TODO вынести в отдельный метод подготовки цен для записи Price::prepare()
-foreach ($catalogSkus as $skuKey => $skuValue) {
-	foreach ($skusPrices as $priceKey => $priceValue) {
-		if ($skuValue["ID"] == $priceValue["PRODUCT_ID"]) {
-			$catalogSkus[$skuKey]["PRICE"] = $priceValue["PRICE"];
-		}
-	}
-}
+// Добавляем в массив торговых предложений цены
+// TODO бессмысленно применять здесь - это вспомогательный метод класса
+$catalogSkus = Prices::prepare($catalogSkus, $resultArray);
 
-file_put_contents(__DIR__ . "/logs/console__catalogSkus--prices.log", print_r($catalogSkus, true));
-
-// Обновление цен торговых предложений
-
-if (!empty($catalogSkus) && !empty($resultArray)) {
-	Price::update($catalogSkus, $resultArray);
-}
+// Обновляем цены всех торговых предложений, полученных из нового файла XML
+Price::update($catalogSkus, $resultArray);
 
 //--------------------------------------Конец обновления цен------------------------------------------------------------
 
@@ -557,11 +553,11 @@ foreach ($manufacturerArray as $manId => $man) {
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
 //echo "\nСохраняем товары" . PHP_EOL;
-//require(__DIR__ . "/add.php");
+require(__DIR__ . "/add.php");
 //}
 
 //TEMP
-//echo "Новый каталог сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
+//echo "Новый файл каталога сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
 //ENDTEMP
 
 register_shutdown_function(function () {
