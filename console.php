@@ -182,6 +182,9 @@ $params = [
 	"SECTION_ID" => TEMP_CATALOG_SECTION
 ];
 
+// TODO получить для ТП cвойство P_KITERU_EXTERNAL_OFFER_ID
+// Реализовать запись значений этого свойства для уже существующих торговых предложений
+
 $catalogSkus = $catalogItems->getList($params)
 	->getItemsIds()
 	->getSkusList()
@@ -263,7 +266,6 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 		// Получаем ключи родительских товаров, которые нужно убрать с сайта
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
-
 
 		$temp = $catalogItems->getList(
 			["PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys],
