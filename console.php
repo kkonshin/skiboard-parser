@@ -44,6 +44,7 @@ use Parser\Mail;
 
 //use Parser\Utils\Price;
 use Parser\Utils\Dirs;
+use Parser\Utils\ExternalOfferId;
 
 global $USER;
 
@@ -195,6 +196,10 @@ foreach ($catalogSkus as $skuKey => $skuValue) {
 		$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }
 
+// TODO Перед обновлением цен убедимся что внешние ключи заполнены
+// Перенести общую для всех апдейтов выборку в подходящее место
+ExternalOfferId::updateExternalOfferId($catalogSkus, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
+
 // Обновляем цены у всех ТП товаров временного раздела
 
 // TODO в данном случае это просто количестов ТП для всех родительских товаров, которые записаны во временном разделе
@@ -235,8 +240,8 @@ if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
 }
 
-echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Длина предыдущего массива обновлений: " . $previousResultArrayLength . PHP_EOL;
+echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
+echo "Количество товаров в предыдущем файле каталога: " . $previousResultArrayLength . PHP_EOL;
 
 // Ищем разницу между новым и старым каталогом
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {

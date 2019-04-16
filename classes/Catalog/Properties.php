@@ -60,7 +60,7 @@ class Properties
 		$catalogIbPropsDb = \CIBlockProperty::GetList(
 			[],
 			[
-				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+				"IBLOCK_ID" => SKU_IBLOCK_ID,
 				"CHECK_PERMISSIONS" => "N",
 				"CODE" => "P_KITERU_EXTERNAL_OFFER_ID"
 			]

@@ -186,6 +186,7 @@ foreach ($resultArray as $key => $item) {
 					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
 				}
 
+				// Собираем название торгового предложения
 				if (!empty($offer["ATTRIBUTES"]["variation_sku"])) {
 					$offerName = $offer["ATTRIBUTES"]["variation_sku"];
 				} else {
