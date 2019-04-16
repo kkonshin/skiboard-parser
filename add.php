@@ -178,7 +178,8 @@ foreach ($resultArray as $key => $item) {
 				$arOfferProps = [
 					$SKUPropertyId => $productId,
 					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']] ?: SIZE_PROPERTY_VALUE__ONE_SIZE,
-					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
+//					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
+					'P_KITERU_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 				];
 
 				foreach ($offer['ATTRIBUTES'] as $propertyName => $propertyValue) {
