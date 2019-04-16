@@ -39,27 +39,27 @@ class Prices
 	public static function update(Array $catalogSkus, Array $resultArray)
 	{
 
+		// TODO сюда передавать подготовленный массив $catalogSkus
+
 		file_put_contents(__DIR__ . "/../../logs/prices__catalogSkus.log", print_r($catalogSkus, true));
 		file_put_contents(__DIR__ . "/../../logs/prices__resultArray.log", print_r($resultArray, true));
 
-		$tmpPricesIds = [];
+		// Для полученных из каталога ТП в массиве resultArray ищем соответствующие товары
+		// Необходимо добавить в массив ТП ключ, по которому можно связать ТП из resultArray и ТП из каталога
+		// Фактически ТП сейчас никак не связаны с XML
 
-		// TODO для массива ТП просто установим цены из распарсенного массива
-
+		// Цены должны обновляться после определения отсутствующих товаров
+		// [OFFER_ID] => 50693
 
 		foreach ($catalogSkus as $offerIdKey => $offerIdValue) {
-
-//			echo $offerIdValue["ID"] . PHP_EOL;
 
 			foreach ($resultArray as $resultKey => $resultItem) {
 
 				foreach ($resultItem as $offerKey => $offerValue) {
 
-					echo $offerValue["OFFER_ID"] . PHP_EOL;
-
 					if ($offerValue["OFFER_ID"] == $offerIdValue["ID"]) {
 
-						echo $offerValue["OFFER_ID"] . "=" . $offerIdValue["ID"] . PHP_EOL;
+//						echo $offerValue["OFFER_ID"] . "=" . $offerIdValue["ID"] . PHP_EOL;
 
 						$tmpPriceId = null;
 
@@ -76,7 +76,6 @@ class Prices
 
 						while ($res = $dbres->GetNext()) {
 							$tmpPriceId = $res;
-							$tmpPricesIds[] = $res;
 						}
 
 						echo "Обновлена цена {$offerValue["SEASON_PRICE"]} для товарного предложения {$offerIdValue["ID"]} "

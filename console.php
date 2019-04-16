@@ -42,7 +42,7 @@ use Parser\CatalogDate;
 use Parser\SectionsList;
 use Parser\Mail;
 
-use Parser\Utils\Price;
+//use Parser\Utils\Price;
 use Parser\Utils\Dirs;
 
 global $USER;
@@ -163,6 +163,11 @@ if (!empty($previousXml) && $isPriceNew) {
 	$previousResultArrayLength = count($previousResultArray);
 }
 
+// Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID товара в каталоге kite.ru
+Properties::createPGroupId(); // P_GROUP_ID
+// Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID ТП в каталоге kite.ru
+Properties::createPKiteruExternalOfferId(); // P_KITERU_EXTERNAL_OFFER_ID
+
 //file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($previousResultArray, true));
 
 //$resultArray = array_slice($resultArray, 23, 5); // Для отладки
@@ -195,13 +200,32 @@ foreach ($catalogSkus as $skuKey => $skuValue) {
 echo "Количество торговых предложений, для которых будут обновлены цены: " . count($catalogSkus) . PHP_EOL;
 
 // Добавляем в массив торговых предложений цены
-// TODO бессмысленно применять здесь - это вспомогательный метод класса
-$catalogSkus = Prices::prepare($catalogSkus, $resultArray);
+
+// TODO бессмысленно применять здесь - это вспомогательный метод класса?
+$catalogSkus = Prices::prepare($catalogSkus, $skusPrices);
+// Обновляем цены
+Prices::update($catalogSkus, $resultArray);
+
+//file_put_contents(__DIR__ . "/logs/console__catalogSkus--afterPricesPrepare.log", print_r($catalogSkus, true));
 
 // Обновляем цены всех торговых предложений, полученных из нового файла XML
-Price::update($catalogSkus, $resultArray);
+// FIXME класс перенесен в Prices
+//Price::update($catalogSkus, $resultArray);
 
 //--------------------------------------Конец обновления цен------------------------------------------------------------
+
+
+// TODO при первой записи, также как и при обновлении каталога записывать ТП свойство ID из XML
+// для обнозначной идентификации торгового предложения при обновлении количества и цены
+
+// Сейчас это свойство записывается в массив resultArray как OFFER_ID, предусмотреть
+// проверку его существования и создание в случае необходимости.
+
+// Для skiboard таким свойством является SKIBOARD_EXTERNAL_OFFER_ID
+
+// Свойству дать однозначное название (код) - KITERU_EXTERNAL_OFFER_ID
+
+// Предусмотреть получение этого свойства при выборке ТП из сохраненного каталога
 
 
 if (!empty($resultArray)) {
@@ -239,8 +263,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 		// Получаем ключи родительских товаров, которые нужно убрать с сайта
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
-		// Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID товара в каталоге kite.ru
-		Properties::createPGroupId(); // P_GROUP_ID
+
 
 		$temp = $catalogItems->getList(
 			["PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys],
@@ -553,7 +576,7 @@ foreach ($manufacturerArray as $manId => $man) {
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
 //echo "\nСохраняем товары" . PHP_EOL;
-require(__DIR__ . "/add.php");
+//require(__DIR__ . "/add.php");
 //}
 
 //TEMP
