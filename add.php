@@ -43,12 +43,11 @@ foreach ($resultArray as $key => $item) {
 				}
 			}
 
+			// Только для skiboard.ru
 			if (!empty($offer["CATEGORY_ID"])) {
 				switch ($offer["CATEGORY_ID"]) {
 
-					/**
-					 *  Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
-					 */
+					 // Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
 
 					case 358:
 						$itemTypeId = 1126;
@@ -69,9 +68,7 @@ foreach ($resultArray as $key => $item) {
 						$itemTypeId = 1131;
 						break;
 
-					/**
-					 *  Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
-					 */
+					 // Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
 
 					case 400:
 						$itemPurposeId = 1132;
@@ -133,7 +130,6 @@ foreach ($resultArray as $key => $item) {
 		}
 
 		if ($productId) {
-
 			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])]))
 				? ($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])])
 				: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
