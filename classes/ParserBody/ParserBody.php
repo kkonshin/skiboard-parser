@@ -41,6 +41,10 @@ class ParserBody
                 return $node->attr('id');
             });
 
+            $available = $offers->each(function (Crawler $node){
+            	return $node->attr('available');
+			});
+
             // Получаем массив свойств для каждого оффера
 
             foreach ($allItems as $key => $item) {
@@ -49,6 +53,8 @@ class ParserBody
                     self::$ta[$key]["PARENT_ITEM_ID"] = (!empty($groupIds[$key])) ? $groupIds[$key] : $offerIds[$key];
 
                     self::$ta[$key]["OFFER_ID"] = $offerIds[$key];
+
+                    self::$ta[$key]["AVAILABLE"] = $available[$key];
 
                     if ($v->nodeName === 'name') {
 //                        self::$ta[$key]['NAME'] = preg_replace('/(\r\n|\r|\n)/', '', trim($v->nodeValue));

@@ -292,7 +292,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 //	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
-echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
+echo "Парсинг завершен. Обновляем свойства элементов инфоблока" . PHP_EOL;
 
 //exit("Выход после завершения парсинга");
 
@@ -406,7 +406,6 @@ foreach ($resultArray as $key => $item) {
 }
 
 // Сохраним свойства в ИБ ТП, если их там еще нет
-
 foreach ($allSkuPropertiesArray as $key => $property) {
 	$allSkuPropertiesCodesArray[] = $property["CODE"];
 }

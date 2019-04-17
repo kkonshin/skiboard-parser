@@ -25,18 +25,11 @@ $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инф
 
 foreach ($resultArray as $key => $item) {
 	try {
-		$offerPrice = 0;
-
-		$itemTypeId = 0;
-
-		$itemPurposeId = 0;
-
+		$offerPrice = null;
 		$morePhotoArray = []; // Массив дополнительных картинок товара
-
 		$obElement = new CIBlockElement;
 
 		// MORE_PHOTO из Html - парсера
-
 		foreach ($item as $itemId => $offer) {
 			if (count($offer["HTML_MORE_PHOTO"]) > 1) {
 				foreach ($offer["HTML_MORE_PHOTO"] as $pictureId => $picture) {
@@ -51,15 +44,7 @@ foreach ($resultArray as $key => $item) {
 			}
 		}
 
-//		if ($itemTypeId > 0) {
-//			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
-//		}
-//		if ($itemPurposeId > 0) {
-//			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
-//		}
-
 		// Лог ошибок изображений
-
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
@@ -73,8 +58,6 @@ foreach ($resultArray as $key => $item) {
 
 		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage) {
 			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
-//			$resultArray[$key][0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = $item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey];
-//			echo $resultArray[$key][0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] . PHP_EOL;
 		}
 
 //		if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['HTML'])) {
@@ -124,7 +107,6 @@ foreach ($resultArray as $key => $item) {
 			"NAME" => $itemName,
 			"CODE" => CUtil::translit($itemName . ' ' . $item[0]["OFFER_ID"], "ru", $translitParams),
 			"ACTIVE" => "Y",
-//			"DETAIL_PICTURE" => (isset($item[0]["PICTURES"][0])) ? CFile::MakeFileArray($item[0]["PICTURES"][0]) : "",
 			"DETAIL_PICTURE" => (isset($item[0]["HTML_DETAIL_PICTURE_URL"])) ? CFile::MakeFileArray($item[0]["HTML_DETAIL_PICTURE_URL"]) : "",
 			"DETAIL_TEXT" => (!empty ($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"])) ? html_entity_decode($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"]) : "",
 			"PROPERTY_VALUES" => [
@@ -132,8 +114,6 @@ foreach ($resultArray as $key => $item) {
 				"P_GROUP_ID" => $key, // Идентификатор, по которому осуществляется связь товаров в XML и торговом каталоге
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
-				"SKIBOARD_ITEM_TYPE" => $itemTypeId > 0 ? $itemTypeId : '',
-				"SKIBOARD_ITEM_PURPOSE" => $itemPurposeId > 0 ? $itemPurposeId : ''
 			]
 		];
 
@@ -146,7 +126,7 @@ foreach ($resultArray as $key => $item) {
 
 		if ($productId) {
 
-			// FIXME uppercase
+			// TODO тернарник
 
 			if (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])) {
 				$manXmlId = $manValueIdPairsArray[strtoupper($item[0]["BRAND"])];
@@ -157,12 +137,6 @@ foreach ($resultArray as $key => $item) {
 			} else if (!empty($manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))])) {
 				$manXmlId = $manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))];
 			}
-
-			/*
-			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])]))
-				? ($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])
-				: ($manValueIdPairsArray[$item[0]["BRAND"]]);
-			*/
 
 			// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
 			if (!empty ($manXmlId)) {
@@ -178,7 +152,6 @@ foreach ($resultArray as $key => $item) {
 				$arOfferProps = [
 					$SKUPropertyId => $productId,
 					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']] ?: SIZE_PROPERTY_VALUE__ONE_SIZE,
-//					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 					'P_KITERU_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 				];
 
@@ -207,6 +180,7 @@ foreach ($resultArray as $key => $item) {
 				$offerId = $obElement->Add($arOfferFields);
 
 				if ($offerId) {
+
 					// Добавляем элемент как товар каталога
 					$catalogProductAddResult = CCatalogProduct::Add([
 						"ID" => $offerId,
