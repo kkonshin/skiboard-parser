@@ -10,6 +10,28 @@ class ParserBody
     private static $groupedItemsArray = [];
     private static $ta = [];
     private static $parentItemsIdsArray = [];
+    private static $categoriesArray = [];
+    private static $notAvailableCategoriesArray = [];
+
+	public static function getCategories(Crawler $crawler = null)
+	{
+		$categories = $crawler->filter('category')->extract(['id', '_text']);
+		foreach ($categories as $key => $value){
+			self::$categoriesArray[$value[0]] = $value[1];
+		}
+//		file_put_contents(__DIR__ . "/../../logs/ParserBody__getCategories.log", print_r(self::$categoriesArray, true));
+	}
+
+	public static function filterCategories(Array $categories)
+	{
+		foreach ($categories as $key => $value){
+			if (trim(mb_strtolower($value)) === "нет в наличии"){
+				self::$notAvailableCategoriesArray[] = $key;
+			}
+		}
+		file_put_contents(__DIR__ . "/../../logs/ParserBody__filterCategories.log", print_r(self::$notAvailableCategoriesArray, true));
+	}
+
 
     /**
      * Метод парсит экземпляр краулера Symfony.
@@ -25,6 +47,11 @@ class ParserBody
 			$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
 			echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
+
+			// Получаем список категорий
+			self::getCategories($crawler);
+			// Фильтруем список категорий
+			self::filterCategories(self::$categoriesArray);
 
 			$offers = $crawler->filter('offer');
 
