@@ -13,25 +13,32 @@ class ParserBody
     private static $categoriesArray = [];
     private static $notAvailableCategoriesArray = [];
 
-	public static function getCategories(Crawler $crawler = null)
+
+	/**
+	 * Получаем массив категорий
+	 * @param Crawler|null $crawler
+	 */
+	private static function getCategories(Crawler $crawler = null)
 	{
 		$categories = $crawler->filter('category')->extract(['id', '_text']);
 		foreach ($categories as $key => $value){
 			self::$categoriesArray[$value[0]] = $value[1];
 		}
-//		file_put_contents(__DIR__ . "/../../logs/ParserBody__getCategories.log", print_r(self::$categoriesArray, true));
 	}
 
-	public static function filterCategories(Array $categories)
+	/**
+	 * Возвращает массив категорий "Нет в наличии"
+	 * @param array $categories
+	 */
+	private static function filterCategories(Array $categories)
 	{
 		foreach ($categories as $key => $value){
 			if (trim(mb_strtolower($value)) === "нет в наличии"){
 				self::$notAvailableCategoriesArray[] = $key;
 			}
 		}
-		file_put_contents(__DIR__ . "/../../logs/ParserBody__filterCategories.log", print_r(self::$notAvailableCategoriesArray, true));
+//		file_put_contents(__DIR__ . "/../../logs/ParserBody__filterCategories.log", print_r(self::$notAvailableCategoriesArray, true));
 	}
-
 
     /**
      * Метод парсит экземпляр краулера Symfony.
