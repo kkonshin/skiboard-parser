@@ -212,20 +212,6 @@ Prices::update($catalogSkus, $resultArray);
 
 //--------------------------------------Конец обновления цен------------------------------------------------------------
 
-
-// TODO при первой записи, также как и при обновлении каталога записывать ТП свойство ID из XML
-// для обнозначной идентификации торгового предложения при обновлении количества и цены
-
-// Сейчас это свойство записывается в массив resultArray как OFFER_ID, предусмотреть
-// проверку его существования и создание в случае необходимости.
-
-// Для skiboard таким свойством является SKIBOARD_EXTERNAL_OFFER_ID
-
-// Свойству дать однозначное название (код) - KITERU_EXTERNAL_OFFER_ID
-
-// Предусмотреть получение этого свойства при выборке ТП из сохраненного каталога
-
-
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
 }
@@ -278,30 +264,25 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			echo "Товар {$itemKey} отсутствует в новом каталоге" . PHP_EOL;
 			foreach ($itemValue as $offerKey => $offerValue) {
 				CCatalogProduct::Update($offerKey, ["QUANTITY" => 0]);
-				echo "Количество ТП {$offerKey} установлено в 0" . PHP_EOL;
+				echo "Количество отсутствующего в новом прайсе торгового предложения {$offerKey} установлено в 0" . PHP_EOL;
 			}
 		}
 		echo PHP_EOL;
-//		file_put_contents(__DIR__ . "/logs/resultArray__after--skusToSetZero.log", print_r($skusToSetZeroArray, true));
 	}
 
-	// TODO отдельно установим для всех ТП с AVAILABLE === N кол-во в 0
-    // Получаем массив ID ТП по значению свойства P_KITERU_EXTERNAL_OFFER_ID
-
-
-    file_put_contents(__DIR__ . "/logs/resultArray__after--catalogSkus.log", print_r($catalogSkus, true));
-
-//	foreach ($resultArray as $productKey => $productValue) {
-//		if ($productKey !== "EXTRA") {
-//			foreach ($productValue as $offerKey => $offerValue) {
-//			    if ($offerValue["AVAILABLE"] !== "Y"){
-//
-//                }
-//			}
-//		}
-//	}
-
+	// отдельно установим для всех ТП с AVAILABLE === N кол-во в 0
+    if (is_array($resultArray["EXTRA"]["TO_SET_ZERO_QUANTITY"])) {
+		$toSetZeroQuantity = ExternalOfferId::getOffersIds($resultArray["EXTRA"]["TO_SET_ZERO_QUANTITY"], "P_KITERU_EXTERNAL_OFFER_ID");
+	}
+	if(!empty($toSetZeroQuantity)) {
+		foreach ($toSetZeroQuantity as $offerId) {
+			CCatalogProduct::Update($offerId, ["QUANTITY" => 0]);
+			echo "Количество ТП {$offerId} из категории \"Нет в наличии\" установлено в 0" . PHP_EOL;
+		}
+	}
 }
+
+file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
 
 echo "Парсинг завершен. Обновляем свойства элементов инфоблока" . PHP_EOL;
 

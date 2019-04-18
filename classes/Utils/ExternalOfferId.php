@@ -13,8 +13,29 @@ class ExternalOfferId
 
 
 	// Возвращает массив ID торговых предложений каталога по их внешним ключам
-	public static function getOffersIds(Array $externalOffersIds){
 
+	// FIXME баг в парсере [EXTRA][AVAILABLE_CATEGORIES] не должен содержать поле AVAILABLE -> не передавать пустые поля
+
+
+	public static function getOffersIds(Array $externalKeys, $externalPropertyName){
+		$ta = [];
+		$dbRes = \CIBlockElement::GetList(
+			[],
+			[
+				"PROPERTY_".$externalPropertyName => $externalKeys
+			],
+			false,
+			false,
+			[
+				"IBLOCK_ID",
+				"ID",
+				"PROPERTY_".$externalPropertyName
+			]
+		);
+		while ($res = $dbRes->GetNext()){
+			$ta[$res["PROPERTY_".$externalPropertyName."_VALUE"]]= $res["ID"];
+		}
+		return $ta;
 	}
 
 	/**
