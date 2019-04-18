@@ -243,10 +243,10 @@ class ParserBody
 			// Фильтруем список категорий
 			self::filterCategories(self::$categoriesArray);
 			// Сохраняем список доступных категорий товаров в итоговый массив
-			self::$groupedItemsArray["AVAILABLE_CATEGORIES"] = self::$availableCategoriesArray;
+			self::$groupedItemsArray["EXTRA"]["AVAILABLE_CATEGORIES"] = self::$availableCategoriesArray;
 //            file_put_contents(__DIR__ . "/groupedItemsArray__source.log", print_r(self::$groupedItemsArray, true));
 
-			// Установим всем ТП значение свойства AVAILABLE
+			// Установим всем ТП значение свойства AVAILABLE. Сохраним внешние ключи недоступных ТП в отдельный массив
 			foreach (self::$groupedItemsArray as $key => $value){
 				if ($key !== "AVAILABLE_CATEGORIES"){
 					foreach ($value as $offerKey => $offerValue){
@@ -254,6 +254,9 @@ class ParserBody
 							self::$groupedItemsArray[$key][$offerKey]["AVAILABLE"] = "Y";
 						} else {
 							self::$groupedItemsArray[$key][$offerKey]["AVAILABLE"] = "N";
+							if(!in_array($offerValue["OFFER_ID"], self::$groupedItemsArray["TO_SET_ZERO_QUANTITY"])){
+								self::$groupedItemsArray["EXTRA"]["TO_SET_ZERO_QUANTITY"][] = $offerValue["OFFER_ID"];
+							}
 						}
 					}
 				}

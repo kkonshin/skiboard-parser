@@ -2,13 +2,27 @@
 
 namespace Parser\Utils;
 
+// Требуется рефактор
+
 class ExternalOfferId
 {
 
 	// Проверка на связь ТП работает только для kite.ru
 	// Для skiboard см ниже
 	// Для gssport не реализовано
+
+
+	// Возвращает массив ID торговых предложений каталога по их внешним ключам
+	public static function getOffersIds(Array $externalOffersIds){
+
+	}
+
 	/**
+	 * Обновляет значения внешнего ключа торгового предложения.
+	 * Первый аргумент - список уже имеющихся ТП.
+	 * Второй - результат парсинга XML.
+	 * Третьим аргументом принимает название свойства,
+	 * в котором хранится внешний ключ ТП
 	 * @param array $skuList
 	 * @param array $resultArray
 	 * @param $propertyName

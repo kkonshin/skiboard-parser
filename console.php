@@ -122,6 +122,8 @@ $resultArray = ParserBody::parse($crawler);
 $resultArray = array_slice($resultArray, 0, 10); // Для отладки
 //ENDTEMP
 
+// TODO запускать парсер HTML только для товаров в наличии?
+
 // TEMP включить после отладки
 /*
 foreach ($resultArray as $key => $value) {
@@ -147,7 +149,7 @@ foreach ($resultArray as $key => $value) {
 */
 // ENDTEMP
 
-file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
 
 //exit("Выход после окончания работы HTML-парсера");
 
@@ -190,7 +192,7 @@ $catalogSkus = $catalogItems->getList($params)
 
 // Есть смысл выносить в метод класса Price?
 foreach ($catalogSkus as $skuKey => $skuValue) {
-		$skusPrices[] = CPrice::GetBasePrice($skuKey);
+	$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }
 // TODO
 // Перенести общую для всех апдейтов выборку в подходящее место
@@ -261,8 +263,8 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
 
 		$temp = $catalogItems->getList(
-			["PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys],
-			["PROPERTY_P_GROUP_ID"]
+			["PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys], // Фильтр
+			["PROPERTY_P_GROUP_ID"] // Дополнительные свойства, которые нужно получить
 		);
 
 		// Деактивация заменена на установку количества всех ТП товара в 0
@@ -280,16 +282,25 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			}
 		}
 		echo PHP_EOL;
-
-//		file_put_contents(__DIR__ . "/logs/resultArray__after--newShorter--resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
 //		file_put_contents(__DIR__ . "/logs/resultArray__after--skusToSetZero.log", print_r($skusToSetZeroArray, true));
 	}
 
-//	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
-//	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
-//	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
+	// TODO отдельно установим для всех ТП с AVAILABLE === N кол-во в 0
+    // Получаем массив ID ТП по значению свойства P_KITERU_EXTERNAL_OFFER_ID
+
+
+    file_put_contents(__DIR__ . "/logs/resultArray__after--catalogSkus.log", print_r($catalogSkus, true));
+
+//	foreach ($resultArray as $productKey => $productValue) {
+//		if ($productKey !== "EXTRA") {
+//			foreach ($productValue as $offerKey => $offerValue) {
+//			    if ($offerValue["AVAILABLE"] !== "Y"){
+//
+//                }
+//			}
+//		}
+//	}
+
 }
 
 echo "Парсинг завершен. Обновляем свойства элементов инфоблока" . PHP_EOL;
