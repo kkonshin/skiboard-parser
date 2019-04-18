@@ -31,7 +31,7 @@ class ParserBody
 	 */
 	public static function getZeroQuantity()
 	{
-		return self::$availableCategoriesArray;
+		return self::$toSetZeroQuantityArray;
 	}
 
 	/**

@@ -271,9 +271,9 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 	}
 
 	// отдельно установим для всех ТП с AVAILABLE === N кол-во в 0
-    if (is_array($resultArray["EXTRA"]["TO_SET_ZERO_QUANTITY"])) {
-		$toSetZeroQuantity = ExternalOfferId::getOffersIds($resultArray["EXTRA"]["TO_SET_ZERO_QUANTITY"], "P_KITERU_EXTERNAL_OFFER_ID");
-	}
+
+    $toSetZeroQuantity = ParserBody::getZeroQuantity();
+
 	if(!empty($toSetZeroQuantity)) {
 		foreach ($toSetZeroQuantity as $offerId) {
 			CCatalogProduct::Update($offerId, ["QUANTITY" => 0]);
