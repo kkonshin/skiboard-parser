@@ -48,14 +48,12 @@ foreach ($resultArray as $key => $item) {
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
-
 		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
 		$itemName = preg_replace( "/\r|\n/", "", $itemName); // удалим из названия товара переносы строк
 
+
 		// Обработка детального описания товара
-
 		// TODO совместить с реализацией в классе Description
-
 		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage) {
 			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
 		}
@@ -113,7 +111,7 @@ foreach ($resultArray as $key => $item) {
 				"SITE_NAME" => P_SITE_NAME,
 				"P_GROUP_ID" => $key, // Идентификатор, по которому осуществляется связь товаров в XML и торговом каталоге
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
-				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
+//				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];
 

@@ -14,7 +14,25 @@ class ParserBody
 	private static $parentItemsIdsArray = [];
 	private static $categoriesArray = [];
 	private static $availableCategoriesArray = [];
+	private static $toSetZeroQuantityArray = [];
 
+	/**
+	 * Возвращает список категорий, название которых отличается от "Нет в наличии"
+	 * @return array
+	 */
+ 	public static function getAvailableCategories()
+	{
+		return self::$availableCategoriesArray;
+	}
+
+	/**
+	 * Возвращает массив внешних ключей торговых предложений, количество которых должно быть установлено в ноль
+	 * @return array
+	 */
+	public static function getZeroQuantity()
+	{
+		return self::$availableCategoriesArray;
+	}
 
 	/**
 	 * Получаем массив категорий
@@ -242,20 +260,18 @@ class ParserBody
 			self::getCategories($crawler);
 			// Фильтруем список категорий
 			self::filterCategories(self::$categoriesArray);
-			// Сохраняем список доступных категорий товаров в итоговый массив
-			self::$groupedItemsArray["EXTRA"]["AVAILABLE_CATEGORIES"] = self::$availableCategoriesArray;
 
 			// Установим всем ТП значение свойства AVAILABLE.
 			// Сохраним внешние ключи недоступных ТП в отдельный массив TO_SET_ZERO_QUANTITY
 			foreach (self::$groupedItemsArray as $key => $value) {
 				if ($key !== "EXTRA") {
 					foreach ($value as $offerKey => $offerValue) {
-						if (in_array($offerValue["CATEGORY_ID"], self::$groupedItemsArray["EXTRA"]["AVAILABLE_CATEGORIES"])) {
+						if (in_array($offerValue["CATEGORY_ID"], self::$availableCategoriesArray)) {
 							self::$groupedItemsArray[$key][$offerKey]["AVAILABLE"] = "Y";
 						} else {
 							self::$groupedItemsArray[$key][$offerKey]["AVAILABLE"] = "N";
-							if (!in_array($offerValue["OFFER_ID"], self::$groupedItemsArray["EXTRA"]["TO_SET_ZERO_QUANTITY"])) {
-								self::$groupedItemsArray["EXTRA"]["TO_SET_ZERO_QUANTITY"][] = $offerValue["OFFER_ID"];
+							if (!in_array($offerValue["OFFER_ID"], self::$toSetZeroQuantityArray)) {
+								self::$toSetZeroQuantityArray[] = $offerValue["OFFER_ID"];
 							}
 						}
 					}

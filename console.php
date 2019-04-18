@@ -119,7 +119,7 @@ $resultArray = ParserBody::parse($crawler);
 //file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
-$resultArray = array_slice($resultArray, 0, 10); // Для отладки
+//$resultArray = array_slice($resultArray, 0, 10); // Для отладки
 //ENDTEMP
 
 // TODO запускать парсер HTML только для товаров в наличии?
@@ -282,7 +282,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 	}
 }
 
-file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
 
 echo "Парсинг завершен. Обновляем свойства элементов инфоблока" . PHP_EOL;
 
@@ -521,8 +521,12 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // FIXME запуск add должен происходить по определенным условиям
 //if($isAddNewItems){
-//echo "\nСохраняем товары" . PHP_EOL;
-//require(__DIR__ . "/add.php");
+echo PHP_EOL;
+echo "Сохраняем товары";
+echo PHP_EOL;
+
+require(__DIR__ . "/add.php");
+
 //}
 
 //TEMP
