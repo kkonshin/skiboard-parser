@@ -4,6 +4,8 @@ namespace Parser\ParserBody;
 
 use Symfony\Component\DomCrawler\Crawler;
 
+// Требуется рефактор
+
 class ParserBody
 {
     private static $colorsArray = [];
@@ -11,7 +13,7 @@ class ParserBody
     private static $ta = [];
     private static $parentItemsIdsArray = [];
     private static $categoriesArray = [];
-    private static $notAvailableCategoriesArray = [];
+    private static $availableCategoriesArray = [];
 
 
 	/**
@@ -33,8 +35,8 @@ class ParserBody
 	private static function filterCategories(Array $categories)
 	{
 		foreach ($categories as $key => $value){
-			if (trim(mb_strtolower($value)) === "нет в наличии"){
-				self::$notAvailableCategoriesArray[] = $key;
+			if (trim(mb_strtolower($value)) !== "нет в наличии"){
+				self::$availableCategoriesArray[] = $key;
 			}
 		}
 //		file_put_contents(__DIR__ . "/../../logs/ParserBody__filterCategories.log", print_r(self::$notAvailableCategoriesArray, true));
@@ -54,11 +56,6 @@ class ParserBody
 			$sourceDate = $crawler->filter('yml_catalog')->attr('date');
 
 			echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
-
-			// Получаем список категорий
-			self::getCategories($crawler);
-			// Фильтруем список категорий
-			self::filterCategories(self::$categoriesArray);
 
 			$offers = $crawler->filter('offer');
 
@@ -241,9 +238,28 @@ class ParserBody
                 }
             }
 
+			// Получаем список категорий
+			self::getCategories($crawler);
+			// Фильтруем список категорий
+			self::filterCategories(self::$categoriesArray);
+			// Сохраняем список доступных категорий товаров в итоговый массив
+			self::$groupedItemsArray["AVAILABLE_CATEGORIES"] = self::$availableCategoriesArray;
 //            file_put_contents(__DIR__ . "/groupedItemsArray__source.log", print_r(self::$groupedItemsArray, true));
 
-            return self::$groupedItemsArray;
+			// Установим всем ТП значение свойства AVAILABLE
+			foreach (self::$groupedItemsArray as $key => $value){
+				if ($key !== "AVAILABLE_CATEGORIES"){
+					foreach ($value as $offerKey => $offerValue){
+						if(in_array($value["CATEGORY_ID"], self::$groupedItemsArray["AVAILABLE_CATEGORIES"])){
+							self::$groupedItemsArray[$key][$offerKey]["AVAILABLE"] = "Y";
+						} else {
+							self::$groupedItemsArray[$key][$offerKey]["AVAILABLE"] = "N";
+						}
+					}
+				}
+			}
+
+			return self::$groupedItemsArray;
 
         } catch (\Exception $e) {
             return $e->getMessage();

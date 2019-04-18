@@ -147,7 +147,7 @@ foreach ($resultArray as $key => $value) {
 */
 // ENDTEMP
 
-//file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
 
 //exit("Выход после окончания работы HTML-парсера");
 
