@@ -36,7 +36,7 @@ use Parser\Update;
 
 use Parser\Catalog\Properties; // Класс для работы со свойствами каталога
 use Parser\Catalog\Items; // Класс для работы с товарами/ТП каталога
-use Parser\Catalog\Prices; // Класс для работы с ценами каталога
+//use Parser\Catalog\Prices; // Класс для работы с ценами каталога // вынесен в модуль update
 
 use Parser\CatalogDate;
 use Parser\SectionsList;
@@ -44,7 +44,7 @@ use Parser\Mail;
 
 //use Parser\Utils\Price;
 use Parser\Utils\Dirs;
-use Parser\Utils\ExternalOfferId;
+//use Parser\Utils\ExternalOfferId; // вынесен в модуль update
 
 global $USER;
 
@@ -57,9 +57,12 @@ if (!Loader::includeModule('catalog')) {
 
 $resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
 $previousResultArray = []; // результат парсинга файла /save/previous.xml
+
 $resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
 $resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
+
 $skusToSetZeroArray = []; // Массив ТП, подлежащих деактивации, если родительский товар отсутствует в новом каталоге
+
 $skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
 
 $catalogIdsTempArray = []; // временный рабочий массив
@@ -71,12 +74,13 @@ $isAddNewItems = false; // флаг для запуска скрипта add.php
 $resultArrayLength = 0; // длина нового массива
 $previousResultArrayLength = 0; // длина старого массива
 
-$pGroupId = ''; //
+$pGroupId = ''; // Идентификатор товара в прайсе kite.ru
 
 // TODO возможно инициализировать объекты через $crawler = new stdClass(),
 // если реализована проверка на принадлежность к конкретному классу
-$crawler = null; // объект компонента Symfony
-$previousCrawler = null; // объект компонента Symfony
+// FIXME зачем вообще инициализировать эти переменные?
+//$crawler = null; // объект компонента Symfony
+//$previousCrawler = null; // объект компонента Symfony
 
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Dirs::make(__DIR__);
@@ -119,13 +123,12 @@ $resultArray = ParserBody::parse($crawler);
 //file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
-//$resultArray = array_slice($resultArray, 0, 10); // Для отладки
+$resultArray = array_slice($resultArray, 20, 10, true); // Для отладки
 //ENDTEMP
 
 // TODO запускать парсер HTML только для товаров в наличии?
-
+//-----------------------------------------------------------
 // TEMP включить после отладки
-/*
 foreach ($resultArray as $key => $value) {
 
 	foreach ($value as $k => $v) {
@@ -146,7 +149,6 @@ foreach ($resultArray as $key => $value) {
 		}
 	}
 }
-*/
 // ENDTEMP
 
 //file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
@@ -179,7 +181,7 @@ Properties::createPKiteruExternalOfferId(); // P_KITERU_EXTERNAL_OFFER_ID
 //echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
 
 // -------------------------------------Обновление цен ТП---------------------------------------------------------------
-
+/*
 $params = [
 	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 	"SECTION_ID" => TEMP_CATALOG_SECTION
@@ -209,7 +211,7 @@ $catalogSkus = Prices::prepare($catalogSkus, $skusPrices);
 Prices::update($catalogSkus, $resultArray);
 
 //file_put_contents(__DIR__ . "/logs/console__catalogSkus--afterPricesPrepare.log", print_r($catalogSkus, true));
-
+*/
 //--------------------------------------Конец обновления цен------------------------------------------------------------
 
 if (!empty($resultArray)) {
@@ -519,7 +521,9 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // Сохранение товаров
 
-// FIXME запуск add должен происходить по определенным условиям
+// TODO запуск add должен происходить по определенным условиям
+// Если временный раздел пуст ИЛИ массивы ключей нового и старого прайсов не совпадают
+
 //if($isAddNewItems){
 echo PHP_EOL;
 echo "Сохраняем товары";
@@ -528,6 +532,8 @@ echo PHP_EOL;
 require(__DIR__ . "/add.php");
 
 //}
+
+require_once (__DIR__ . "/update_prices.php");
 
 //TEMP
 //echo "Новый файл каталога сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника

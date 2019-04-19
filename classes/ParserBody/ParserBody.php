@@ -147,7 +147,7 @@ class ParserBody
 			}
 
 			// Развернем полученный через extract массив атрибутов
-
+			// $ta - это массив всех торговых предложений, не распределенных по родительским товарам
 			foreach (self::$ta as $key => $value) {
 				foreach ($value as $k => $v) {
 					if ($k === "ATTRIBUTES") {
@@ -166,17 +166,19 @@ class ParserBody
 				self::$parentItemsIdsArray[] = $value["ATTRIBUTES"]['Артикул'];
 			}
 
+//			file_put_contents(__DIR__ . "/../../logs/parserBody__parentItemsIdsArray--beforeUnique.log", print_r(self::$parentItemsIdsArray, true));
+
 			self::$parentItemsIdsArray = array_unique(self::$parentItemsIdsArray);
 
 			foreach (self::$parentItemsIdsArray as $key => $id) {
 				foreach (self::$ta as $k => $item) {
-					if ($id === $item["ATTRIBUTES"]['Артикул'] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
+					if ($id == $item["ATTRIBUTES"]['Артикул'] && (int)$item["PRICE"] > 0 && !empty($item["CATEGORY_ID"])) {
 						self::$groupedItemsArray[$id][] = $item;
 					}
 				}
 			}
-
-//            file_put_contents(__DIR__ . "/goupedItemsArray__source.log", print_r(self::$groupedItemsArray, true));
+//			file_put_contents(__DIR__ . "/../../logs/parserBody__groupedArray--afterUnique.log", print_r(self::$groupedItemsArray, true));
+//            file_put_contents(__DIR__ . "/../../logs/groupedItemsArray__source.log", print_r(self::$groupedItemsArray, true));
 
 			foreach (self::$groupedItemsArray as $key => $value) {
 				if (count($value) > 1) {
@@ -256,6 +258,9 @@ class ParserBody
 				}
 			}
 
+
+//			file_put_contents(__DIR__ . "/../../logs/parserBody__parentItemsIdsArray--beforeFilterCategories.log", print_r(self::$groupedItemsArray, true));
+
 			// Получаем список категорий
 			self::getCategories($crawler);
 			// Фильтруем список категорий
@@ -277,6 +282,8 @@ class ParserBody
 					}
 				}
 			}
+
+//			file_put_contents(__DIR__ . "/../../logs/parserBody__parentItemsIdsArray--afterFilterCategories.log", print_r(self::$groupedItemsArray, true));
 
 			return self::$groupedItemsArray;
 
