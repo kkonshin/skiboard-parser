@@ -193,9 +193,13 @@ $params = [
 $catalogSkus = $catalogItems->getList($params)
 	->getItemsIds()
 	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
-	->getSkusListFlatten()->skusListFlatten;
+	->getSkusListFlatten()
+    ->skusListFlatten;
 
 $catalogSkusCount = count($catalogSkus);
+
+// Сохраним список ТП перед записью
+//file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
 
 echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
 echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
@@ -521,7 +525,7 @@ require(__DIR__ . "/add.php");
 require_once (__DIR__ . "/update_prices.php");
 
 //TEMP
-//echo "Новый файл каталога сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
+echo "Новый файл каталога сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
 //ENDTEMP
 
 register_shutdown_function(function () {

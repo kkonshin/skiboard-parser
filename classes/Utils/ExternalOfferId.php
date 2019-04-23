@@ -14,9 +14,6 @@ class ExternalOfferId
 
 	// Возвращает массив ID торговых предложений каталога по их внешним ключам
 
-	// FIXME баг в парсере [EXTRA][AVAILABLE_CATEGORIES] не должен содержать поле AVAILABLE -> не передавать пустые поля
-
-
 	public static function getOffersIds(Array $externalKeys, $externalPropertyName){
 		$ta = [];
 		$dbRes = \CIBlockElement::GetList(
@@ -37,6 +34,21 @@ class ExternalOfferId
 		}
 		return $ta;
 	}
+
+
+	public static function updateExternalItemId(Array $itemsList, Array $resultArray, $propertyName, $translitParams)
+	{
+		foreach ($resultArray as $resultKey => $resultValue) {
+			$resultItemCode = trim(\CUtil::translit($resultValue[0]["NAME"] . ' ' . $resultValue[0]["OFFER_ID"], "ru", $translitParams));
+			foreach ($itemsList as $itemKey => $itemValue) {
+				if ($resultItemCode == $itemValue["CODE"]) {
+//					echo $resultKey . ' ' . $resultItemCode . PHP_EOL;
+					self::update($itemValue["ID"], CATALOG_IBLOCK_ID, [(string)$propertyName => [$resultKey]]);
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * Обновляет значения внешнего ключа торгового предложения.
