@@ -2,7 +2,7 @@
 
 namespace Parser\Utils;
 
-// Требуется рефактор
+// Требуется рефактор - разнести по товарам и ТП, update мб общим
 
 class ExternalOfferId
 {
@@ -11,31 +11,41 @@ class ExternalOfferId
 	// Для skiboard см ниже
 	// Для gssport не реализовано
 
-
 	// Возвращает массив ID торговых предложений каталога по их внешним ключам
 
-	// FIXME баг в парсере [EXTRA][AVAILABLE_CATEGORIES] не должен содержать поле AVAILABLE -> не передавать пустые поля
-
-
-	public static function getOffersIds(Array $externalKeys, $externalPropertyName){
+	public static function getOffersIds(Array $externalKeys, $externalPropertyName)
+	{
 		$ta = [];
 		$dbRes = \CIBlockElement::GetList(
 			[],
 			[
-				"PROPERTY_".$externalPropertyName => $externalKeys
+				"PROPERTY_" . $externalPropertyName => $externalKeys
 			],
 			false,
 			false,
 			[
 				"IBLOCK_ID",
 				"ID",
-				"PROPERTY_".$externalPropertyName
+				"PROPERTY_" . $externalPropertyName
 			]
 		);
-		while ($res = $dbRes->GetNext()){
-			$ta[$res["PROPERTY_".$externalPropertyName."_VALUE"]]= $res["ID"];
+		while ($res = $dbRes->GetNext()) {
+			$ta[$res["PROPERTY_" . $externalPropertyName . "_VALUE"]] = $res["ID"];
 		}
 		return $ta;
+	}
+
+	public static function updateExternalItemId(Array $itemsList, Array $resultArray, $propertyName, $translitParams)
+	{
+		foreach ($resultArray as $resultKey => $resultValue) {
+			$resultItemCode = trim(\CUtil::translit($resultValue[0]["NAME"] . ' ' . $resultValue[0]["OFFER_ID"], "ru", $translitParams));
+			foreach ($itemsList as $itemKey => $itemValue) {
+				if ($resultItemCode == $itemValue["CODE"]) {
+//					echo $resultKey . ' ' . $resultItemCode . PHP_EOL;
+					self::update($itemValue["ID"], CATALOG_IBLOCK_ID, [(string)$propertyName => [$resultKey]]);
+				}
+			}
+		}
 	}
 
 	/**
@@ -51,10 +61,10 @@ class ExternalOfferId
 
 	public static function updateExternalOfferId(Array $skuList, Array $resultArray, $propertyName)
 	{
-		foreach ($resultArray as $resultKey => $resultValue){
-			foreach ($resultValue as $offerKey => $offerValue){
-				foreach ($skuList as $skuKey => $skuValue){
-					if ($skuValue["NAME"] === $offerValue["NAME"] || $skuValue["NAME"] === $offerValue["SHORT_NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"]){
+		foreach ($resultArray as $resultKey => $resultValue) {
+			foreach ($resultValue as $offerKey => $offerValue) {
+				foreach ($skuList as $skuKey => $skuValue) {
+					if ($skuValue["NAME"] === $offerValue["NAME"] || $skuValue["NAME"] === $offerValue["SHORT_NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"]) {
 //						echo $skuValue["NAME"] . PHP_EOL;
 						self::update($skuValue["ID"], SKU_IBLOCK_ID, [(string)$propertyName => [$offerValue["OFFER_ID"]]]);
 					}
@@ -81,19 +91,16 @@ class ExternalOfferId
 
 	public static function updateExternalOfferId__skiboard(array $skuList, array $resultArray)
 	{
-		foreach ($resultArray as $resultKey => $resultValue){
-			foreach ($resultValue as $offerKey => $offerValue){
-				foreach ($skuList as $skuKey => $skuValue){
-					if ($skuValue["NAME"] === $offerValue["NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"] . " " . $offerValue["ATTRIBUTES"]["Артикул"]){
+		foreach ($resultArray as $resultKey => $resultValue) {
+			foreach ($resultValue as $offerKey => $offerValue) {
+				foreach ($skuList as $skuKey => $skuValue) {
+					if ($skuValue["NAME"] === $offerValue["NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"] . " " . $offerValue["ATTRIBUTES"]["Артикул"]) {
 						self::update($skuValue["ID"], 0, ["SKIBOARD_EXTERNAL_OFFER_ID" => [$offerValue["OFFER_ID"]]]);
 					}
 				}
 			}
 		}
 	}
-
-
-
 
 
 }

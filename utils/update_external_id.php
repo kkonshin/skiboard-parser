@@ -20,25 +20,27 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
+//$source = __DIR__ . "/../save/backup/13.02.2019/previous.xml";
+$source = SOURCE;
 
+$tempCatalogSection = 392;
 
+$params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
 
-$params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 $items = new Parser\Catalog\Items($params);
 
-//$source = new Source(SOURCE);
+$source = new Source($source);
 
-//$xml = $source->getSource();
+$xml = $source->getSource();
 
-//$crawler = new Crawler($xml);
+$crawler = new Crawler($xml);
 
-//$resultArray = ParserBody::parse($crawler);
+$resultArray = ParserBody::parse($crawler);
 
 // TODO
 // берем старый previous.xml в качестве источника,
 // старый раздел в качестве цели
 // пишем товарам и ТП P_GROUP_ID и P_KITERU_EXTERNAL_OFFER_ID
-
 $extraProperties = [
 	"PROPERTY_P_GROUP_ID",
 ];
@@ -49,13 +51,12 @@ $skusList = $items->getList()
     ->getSkusListFlatten()
     ->skusListFlatten;
 
-//file_put_contents(__DIR__ . "/../logs/update_external__itemsList.log", print_r($itemsList, true));
-//file_put_contents(__DIR__ . "/../logs/update_external__skusList.log", print_r($skusList, true));
+ExternalOfferId::updateExternalItemId($itemsList, $resultArray, "P_GROUP_ID", P_TRANSLIT_PARAMS);
 
-//$skuList = $itemStatus->getSkuListWithoutParent();
+ExternalOfferId::updateExternalOfferId($skusList, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
 
- // Обновление свойства "ID ТП из прайса skiboard"
-
-//ExternalOfferId::updateExternalOfferId($skuList, $resultArray);
+//file_put_contents(__DIR__ . "/../logs/update_external__resultArray--392.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
