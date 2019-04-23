@@ -114,7 +114,7 @@ $crawler = new Crawler($xml);
 // TODO описание содержимого массива
 $resultArray = ParserBody::parse($crawler);
 
-//file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
 //$resultArray = array_slice($resultArray, 20, 10, true); // Для отладки
