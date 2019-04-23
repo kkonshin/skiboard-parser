@@ -31,8 +31,10 @@ define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
 //define('TEMP_CATALOG_SECTION', 392); // ID раздела для временного сохранения товаров
 define('TEMP_CATALOG_SECTION', 400); // ID раздела для временного сохранения товаров
+
+// TODO получать ID значения по коду
 define('SIZE_PROPERTY_ID', 120); // ID свойства "Размер"
-define('SIZE_PROPERTY_VALUE__ONE_SIZE', 1498); // ID значение свойства "Размер" = "Единый"
+define('SIZE_PROPERTY_VALUE__ONE_SIZE', 1269); // ID значение свойства "Размер" = "Единый"
 
 // TODO эти свойства из парсеров кроме skiboard - убрать
 //define('PROPERTY_SKIBOARD_ITEM_TYPE', 214); // ID свойства "Тип" (только для skiboard.ru)

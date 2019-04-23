@@ -1,15 +1,4 @@
 <?php
-
-$params = [
-	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-	"SECTION_ID" => TEMP_CATALOG_SECTION
-];
-
-$catalogSkus = $catalogItems->getList($params)
-	->getItemsIds()
-	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
-	->getSkusListFlatten()->skusListFlatten;
-
 // Есть смысл выносить в метод класса Price?
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	$skusPrices[] = CPrice::GetBasePrice($skuKey);

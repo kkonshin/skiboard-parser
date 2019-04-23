@@ -258,7 +258,6 @@ class ParserBody
 				}
 			}
 
-
 //			file_put_contents(__DIR__ . "/../../logs/parserBody__parentItemsIdsArray--beforeFilterCategories.log", print_r(self::$groupedItemsArray, true));
 
 			// Получаем список категорий

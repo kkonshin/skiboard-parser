@@ -76,11 +76,8 @@ $previousResultArrayLength = 0; // длина старого массива
 
 $pGroupId = ''; // Идентификатор товара в прайсе kite.ru
 
-// TODO возможно инициализировать объекты через $crawler = new stdClass(),
-// если реализована проверка на принадлежность к конкретному классу
-// FIXME зачем вообще инициализировать эти переменные?
-//$crawler = null; // объект компонента Symfony
-//$previousCrawler = null; // объект компонента Symfony
+$crawler = null; // объект компонента Symfony
+$previousCrawler = null; // объект компонента Symfony
 
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Dirs::make(__DIR__);
@@ -116,14 +113,11 @@ $crawler = new Crawler($xml);
 // Сразу парсим новый файл.
 // TODO описание содержимого массива
 $resultArray = ParserBody::parse($crawler);
-// Детальное изображение, дополнительные фотографии, детальное описание забираем с сайта
-// при помощи HTML-парсера
-// TODO вынести в отдельный класс или метод класса HtmlParser?
 
 //file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
-$resultArray = array_slice($resultArray, 20, 10, true); // Для отладки
+//$resultArray = array_slice($resultArray, 20, 10, true); // Для отладки
 //ENDTEMP
 
 // TODO запускать парсер HTML только для товаров в наличии?
@@ -173,15 +167,24 @@ Properties::createPGroupId(); // P_GROUP_ID
 // Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID ТП в каталоге kite.ru
 Properties::createPKiteruExternalOfferId(); // P_KITERU_EXTERNAL_OFFER_ID
 
-//file_put_contents(__DIR__ . "/logs/previousResultArray__before.log", print_r($previousResultArray, true));
+// Считаем количество родительских товаров и ТП
 
-//$resultArray = array_slice($resultArray, 23, 5); // Для отладки
+$i = 0;
 
-// TODO реализовать метод для подсчета количества товаров и ТП
-//echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
+if (!empty($resultArray)) {
+	$resultArrayLength = count($resultArray);
+	foreach ($resultArray as $parentItem){
+	    foreach ($parentItem as $offer){
+	        $i++;
+        }
+    }
+}
 
-// -------------------------------------Обновление цен ТП---------------------------------------------------------------
-/*
+//echo $i;
+
+// TODO не использовать старый файл XML
+// Вместо этого парсим новый и сравниваем выборку из временного раздела каталога с результатом парсинга
+
 $params = [
 	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 	"SECTION_ID" => TEMP_CATALOG_SECTION
@@ -192,34 +195,15 @@ $catalogSkus = $catalogItems->getList($params)
 	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()->skusListFlatten;
 
-// Есть смысл выносить в метод класса Price?
-foreach ($catalogSkus as $skuKey => $skuValue) {
-	$skusPrices[] = CPrice::GetBasePrice($skuKey);
-}
-// TODO
-// Перенести общую для всех апдейтов выборку в подходящее место
-// Перед обновлением цен убедимся что внешние ключи заполнены
-ExternalOfferId::updateExternalOfferId($catalogSkus, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
+$catalogSkusCount = count($catalogSkus);
 
-echo PHP_EOL;
-echo "Количество торговых предложений, для которых будут обновлены цены: " . count($catalogSkus) . PHP_EOL;
-echo PHP_EOL;
-
-// Добавляем в массив торговых предложений цены
-$catalogSkus = Prices::prepare($catalogSkus, $skusPrices);
-// Обновляем цены у всех ТП временного раздела
-Prices::update($catalogSkus, $resultArray);
-
-//file_put_contents(__DIR__ . "/logs/console__catalogSkus--afterPricesPrepare.log", print_r($catalogSkus, true));
-*/
-//--------------------------------------Конец обновления цен------------------------------------------------------------
-
-if (!empty($resultArray)) {
-	$resultArrayLength = count($resultArray);
-}
-
+echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
 echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
 echo "Количество товаров в предыдущем XML файле каталога: " . $previousResultArrayLength . PHP_EOL;
+
+if ($catalogSkusCount !== $i){
+    echo PHP_EOL. "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
+}
 
 // Ищем разницу между новым и старым каталогом
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
@@ -522,7 +506,8 @@ foreach ($manufacturerArray as $manId => $man) {
 // Сохранение товаров
 
 // TODO запуск add должен происходить по определенным условиям
-// Если временный раздел пуст ИЛИ массивы ключей нового и старого прайсов не совпадают
+// Если временный раздел пуст ИЛИ массивы ключей нового и старого прайсов не совпадают ИЛИ массив ключей resultArray !== массиву
+// значений свойства P_GROUP_ID
 
 //if($isAddNewItems){
 echo PHP_EOL;
