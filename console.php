@@ -114,7 +114,7 @@ $crawler = new Crawler($xml);
 // TODO описание содержимого массива
 $resultArray = ParserBody::parse($crawler);
 
-file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 //TEMP
 //$resultArray = array_slice($resultArray, 20, 10, true); // Для отладки
@@ -185,17 +185,28 @@ if (!empty($resultArray)) {
 // TODO не использовать старый файл XML
 // Вместо этого парсим новый и сравниваем выборку из временного раздела каталога с результатом парсинга
 
-$params = [
-	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-	"SECTION_ID" => TEMP_CATALOG_SECTION
-];
+// FIXME - уже имеется объект $sectionParams! Этот массив предназначен для передачи дополнительных параметров фильтрации
+// ------------------------------------------
+//$params = [
+//	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+//	"SECTION_ID" => TEMP_CATALOG_SECTION
+//];
 
-$catalogSkus = $catalogItems->getList($params)
+$extraProperties = [
+        "PROPERTY_P_GROUP_ID",
+];
+$catalogItemsList = $catalogItems->getList([], $extraProperties)->list;
+
+file_put_contents(__DIR__ . "/logs/console__catalogItemsList.log", print_r($catalogItemsList, true));
+
+$catalogSkus = $catalogItems->getList()
 	->getItemsIds()
 	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()->skusListFlatten;
 
 $catalogSkusCount = count($catalogSkus);
+
+file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
 
 echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
 echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
@@ -510,15 +521,14 @@ foreach ($manufacturerArray as $manId => $man) {
 // значений свойства P_GROUP_ID
 
 //if($isAddNewItems){
-echo PHP_EOL;
-echo "Сохраняем товары";
-echo PHP_EOL;
-
-require(__DIR__ . "/add.php");
+//echo PHP_EOL;
+//echo "Сохраняем товары";
+//echo PHP_EOL;
+//require(__DIR__ . "/add.php");
 
 //}
 
-require_once (__DIR__ . "/update_prices.php");
+//require_once (__DIR__ . "/update_prices.php");
 
 //TEMP
 //echo "Новый файл каталога сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника

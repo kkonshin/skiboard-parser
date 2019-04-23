@@ -11,7 +11,6 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.
 require_once(__DIR__ . "/../vendor/autoload.php");
 
 use Parser\SectionParams;
-use Parser\ItemsStatus;
 use Parser\Source\Source;
 use Parser\Utils\ExternalOfferId;
 use Parser\ParserBody\ParserBody;
@@ -21,24 +20,42 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
+
+
+
 $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$items = new Parser\Catalog\Items($params);
 
-$itemStatus = new ItemsStatus($params);
+//$source = new Source(SOURCE);
 
-$source = new Source(SOURCE);
+//$xml = $source->getSource();
 
-$xml = $source->getSource();
+//$crawler = new Crawler($xml);
 
-$crawler = new Crawler($xml);
+//$resultArray = ParserBody::parse($crawler);
 
-$resultArray = ParserBody::parse($crawler);
+// TODO
+// берем старый previous.xml в качестве источника,
+// старый раздел в качестве цели
+// пишем товарам и ТП P_GROUP_ID и P_KITERU_EXTERNAL_OFFER_ID
 
-$skuList = $itemStatus->getSkuListWithoutParent();
+$extraProperties = [
+	"PROPERTY_P_GROUP_ID",
+];
+$itemsList = $items->getList([], $extraProperties)->list;
+$skusList = $items->getList()
+    ->getItemsIds()
+    ->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
+    ->getSkusListFlatten()
+    ->skusListFlatten;
 
-/**
- * Обновление свойства "ID ТП из прайса skiboard"
- */
+//file_put_contents(__DIR__ . "/../logs/update_external__itemsList.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__skusList.log", print_r($skusList, true));
 
-ExternalOfferId::updateExternalOfferId($skuList, $resultArray);
+//$skuList = $itemStatus->getSkuListWithoutParent();
+
+ // Обновление свойства "ID ТП из прайса skiboard"
+
+//ExternalOfferId::updateExternalOfferId($skuList, $resultArray);
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
