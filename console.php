@@ -84,10 +84,10 @@ $crawler = new Crawler($xml);
 $resultArray = ParserBody::parse($crawler);
 
 //TEMP
-$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
+//$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
 //ENDTEMP
 
-file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 if ($crawler && $previousCrawler) {
 	$isPriceNew = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
@@ -99,6 +99,11 @@ if (!empty($previousXml) && $isPriceNew) {
 	// Считаем длину получившегося массива
     $previousResultArrayLength = count($previousResultArray);
 }
+
+// Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
+Parser\Catalog\Properties::createPGroupId(); // P_SKIBOARD_GROUP_ID
+
+// TODO записать значения при помощи утилиты
 
 $i = 0;
 
@@ -131,42 +136,7 @@ if ($catalogSkusCount !== $i){
 	echo PHP_EOL. "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
 }
 
-/*
-foreach ($catalogSkus as $skuKey => $skuValue) {
-	foreach ($skuValue as $key => $value) {
-		$catalogSkusWithoutParent[] = $value;
-		$skusPrices[] = CPrice::GetBasePrice($key);
-	}
-}
 
-
-foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
-	foreach ($skusPrices as $priceKey => $priceValue) {
-		if ($skuValue["ID"] == $priceValue["PRODUCT_ID"]) {
-			$catalogSkusWithoutParent[$skuKey]["PRICE"] = $priceValue["PRICE"];
-		}
-	}
-}
-
-
-if(!empty($catalogSkusWithoutParent) && !empty($resultArray)){
-	Price::update($catalogSkusWithoutParent, $resultArray);
-}
-
-if (!empty($resultArray)) {
-	$resultArrayLength = count($resultArray);
-}
-
-echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
-*/
-
-
-//TEMP
-require_once (__DIR__."/update_prices.php");
-//ENDTEMP
-
-exit();
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
 	$resultArrayKeys = array_keys($resultArray);
@@ -180,8 +150,6 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			$temp[$diffValue] = $resultArray[$diffValue];
 		}
 		$resultArray = $temp;
-		// Значит нужно записать в инфоблок новые элементы с ключами разницы
-		// т.е. выбрать из нового массива только эти элементы
 
 		$isAddNewItems = true;
 
@@ -203,20 +171,19 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			$temp[] = $res;
 		}
 
-		foreach ($temp as $tempKey => $tempValue) {
-			$element = new CIBlockElement();
-			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
-		}
+//		foreach ($temp as $tempKey => $tempValue) {
+//			$element = new CIBlockElement();
+//			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
+//		}
 	}
 
-//	file_put_contents(__DIR__ . "/logs/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
-//	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-//	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
+//	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
+//	file_put_contents(__DIR__ . "/logs/console__temp.log", print_r($temp, true));
 }
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
+
+exit();
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
@@ -352,9 +319,7 @@ foreach ($allSourcePropertiesArray as $key => $value) {
 
 //---------------------------------ПРОИЗВОДИТЕЛЬ [справочник/highload]------------------------------------------------//
 
-
 // Записываем всех производителей, которых там нет, в справочник Manufacturer
-
 Loader::includeModule('highloadblock');
 
 $manufacturerArray = [];
@@ -434,9 +399,7 @@ if($isAddNewItems){
 //	echo "\nСохраняем товары" . PHP_EOL;
 //	require(__DIR__ . "/add.php");
 }
-
-// TODO здесь должен остаться previous.xml, в нем - сохраненный каталог
-
+require_once (__DIR__."/update_prices.php");
 
 //TEMP включить в продакшене
 //echo Storage::storeCurrentXml($source);

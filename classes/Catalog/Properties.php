@@ -1,11 +1,14 @@
 <?php
 
 namespace Parser\Catalog;
+
+// TODO рефактор
+// Методы должны работать с любыми парсерами
 class Properties
 {
 	/**
 	 * Проверяем и при отсутствии создаем свойство P_GROUP_ID
-	 * Это ключ связывающий родительские товары XML kite.ru и сохраненные товары
+	 * Это ключ связывающий родительские товары XML и сохраненные товары
 	 */
 	public static function createPGroupId()
 	{
@@ -14,7 +17,7 @@ class Properties
 			[
 				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 				"CHECK_PERMISSIONS" => "N",
-				"CODE" => "P_GROUP_ID"
+				"CODE" => "P_SKIBOARD_GROUP_ID"
 			]
 		);
 
@@ -24,7 +27,7 @@ class Properties
 
 		if(empty($pGroupId)){
 			$arPropertyFields = [
-				"NAME" => "Идентификатор товара в каталоге kite.ru",
+				"NAME" => "Идентификатор товара в каталоге skiboard.ru",
 				"ACTIVE" => "Y",
 				"CODE" => "P_GROUP_ID",
 				"PROPERTY_TYPE" => "S",
@@ -44,7 +47,7 @@ class Properties
 
 			if ($propertyPGroupId__id > 0) {
 				echo PHP_EOL;
-				echo "Добавлено свойство инфоблока товаров P_GROUP_ID";
+				echo "Добавлено свойство инфоблока товаров P_SKIBOARD_GROUP_ID";
 				echo PHP_EOL;
 			}
 		} else {
