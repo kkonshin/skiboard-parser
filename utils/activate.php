@@ -14,22 +14,33 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.
 require_once("../vendor/autoload.php");
 
 use Parser\SectionParams;
-use Parser\ItemsStatus;
-use Parser\Activate;
+use Parser\Catalog\Items;
 
 while (ob_get_level()) {
 	ob_end_flush();
 }
 
+$tempCatalogSection = 392;
+
 try {
-	$params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
-	$itemStatus = new ItemsStatus($params);
+	$params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
+	$items = new Items($params);
+	$itemsList = $items->getList()->list;
+	$skusList = $items
+        ->getList()
+        ->getItemsIds()
+        ->getSkusList()
+        ->getSkusListFlatten()
+        ->skusListFlatten;
+
 	//Активация товаров
-	Activate::activateItems($itemStatus);
-	echo "Товары раздела " . TEMP_CATALOG_SECTION . " активированы" . PHP_EOL;
+//	Parser\Utils\Activate::activateItems($itemsList);
+//	echo "Товары раздела " . TEMP_CATALOG_SECTION . " активированы" . PHP_EOL;
+
     //Активация торговых предложений
-	Activate::activateSkus($itemStatus);
+	Parser\Utils\Activate::activateSkus($skusList);
 	echo "Торговые предложения раздела " . TEMP_CATALOG_SECTION . " активированы" . PHP_EOL;
+
 } catch (Exception $e) {
     echo $e->getMessage() . PHP_EOL;
 }
