@@ -28,7 +28,7 @@ class Prices
 	 * @param array $catalogSkus
 	 * @param array $resultArray
 	 */
-	public static function update(Array $catalogSkus, Array $resultArray)
+	public static function update(Array $catalogSkus, Array $resultArray, $externalOfferId)
 	{
 		foreach ($catalogSkus as $offerIdKey => $offerIdValue) {
 
@@ -36,7 +36,7 @@ class Prices
 
 				foreach ($resultItem as $offerKey => $offerValue) {
 
-					if ($offerValue["OFFER_ID"] == $offerIdValue["PROPERTIES"]["P_KITERU_EXTERNAL_OFFER_ID"]["VALUE"]) {
+					if ($offerValue["OFFER_ID"] == $offerIdValue["PROPERTIES"][$externalOfferId]["VALUE"]) {
 
 						$tmpPriceId = null;
 
@@ -74,14 +74,15 @@ class Prices
 		echo PHP_EOL;
 	}
 
-	// Версия только для skiboard
-
-	public static function update__skiboard(array $catalogSkusWithoutParent, array $resultArray)
+	// Версия только для skiboard, имеет особенность в виде сезонной наценки
+	public static function update__skiboard(array $catalogSkus, array $resultArray)
 	{
-		foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
+		foreach ($catalogSkus as $offerIdKey => $offerIdValue) {
 			foreach ($resultArray as $resultKey => $resultItem) {
 				foreach ($resultItem as $offerKey => $offerValue) {
+					// OFFER_ID из XML vs. SKIBOARD_EXTERNAL_OFFER_ID из каталога
 					if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"]) {
+						// SEASON_PRICE из XML vs. Цена ТП из каталога
 						if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
 
 							$tmpPriceId = null;

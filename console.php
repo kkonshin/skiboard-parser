@@ -28,21 +28,9 @@ use Parser\Source\Source;
 use Parser\Source\Storage;
 use Parser\ParserBody\ParserBody;
 
-use Parser\Update;
-use Parser\CatalogDate;
-use Parser\SectionsList;
-use Parser\Mail;
-
 use Parser\Utils\Price;
 
 global $USER;
-
-if (!is_dir(__DIR__ . "/logs")) {
-	mkdir(__DIR__ . "/logs", 0777, true);
-}
-if (!is_dir(__DIR__ . "/save")) {
-	mkdir(__DIR__ . "/save", 0777, true);
-}
 
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
@@ -52,102 +40,98 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-/**
- * Инициализация объекта для работы с источником
- */
+$resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
+$previousResultArray = []; // результат парсинга файла /save/previous.xml
 
+$resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
+$resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
+
+$skusToSetZeroArray = []; // Массив ТП, подлежащих установке в 0, если родительский товар отсутствует в новом каталоге
+
+$skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
+
+$catalogIdsTempArray = []; // временный рабочий массив
+$temp = []; // временный рабочий массив
+
+$isPriceNew = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
+$isAddNewItems = false; // флаг для запуска скрипта add.php [МЕХАНИЗМ НЕ РЕАЛИЗОВАН]
+
+$resultArrayLength = 0; // длина нового массива
+$previousResultArrayLength = 0; // длина старого массива
+
+$crawler = null; // объект компонента Symfony
+$previousCrawler = null; // объект компонента Symfony
+
+// Создаем директории для сохранения файлов каталогов, логирования и т.п.
+Parser\Utils\Dirs::make(__DIR__);
+// Конфигурируем объект для работы с сохраненными элементами каталога
+$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+// Создаем объект для работы с товарами временного раздела
+$catalogItems = new Parser\Catalog\Items($sectionParams);
+// Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
-
-/**
- * Получение содержания файла - источника
- */
-
+// Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
-
-/**
- * Получение предыдущего сохраненного файла - источника
- */
-
+// Проверяем, сохранен ли предыдущий файл каталога
 $previousXml = Storage::getPreviousXml();
-
-$previousResultArray = [];
-
-$resultDifferenceArray = [];
-$resultDifferenceArrayKeys = [];
-
-$isAddNewItems = false;
-
-$resultArrayLength = 0;
-$previousResultArrayLength = 0;
-
-// TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
-
-$crawler = new Crawler($xml);
-
+// Если старый файл есть - создаем ему краулер симфони...
 if (!empty($previousXml)) {
 	$previousCrawler = new Crawler($previousXml);
 }
+// Создаем краулер для нового каталога
+$crawler = new Crawler($xml);
+// Парсим новый каталог
+$resultArray = ParserBody::parse($crawler);
 
-// TODO удалить после тестирования
+//TEMP
+$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
+//ENDTEMP
 
-/*
-$newSectionsList = [123,321,145];
-
-$mailSendResult = Parser\Mail::sendMail($newSectionsList);
-
-echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_event при удачном добавлении письма в очередь отправки
-*/
-
-// если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
-// TODO убрать дублирование парсинга нового файла?
+file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
 
 if ($crawler && $previousCrawler) {
-	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
+	$isPriceNew = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
-if (!empty($previousXml) && $isNewPrice) {
+if (!empty($previousXml) && $isPriceNew) {
+	// Парсим старый файл
+	$previousResultArray = ParserBody::parse($previousCrawler);
+	// Считаем длину получившегося массива
+    $previousResultArrayLength = count($previousResultArray);
+}
 
-	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл
+$i = 0;
 
-	if (!empty($previousResultArray)) {
-		$previousResultArrayLength = count($previousResultArray);
+if (!empty($resultArray)) {
+	$resultArrayLength = count($resultArray);
+	foreach ($resultArray as $parentItem){
+		foreach ($parentItem as $offer){
+			$i++;
+		}
 	}
 }
 
-$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
+$params = [
+	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+	"SECTION_ID" => TEMP_CATALOG_SECTION
+];
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+$catalogSkus = $catalogItems->getList($params)
+	->getItemsIds()
+	->getSkusList(["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]])
+	->getSkusListFlatten()
+	->skusListFlatten;
 
-$dbRes = CIBlockElement::GetList(
-	[],
-	[
-		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-		"SECTION_ID" => TEMP_CATALOG_SECTION
-	],
-	false,
-	false, ["ID"]
-);
+$catalogSkusCount = count($catalogSkus);
 
-while ($res = $dbRes->GetNext()) {
-	$catalogIdsTempArray[] = $res;
+echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
+echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
+echo "Количество товаров в предыдущем XML файле каталога: " . $previousResultArrayLength . PHP_EOL;
+if ($catalogSkusCount !== $i){
+	echo PHP_EOL. "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
 }
 
-foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
-	$catalogIds[] = $cidsValue["ID"];
-}
-
-$catalogSkus = CCatalogSku::getOffersList(
-	$catalogIds,
-	CATALOG_IBLOCK_ID,
-	[],
-	["*"],
-	[
-		"CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]
-	]
-);
-
-//echo "Количество товаров в разделе skiboard_tmp: " . count($catalogSkus) . PHP_EOL;
-
+/*
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	foreach ($skuValue as $key => $value) {
 		$catalogSkusWithoutParent[] = $value;
@@ -155,7 +139,6 @@ foreach ($catalogSkus as $skuKey => $skuValue) {
 	}
 }
 
-//echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
 
 foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	foreach ($skusPrices as $priceKey => $priceValue) {
@@ -165,9 +148,6 @@ foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
 	}
 }
 
-/**
- * Обновление цен торговых предложений
- */
 
 if(!empty($catalogSkusWithoutParent) && !empty($resultArray)){
 	Price::update($catalogSkusWithoutParent, $resultArray);
@@ -179,7 +159,14 @@ if (!empty($resultArray)) {
 
 echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
 echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
+*/
 
+
+//TEMP
+require_once (__DIR__."/update_prices.php");
+//ENDTEMP
+
+exit();
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
 	$resultArrayKeys = array_keys($resultArray);
@@ -222,10 +209,10 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		}
 	}
 
-//	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
+//	file_put_contents(__DIR__ . "/logs/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
 //	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
+//	file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 //	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
 }
 
@@ -444,18 +431,16 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // FIXME запуск add должен происходить по определенным условиям
 if($isAddNewItems){
-	echo "\nСохраняем товары" . PHP_EOL;
-	require(__DIR__ . "/add.php");
+//	echo "\nСохраняем товары" . PHP_EOL;
+//	require(__DIR__ . "/add.php");
 }
 
 // TODO здесь должен остаться previous.xml, в нем - сохраненный каталог
 
 
-/**
- * Сохранение файла - источника
- */
-
-echo Storage::storeCurrentXml($source);
+//TEMP включить в продакшене
+//echo Storage::storeCurrentXml($source);
+//ENDTEMP
 
 register_shutdown_function(function () {
 	global $startExecTime;

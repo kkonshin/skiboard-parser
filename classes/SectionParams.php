@@ -5,7 +5,8 @@ namespace Parser;
 class SectionParams
 {
 	/**
-	 * Инъекция зависимости для ItemsStatus
+	 * Позволяет создавать экземпляры для конфигурирования парсеров
+	 * Инъекция зависимости для Items
 	 * SectionParams constructor.
 	 * @param $catalogIblockId
 	 * @param $tempCatalogSection
