@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8047fca868d933214226a84bede21512
+class ComposerStaticInite2ed05a03474265efb2f4c9cd67c4c04
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -52,16 +52,23 @@ class ComposerStaticInit8047fca868d933214226a84bede21512
         'Parser\\Activate' => __DIR__ . '/../..' . '/classes/Activate.php',
         'Parser\\BindToSections' => __DIR__ . '/../..' . '/classes/BindToSections.php',
         'Parser\\CatalogDate' => __DIR__ . '/../..' . '/classes/CatalogDate.php',
+        'Parser\\Catalog\\Items' => __DIR__ . '/../..' . '/classes/Catalog/Items.php',
+        'Parser\\Catalog\\Prices' => __DIR__ . '/../..' . '/classes/Catalog/Prices.php',
+        'Parser\\Catalog\\Properties' => __DIR__ . '/../..' . '/classes/Catalog/Properties.php',
         'Parser\\Deactivate' => __DIR__ . '/../..' . '/classes/Deactivate.php',
+        'Parser\\HtmlParser\\HtmlParser' => __DIR__ . '/../..' . '/classes/HtmlParser/HtmlParser.php',
         'Parser\\ItemsStatus' => __DIR__ . '/../..' . '/classes/ItemsStatus.php',
         'Parser\\Mail' => __DIR__ . '/../..' . '/classes/Mail.php',
-        'Parser\\ParseXml' => __DIR__ . '/../..' . '/classes/ParseXml.php',
+        'Parser\\ParserBody\\ParserBody' => __DIR__ . '/../..' . '/classes/ParserBody/ParserBody.php',
         'Parser\\PropertyTypeList' => __DIR__ . '/../..' . '/classes/PropertyTypeList.php',
         'Parser\\SectionParams' => __DIR__ . '/../..' . '/classes/SectionParams.php',
         'Parser\\SectionsList' => __DIR__ . '/../..' . '/classes/SectionsList.php',
         'Parser\\SectionsListInterface' => __DIR__ . '/../..' . '/classes/SectionsList.php',
         'Parser\\Source\\Source' => __DIR__ . '/../..' . '/classes/Source/Source.php',
-        'Parser\\Update' => __DIR__ . '/../..' . '/classes/Update.php',
+        'Parser\\Source\\Storage' => __DIR__ . '/../..' . '/classes/Source/Storage.php',
+        'Parser\\Utils\\Description' => __DIR__ . '/../..' . '/classes/Utils/Description.php',
+        'Parser\\Utils\\ExternalOfferId' => __DIR__ . '/../..' . '/classes/Utils/ExternalOfferId.php',
+        'Parser\\Utils\\Price' => __DIR__ . '/../..' . '/classes/Utils/Price.php',
         'Symfony\\Component\\CssSelector\\CssSelectorConverter' => __DIR__ . '/..' . '/symfony/css-selector/CssSelectorConverter.php',
         'Symfony\\Component\\CssSelector\\Exception\\ExceptionInterface' => __DIR__ . '/..' . '/symfony/css-selector/Exception/ExceptionInterface.php',
         'Symfony\\Component\\CssSelector\\Exception\\ExpressionErrorException' => __DIR__ . '/..' . '/symfony/css-selector/Exception/ExpressionErrorException.php',
@@ -128,9 +135,9 @@ class ComposerStaticInit8047fca868d933214226a84bede21512
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8047fca868d933214226a84bede21512::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8047fca868d933214226a84bede21512::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit8047fca868d933214226a84bede21512::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInite2ed05a03474265efb2f4c9cd67c4c04::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInite2ed05a03474265efb2f4c9cd67c4c04::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInite2ed05a03474265efb2f4c9cd67c4c04::$classMap;
 
         }, null, ClassLoader::class);
     }
