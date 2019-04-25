@@ -177,26 +177,6 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			}
 		}
 		echo PHP_EOL;
-
-		/*
-		$dbRes = CIBlockElement::GetList(
-			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
-			false,
-			false,
-			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
-		);
-
-		while ($res = $dbRes->GetNext()) {
-			$temp[] = $res;
-		}
-        */
-
-//		foreach ($temp as $tempKey => $tempValue) {
-//			$element = new CIBlockElement();
-//			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
-//		}
-
 	}
 }
 
