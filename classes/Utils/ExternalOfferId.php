@@ -35,7 +35,7 @@ class ExternalOfferId
 
 
 	/**
-	 * Используется для kite.ru
+	 * Используется для kite.ru / skiboard.ru
 	 * @param array $itemsList
 	 * @param array $resultArray
 	 * @param $propertyName
@@ -48,13 +48,12 @@ class ExternalOfferId
 			$resultItemCode = trim(\CUtil::translit($resultValue[0]["NAME"] . ' ' . $resultValue[0]["OFFER_ID"], "ru", $translitParams));
 			foreach ($itemsList as $itemKey => $itemValue) {
 				if ($resultItemCode == $itemValue["CODE"]) {
-//					echo $resultKey . ' ' . $resultItemCode . PHP_EOL;
+					echo $resultKey . ' ' . $resultItemCode . PHP_EOL;
 					self::update($itemValue["ID"], CATALOG_IBLOCK_ID, [(string)$propertyName => [$resultKey]]);
 				}
 			}
 		}
 	}
-
 
 	/**
 	 * Обновляет значения внешнего ключа торгового предложения.

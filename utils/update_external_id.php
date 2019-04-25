@@ -11,7 +11,6 @@ require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.
 require_once(__DIR__ . "/../vendor/autoload.php");
 
 use Parser\SectionParams;
-use Parser\ItemsStatus;
 use Parser\Source\Source;
 use Parser\Utils\ExternalOfferId;
 use Parser\ParserBody\ParserBody;
@@ -21,11 +20,17 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-$params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$source = __DIR__ . "/../save/previous_.xml";
+//$source = SOURCE;
 
-$itemStatus = new ItemsStatus($params);
+//$tempCatalogSection = 392;
+$tempCatalogSection = TEMP_CATALOG_SECTION;
 
-$source = new Source(SOURCE);
+$params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
+
+$items = new Parser\Catalog\Items($params);
+
+$source = new Source($source);
 
 $xml = $source->getSource();
 
@@ -33,12 +38,35 @@ $crawler = new Crawler($xml);
 
 $resultArray = ParserBody::parse($crawler);
 
-$skuList = $itemStatus->getSkuListWithoutParent();
+// Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
+Parser\Catalog\Properties::createExternalItemIdProperty(
+	[
+		"NAME" => "Идентификатор товара в каталоге skiboard.ru",
+		"CODE" => "P_SKIBOARD_GROUP_ID"
+	]
+);
 
-/**
- * Обновление свойства "ID ТП из прайса skiboard"
- */
+// TODO
+// берем старый previous.xml в качестве источника,
+// старый раздел в качестве цели
+// пишем товарам и ТП P_GROUP_ID и P_KITERU_EXTERNAL_OFFER_ID
+$extraProperties = [
+	"PROPERTY_P_SKIBOARD_GROUP_ID",
+];
+$itemsList = $items->getList([], $extraProperties)->list;
+/*
+$skusList = $items->getList()
+	->getItemsIds()
+	->getSkusList(["CODE" => ["P_SKIBOARD_EXTERNAL_OFFER_ID"]])
+	->getSkusListFlatten()
+	->skusListFlatten;
+*/
+ExternalOfferId::updateExternalItemId($itemsList, $resultArray, "P_SKIBOARD_GROUP_ID", P_TRANSLIT_PARAMS);
 
-ExternalOfferId::updateExternalOfferId($skuList, $resultArray);
+//ExternalOfferId::updateExternalOfferId($skusList, $resultArray, "P_SKIBOARD_EXTERNAL_OFFER_ID");
+
+//file_put_contents(__DIR__ . "/../logs/update_external__resultArray--392.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

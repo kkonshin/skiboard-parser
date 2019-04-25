@@ -28,8 +28,6 @@ use Parser\Source\Source;
 use Parser\Source\Storage;
 use Parser\ParserBody\ParserBody;
 
-use Parser\Utils\Price;
-
 global $USER;
 
 if (!Loader::includeModule('iblock')) {
@@ -107,9 +105,6 @@ Parser\Catalog\Properties::createExternalItemIdProperty(
                 "CODE" => "P_SKIBOARD_GROUP_ID"
         ]
 );
-
-exit();
-// TODO записать значения при помощи утилиты
 
 $i = 0;
 

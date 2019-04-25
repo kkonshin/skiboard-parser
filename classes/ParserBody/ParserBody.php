@@ -79,11 +79,11 @@ class ParserBody
 					}
 
 					if (in_array((int)$ta[$key]['CATEGORY_ID'], SUMMER)) {
-						$ta[$key]["SEASON_PRICE"] = \Bitrix\Catalog\Product\Price::roundPrice(1,$ta[$key]["PRICE"] * 1.5, "RUB");
+						$ta[$key]["SEASON_PRICE"] = round($ta[$key]["PRICE"] * 1.5);
 					}
 
 					if (in_array((int)$ta[$key]['CATEGORY_ID'], WINTER)) {
-						$ta[$key]["SEASON_PRICE"] = \Bitrix\Catalog\Product\Price::roundPrice(1,$ta[$key]["PRICE"] * 1.6, "RUB");
+						$ta[$key]["SEASON_PRICE"] = round($ta[$key]["PRICE"] * 1.6);
 					}
 
 
