@@ -131,13 +131,13 @@ $catalogSkus = $catalogItems->getList($params)
 $catalogSkusCount = count($catalogSkus);
 
 echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
-echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Количество товаров в предыдущем XML файле каталога: " . $previousResultArrayLength . PHP_EOL;
+echo "Количество товаров в новом файле XML: " . $resultArrayLength . PHP_EOL;
+echo "Количество товаров в предыдущем файле XML  : " . $previousResultArrayLength . PHP_EOL;
 if ($catalogSkusCount !== $i){
 	echo PHP_EOL. "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
 }
 
-
+// TODO вместо использования предыдущего файла XML сравнивать с содержимым раздела каталога
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
 	$resultArrayKeys = array_keys($resultArray);
@@ -151,15 +151,34 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 			$temp[$diffValue] = $resultArray[$diffValue];
 		}
 		$resultArray = $temp;
-
+		// Добавляем новые товары в конце скрипта
 		$isAddNewItems = true;
 
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 
+	    // Если в новом XML отсуствуют товары из каталога - установим им кол-во ТП в 0
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
+        // TODO постоянно использующиеся названия свойств вынести в конфиг
+		$catalogItemsList = $catalogItems->getList(
+			["PROPERTY_P_SKIBOARD_GROUP_ID" => $resultDifferenceArrayKeys], // Фильтр
+			["PROPERTY_P_SKIBOARD_GROUP_ID"] // Дополнительные свойства, которые нужно получить
+		);
 
-		// Значит в инфоблоке нужно деактивировать товары с ключами разницы
+		foreach ($catalogItemsList->list as $key => $item) {
+			$skusToSetZeroArray = CCatalogSKU::getOffersList($item["ID"]);
+		}
 
+		foreach ($skusToSetZeroArray as $itemKey => $itemValue) {
+			echo PHP_EOL;
+			echo "Товар {$itemKey} - {$itemValue["NAME"]} отсутствует в новом файле XML" . PHP_EOL;
+			foreach ($itemValue as $offerKey => $offerValue) {
+				CCatalogProduct::Update($offerKey, ["QUANTITY" => 0]);
+				echo "Количество отсутствующего в новом прайсе торгового предложения {$offerKey} установлено в 0" . PHP_EOL;
+			}
+		}
+		echo PHP_EOL;
+
+		/*
 		$dbRes = CIBlockElement::GetList(
 			[],
 			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
@@ -171,16 +190,21 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		while ($res = $dbRes->GetNext()) {
 			$temp[] = $res;
 		}
+        */
 
 //		foreach ($temp as $tempKey => $tempValue) {
 //			$element = new CIBlockElement();
 //			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
 //		}
+
 	}
+}
+
 
 //	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
 //	file_put_contents(__DIR__ . "/logs/console__temp.log", print_r($temp, true));
-}
+
+exit();
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 

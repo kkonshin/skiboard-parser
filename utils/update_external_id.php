@@ -49,7 +49,6 @@ Parser\Catalog\Properties::createExternalItemIdProperty(
 // TODO
 // берем старый previous.xml в качестве источника,
 // старый раздел в качестве цели
-// пишем товарам и ТП P_GROUP_ID и P_KITERU_EXTERNAL_OFFER_ID
 $extraProperties = [
 	"PROPERTY_P_SKIBOARD_GROUP_ID",
 ];

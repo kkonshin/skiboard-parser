@@ -5,12 +5,8 @@ namespace Parser\Utils;
 class ExternalOfferId
 {
 
-	// Проверка на связь ТП работает только для kite.ru
-	// Для skiboard см ниже
-	// Для gssport не реализовано
-
+	// TODO проверить для skiboard.ru
 	// Возвращает массив ID торговых предложений каталога по их внешним ключам
-
 	public static function getOffersIds(Array $externalKeys, $externalPropertyName)
 	{
 		$ta = [];
@@ -33,8 +29,8 @@ class ExternalOfferId
 		return $ta;
 	}
 
-
 	/**
+	 * Обновляет (или записывает при отсутствии) внешние ключи товарам каталога
 	 * Используется для kite.ru / skiboard.ru
 	 * @param array $itemsList
 	 * @param array $resultArray

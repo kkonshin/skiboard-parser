@@ -22,7 +22,8 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-$tempCatalogSection = 392;
+//$tempCatalogSection = 392;
+$tempCatalogSection = TEMP_CATALOG_SECTION;
 
 $params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
 
@@ -31,22 +32,24 @@ $items = new Parser\Catalog\Items($params);
 $skusToSetZeroArray = [];
 
 $extraFilter = [
-	"PROPERTY_P_GROUP_ID" => false
+	"PROPERTY_P_SKIBOARD_GROUP_ID" => false
 ];
 
 $extraProperties = [
-	"PROPERTY_P_GROUP_ID",
+	"PROPERTY_P_SKIBOARD_GROUP_ID",
 ];
-$itemsList = $items->getList($extraFilter, $extraProperties)->list;
+
+//$itemsList = $items->getList($extraFilter, $extraProperties)->list;
+
 $skusList = $items->getList($extraFilter, $extraProperties)
 	->getItemsIds()
-	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
+	->getSkusList(["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()
 	->skusListFlatten;
 
 foreach ($skusList as $key => $value){
 	\CCatalogProduct::Update($key, ["QUANTITY" => 0]);
-	echo $value["NAME"] . PHP_EOL;
+	echo "Количество ТП {$value["NAME"]} установлено в 0" . PHP_EOL;
 }
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
