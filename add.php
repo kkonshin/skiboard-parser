@@ -141,9 +141,17 @@ foreach ($resultArray as $key => $item) {
 
 			foreach ($item as $k => $offer) {
 
+				// FIXME - некоторые товарные предложения сохраняются 2 и более раз
+				// реализовать проверку на уникальность
+
+				// уже получен массив всех торговых предложений в console.php, в т.ч. их уникальных внешних ключей
+				// проверять вхождение такого ключа 'SKIBOARD_EXTERNAL_OFFER_ID' в массив и отменять запись при
+				// наличии
+
 				$obElement = new CIBlockElement();
 
 				// Цена торгового предложения в зависимости от сезона
+				// TODO при парсинге уже реализован механизм SEASON_PRICE, сравнить
 
 				if (in_array((int)$offer["CATEGORY_ID"], SUMMER)) {
 					$offerPrice = $offer["PRICE"] * 1.5;
@@ -154,6 +162,7 @@ foreach ($resultArray as $key => $item) {
 				}
 
 				$arOfferProps = [
+					// Привязка к родительскому товару
 					$SKUPropertyId => $productId,
 					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
 					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']

@@ -99,6 +99,7 @@ class Items
 	 * @param array $extraParameters
 	 * @return $this
 	 */
+
 	public function getSkusList($extraParameters = [])
 	{
 		if (count($this->itemsIds) > 0) {

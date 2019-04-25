@@ -82,6 +82,9 @@ class ExternalOfferId
 	 * @param array $skuList
 	 * @param array $resultArray
 	 */
+
+	// TODO рефактор, проверить работу
+
 	public static function updateExternalOfferId__skiboard(array $skuList, array $resultArray)
 	{
 		foreach ($resultArray as $resultKey => $resultValue) {

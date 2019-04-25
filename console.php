@@ -95,23 +95,23 @@ if (!empty($previousXml) && $isPriceNew) {
 	// Парсим старый файл
 	$previousResultArray = ParserBody::parse($previousCrawler);
 	// Считаем длину получившегося массива
-    $previousResultArrayLength = count($previousResultArray);
+	$previousResultArrayLength = count($previousResultArray);
 }
 
 // Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
 Parser\Catalog\Properties::createExternalItemIdProperty(
-        [
-                "NAME" => "Идентификатор товара в каталоге skiboard.ru",
-                "CODE" => "P_SKIBOARD_GROUP_ID"
-        ]
+	[
+		"NAME" => "Идентификатор товара в каталоге skiboard.ru",
+		"CODE" => "P_SKIBOARD_GROUP_ID"
+	]
 );
 
 $i = 0;
 
 if (!empty($resultArray)) {
 	$resultArrayLength = count($resultArray);
-	foreach ($resultArray as $parentItem){
-		foreach ($parentItem as $offer){
+	foreach ($resultArray as $parentItem) {
+		foreach ($parentItem as $offer) {
 			$i++;
 		}
 	}
@@ -130,11 +130,47 @@ $catalogSkus = $catalogItems->getList($params)
 
 $catalogSkusCount = count($catalogSkus);
 
-echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
+// TODO получить массив всех значений "SKIBOARD_EXTERNAL_OFFER_ID" в разделе
+// Вынести в утилиту
+$externalIdsArray = [];
+
+foreach ($catalogSkus as $key => $sku) {
+	if (!empty($sku["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"])) {
+		$externalIdsArray[$key] = $sku["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"];
+	}
+}
+
+// Получим массив повторяющихся значений
+function array_not_unique($input)
+{
+	$duplicates = [];
+	$processed = [];
+
+	foreach ($input as $key => $item) {
+		if (in_array($item, $processed)) {
+			$duplicates[$key] = $item;
+		} else {
+			$processed[$key] = $item;
+		}
+	}
+	return $duplicates;
+}
+
+$externalIdsDiffArray = array_not_unique($externalIdsArray);
+
+// удаляем торговые предложения с ключами этого массива
+foreach ($externalIdsDiffArray as $key => $value) {
+	$res = \CIBlockElement::Delete($key);
+	if($res){
+	    echo "Торговое предложение {$key} дублируется и было успешно удалено, либо не существует" . PHP_EOL;
+    }
+}
+
+echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount . PHP_EOL;
 echo "Количество товаров в новом файле XML: " . $resultArrayLength . PHP_EOL;
 echo "Количество товаров в предыдущем файле XML  : " . $previousResultArrayLength . PHP_EOL;
-if ($catalogSkusCount !== $i){
-	echo PHP_EOL. "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
+if ($catalogSkusCount !== $i) {
+	echo PHP_EOL . "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
 }
 
 // TODO вместо использования предыдущего файла XML сравнивать с содержимым раздела каталога
@@ -156,9 +192,9 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 	} elseif ($previousResultArrayLength > $resultArrayLength) {
 
-	    // Если в новом XML отсуствуют товары из каталога - установим им кол-во ТП в 0
+		// Если в новом XML отсуствуют товары из каталога - установим им кол-во ТП в 0
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
-        // TODO постоянно использующиеся названия свойств вынести в конфиг
+		// TODO постоянно использующиеся названия свойств вынести в конфиг
 		$catalogItemsList = $catalogItems->getList(
 			["PROPERTY_P_SKIBOARD_GROUP_ID" => $resultDifferenceArrayKeys], // Фильтр
 			["PROPERTY_P_SKIBOARD_GROUP_ID"] // Дополнительные свойства, которые нужно получить
@@ -170,6 +206,9 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 		foreach ($skusToSetZeroArray as $itemKey => $itemValue) {
 			echo PHP_EOL;
+
+			// FIXME название не вывелось в консоль
+
 			echo "Товар {$itemKey} - {$itemValue["NAME"]} отсутствует в новом файле XML" . PHP_EOL;
 			foreach ($itemValue as $offerKey => $offerValue) {
 				CCatalogProduct::Update($offerKey, ["QUANTITY" => 0]);
@@ -182,13 +221,16 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 
 //	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
-//	file_put_contents(__DIR__ . "/logs/console__temp.log", print_r($temp, true));
+file_put_contents(__DIR__ . "/logs/console__skusToSetZero.log", print_r($skusToSetZeroArray, true));
+file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
+file_put_contents(__DIR__ . "/logs/console__externalIdsArray.log", print_r($externalIdsArray, true));
+file_put_contents(__DIR__ . "/logs/console__externalIdsDiff.log", print_r($externalIdsDiffArray, true));
+
 
 exit();
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
 
-exit();
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
@@ -400,11 +442,11 @@ foreach ($manufacturerArray as $manId => $man) {
 // Сохранение товаров
 
 // FIXME запуск add должен происходить по определенным условиям
-if($isAddNewItems){
+if ($isAddNewItems) {
 //	echo "\nСохраняем товары" . PHP_EOL;
 //	require(__DIR__ . "/add.php");
 }
-require_once (__DIR__."/update_prices.php");
+require_once(__DIR__ . "/update_prices.php");
 
 //TEMP включить в продакшене
 //echo Storage::storeCurrentXml($source);
