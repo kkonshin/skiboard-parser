@@ -84,7 +84,7 @@ $crawler = new Crawler($xml);
 $resultArray = ParserBody::parse($crawler);
 
 //TEMP
-//$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
+$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
 //ENDTEMP
 
 //file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
@@ -101,8 +101,14 @@ if (!empty($previousXml) && $isPriceNew) {
 }
 
 // Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
-Parser\Catalog\Properties::createPGroupId(); // P_SKIBOARD_GROUP_ID
+Parser\Catalog\Properties::createExternalItemIdProperty(
+        [
+                "NAME" => "Идентификатор товара в каталоге skiboard.ru",
+                "CODE" => "P_SKIBOARD_GROUP_ID"
+        ]
+);
 
+exit();
 // TODO записать значения при помощи утилиты
 
 $i = 0;

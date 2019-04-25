@@ -7,29 +7,29 @@ namespace Parser\Catalog;
 class Properties
 {
 	/**
-	 * Проверяем и при отсутствии создаем свойство P_GROUP_ID
-	 * Это ключ связывающий родительские товары XML и сохраненные товары
+	 * Проверяет наличие и (при отсутствии) создает свойство для хранения внешнего ключа товара
+	 * @param array $propertyParams
 	 */
-	public static function createPGroupId()
+	public static function createExternalItemIdProperty(Array $propertyParams)
 	{
 		$catalogIbPropsDb = \CIBlockProperty::GetList(
 			[],
 			[
 				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 				"CHECK_PERMISSIONS" => "N",
-				"CODE" => "P_SKIBOARD_GROUP_ID"
+				"CODE" => $propertyParams["CODE"] // "P_SKIBOARD_GROUP_ID"
 			]
 		);
 
-		if($res=$catalogIbPropsDb->GetNext()){
-			$pGroupId = $res;
-		}
-
-		if(empty($pGroupId)){
+		if ($res = $catalogIbPropsDb->GetNext()) {
+			echo PHP_EOL;
+			echo "Свойство {$propertyParams["NAME"]} - {$propertyParams["CODE"]} уже существует";
+			echo PHP_EOL;
+		} else {
 			$arPropertyFields = [
-				"NAME" => "Идентификатор товара в каталоге skiboard.ru",
+				"NAME" => $propertyParams["NAME"], //"Идентификатор товара в каталоге skiboard.ru"
 				"ACTIVE" => "Y",
-				"CODE" => "P_GROUP_ID",
+				"CODE" => $propertyParams["CODE"],
 				"PROPERTY_TYPE" => "S",
 				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 				"SEARCHABLE" => "Y",
@@ -42,18 +42,14 @@ class Properties
 				]
 			];
 
-			$propertyPGroupId = new \CIBlockProperty;
-			$propertyPGroupId__id = $propertyPGroupId ->Add($arPropertyFields);
+			$property = new \CIBlockProperty;
+			$propertyId = $property->Add($arPropertyFields);
 
-			if ($propertyPGroupId__id > 0) {
+			if ($propertyId > 0) {
 				echo PHP_EOL;
-				echo "Добавлено свойство инфоблока товаров P_SKIBOARD_GROUP_ID";
+				echo "Добавлено свойство инфоблока товаров {$propertyParams["NAME"]} - {$propertyParams["CODE"]}";
 				echo PHP_EOL;
 			}
-		} else {
-			echo PHP_EOL;
-			echo "Свойство {$pGroupId["NAME"]} - {$pGroupId["CODE"]} уже существует";
-			echo PHP_EOL;
 		}
 	}
 
@@ -62,6 +58,8 @@ class Properties
 	 * Это ключ связывающий торговые предложения XML kite.ru и сохраненные торговые предложения
 	 */
 
+	// TODO при необходимости реализовать для skiboard
+	/*
 	public static function createPKiteruExternalOfferId()
 	{
 		$catalogIbPropsDb = \CIBlockProperty::GetList(
@@ -73,11 +71,11 @@ class Properties
 			]
 		);
 
-		if($res=$catalogIbPropsDb->GetNext()){
+		if ($res = $catalogIbPropsDb->GetNext()) {
 			$PKiteruExternalOfferId = $res;
 		}
 
-		if(empty($PKiteruExternalOfferId)){
+		if (empty($PKiteruExternalOfferId)) {
 			$arPropertyFields = [
 				"NAME" => "Идентификатор торгового предложения в каталоге kite.ru",
 				"ACTIVE" => "Y",
@@ -95,11 +93,11 @@ class Properties
 			];
 
 			$propertyPKiteruExternalOfferId = new \CIBlockProperty;
-			$propertyPKiteruExternalOfferId__id = $propertyPKiteruExternalOfferId ->Add($arPropertyFields);
+			$propertyPKiteruExternalOfferId__id = $propertyPKiteruExternalOfferId->Add($arPropertyFields);
 
 			if ($propertyPKiteruExternalOfferId__id > 0) {
 				echo PHP_EOL;
-				echo "Добавлено свойство инфоблока товаров P_KITERU_EXTERNAL_OFFER_ID" ;
+				echo "Добавлено свойство инфоблока товаров P_KITERU_EXTERNAL_OFFER_ID";
 				echo PHP_EOL;
 			}
 		} else {
@@ -108,4 +106,5 @@ class Properties
 			echo PHP_EOL;
 		}
 	}
+	*/
 }
