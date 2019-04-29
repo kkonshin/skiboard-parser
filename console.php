@@ -131,7 +131,7 @@ $catalogSkus = $catalogItems->getList($params)
 $catalogSkusCount = count($catalogSkus);
 
 // TODO получить массив всех значений "SKIBOARD_EXTERNAL_OFFER_ID" в разделе
-// Вынести в утилиту
+// Вынести в утилиту - этот массив используется в add.php
 $externalIdsArray = [];
 
 foreach ($catalogSkus as $key => $sku) {
@@ -222,9 +222,9 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 //	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
 file_put_contents(__DIR__ . "/logs/console__skusToSetZero.log", print_r($skusToSetZeroArray, true));
-file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
-file_put_contents(__DIR__ . "/logs/console__externalIdsArray.log", print_r($externalIdsArray, true));
-file_put_contents(__DIR__ . "/logs/console__externalIdsDiff.log", print_r($externalIdsDiffArray, true));
+//file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
+//file_put_contents(__DIR__ . "/logs/console__externalIdsArray.log", print_r($externalIdsArray, true));
+//file_put_contents(__DIR__ . "/logs/console__externalIdsDiff.log", print_r($externalIdsDiffArray, true));
 
 
 exit();
