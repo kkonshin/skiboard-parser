@@ -65,7 +65,7 @@ Parser\Utils\Dirs::make(__DIR__);
 // Конфигурируем объект для работы с сохраненными элементами каталога
 $sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 // Создаем объект для работы с товарами временного раздела
-$catalogItems = new Parser\Catalog\Items($sectionParams);
+$items = new Parser\Catalog\Items($sectionParams);
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
 // Получаем содержание каталога с сайта-источника, которое и будем парсить
@@ -122,7 +122,26 @@ $params = [
 	"SECTION_ID" => TEMP_CATALOG_SECTION
 ];
 
-$catalogSkus = $catalogItems->getList($params)
+// Массив товаров временного раздела
+$catalogItems = $items->getList($params, ["PROPERTY_P_SKIBOARD_GROUP_ID"])->list;
+// Количество товаров во временном разделе DEPRECATED
+$catalogItemsCount = count($catalogItems);
+// Внешние ключи товаров каталога
+$catalogItemsExternalIds = [];
+
+foreach ($catalogItems as $item) {
+	if (strlen($item["PROPERTY_P_SKIBOARD_GROUP_ID_VALUE"]) > 0) {
+		$catalogItemsExternalIds[] = $item["PROPERTY_P_SKIBOARD_GROUP_ID_VALUE"];
+	}
+}
+
+$resultArrayKeys = array_keys($resultArray);
+
+$differenceAdd = array_diff($resultArrayKeys, $catalogItemsExternalIds);
+$differenceDisable = array_diff($catalogItemsExternalIds, $resultArrayKeys);
+
+// Массив торговых предложений временного массива
+$catalogSkus = $items->getList($params)
 	->getItemsIds()
 	->getSkusList(["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()
@@ -138,9 +157,11 @@ if ($catalogSkusCount !== $i) {
 }
 
 // TODO вместо использования предыдущего файла XML сравнивать с содержимым раздела каталога
+// resultArray оставляем прежним, вместо previousResultArray делаем выборку из каталога
+// сравниваем не длину, а ключи товаров
+
 if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
 
-	$resultArrayKeys = array_keys($resultArray);
 	$previousResultArrayKeys = array_keys($previousResultArray);
 
 	// TODO берем массив с большей длиной для определения разницы
@@ -159,7 +180,7 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		// Если в новом XML отсуствуют товары из каталога - установим им кол-во ТП в 0
 		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
 		// TODO постоянно использующиеся названия свойств вынести в конфиг
-		$catalogItemsList = $catalogItems->getList(
+		$catalogItemsList = $items->getList(
 			["PROPERTY_P_SKIBOARD_GROUP_ID" => $resultDifferenceArrayKeys], // Фильтр
 			["PROPERTY_P_SKIBOARD_GROUP_ID"] // Дополнительные свойства, которые нужно получить
 		);
@@ -185,12 +206,17 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 
 //	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
-//file_put_contents(__DIR__ . "/logs/console__skusToSetZero.log", print_r($skusToSetZeroArray, true));
+//file_put_contents(__DIR__ . "/logs/console__catalogItems.log", print_r($catalogItems, true));
+//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/console__add.log", print_r($differenceAdd, true));
+file_put_contents(__DIR__ . "/logs/console__disable.log", print_r($differenceDisable, true));
 //file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
 //file_put_contents(__DIR__ . "/logs/console__externalIdsArray.log", print_r($externalIdsArray, true));
 //file_put_contents(__DIR__ . "/logs/console__externalIdsDiff.log", print_r($externalIdsDiffArray, true));
 
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
+
+exit();
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
