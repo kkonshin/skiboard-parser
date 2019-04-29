@@ -17,6 +17,16 @@ $IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока т�
 
 $SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
 
+// Массив внешних ключей торговых предложений.
+// Используется для избежания записи дублей.
+$externalIdsArray = [];
+
+foreach ($catalogSkus as $key => $sku) {
+	if (!empty($sku["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"])) {
+		$externalIdsArray[$key] = $sku["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"];
+	}
+}
+
 foreach ($resultArray as $key => $item) {
 	try {
 		$offerPrice = 0;

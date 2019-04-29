@@ -130,42 +130,6 @@ $catalogSkus = $catalogItems->getList($params)
 
 $catalogSkusCount = count($catalogSkus);
 
-// TODO получить массив всех значений "SKIBOARD_EXTERNAL_OFFER_ID" в разделе
-// Вынести в утилиту - этот массив используется в add.php
-$externalIdsArray = [];
-
-foreach ($catalogSkus as $key => $sku) {
-	if (!empty($sku["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"])) {
-		$externalIdsArray[$key] = $sku["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"];
-	}
-}
-
-// Получим массив повторяющихся значений
-function array_not_unique($input)
-{
-	$duplicates = [];
-	$processed = [];
-
-	foreach ($input as $key => $item) {
-		if (in_array($item, $processed)) {
-			$duplicates[$key] = $item;
-		} else {
-			$processed[$key] = $item;
-		}
-	}
-	return $duplicates;
-}
-
-$externalIdsDiffArray = array_not_unique($externalIdsArray);
-
-// удаляем торговые предложения с ключами этого массива
-foreach ($externalIdsDiffArray as $key => $value) {
-	$res = \CIBlockElement::Delete($key);
-	if($res){
-	    echo "Торговое предложение {$key} дублируется и было успешно удалено, либо не существует" . PHP_EOL;
-    }
-}
-
 echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount . PHP_EOL;
 echo "Количество товаров в новом файле XML: " . $resultArrayLength . PHP_EOL;
 echo "Количество товаров в предыдущем файле XML  : " . $previousResultArrayLength . PHP_EOL;
