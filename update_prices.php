@@ -1,5 +1,7 @@
 <?php
+echo "Обновляем цены" . PHP_EOL;
 // Есть смысл выносить в метод класса Price?
+
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }

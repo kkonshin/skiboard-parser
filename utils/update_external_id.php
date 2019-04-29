@@ -20,10 +20,9 @@ while (ob_get_level()) {
 	ob_end_flush();
 }
 
-$source = __DIR__ . "/../save/previous_.xml";
-//$source = SOURCE;
+//$source = __DIR__ . "/../save/previous.xml";
+$source = SOURCE;
 
-//$tempCatalogSection = 392;
 $tempCatalogSection = TEMP_CATALOG_SECTION;
 
 $params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);

@@ -82,7 +82,7 @@ $crawler = new Crawler($xml);
 $resultArray = ParserBody::parse($crawler);
 
 //TEMP
-$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
+//$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
 //ENDTEMP
 
 //file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
@@ -185,16 +185,12 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 
 
 //	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
-file_put_contents(__DIR__ . "/logs/console__skusToSetZero.log", print_r($skusToSetZeroArray, true));
+//file_put_contents(__DIR__ . "/logs/console__skusToSetZero.log", print_r($skusToSetZeroArray, true));
 //file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
 //file_put_contents(__DIR__ . "/logs/console__externalIdsArray.log", print_r($externalIdsArray, true));
 //file_put_contents(__DIR__ . "/logs/console__externalIdsDiff.log", print_r($externalIdsDiffArray, true));
 
-
-exit();
-
 echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
-
 
 //-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
@@ -408,13 +404,12 @@ foreach ($manufacturerArray as $manId => $man) {
 // FIXME запуск add должен происходить по определенным условиям
 if ($isAddNewItems) {
 //	echo "\nСохраняем товары" . PHP_EOL;
-//	require(__DIR__ . "/add.php");
+	require(__DIR__ . "/add.php");
 }
 require_once(__DIR__ . "/update_prices.php");
 
-//TEMP включить в продакшене
-//echo Storage::storeCurrentXml($source);
-//ENDTEMP
+// Сохраняем текущий XML
+echo Storage::storeCurrentXml($source);
 
 register_shutdown_function(function () {
 	global $startExecTime;

@@ -1,4 +1,4 @@
-!#/usr/bin/php
+#!/usr/bin/php
 
 <?php
 
@@ -13,6 +13,11 @@ require_once(__DIR__ . "/../vendor/autoload.php");
 while (ob_get_level()) {
 	ob_end_flush();
 }
+
+
+$params = new Parser\SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
+
+$catalogItems = new Parser\Catalog\Items($params);
 
 $params = [
 	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
@@ -52,7 +57,7 @@ function array_not_unique($input)
 }
 
 $externalIdsDiffArray = array_not_unique($externalIdsArray);
-
+//file_put_contents(__DIR__ . "/../logs/externalIdsDiffArray.log", print_r($externalIdsDiffArray, true));
 // удаляем торговые предложения с ключами этого массива
 foreach ($externalIdsDiffArray as $key => $value) {
 	$res = \CIBlockElement::Delete($key);
