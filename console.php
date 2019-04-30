@@ -37,6 +37,7 @@ if (!Loader::includeModule('catalog')) {
 }
 
 $resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
+$addArray = []; // массив товаров, которые будут добавлены в каталог
 $catalogItemsExternalIds = []; // Внешние ключи товаров каталога
 $crawler = null; // объект компонента Symfony
 
@@ -54,6 +55,7 @@ $xml = $source->getSource();
 $crawler = new Crawler($xml);
 // Парсим новый каталог
 $resultArray = ParserBody::parse($crawler);
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
 //TEMP
 //$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
@@ -119,7 +121,16 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 		echo "Товаров, количество ТП которых будет установлено в 0: " . $differenceDisableCount . PHP_EOL;
 	}
 	if ($differenceAddCount > 0) {
+
 		echo "Товаров будет добавлено: " . $differenceAddCount . PHP_EOL;
+
+		// Выбираем из $resultArray массив товаров для добавления
+        foreach ($resultArray as $key => $item){
+            if(in_array($key, $differenceAdd)){
+                $addArray[$key] = $item;
+            }
+        }
+//		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
 	}
 } else {
 	echo PHP_EOL;
@@ -158,7 +169,7 @@ if ($differenceDisableCount > 0) {
 	echo PHP_EOL;
 
 	foreach ($disableSkusList as $itemKey => $itemValue) {
-//			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
+		CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
 		echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 	}
 	echo PHP_EOL;
@@ -185,9 +196,7 @@ $sourceSizesArray = array_unique($sourceSizesArray);
 // Получаем массив существующих значений свойства "SIZE"
 $sizePropArray = [];
 
-$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID,
-	[], []
-);
+$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID);
 
 while ($res = $dbRes->GetNext()) {
 	$sizePropArray[] = $res;
@@ -222,9 +231,7 @@ foreach ($newSizesArray as $key => $sizeValue) {
 $sizePropArray = [];
 $valueIdPairsArray = [];
 
-$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID,
-	[], []
-);
+$dbRes = CIBlockProperty::GetPropertyEnum(SIZE_PROPERTY_ID);
 
 while ($res = $dbRes->GetNext()) {
 	$sizePropArray[] = $res;
@@ -334,8 +341,7 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manufacturerXmlIds[] = $man["UF_XML_ID"];
 }
 
-// Цикл для записи брендов в HL
-
+// Записываем бренды в HL
 foreach ($sourceBrandsArray as $brandId => $brand) {
 	if (!in_array(CUtil::translit($brand, 'ru', $translitParams), $manufacturerXmlIds)) {
 		$result = $dataClass::add(
@@ -345,7 +351,7 @@ foreach ($sourceBrandsArray as $brandId => $brand) {
 				"UF_LINK" => "/brands/" . strtolower(CUtil::translit($sourceBrandsArray[$brandId], 'ru', $translitParams)) . "/",
 			]
 		);
-		echo "В справочник добавлен новый производитель ID = " . $result->getId() . "\n";
+		echo "В справочник добавлен новый производитель ID = " . $result->getId() . PHP_EOL;
 	}
 }
 
@@ -373,8 +379,10 @@ foreach ($manufacturerArray as $manId => $man) {
 
 // Сохраняем товары во временный раздел
 if ($differenceAddCount > 0) {
-//	echo "\nСохраняем товары" . PHP_EOL;
-//	require(__DIR__ . "/add.php");
+	echo PHP_EOL;
+	echo "Сохраняем новые товары" . PHP_EOL;
+	echo PHP_EOL;
+	require(__DIR__ . "/add.php");
 }
 // Обновляем цены всех торговых предложений
 require_once(__DIR__ . "/update_prices.php");

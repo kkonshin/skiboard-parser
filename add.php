@@ -1,16 +1,17 @@
 <?php
 
 global $USER;
+global $addArray;
 
 // Ограничение длины массива для разработки
 //$offset = 0;
-//$length = count($resultArray) - $offset;
+//$length = count($addArray) - $offset;
 //$length = 20;
-//$resultArray = array_slice($resultArray, $offset, $length, true);
+//$addArray = array_slice($addArray, $offset, $length, true);
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($addArray, true));
 
-echo "Количество товаров для записи: " . count($resultArray) . "\n";
+echo "Количество товаров для записи: " . count($addArray) . PHP_EOL;
 
 $arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
 
@@ -28,7 +29,7 @@ foreach ($catalogSkus as $key => $sku) {
 	}
 }
 
-foreach ($resultArray as $key => $item) {
+foreach ($addArray as $key => $item) {
 	try {
 		$offerPrice = 0;
 
@@ -109,7 +110,6 @@ foreach ($resultArray as $key => $item) {
 		}
 
 		// Лог ошибок изображений
-
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
@@ -134,10 +134,17 @@ foreach ($resultArray as $key => $item) {
 		];
 
 		if ($productId = $obElement->Add($itemFieldsArray)) {
-			echo "Добавлен товар " . $productId . "\n";
+
+			echo "Добавлен товар " . $productId . PHP_EOL;
+
+			// Собираем массив добавленных товаров для дальнейшей отправки уведомления
+			$newItems[] = $productId;
+
 		} else {
-			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . "\n";
+
+			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . PHP_EOL;
 			continue;
+
 		}
 
 		if ($productId) {
@@ -219,5 +226,3 @@ foreach ($resultArray as $key => $item) {
 		echo $e->getMessage() . PHP_EOL;
 	}
 }
-
-//--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//

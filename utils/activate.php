@@ -25,8 +25,13 @@ $tempCatalogSection = TEMP_CATALOG_SECTION;
 
 try {
 	$params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
+
 	$items = new Items($params);
+
 	$itemsList = $items->getList()->list;
+
+	$items->reset();
+
 	$skusList = $items
 		->getList()
 		->getItemsIds()

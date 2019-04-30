@@ -38,6 +38,7 @@ class ExternalOfferId
 	 * @param $translitParams
 	 */
 
+	// TODO добавить проверку, что значение пусто
 	public static function updateExternalItemId(Array $itemsList, Array $resultArray, $propertyName, $translitParams)
 	{
 		foreach ($resultArray as $resultKey => $resultValue) {
@@ -90,7 +91,7 @@ class ExternalOfferId
 		foreach ($resultArray as $resultKey => $resultValue) {
 			foreach ($resultValue as $offerKey => $offerValue) {
 				foreach ($skuList as $skuKey => $skuValue) {
-					if ($skuValue["NAME"] === $offerValue["NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"] . " " . $offerValue["ATTRIBUTES"]["Артикул"]) {
+					if ($skuValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"] == false && $skuValue["NAME"] === $offerValue["NAME"] . " " . $offerValue["ATTRIBUTES"]["Размер"] . " " . $offerValue["ATTRIBUTES"]["Артикул"]) {
 						echo "Обновляем свойство SKIBOARD_EXTERNAL_OFFER_ID для " . $skuValue["NAME"] . " > OFFER_ID: " . $offerValue["OFFER_ID"] . PHP_EOL;
 						self::update($skuValue["ID"], 0, ["SKIBOARD_EXTERNAL_OFFER_ID" => [$offerValue["OFFER_ID"]]]);
 					}
