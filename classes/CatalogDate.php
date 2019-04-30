@@ -4,6 +4,8 @@ namespace Parser;
 
 use Symfony\Component\DomCrawler\Crawler;
 
+// DEPRECATED - старый файл XML больше не используется
+
 class CatalogDate
 {
 	/**

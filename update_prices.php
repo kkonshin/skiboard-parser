@@ -1,21 +1,17 @@
 <?php
+
+echo PHP_EOL;
 echo "Обновляем цены" . PHP_EOL;
-// Есть смысл выносить в метод класса Price?
+echo PHP_EOL;
+
+$skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
 
 foreach ($catalogSkus as $skuKey => $skuValue) {
 	$skusPrices[] = CPrice::GetBasePrice($skuKey);
 }
-// TODO
-// Перенести общую для всех апдейтов выборку в подходящее место
 // Перед обновлением цен убедимся что внешние ключи заполнены
 // Обновятся только ТП, которые есть в новом прайсе
 Parser\Utils\ExternalOfferId::updateExternalOfferId__skiboard($catalogSkus, $resultArray);
-
-// FIXME найти пересечение $catalogSkus и массива ТП из XML
-//echo PHP_EOL;
-//echo "Количество торговых предложений в инфоблоке, для которых будут обновлены цены: " . count($catalogSkus) . PHP_EOL;
-//echo PHP_EOL;
-
 // Добавляем в массив торговых предложений цены
 $catalogSkus = Parser\Catalog\Prices::prepare($catalogSkus, $skusPrices);
 // Обновляем цены у всех ТП временного раздела, которые есть в новом прайсе

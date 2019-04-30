@@ -28,8 +28,6 @@ use Parser\Source\Source;
 use Parser\Source\Storage;
 use Parser\ParserBody\ParserBody;
 
-global $USER;
-
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
 }
@@ -39,21 +37,8 @@ if (!Loader::includeModule('catalog')) {
 }
 
 $resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
-
-$resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
-$resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
-
 $catalogItemsExternalIds = []; // Внешние ключи товаров каталога
-
-$skusToSetZeroArray = []; // Массив ТП, подлежащих установке в 0, если родительский товар отсутствует в новом каталоге
-
-$skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
-
-$catalogIdsTempArray = []; // временный рабочий массив
-$temp = []; // временный рабочий массив
-
 $crawler = null; // объект компонента Symfony
-$previousCrawler = null; // объект компонента Symfony
 
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Parser\Utils\Dirs::make(__DIR__);
@@ -65,12 +50,6 @@ $items = new Parser\Catalog\Items($sectionParams);
 $source = new Source(SOURCE);
 // Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
-// Проверяем, сохранен ли предыдущий файл каталога
-$previousXml = Storage::getPreviousXml();
-// Если старый файл есть - создаем ему краулер симфони...
-if (!empty($previousXml)) {
-	$previousCrawler = new Crawler($previousXml);
-}
 // Создаем краулер для нового каталога
 $crawler = new Crawler($xml);
 // Парсим новый каталог
@@ -79,10 +58,6 @@ $resultArray = ParserBody::parse($crawler);
 //TEMP
 //$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
 //ENDTEMP
-
-//if ($crawler && $previousCrawler) {
-//	$isPriceNew = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
-//}
 
 // Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
 Parser\Catalog\Properties::createExternalItemIdProperty(
@@ -111,6 +86,7 @@ foreach ($resultArray as $itemKey => $item) {
 }
 
 $resultArrayKeys = array_keys($resultArray);
+
 // Товары (внешние ключи), которые будут добавлены в каталог
 $differenceAdd = array_values(array_diff($resultArrayKeys, $catalogItemsExternalIds));
 $differenceAddCount = count($differenceAdd);
