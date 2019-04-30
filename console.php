@@ -91,12 +91,14 @@ if ($crawler && $previousCrawler) {
 	$isPriceNew = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
 }
 
+// DEPRECATED
 if (!empty($previousXml) && $isPriceNew) {
 	// Парсим старый файл
 	$previousResultArray = ParserBody::parse($previousCrawler);
 	// Считаем длину получившегося массива
 	$previousResultArrayLength = count($previousResultArray);
 }
+// ENDDEPRECATED
 
 // Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
 Parser\Catalog\Properties::createExternalItemIdProperty(
@@ -124,8 +126,6 @@ $params = [
 
 // Массив товаров временного раздела
 $catalogItems = $items->getList($params, ["PROPERTY_P_SKIBOARD_GROUP_ID"])->list;
-// Количество товаров во временном разделе DEPRECATED
-$catalogItemsCount = count($catalogItems);
 // Внешние ключи товаров каталога
 $catalogItemsExternalIds = [];
 
@@ -156,7 +156,7 @@ if ($catalogSkusCount !== $i) {
 	echo PHP_EOL . "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
 }
 
-// TODO вместо использования предыдущего файла XML сравнивать с содержимым раздела каталога
+// DEPRECATED вместо использования предыдущего файла XML сравнивать с содержимым раздела каталога
 // resultArray оставляем прежним, вместо previousResultArray делаем выборку из каталога
 // сравниваем не длину, а ключи товаров
 
@@ -203,6 +203,8 @@ if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArra
 		echo PHP_EOL;
 	}
 }
+
+// ENDDEPRECATED
 
 
 //	file_put_contents(__DIR__ . "/logs/console__resultDifferenceArrayKeys.log", print_r($resultDifferenceArrayKeys, true));
@@ -430,7 +432,7 @@ foreach ($manufacturerArray as $manId => $man) {
 // FIXME запуск add должен происходить по определенным условиям
 if ($isAddNewItems) {
 //	echo "\nСохраняем товары" . PHP_EOL;
-	require(__DIR__ . "/add.php");
+//	require(__DIR__ . "/add.php");
 }
 require_once(__DIR__ . "/update_prices.php");
 
