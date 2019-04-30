@@ -4,6 +4,8 @@ namespace Parser\Catalog;
 
 use \Bitrix\Main\Loader;
 
+// TODO рефактор, сейчас этот паттерн можно использовать только 1 раз, т.к. полученный значения сохраняются в массивы
+
 class Items
 {
 	/**
@@ -30,6 +32,14 @@ class Items
 
 	}
 
+	public function reset()
+	{
+		$this->list = [];
+		$this->itemsIds = [];
+		$this->skusList = [];
+		$this->skusListFlatten = [];
+	}
+
 	/**
 	 * Получает список товаров временного раздела, принимает дополнительные параметры
 	 * в зависимости от конкретного парсера
@@ -40,7 +50,6 @@ class Items
 
 	public function getList($additionalFilter = [], $properties = [])
 	{
-
 		$filter = [
 			"IBLOCK_ID" => $this->catalogIblockId,
 			"SECTION_ID" => $this->tempCatalogSection
@@ -59,14 +68,9 @@ class Items
 			$filter = array_merge($filter, $additionalFilter);
 		}
 
-//		file_put_contents(__DIR__ . "/../../logs/Items__getList--filter.log", print_r($filter, true));
-
-
 		if (count($properties) > 0) {
 			$fields = array_merge($fields, $properties);
 		}
-
-//		file_put_contents(__DIR__ . "/../../logs/Items__getList--fields.log", print_r($fields, true));
 
 		$dbRes = \CIBlockElement::GetList(
 			[],

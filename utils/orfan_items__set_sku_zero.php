@@ -52,4 +52,6 @@ foreach ($skusList as $key => $value){
 	echo "Количество ТП {$value["NAME"]} установлено в 0" . PHP_EOL;
 }
 
+$items->reset();
+
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

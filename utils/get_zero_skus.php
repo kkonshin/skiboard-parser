@@ -71,7 +71,9 @@ while($res = $dbRes->GetNext()){
 	$ta[] = $res;
 }
 
-file_put_contents(__DIR__ . "/../logs/getZeroSkus__ta.log", print_r($ta, true));
-file_put_contents(__DIR__ . "/../logs/getZeroSkus__countTa.log", print_r(count($ta), true));
+//file_put_contents(__DIR__ . "/../logs/getZeroSkus__ta.log", print_r($ta, true));
+//file_put_contents(__DIR__ . "/../logs/getZeroSkus__countTa.log", print_r(count($ta), true));
+
+$items->reset();
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

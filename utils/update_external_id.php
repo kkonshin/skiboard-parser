@@ -67,4 +67,6 @@ ExternalOfferId::updateExternalItemId($itemsList, $resultArray, "P_SKIBOARD_GROU
 //file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
 //file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
 
+$items->reset();
+
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

@@ -43,17 +43,14 @@ $resultArray = []; // результат парсинга нового полу�
 $resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
 $resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
 
+$catalogItemsExternalIds = []; // Внешние ключи товаров каталога
+
 $skusToSetZeroArray = []; // Массив ТП, подлежащих установке в 0, если родительский товар отсутствует в новом каталоге
 
 $skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
 
 $catalogIdsTempArray = []; // временный рабочий массив
 $temp = []; // временный рабочий массив
-
-// TODO рассмотреть необходимость
-$isPriceNew = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
-
-$resultArrayLength = 0; // длина нового массива
 
 $crawler = null; // объект компонента Symfony
 $previousCrawler = null; // объект компонента Symfony
@@ -83,12 +80,9 @@ $resultArray = ParserBody::parse($crawler);
 //$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
 //ENDTEMP
 
-//file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
-
-if ($crawler && $previousCrawler) {
-	$isPriceNew = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
-}
-
+//if ($crawler && $previousCrawler) {
+//	$isPriceNew = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
+//}
 
 // Проверяем наличие и, если свойства нет, создаем свойство каталога для связи товара с XML
 Parser\Catalog\Properties::createExternalItemIdProperty(
@@ -98,19 +92,21 @@ Parser\Catalog\Properties::createExternalItemIdProperty(
 	]
 );
 
-$params = [
-	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-	"SECTION_ID" => TEMP_CATALOG_SECTION
-];
-
 // Массив товаров временного раздела
-$catalogItems = $items->getList($params, ["PROPERTY_P_SKIBOARD_GROUP_ID"])->list;
-// Внешние ключи товаров каталога
-$catalogItemsExternalIds = [];
+$catalogItems = $items->getList([], ["PROPERTY_P_SKIBOARD_GROUP_ID"])->list;
+// Очищает результаты предыдущей выборки
+$items->reset();
 
 foreach ($catalogItems as $item) {
 	if (strlen($item["PROPERTY_P_SKIBOARD_GROUP_ID_VALUE"]) > 0) {
 		$catalogItemsExternalIds[] = $item["PROPERTY_P_SKIBOARD_GROUP_ID_VALUE"];
+	}
+}
+
+$i = 0;
+foreach ($resultArray as $itemKey => $item) {
+	foreach ($item as $offerKey => $offer) {
+		$i++;
 	}
 }
 
@@ -121,79 +117,78 @@ $differenceAddCount = count($differenceAdd);
 // Товары (внешние ключи), торговые предложения которых будут установлены в 0
 $differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
 $differenceDisableCount = count($differenceDisable);
+
 // Массив торговых предложений временного раздела
-$catalogSkus = $items->getList($params)
+$catalogSkus = $items->getList()
 	->getItemsIds()
 	->getSkusList(["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()
 	->skusListFlatten;
 
-$catalogSkusCount = count($catalogSkus);
+$items->reset();
 
-echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount . PHP_EOL;
-echo "Количество товаров в новом файле XML: " . $resultArrayLength . PHP_EOL;
+echo PHP_EOL;
+echo "Количество товаров во временном разделе каталога: " . count($catalogItems) . PHP_EOL;
+echo "Количество торговых предложений во временном разделе каталога: " . count($catalogSkus) . PHP_EOL;
+echo "Количество товаров в новом файле XML: " . count($resultArrayKeys) . PHP_EOL;
+echo "Количество торговых предложений в новом файле XML: " . $i . PHP_EOL;
+
+unset($i);
+
 if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
-	echo PHP_EOL . "Временный раздел будет обновлен" . PHP_EOL;
-	if($differenceDisableCount > 0){
-	    echo "Товаров, количество ТП которых будет установлено в 0: " . $differenceDisableCount . PHP_EOL;
-    }
-	if($differenceAddCount > 0){
+	echo PHP_EOL;
+	echo "Временный раздел будет обновлен" . PHP_EOL;
+	echo PHP_EOL;
+	if ($differenceDisableCount > 0) {
+		echo "Товаров, количество ТП которых будет установлено в 0: " . $differenceDisableCount . PHP_EOL;
+	}
+	if ($differenceAddCount > 0) {
 		echo "Товаров будет добавлено: " . $differenceAddCount . PHP_EOL;
 	}
+} else {
+	echo PHP_EOL;
+	echo "Выгрузка и каталог совпадают, обновление не требуется" . PHP_EOL;
+	echo PHP_EOL;
+	return;
 }
+
+// TODO количество ТП товаров, вновь появившихся в прайсе должно быть обновлено до 5
 
 if ($differenceDisableCount > 0) {
 
-    $filter = ["PROPERTY_P_SKIBOARD_GROUP_ID" => $differenceDisable];
-    $props = ["PROPERTY_P_SKIBOARD_GROUP_ID"];
+	$filter = [
+		"PROPERTY_P_SKIBOARD_GROUP_ID" => $differenceDisable
+	];
 
-    $disableItemsList = $items->getList(
-		["PROPERTY_P_SKIBOARD_GROUP_ID" => $differenceDisable], // Фильтр
-		["PROPERTY_P_SKIBOARD_GROUP_ID"] // Дополнительные свойства, которые нужно получить
-	)->list;
+	$props = [
+		"PROPERTY_P_SKIBOARD_GROUP_ID"
+	];
 
-    $disableSkusList = $items->getList($filter, $props)
+	$disableItemsList = $items->getList($filter, $props)->list;
+
+	$items->reset();
+
+	$disableSkusList = $items->getList($filter, $props)
+		->getItemsIds()
 		->getSkusList(["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]])
 		->getSkusListFlatten()
 		->skusListFlatten;
 
-	file_put_contents(__DIR__ . "/logs/console__disableItemsList.log", print_r($disableItemsList, true));
-	file_put_contents(__DIR__ . "/logs/console__disableSkusList.log", print_r($disableSkusList, true));
+	$items->reset();
 
-
-	exit();
-
-
-	foreach ($disableItemsList as $key => $item) {
-	    echo $item["ID"] . PHP_EOL;
-		$skusToSetZeroArray[] = CCatalogSKU::getOffersList($item["ID"]);
-	}
-
-	file_put_contents(__DIR__ . "/logs/console__skusToSetZeroArray.log", print_r($skusToSetZeroArray, true));
+// TODO выбрать 3 товара и проверить
+//	file_put_contents(__DIR__ . "/logs/console__disableSkusList--count.log", print_r(count($disableSkusList), true));
 
 	echo PHP_EOL;
 
-	foreach ($skusToSetZeroArray as $itemKey => $itemValue) {
-		echo "Товар {$itemKey} - {$itemValue["NAME"]} отсутствует в новом файле XML" . PHP_EOL;
-		foreach ($itemValue as $offerKey => $offerValue) {
-			CCatalogProduct::Update($offerKey, ["QUANTITY" => 0]);
-			echo "Количество отсутствующего в новом прайсе торгового предложения {$offerKey} установлено в 0" . PHP_EOL;
-		}
+	foreach ($disableSkusList as $itemKey => $itemValue) {
+//			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
+		echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 	}
 	echo PHP_EOL;
 }
 
-//file_put_contents(__DIR__ . "/logs/console__catalogItems.log", print_r($catalogItems, true));
-//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
-file_put_contents(__DIR__ . "/logs/console__add.log", print_r($differenceAdd, true));
-file_put_contents(__DIR__ . "/logs/console__disable.log", print_r($differenceDisable, true));
-//file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
-
 echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
-
-exit();
-
-//-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
 
 //---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//
 

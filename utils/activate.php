@@ -44,6 +44,8 @@ try {
 
 } catch (Exception $e) {
 	echo $e->getMessage() . PHP_EOL;
+} finally {
+    $items->reset();
 }
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");

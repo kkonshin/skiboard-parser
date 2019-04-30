@@ -1,10 +1,7 @@
 #!/usr/bin/php
 
 <?php
-/*
- * Скрипт активирует все товары во временном разделе skiboard temp. Для запуска набрать php -f activate.php
- * в командной строке в папке парсера
- */
+
 if (php_sapi_name() !== "cli") {
 	die ('Этот скрипт предназначен для запуска из командной строки');
 }
@@ -25,9 +22,7 @@ $params = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 
 $itemStatus = new ItemsStatus($params);
 
-/*
- * Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
- */
+// Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
 
 BindToSections::bind($itemStatus, $categoryToSection);
 

@@ -65,3 +65,5 @@ foreach ($externalIdsDiffArray as $key => $value) {
 		echo "Торговое предложение {$key} дублируется и было успешно удалено, либо не существует" . PHP_EOL;
 	}
 }
+
+$catalogItems->reset();
