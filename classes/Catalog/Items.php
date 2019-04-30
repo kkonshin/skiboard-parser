@@ -52,15 +52,21 @@ class Items
 			"NAME",
 			"CODE",
 			"ACTIVE",
+			"IBLOCK_SECTION_ID"  // Вернет привязку только к разделу с минимальным ID!
 		];
 
 		if (count($additionalFilter) > 0) {
 			$filter = array_merge($filter, $additionalFilter);
 		}
 
+//		file_put_contents(__DIR__ . "/../../logs/Items__getList--filter.log", print_r($filter, true));
+
+
 		if (count($properties) > 0) {
 			$fields = array_merge($fields, $properties);
 		}
+
+//		file_put_contents(__DIR__ . "/../../logs/Items__getList--fields.log", print_r($fields, true));
 
 		$dbRes = \CIBlockElement::GetList(
 			[],
