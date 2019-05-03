@@ -142,7 +142,7 @@ foreach ($addArray as $key => $item) {
 
 		} else {
 
-			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . PHP_EOL;
+			echo $obElement->LAST_ERROR . ' ' . $itemFieldsArray["NAME"] . ' ' . $itemFieldsArray["P_SKIBOARD_GROUP_ID"] . PHP_EOL;
 			continue;
 
 		}
