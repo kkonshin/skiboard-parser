@@ -121,7 +121,8 @@ class Items
 					"ID",
 					"IBLOCK_ID",
 					"ACTIVE",
-					"NAME"
+					"NAME",
+					"QUANTITY"
 				],
 				$extraParameters
 			);

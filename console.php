@@ -118,7 +118,7 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 	echo "Временный раздел будет обновлен" . PHP_EOL;
 	echo PHP_EOL;
 	if ($differenceDisableCount > 0) {
-		echo "Товаров, количество ТП которых будет установлено в 0: " . $differenceDisableCount . PHP_EOL;
+		echo "Товаров, количество ТП которых установлено в 0: " . $differenceDisableCount . PHP_EOL;
 	}
 	if ($differenceAddCount > 0) {
 
@@ -139,8 +139,6 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 	return;
 }
 
-// TODO количество ТП товаров, вновь появившихся в прайсе должно быть обновлено до 5
-
 if ($differenceDisableCount > 0) {
 
 	$filter = [
@@ -155,6 +153,7 @@ if ($differenceDisableCount > 0) {
 
 	$items->reset();
 
+	// TODO выбрать количество
 	$disableSkusList = $items->getList($filter, $props)
 		->getItemsIds()
 		->getSkusList(["CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]])
@@ -163,14 +162,13 @@ if ($differenceDisableCount > 0) {
 
 	$items->reset();
 
-// TODO выбрать 3 товара и проверить
-//	file_put_contents(__DIR__ . "/logs/console__disableSkusList--count.log", print_r(count($disableSkusList), true));
-
 	echo PHP_EOL;
 
 	foreach ($disableSkusList as $itemKey => $itemValue) {
-		CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
-		echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
+	    if($itemValue["QUANTITY"] > 0) {
+			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
+			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
+		}
 	}
 	echo PHP_EOL;
 }

@@ -31,18 +31,14 @@ foreach ($catalogSkus as $key => $sku) {
 
 foreach ($addArray as $key => $item) {
 	try {
+
 		$offerPrice = 0;
-
 		$itemTypeId = 0;
-
 		$itemPurposeId = 0;
-
 		$morePhotoArray = []; // Массив дополнительных картинок товара
-
 		$obElement = new CIBlockElement;
 
 		foreach ($item as $itemId => $offer) {
-
 			if (count($offer["PICTURES"]) > 1) {
 				foreach ($offer["PICTURES"] as $pictureId => $picture) {
 					$tempPicture = CFile::MakeFileArray($picture);
@@ -54,13 +50,10 @@ foreach ($addArray as $key => $item) {
 					}
 				}
 			}
-
 			// Только для skiboard.ru
 			if (!empty($offer["CATEGORY_ID"])) {
 				switch ($offer["CATEGORY_ID"]) {
-
 					 // Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
-
 					case 358:
 						$itemTypeId = 1126;
 						break;
@@ -81,7 +74,6 @@ foreach ($addArray as $key => $item) {
 						break;
 
 					 // Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
-
 					case 400:
 						$itemPurposeId = 1132;
 						break;
@@ -102,12 +94,13 @@ foreach ($addArray as $key => $item) {
 			}
 		}
 
-		if ($itemTypeId > 0) {
-			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
-		}
-		if ($itemPurposeId > 0) {
-			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
-		}
+		// Для отладки
+//		if ($itemTypeId > 0) {
+//			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
+//		}
+//		if ($itemPurposeId > 0) {
+//			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
+//		}
 
 		// Лог ошибок изображений
 		if (!empty($pictureErrorsArray)) {
@@ -142,7 +135,12 @@ foreach ($addArray as $key => $item) {
 
 		} else {
 
-			echo $obElement->LAST_ERROR . ' ' . $itemFieldsArray["NAME"] . ' ' . $itemFieldsArray["P_SKIBOARD_GROUP_ID"] . PHP_EOL;
+			echo $obElement->LAST_ERROR
+				. ' '
+				. $itemFieldsArray["NAME"]
+				. ' >Внешний ключ> '
+				. $itemFieldsArray["PROPERTY_VALUES"]["P_SKIBOARD_GROUP_ID"]
+				. PHP_EOL;
 			continue;
 
 		}
