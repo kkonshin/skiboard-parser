@@ -39,7 +39,9 @@ if (!Loader::includeModule('catalog')) {
 $resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
 $addArray = []; // массив товаров, которые будут добавлены в каталог
 $catalogItemsExternalIds = []; // Внешние ключи товаров каталога
+$newItems = []; // Массив новых товаров для отправки почтового уведомления менеджерам
 $crawler = null; // объект компонента Symfony
+$result = null; // Результат отправки почтового уведомления менеждерам
 
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Parser\Utils\Dirs::make(__DIR__);
@@ -121,15 +123,13 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 		echo "Товаров, количество ТП которых установлено в 0: " . $differenceDisableCount . PHP_EOL;
 	}
 	if ($differenceAddCount > 0) {
-
 		echo "Товаров будет добавлено: " . $differenceAddCount . PHP_EOL;
-
 		// Выбираем из $resultArray массив товаров для добавления
-        foreach ($resultArray as $key => $item){
-            if(in_array($key, $differenceAdd)){
-                $addArray[$key] = $item;
-            }
-        }
+		foreach ($resultArray as $key => $item) {
+			if (in_array($key, $differenceAdd)) {
+				$addArray[$key] = $item;
+			}
+		}
 //		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
 	}
 } else {
@@ -162,15 +162,15 @@ if ($differenceDisableCount > 0) {
 
 	$items->reset();
 
-	echo PHP_EOL;
+//	echo PHP_EOL;
 
 	foreach ($disableSkusList as $itemKey => $itemValue) {
-	    if($itemValue["QUANTITY"] > 0) {
+		if ($itemValue["QUANTITY"] > 0) {
 			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
 			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 		}
 	}
-	echo PHP_EOL;
+//	echo PHP_EOL;
 }
 
 echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
@@ -354,7 +354,6 @@ foreach ($sourceBrandsArray as $brandId => $brand) {
 }
 
 // Получаем значения из HL еще раз
-
 unset($tempData);
 
 $manufacturerArray = [];
@@ -368,7 +367,6 @@ while ($res = $tempData->fetch()) {
 }
 
 // Создаем массив пар ИМЯ=>XML_ID для использования при сохранении товара
-
 $manValueIdPairsArray = [];
 
 foreach ($manufacturerArray as $manId => $man) {
@@ -382,8 +380,35 @@ if ($differenceAddCount > 0) {
 	echo PHP_EOL;
 	require(__DIR__ . "/add.php");
 }
+
+$newItems[1]["NAME"] = "Тестовый товар 1";
+$newItems[1]["VENDOR_SITE_NAME"] = "skiboard.ru";
+$newItems[1]["DETAIL_PAGE_URL"] = "/catalog/skiboard-temp";
+
+$newItems[2]["NAME"] = "Тестовый товар 2";
+$newItems[2]["VENDOR_SITE_NAME"] = "kite.ru";
+$newItems[2]["DETAIL_PAGE_URL"] = "/catalog/kiteru-temp";
+
+$newItems[3]["NAME"] = "Тестовый товар 3";
+$newItems[3]["VENDOR_SITE_NAME"] = "gssport.ru";
+$newItems[3]["DETAIL_PAGE_URL"] = "/catalog/gssport-temp";
+
+// TODO выпилить запятые. Отправлять не массив, а уже готовую строку, подготовку вынести в метод класса
+
+file_put_contents(__DIR__ . "/logs/console__newItems.log", print_r($newItems, true));
+
+// Отправляем уведомление о новых товарах
+$newItemsLength = count($newItems);
+if (is_array($newItems) && $newItemsLength > 0) {
+	$result = \Parser\Mail::sendNewItems($newItems);
+}
+
+if ($result && $result->isSuccess()) {
+	echo "Уведомление о {$newItemsLength} новых товарах успешно отправлено " . PHP_EOL;
+}
+
 // Обновляем цены всех торговых предложений
-require_once(__DIR__ . "/update_prices.php");
+//require_once(__DIR__ . "/update_prices.php");
 // Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
 // Завершаем скрипт и выводим статистику

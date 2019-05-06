@@ -12,15 +12,13 @@ global $addArray;
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($addArray, true));
 
 echo "Количество товаров для записи: " . count($addArray) . PHP_EOL;
-
-$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
-
-$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
-
-$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
-
-// Массив внешних ключей торговых предложений.
-// Используется для избежания записи дублей.
+// Инфоблок товаров
+$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID);
+// ID инфоблока товаров
+$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID'];
+// ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
+$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID'];
+// Массив внешних ключей торговых предложений. Используется для избежания записи дублей.
 $externalIdsArray = [];
 
 foreach ($catalogSkus as $key => $sku) {
@@ -53,7 +51,7 @@ foreach ($addArray as $key => $item) {
 			// Только для skiboard.ru
 			if (!empty($offer["CATEGORY_ID"])) {
 				switch ($offer["CATEGORY_ID"]) {
-					 // Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
+					// Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
 					case 358:
 						$itemTypeId = 1126;
 						break;
@@ -73,7 +71,7 @@ foreach ($addArray as $key => $item) {
 						$itemTypeId = 1131;
 						break;
 
-					 // Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
+					// Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
 					case 400:
 						$itemPurposeId = 1132;
 						break;
@@ -130,8 +128,21 @@ foreach ($addArray as $key => $item) {
 
 			echo "Добавлен товар " . $productId . PHP_EOL;
 
+			if (is_array($items)) {
+				$filter = [
+					"ID" => $productId
+				];
+				$ta = $items->getList($filter);
+			}
+
+			file_put_contents(__DIR__ . "/logs/add__ta.log", print_r($ta, true));
+
 			// Собираем массив добавленных товаров для дальнейшей отправки уведомления
-			$newItems[] = $productId;
+			$newItems[$productId]["NAME"] = $itemFieldsArray["NAME"];
+			$newItems[$productId]["VENDOR_SITE_NAME"] = $itemFieldsArray["SITE_NAME"];
+			$newItems[$productId]["DETAIL_PAGE_URL"] = $ta["DETAIL_PAGE_URL"];
+
+			file_put_contents(__DIR__ . "/logs/add__newItems.log", print_r($newItems, true));
 
 		} else {
 
@@ -158,7 +169,7 @@ foreach ($addArray as $key => $item) {
 			foreach ($item as $k => $offer) {
 
 				// Если ТП с таким ключом уже существует в разделе - не записываем
-				if (in_array($offer["OFFER_ID"], $externalIdsArray)){
+				if (in_array($offer["OFFER_ID"], $externalIdsArray)) {
 					continue;
 				}
 				// FIXME массив существующих ТП выбирается в console.php. Достаточно ли однократной выборки?
@@ -220,6 +231,7 @@ foreach ($addArray as $key => $item) {
 				}
 			}
 		}
+
 	} catch (Exception $e) {
 		echo $e->getMessage() . PHP_EOL;
 	}
