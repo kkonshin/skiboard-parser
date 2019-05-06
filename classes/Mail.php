@@ -56,7 +56,7 @@ class Mail
 				"EVENT_NAME" => "NEW_ITEMS_IN_YML",
 				"LID" => "s1",
 				"C_FIELDS" => [
-					"EMAIL" => "konshin@profi-studio.ru",
+//					"EMAIL" => "konshin@profi-studio.ru",
 					"NEW_ITEMS_LIST" => $htmlString,
 				]
 			]);
