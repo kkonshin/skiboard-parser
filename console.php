@@ -36,12 +36,14 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
+// Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
+$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
 // Проверяем галку 'Установка для разработки'
 $isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
-
 // Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
 if ($isDevServer === "Y"){
     echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
+    $serverName = "rocketstore.profi-server.ru";
 }
 
 $resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
@@ -105,6 +107,13 @@ $differenceAddCount = count($differenceAdd);
 // Товары (внешние ключи), торговые предложения которых будут установлены в 0
 $differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
 $differenceDisableCount = count($differenceDisable);
+
+//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
 
 // Массив торговых предложений временного раздела
 $catalogSkus = $items->getList()
@@ -390,6 +399,7 @@ if ($differenceAddCount > 0) {
 }
 
 // TEMP
+/*
 $newItems[1]["NAME"] = "Тестовый товар 1";
 $newItems[1]["VENDOR_SITE_NAME"] = "skiboard.ru";
 $newItems[1]["DETAIL_PAGE_URL"] = "/catalog/skiboard-temp";
@@ -401,6 +411,7 @@ $newItems[2]["DETAIL_PAGE_URL"] = "/catalog/kiteru-temp";
 $newItems[3]["NAME"] = "Тестовый товар 3";
 $newItems[3]["VENDOR_SITE_NAME"] = "gssport.ru";
 $newItems[3]["DETAIL_PAGE_URL"] = "/catalog/gssport-temp";
+*/
 // ENDTEMP
 
 //file_put_contents(__DIR__ . "/logs/console__newItems.log", print_r($newItems, true));

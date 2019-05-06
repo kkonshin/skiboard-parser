@@ -2,6 +2,7 @@
 
 global $USER;
 global $addArray;
+global $serverName;
 
 // Ограничение длины массива для разработки
 //$offset = 0;
@@ -128,21 +129,21 @@ foreach ($addArray as $key => $item) {
 
 			echo "Добавлен товар " . $productId . PHP_EOL;
 
-			if (is_array($items)) {
-				$filter = [
-					"ID" => $productId
-				];
-				$ta = $items->getList($filter);
-			}
+			$filter = [
+				"ID" => $productId
+			];
 
-			file_put_contents(__DIR__ . "/logs/add__ta.log", print_r($ta, true));
+			$fields = [
+				"DETAIL_PAGE_URL"
+			];
 
 			// Собираем массив добавленных товаров для дальнейшей отправки уведомления
 			$newItems[$productId]["NAME"] = $itemFieldsArray["NAME"];
-			$newItems[$productId]["VENDOR_SITE_NAME"] = $itemFieldsArray["SITE_NAME"];
-			$newItems[$productId]["DETAIL_PAGE_URL"] = $ta["DETAIL_PAGE_URL"];
+			$newItems[$productId]["VENDOR_SITE_NAME"] = $itemFieldsArray["PROPERTY_VALUES"]["SITE_NAME"];
+			// Ссылка на детальную страницу ведет во временный раздел
+			$newItems[$productId]["DETAIL_PAGE_URL"] = "https://" . $serverName . $items->getList($filter, $fields)->list[0]["DETAIL_PAGE_URL"];
 
-			file_put_contents(__DIR__ . "/logs/add__newItems.log", print_r($newItems, true));
+			$items->reset();
 
 		} else {
 
