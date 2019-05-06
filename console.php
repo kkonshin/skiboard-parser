@@ -381,6 +381,7 @@ if ($differenceAddCount > 0) {
 	require(__DIR__ . "/add.php");
 }
 
+// TEMP
 $newItems[1]["NAME"] = "Тестовый товар 1";
 $newItems[1]["VENDOR_SITE_NAME"] = "skiboard.ru";
 $newItems[1]["DETAIL_PAGE_URL"] = "/catalog/skiboard-temp";
@@ -392,10 +393,9 @@ $newItems[2]["DETAIL_PAGE_URL"] = "/catalog/kiteru-temp";
 $newItems[3]["NAME"] = "Тестовый товар 3";
 $newItems[3]["VENDOR_SITE_NAME"] = "gssport.ru";
 $newItems[3]["DETAIL_PAGE_URL"] = "/catalog/gssport-temp";
+// ENDTEMP
 
-// TODO выпилить запятые. Отправлять не массив, а уже готовую строку, подготовку вынести в метод класса
-
-file_put_contents(__DIR__ . "/logs/console__newItems.log", print_r($newItems, true));
+//file_put_contents(__DIR__ . "/logs/console__newItems.log", print_r($newItems, true));
 
 // Отправляем уведомление о новых товарах
 $newItemsLength = count($newItems);

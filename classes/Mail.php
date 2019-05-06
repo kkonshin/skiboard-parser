@@ -31,20 +31,20 @@ class Mail
 		$htmlString = "";
 
 		$htmlString .= "<table>";
-		$htmlString .= "<thead></thead>";
+		$htmlString .= "<thead>В каталог добавлены новые товары</thead>";
 		$htmlString .= "<tbody>";
 		$htmlString .= "<tr>";
-		$htmlString .= "<th colspan='2'>Название товара</th>";
-		$htmlString .= "<th colspan='2'>Сайт продавца</th>";
-		$htmlString .= "<th colspan='2'>Ссылка на товар в каталоге</th>";
+		$htmlString .= "<th>Название товара</th>";
+		$htmlString .= "<th>Сайт продавца</th>";
+		$htmlString .= "<th>Ссылка на товар в каталоге</th>";
 		$htmlString .= "</tr>";
 
 		foreach ($newItemsList as $item) {
 			$htmlString .=
 				"<tr>"
-				. "<td colspan='2'>" . $item["NAME"] . "</td>"
-				. "<td colspan='2'>" . $item["VENDOR_SITE_NAME"] . "</td>"
-				. "<td colspan='2'>" . $item["DETAIL_PAGE_URL"]	. "</td>"
+				. "<td>" . $item["NAME"] . "</td>"
+				. "<td>" . $item["VENDOR_SITE_NAME"] . "</td>"
+				. "<td>" . $item["DETAIL_PAGE_URL"]	. "</td>"
 				. "</tr>";
 		}
 
