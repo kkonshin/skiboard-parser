@@ -398,24 +398,6 @@ if ($differenceAddCount > 0) {
 	require(__DIR__ . "/add.php");
 }
 
-// TEMP
-/*
-$newItems[1]["NAME"] = "Тестовый товар 1";
-$newItems[1]["VENDOR_SITE_NAME"] = "skiboard.ru";
-$newItems[1]["DETAIL_PAGE_URL"] = "/catalog/skiboard-temp";
-
-$newItems[2]["NAME"] = "Тестовый товар 2";
-$newItems[2]["VENDOR_SITE_NAME"] = "kite.ru";
-$newItems[2]["DETAIL_PAGE_URL"] = "/catalog/kiteru-temp";
-
-$newItems[3]["NAME"] = "Тестовый товар 3";
-$newItems[3]["VENDOR_SITE_NAME"] = "gssport.ru";
-$newItems[3]["DETAIL_PAGE_URL"] = "/catalog/gssport-temp";
-*/
-// ENDTEMP
-
-//file_put_contents(__DIR__ . "/logs/console__newItems.log", print_r($newItems, true));
-
 // Отправляем уведомление о новых товарах
 $newItemsLength = count($newItems);
 if (is_array($newItems) && $newItemsLength > 0) {
@@ -427,7 +409,7 @@ if ($result && $result->isSuccess()) {
 }
 
 // Обновляем цены всех торговых предложений
-//require_once(__DIR__ . "/update_prices.php");
+require_once(__DIR__ . "/update_prices.php");
 // Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
 // Завершаем скрипт и выводим статистику
