@@ -30,6 +30,14 @@ class Items
 
 	}
 
+	public function reset()
+	{
+		$this->list = [];
+		$this->itemsIds = [];
+		$this->skusList = [];
+		$this->skusListFlatten = [];
+	}
+
 	/**
 	 * Получает список товаров временного раздела, принимает дополнительные параметры
 	 * в зависимости от конкретного парсера
@@ -40,7 +48,6 @@ class Items
 
 	public function getList($additionalFilter = [], $properties = [])
 	{
-
 		$filter = [
 			"IBLOCK_ID" => $this->catalogIblockId,
 			"SECTION_ID" => $this->tempCatalogSection
@@ -52,6 +59,7 @@ class Items
 			"NAME",
 			"CODE",
 			"ACTIVE",
+			"IBLOCK_SECTION_ID"  // Вернет привязку только к разделу с минимальным ID!
 		];
 
 		if (count($additionalFilter) > 0) {
@@ -99,6 +107,7 @@ class Items
 	 * @param array $extraParameters
 	 * @return $this
 	 */
+
 	public function getSkusList($extraParameters = [])
 	{
 		if (count($this->itemsIds) > 0) {
@@ -110,7 +119,8 @@ class Items
 					"ID",
 					"IBLOCK_ID",
 					"ACTIVE",
-					"NAME"
+					"NAME",
+					"QUANTITY"
 				],
 				$extraParameters
 			);

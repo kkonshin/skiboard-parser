@@ -5,7 +5,8 @@ if (php_sapi_name() !== "cli") {
 	die ('Этот скрипт предназначен для запуска из командной строки: php -f console.php');
 }
 
-require(__DIR__ . "/config.php");  // настройки и константы
+require_once(__DIR__ . "/config.php");  // настройки и константы
+
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
 // Очищаем все 3 уровня буфера битрикса
@@ -22,31 +23,10 @@ use Symfony\Component\DomCrawler\Crawler;
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
-use Parser\SectionParams; // Класс для создания объектов параметров (DI)
-
 use Parser\Source\Source;
 use Parser\Source\Storage;
-
 use Parser\ParserBody\ParserBody; // Основной парсер XML. Различается для разных сайтов-источников
-
-use Parser\HtmlParser\HtmlParser;
-
-// FIXME - Такого класса не существует
-use Parser\Update;
-
-use Parser\Catalog\Properties; // Класс для работы со свойствами каталога
-use Parser\Catalog\Items; // Класс для работы с товарами/ТП каталога
-//use Parser\Catalog\Prices; // Класс для работы с ценами каталога // вынесен в модуль update
-
-use Parser\CatalogDate;
-use Parser\SectionsList;
-use Parser\Mail;
-
-//use Parser\Utils\Price;
-use Parser\Utils\Dirs;
-//use Parser\Utils\ExternalOfferId; // вынесен в модуль update
-
-global $USER;
+use Parser\HtmlParser\HtmlParser; // Дополнительный парсер для получения картинок и детального описания из HTML
 
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
@@ -55,242 +35,180 @@ if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-$resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
-$previousResultArray = []; // результат парсинга файла /save/previous.xml
-
-$resultDifferenceArray = []; // массив разницы между результатами парсинга старого и нового каталога
-$resultDifferenceArrayKeys = []; // его ключи - ID родительских товаров
-
-$skusToSetZeroArray = []; // Массив ТП, подлежащих установке в 0, если родительский товар отсутствует в новом каталоге
-
-$skusPrices = []; // Массив цен торговых предложений, которые будут обновлены
-
-$catalogIdsTempArray = []; // временный рабочий массив
-$temp = []; // временный рабочий массив
-
-$isPriceNew = false; // true, если сохранен старый файл, получен новый каталог и даты в них не совпадают
-$isAddNewItems = false; // флаг для запуска скрипта add.php [МЕХАНИЗМ НЕ РЕАЛИЗОВАН]
-
-$resultArrayLength = 0; // длина нового массива
-$previousResultArrayLength = 0; // длина старого массива
-
-$pGroupId = ''; // Идентификатор товара в прайсе kite.ru
-
-$crawler = null; // объект компонента Symfony
-$previousCrawler = null; // объект компонента Symfony
+global $translitParams;
 
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
-Dirs::make(__DIR__);
-// Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
-$source = new Source(SOURCE);
+Parser\Utils\Dirs::make(__DIR__);
+// Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
+$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
+// Проверяем галку 'Установка для разработки'
+$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
+// Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
+if ($isDevServer === "Y"){
+	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
+	$serverName = "rocketstore.profi-server.ru";
+}
+
+$resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
+$addArray = []; // массив товаров, которые будут добавлены в каталог
+$catalogItemsExternalIds = []; // Внешние ключи товаров каталога
+$newItems = []; // Массив новых товаров для отправки почтового уведомления менеджерам
+$crawler = null; // объект компонента Symfony
+$result = null; // Результат отправки почтового уведомления менеждерам
 
 // Конфигурируем объект для работы с сохраненными элементами каталога
-$sectionParams = new SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 // Создаем объект для работы с товарами временного раздела
-$catalogItems = new Items($sectionParams);
-
-//TEMP
-//$sourceFile = Storage::storeCurrentXml($source); // Не вызывать до реализации сохранения временного файла?
-//if(is_file($sourceFile)) {
-//	echo $sourceFile . " успешно сохранен" . PHP_EOL; // Сохранение файла - источника
-//}
-//ENDTEMP
-
+$items = new Parser\Catalog\Items($sectionParams);
+// Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
+$source = new Source(SOURCE);
 // Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
-// Проверяем, сохранен ли предыдущий файл каталога
-$previousXml = Storage::getPreviousXml();
-// Если старый файл есть - создаем ему краулер симфони...
-if (!empty($previousXml)) {
-	$previousCrawler = new Crawler($previousXml);
-	// TODO можно переименовать старый файл на этом этапе?
-	// TODO не сохранять старые файлы с датой
-	//	Storage::rename(Storage::getSourceSavePath());
-}
 // Создаем краулер для нового каталога
 $crawler = new Crawler($xml);
-
-// Сразу парсим новый файл.
-// TODO описание содержимого массива
+// Парсим новый каталог
 $resultArray = ParserBody::parse($crawler);
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 
-//file_put_contents(__DIR__ . "/logs/resultArray__before.log", print_r($resultArray, true));
+// Создаем свойство для хранения внешнего ключа товара, если оно не существует
+Parser\Catalog\Properties::createExternalItemIdProperty(
+	[
+		"NAME" => "Идентификатор товара в каталоге kite.ru",
+		"CODE" => "P_GROUP_ID",
+        "IBLOCK_ID" => CATALOG_IBLOCK_ID
+	]
+);
+// Создаем свойство для хранения внешнего ключа торгового предложения, если оно не существует
+Parser\Catalog\Properties::createExternalItemIdProperty(
+	[
+		"NAME" => "Идентификатор торгового предложения в каталоге kite.ru",
+		"CODE" => "P_KITERU_EXTERNAL_OFFER_ID",
+        "IBLOCK_ID" => SKU_IBLOCK_ID
+	]
+);
 
-//TEMP
-//$resultArray = array_slice($resultArray, 20, 10, true); // Для отладки
-//ENDTEMP
+// Массив товаров временного раздела
+$catalogItems = $items->getList([], ["PROPERTY_P_GROUP_ID"])->list;
+// Очищает результаты предыдущей выборки
+$items->reset();
 
-// TODO запускать парсер HTML только для товаров в наличии?
-//-----------------------------------------------------------
-// TEMP включить после отладки
-foreach ($resultArray as $key => $value) {
-
-	foreach ($value as $k => $v) {
-
-		$body = HtmlParser::getBody($v["URL"]);
-
-		if (!empty($body)) {
-
-			$resultArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
-
-			$resultArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
-
-			$resultArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
-
-			if (!empty($resultArray[$key][$k]["HTML_DESCRIPTION"])) {
-				$resultArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($resultArray[$key][$k]["HTML_DESCRIPTION"]);
-			}
-		}
+foreach ($catalogItems as $item) {
+	if (strlen($item["PROPERTY_P_GROUP_ID_VALUE"]) > 0) {
+		$catalogItemsExternalIds[] = $item["PROPERTY_P_GROUP_ID_VALUE"];
 	}
 }
-// ENDTEMP
-
-//file_put_contents(__DIR__ . "/logs/resultArray__afterHTML.log", print_r($resultArray, true));
-
-//exit("Выход после окончания работы HTML-парсера");
-
-if ($crawler && $previousCrawler) {
-	// Сравниваем даты в сохраненном файле и новом
-	// TODO если есть старый файл - переименовать его перед сохранением нового
-	$isPriceNew = CatalogDate::checkDate($crawler, $previousCrawler);
-}
-
-if (!empty($previousXml) && $isPriceNew) {
-	// Парсим старый файл, не запуская для него HTML-парсер
-	$previousResultArray = ParserBody::parse($previousCrawler);
-	// Считаем длину получившегося массива
-	$previousResultArrayLength = count($previousResultArray);
-}
-
-// Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID товара в каталоге kite.ru
-Properties::createPGroupId(); // P_GROUP_ID
-// Проверяем наличие и, если свойства нет, создаем свойство каталога, хранящее ID ТП в каталоге kite.ru
-Properties::createPKiteruExternalOfferId(); // P_KITERU_EXTERNAL_OFFER_ID
-
-// Считаем количество родительских товаров и ТП
 
 $i = 0;
-
-if (!empty($resultArray)) {
-	$resultArrayLength = count($resultArray);
-	foreach ($resultArray as $parentItem){
-	    foreach ($parentItem as $offer){
-	        $i++;
-        }
-    }
+foreach ($resultArray as $itemKey => $item) {
+	foreach ($item as $offerKey => $offer) {
+		$i++;
+	}
 }
 
-//echo $i;
+$resultArrayKeys = array_keys($resultArray);
+// Товары (внешние ключи), которые будут добавлены в каталог
+$differenceAdd = array_values(array_diff($resultArrayKeys, $catalogItemsExternalIds));
+$differenceAddCount = count($differenceAdd);
+// Товары (внешние ключи), торговые предложения которых будут установлены в 0
+$differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
+$differenceDisableCount = count($differenceDisable);
 
-// TODO не использовать старый файл XML
-// Вместо этого парсим новый и сравниваем выборку из временного раздела каталога с результатом парсинга
+//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
 
-$params = [
-	"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-	"SECTION_ID" => TEMP_CATALOG_SECTION
-];
-
-$catalogSkus = $catalogItems->getList($params)
+// Массив торговых предложений временного раздела
+$catalogSkus = $items->getList()
 	->getItemsIds()
 	->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
 	->getSkusListFlatten()
-    ->skusListFlatten;
+	->skusListFlatten;
 
-$catalogSkusCount = count($catalogSkus);
+$items->reset();
 
-// Сохраним список ТП перед записью
-//file_put_contents(__DIR__ . "/logs/console__catalogSkus.log", print_r($catalogSkus, true));
+echo PHP_EOL;
+echo "Количество товаров во временном разделе каталога: " . count($catalogItems) . PHP_EOL;
+echo "Количество торговых предложений во временном разделе каталога: " . count($catalogSkus) . PHP_EOL;
+echo "Количество товаров в новом файле XML: " . count($resultArrayKeys) . PHP_EOL;
+echo "Количество торговых предложений в новом файле XML: " . $i . PHP_EOL;
 
-echo "Количество торговых предложений во временном разделе каталога: " . $catalogSkusCount .  PHP_EOL;
-echo "Количество товаров в массиве обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Количество товаров в предыдущем XML файле каталога: " . $previousResultArrayLength . PHP_EOL;
+unset($i);
 
-if ($catalogSkusCount !== $i){
-    echo PHP_EOL. "Количество ТП во временном разделе и в XML не совпадают. Раздел будет обновлен." . PHP_EOL;
-}
-
-// Ищем разницу между новым и старым каталогом
-if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
-
-	$resultArrayKeys = array_keys($resultArray);
-	$previousResultArrayKeys = array_keys($previousResultArray);
-
-	// Если новый массив длиннее старого
-	if ($resultArrayLength > $previousResultArrayLength) {
-		// Массив, содержащий ключи новых родительских товаров
-		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
-
-		// TODO убрать промежуточный массив?
-		// Во временный массив выбираются товары вместе с дочерними ТП
-		// Из них создается массив новых товаров для записи в инфоблок
-		foreach ($resultDifferenceArrayKeys as $diffKey => $diffValue) {
-			$temp[$diffValue] = $resultArray[$diffValue];
-		}
-
-		$resultArray = $temp;
-
-		$isAddNewItems = true;
-
-//		file_put_contents(__DIR__ . "/logs/resultArray__after--newLonger.log", print_r($resultArray, true));
-
-		// Если новый массив короче старого
-	} elseif ($previousResultArrayLength > $resultArrayLength) {
-		// Получаем ключи родительских товаров, которые нужно убрать с сайта
-		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
-
-		$temp = $catalogItems->getList(
-			["PROPERTY_P_GROUP_ID" => $resultDifferenceArrayKeys], // Фильтр
-			["PROPERTY_P_GROUP_ID"] // Дополнительные свойства, которые нужно получить
-		);
-
-		// Деактивация заменена на установку количества всех ТП товара в 0
-		// Получаем массив ТП по массиву родительских товаров
-		foreach ($temp->list as $tempKey => $tempValue) {
-			$skusToSetZeroArray = CCatalogSKU::getOffersList($tempValue["ID"]);
-		}
-
-		foreach ($skusToSetZeroArray as $itemKey => $itemValue) {
-			echo PHP_EOL;
-			echo "Товар {$itemKey} отсутствует в новом каталоге" . PHP_EOL;
-			foreach ($itemValue as $offerKey => $offerValue) {
-				CCatalogProduct::Update($offerKey, ["QUANTITY" => 0]);
-				echo "Количество отсутствующего в новом прайсе торгового предложения {$offerKey} установлено в 0" . PHP_EOL;
+if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
+	echo PHP_EOL;
+	echo "Временный раздел будет обновлен" . PHP_EOL;
+	echo PHP_EOL;
+	if ($differenceDisableCount > 0) {
+		echo "Товаров, количество ТП которых установлено в 0: " . $differenceDisableCount . PHP_EOL;
+	}
+	if ($differenceAddCount > 0) {
+		echo "Товаров будет добавлено: " . $differenceAddCount . PHP_EOL;
+		// Выбираем из $resultArray массив товаров для добавления
+		foreach ($resultArray as $key => $item) {
+			if (in_array($key, $differenceAdd)) {
+				$addArray[$key] = $item;
 			}
 		}
-		echo PHP_EOL;
-	}
-
-	// отдельно установим для всех ТП с AVAILABLE === N кол-во в 0
-
-    $toSetZeroQuantity = ParserBody::getZeroQuantity();
-
-	if(!empty($toSetZeroQuantity)) {
-		foreach ($toSetZeroQuantity as $offerId) {
-			CCatalogProduct::Update($offerId, ["QUANTITY" => 0]);
-			echo "Количество ТП {$offerId} из категории \"Нет в наличии\" установлено в 0" . PHP_EOL;
+        // Запускаем для выбранных товаров парсер HTML
+		foreach ($addArray as $key => $value) {
+			foreach ($value as $k => $v) {
+				$body = HtmlParser::getBody($v["URL"]);
+				if (!empty($body)) {
+					$addArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
+					$addArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
+					$addArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
+					if (!empty($addArray[$key][$k]["HTML_DESCRIPTION"])) {
+						$addArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($addArray[$key][$k]["HTML_DESCRIPTION"]);
+					}
+				}
+			}
 		}
+//		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
 	}
+} else {
+	echo PHP_EOL;
+	echo "Выгрузка и каталог совпадают, обновление не требуется" . PHP_EOL;
+	echo PHP_EOL;
+	return;
 }
 
-//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+if ($differenceDisableCount > 0) {
 
-echo "Парсинг завершен. Обновляем свойства элементов инфоблока" . PHP_EOL;
+	$filter = [
+		"PROPERTY_P_GROUP_ID" => $differenceDisable
+	];
 
-//exit("Выход после завершения парсинга");
+	$props = [
+		"PROPERTY_P_GROUP_ID"
+	];
 
-//-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
+	$disableItemsList = $items->getList($filter, $props)->list;
 
+	$items->reset();
 
-// TEMP отправщик писем об обновлениях. Не реализован
-/*
-$newSectionsList = [123,321,145];
+	// TODO выбрать количество
+	$disableSkusList = $items->getList($filter, $props)
+		->getItemsIds()
+		->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
+		->getSkusListFlatten()
+		->skusListFlatten;
 
-$mailSendResult = Parser\Mail::sendMail($newSectionsList);
+	$items->reset();
 
-echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_event при удачном добавлении письма в очередь отправки
-*/
-//ENDTEMP
+//	echo PHP_EOL;
 
+	foreach ($disableSkusList as $itemKey => $itemValue) {
+		if ($itemValue["QUANTITY"] > 0) {
+			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
+			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
+		}
+	}
+//	echo PHP_EOL;
+}
+echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
 
 //---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//
 
@@ -505,29 +423,28 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-//file_put_contents(__DIR__ . "/logs/manValueIdPairsArray.log", print_r($manValueIdPairsArray, true));
+// Отправляем уведомление о новых товарах
+$newItemsLength = count($newItems);
+if (is_array($newItems) && $newItemsLength > 0) {
+	$result = \Parser\Mail::sendNewItems($newItems);
+}
 
-// Сохранение товаров
+if ($result && $result->isSuccess()) {
+	echo "Уведомление о {$newItemsLength} новых товарах успешно отправлено " . PHP_EOL;
+}
 
-// TODO запуск add должен происходить по определенным условиям
-// Если временный раздел пуст ИЛИ массивы ключей нового и старого прайсов не совпадают ИЛИ массив ключей resultArray !== массиву
-// значений свойства P_GROUP_ID
-
-//if($isAddNewItems){
-echo PHP_EOL;
-echo "Сохраняем товары";
-echo PHP_EOL;
-
-require(__DIR__ . "/add.php");
-
-//}
+// Сохраняем товары во временный раздел
+if ($differenceAddCount > 0) {
+	echo PHP_EOL;
+	echo "Сохраняем новые товары" . PHP_EOL;
+	echo PHP_EOL;
+	require(__DIR__ . "/add.php");
+}
 
 require_once (__DIR__ . "/update_prices.php");
-
-//TEMP
-echo "Новый файл каталога сохранен по адресу: " . Storage::storeCurrentXml($source) . PHP_EOL; // Сохранение файла - источника
-//ENDTEMP
-
+// Сохраняем текущий XML
+echo Storage::storeCurrentXml($source);
+// Завершаем скрипт и выводим статистику
 register_shutdown_function(function () {
 	global $startExecTime;
 	$elapsedMemory = (!function_exists('memory_get_usage'))

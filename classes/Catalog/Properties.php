@@ -1,32 +1,33 @@
 <?php
 
 namespace Parser\Catalog;
+
 class Properties
 {
 	/**
-	 * Проверяем и при отсутствии создаем свойство P_GROUP_ID
-	 * Это ключ связывающий родительские товары XML kite.ru и сохраненные товары
+	 * Проверяет наличие и (при отсутствии) создает свойство для хранения внешнего ключа товара
+	 * @param array $propertyParams
 	 */
-	public static function createPGroupId()
+	public static function createExternalItemIdProperty(Array $propertyParams)
 	{
 		$catalogIbPropsDb = \CIBlockProperty::GetList(
 			[],
 			[
-				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+				"IBLOCK_ID" => $propertyParams["IBLOCK_ID"],
 				"CHECK_PERMISSIONS" => "N",
-				"CODE" => "P_GROUP_ID"
+				"CODE" => $propertyParams["CODE"]
 			]
 		);
 
-		if($res=$catalogIbPropsDb->GetNext()){
-			$pGroupId = $res;
-		}
-
-		if(empty($pGroupId)){
+		if ($res = $catalogIbPropsDb->GetNext()) {
+			echo PHP_EOL;
+			echo "Свойство {$propertyParams["NAME"]} - {$propertyParams["CODE"]} уже существует";
+			echo PHP_EOL;
+		} else {
 			$arPropertyFields = [
-				"NAME" => "Идентификатор товара в каталоге kite.ru",
+				"NAME" => $propertyParams["NAME"],
 				"ACTIVE" => "Y",
-				"CODE" => "P_GROUP_ID",
+				"CODE" => $propertyParams["CODE"],
 				"PROPERTY_TYPE" => "S",
 				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
 				"SEARCHABLE" => "Y",
@@ -39,70 +40,14 @@ class Properties
 				]
 			];
 
-			$propertyPGroupId = new \CIBlockProperty;
-			$propertyPGroupId__id = $propertyPGroupId ->Add($arPropertyFields);
+			$property = new \CIBlockProperty;
+			$propertyId = $property->Add($arPropertyFields);
 
-			if ($propertyPGroupId__id > 0) {
+			if ($propertyId > 0) {
 				echo PHP_EOL;
-				echo "Добавлено свойство инфоблока товаров P_GROUP_ID";
-				echo PHP_EOL;
-			}
-		} else {
-			echo PHP_EOL;
-			echo "Свойство {$pGroupId["NAME"]} - {$pGroupId["CODE"]} уже существует";
-			echo PHP_EOL;
-		}
-	}
-
-	/**
-	 * Проверяем и при отсутствии создаем свойство P_KITERU_EXTERNAL_OFFER_ID
-	 * Это ключ связывающий торговые предложения XML kite.ru и сохраненные торговые предложения
-	 */
-
-	public static function createPKiteruExternalOfferId()
-	{
-		$catalogIbPropsDb = \CIBlockProperty::GetList(
-			[],
-			[
-				"IBLOCK_ID" => SKU_IBLOCK_ID,
-				"CHECK_PERMISSIONS" => "N",
-				"CODE" => "P_KITERU_EXTERNAL_OFFER_ID"
-			]
-		);
-
-		if($res=$catalogIbPropsDb->GetNext()){
-			$PKiteruExternalOfferId = $res;
-		}
-
-		if(empty($PKiteruExternalOfferId)){
-			$arPropertyFields = [
-				"NAME" => "Идентификатор торгового предложения в каталоге kite.ru",
-				"ACTIVE" => "Y",
-				"CODE" => "P_KITERU_EXTERNAL_OFFER_ID",
-				"PROPERTY_TYPE" => "S",
-				"IBLOCK_ID" => SKU_IBLOCK_ID,
-				"SEARCHABLE" => "Y",
-				"FILTRABLE" => "Y",
-				"VALUES" => [
-					0 => [
-						"VALUE" => "",
-						"DEF" => ""
-					]
-				]
-			];
-
-			$propertyPKiteruExternalOfferId = new \CIBlockProperty;
-			$propertyPKiteruExternalOfferId__id = $propertyPKiteruExternalOfferId ->Add($arPropertyFields);
-
-			if ($propertyPKiteruExternalOfferId__id > 0) {
-				echo PHP_EOL;
-				echo "Добавлено свойство инфоблока товаров P_KITERU_EXTERNAL_OFFER_ID" ;
+				echo "Добавлено свойство инфоблока товаров {$propertyParams["NAME"]} - {$propertyParams["CODE"]}";
 				echo PHP_EOL;
 			}
-		} else {
-			echo PHP_EOL;
-			echo "Свойство {$PKiteruExternalOfferId["NAME"]} - {$PKiteruExternalOfferId["CODE"]} уже существует";
-			echo PHP_EOL;
 		}
 	}
 }

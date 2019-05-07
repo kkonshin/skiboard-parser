@@ -56,7 +56,7 @@ class Prices
 							$tmpPriceId = $res;
 						}
 
-					echo "Обновлена цена для торгового предложения {$offerIdValue["ID"]}. ID ценового предложения - "
+						echo "Обновлена цена ТП {$offerIdValue["ID"]} - {$offerIdValue["NAME"]} - {$offerValue["SEASON_PRICE"]} руб. ID ценового предложения - "
 							. \CPrice::Update(
 								$tmpPriceId["ID"],
 								[
@@ -72,42 +72,5 @@ class Prices
 			}
 		}
 		echo PHP_EOL;
-	}
-
-	// Версия только для skiboard
-
-	public static function update__skiboard(array $catalogSkusWithoutParent, array $resultArray)
-	{
-		foreach ($catalogSkusWithoutParent as $offerIdKey => $offerIdValue) {
-			foreach ($resultArray as $resultKey => $resultItem) {
-				foreach ($resultItem as $offerKey => $offerValue) {
-					if ($offerValue["OFFER_ID"] === $offerIdValue["PROPERTIES"]["SKIBOARD_EXTERNAL_OFFER_ID"]["VALUE"]) {
-						if ($offerValue["SEASON_PRICE"] !== $offerIdValue["PRICE"]) {
-
-							$tmpPriceId = null;
-
-							$cp = new \CPrice();
-
-							$dbres = $cp->GetList([], ["PRODUCT_ID" => $offerIdValue["ID"]], false, false, ["ID"]);
-
-							while ($res = $dbres->GetNext()) {
-								$tmpPriceId = $res;
-							}
-
-							echo "Обновлена цена {$offerValue["SEASON_PRICE"]} для товарного предложения {$offerIdValue["ID"]} "
-								. \CPrice::Update(
-									$tmpPriceId["ID"],
-									[
-										"PRODUCT_ID" => $offerIdValue["ID"],
-										"PRICE" => $offerValue["SEASON_PRICE"],
-										"CURRENCY" => "RUB"
-									]
-								)
-								. PHP_EOL;
-						}
-					}
-				}
-			}
-		}
 	}
 }

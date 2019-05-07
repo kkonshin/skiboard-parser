@@ -35,13 +35,12 @@ class Storage extends Source
 				echo "Файл {$sourceSavePath} будет перезаписан." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			} else {
-				echo "Файл {$sourceSavePath} не найден. Будет произведено первичное заполнение временного раздела каталога" . PHP_EOL;
+				echo "Файл {$sourceSavePath} не найден." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			}
 
 			if ($result) {
-//				return "Файл {$sourceSavePath} успешно сохранен." . PHP_EOL;
-				return $sourceSavePath;
+				return "Файл {$sourceSavePath} успешно сохранен." . PHP_EOL;
 			} else {
 				throw new \Exception("Ошибка сохранения файла каталога." . PHP_EOL);
 			}
@@ -65,11 +64,12 @@ class Storage extends Source
 	}
 
 	/**
+	 * DEPRECATED
 	 * Переименовывает старый файл каталога перед сохранением нового
 	 * @param $pathToFile
 	 * @return bool
 	 */
-
+	/*
 	public static function rename($pathToFile)
 	{
 		$result = false;
@@ -89,4 +89,5 @@ class Storage extends Source
 			return false;
 		}
 	}
+	*/
 }

@@ -1,32 +1,34 @@
 <?php
 
-use Parser\HtmlParser\HtmlParser;
 use voku\helper\HtmlDomParser;
 
-//-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
+global $serverName;
+global $translitParams;
+global $valueIdPairsArray;
+global $addArray;
+global $USER;
 
-// Ограничение длины массива для разработки
-//$offset = 0;
-//$length = count($resultArray) - $offset;
-//$length = 30;
-//$resultArray = array_slice($resultArray, $offset, $length, true);
+echo "Количество товаров для записи: " . count($addArray) . PHP_EOL;
+// Инфоблок товаров
+$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID);
+// ID инфоблока товаров
+$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID'];
+// ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
+$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID'];
+// Массив внешних ключей торговых предложений. Используется для избежания записи дублей.
+$externalIdsArray = [];
 
-$linksArray = []; // Для разработки, массив ссылков в описании товара, подлежащих замене
+foreach ($catalogSkus as $key => $sku) {
+	if (!empty($sku["PROPERTIES"]["P_KITERU_EXTERNAL_OFFER_ID"]["VALUE"])) {
+		$externalIdsArray[$key] = $sku["PROPERTIES"]["P_KITERU_EXTERNAL_OFFER_ID"]["VALUE"];
+	}
+}
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-
-echo "Количество товаров для записи: " . count($resultArray) . "\n";
-
-$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
-
-$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
-
-$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
-
-foreach ($resultArray as $key => $item) {
+foreach ($addArray as $key => $item) {
 	try {
 		$offerPrice = null;
 		$morePhotoArray = []; // Массив дополнительных картинок товара
+		$linksArray = [];
 		$obElement = new CIBlockElement;
 
 		// MORE_PHOTO из Html - парсера
@@ -48,55 +50,41 @@ foreach ($resultArray as $key => $item) {
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
+
 		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
 		$itemName = preg_replace( "/\r|\n/", "", $itemName); // удалим из названия товара переносы строк
 
-
 		// Обработка детального описания товара
-
 		// TODO совместить с реализацией в классе Description / убрать из этого модуля /
-
 		foreach ($item[0]["HTML_PARSED_DESCRIPTION"]["IMAGES"] as $descriptionImageKey => $descriptionImage) {
 			$item[0]["HTML_PARSED_DESCRIPTION"]["SAVED_IMAGES"][$descriptionImageKey] = CFile::GetPath(CFile::SaveFile(CFile::MakeFileArray($descriptionImage), 'item_description'));
 		}
-
-//		if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['HTML'])) {
+		
 		if (!empty($item[0]['HTML_DESCRIPTION'])) {
 
-//			$dom = new HtmlDomParser($item[0]['HTML_PARSED_DESCRIPTION']['HTML']);
 			$dom = new HtmlDomParser($item[0]['HTML_DESCRIPTION']);
 
 			// Заменяем пути к изображениям на сохраненные
-
 			if (!empty($item[0]['HTML_PARSED_DESCRIPTION']['SAVED_IMAGES'])) {
-
 				foreach ($dom->find('img') as $imageKey => $image) {
 					$image->src = $item[0]['HTML_PARSED_DESCRIPTION']['SAVED_IMAGES'][$imageKey];
 				}
-
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
-
 			// FIXME временно сохраняем список ссылок
 			foreach ($dom->find('a') as $linkKey => $link) {
 				if (!in_array($link->outertext, $linksArray)) {
 					$linksArray[$item[0]['NAME']][] = $link->outertext;
 				}
 			}
-
 			// TODO получать ссылку на этот файл?
 			// Заменяем ссылку на таблицу размеров BodyGlove
 			foreach ($dom->find('a') as $linkKey => $link){
 				if (stripos($link, '/info/body-glove/') !== false){
-//					echo $link . PHP_EOL;
 					$link->href = '/include/size_table.php';
-//					echo "Изменение адреса ссылки на таблицу размеров: " . $link . PHP_EOL;
 				}
 				$item[0]['HTML_PARSED_DESCRIPTION']['HTML'] = $dom->html();
 			}
-
-
-			$dom->clear();
 			unset($dom);
 		}
 
@@ -116,18 +104,39 @@ foreach ($resultArray as $key => $item) {
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
 			]
 		];
-
 		if ($productId = $obElement->Add($itemFieldsArray)) {
-			echo "Добавлен товар " . $productId . "\n";
+
+			echo "Добавлен товар " . $productId . PHP_EOL;
+
+			$filter = [
+				"ID" => $productId
+			];
+
+			$fields = [
+				"DETAIL_PAGE_URL"
+			];
+
+			// Собираем массив добавленных товаров для дальнейшей отправки уведомления
+			$newItems[$productId]["NAME"] = $itemFieldsArray["NAME"];
+			$newItems[$productId]["VENDOR_SITE_NAME"] = $itemFieldsArray["PROPERTY_VALUES"]["SITE_NAME"];
+			// Ссылка на детальную страницу ведет во временный раздел
+			$newItems[$productId]["DETAIL_PAGE_URL"] = "https://" . $serverName . $items->getList($filter, $fields)->list[0]["DETAIL_PAGE_URL"];
+
+			$items->reset();
+
 		} else {
-			echo "Ошибка добавления товара: " . str_replace("<br>", "", $obElement->LAST_ERROR) . "\n";
+
+			echo $obElement->LAST_ERROR
+				. ' '
+				. $itemFieldsArray["NAME"]
+				. ' >Внешний ключ> '
+				. $itemFieldsArray["PROPERTY_VALUES"]["P_GROUP_ID"]
+				. PHP_EOL;
 			continue;
+
 		}
 
 		if ($productId) {
-
-			// TODO тернарник
-
 			if (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])) {
 				$manXmlId = $manValueIdPairsArray[strtoupper($item[0]["BRAND"])];
 			} else if (!empty($manValueIdPairsArray[$item[0]["BRAND"]])) {
@@ -206,8 +215,3 @@ foreach ($resultArray as $key => $item) {
 		echo $e->getMessage() . PHP_EOL;
 	}
 }
-
-//file_put_contents(__DIR__ . "/logs/LinksArray.log", print_r($linksArray, true));
-//file_put_contents(__DIR__ . "/logs/resultArrayAfterAdd.log", print_r($resultArray, true));
-
-//--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//
