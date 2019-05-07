@@ -6,7 +6,10 @@ global $serverName;
 global $translitParams;
 global $valueIdPairsArray;
 global $addArray;
+global $catalogSkus;
 global $USER;
+
+$errorItemsArray = [];
 
 echo "Количество товаров для записи: " . count($addArray) . PHP_EOL;
 // Инфоблок товаров
@@ -98,7 +101,7 @@ foreach ($addArray as $key => $item) {
 			"DETAIL_PICTURE" => (isset($item[0]["HTML_DETAIL_PICTURE_URL"])) ? CFile::MakeFileArray($item[0]["HTML_DETAIL_PICTURE_URL"]) : "",
 			"DETAIL_TEXT" => (!empty ($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"])) ? html_entity_decode($item[0]["HTML_PARSED_DESCRIPTION"]["HTML"]) : "",
 			"PROPERTY_VALUES" => [
-				"SITE_NAME" => P_SITE_NAME,
+				"SITE_NAME" => P_SITE_NAME, // Название сайта-источника
 				"P_GROUP_ID" => $key, // Идентификатор, по которому осуществляется связь товаров в XML и торговом каталоге
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
@@ -125,6 +128,9 @@ foreach ($addArray as $key => $item) {
 			$items->reset();
 
 		} else {
+
+			// Сохраняем в массив товары с ошибками для дальнейшей обработки
+			$errorItemsArray[] = '"%' . $itemFieldsArray["NAME"] . '"';
 
 			echo $obElement->LAST_ERROR
 				. ' '
@@ -215,3 +221,5 @@ foreach ($addArray as $key => $item) {
 		echo $e->getMessage() . PHP_EOL;
 	}
 }
+
+file_put_contents(__DIR__ . "/logs/add_errorItemsArray.log", print_r($errorItemsArray, true));
