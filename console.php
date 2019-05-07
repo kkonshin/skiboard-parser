@@ -80,6 +80,7 @@ Parser\Catalog\Properties::createExternalItemIdProperty(
 		"NAME" => "Идентификатор товара в каталоге skiboard.ru",
 		"CODE" => "P_SKIBOARD_GROUP_ID"
 	]
+);
 
 // Создаем свойство для хранения внешнего ключа торгового предложения, если оно не существует
 Parser\Catalog\Properties::createExternalItemIdProperty(
