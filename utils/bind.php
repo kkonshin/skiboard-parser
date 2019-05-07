@@ -24,19 +24,76 @@ $itemsList = $items->getList([], ["PROPERTY_CATEGORY_ID"])->list;
 
 $itemsIds = [];
 
-foreach ($itemsList as $item){
-    $itemsIds[] = $item["ID"];
+foreach ($itemsList as $item) {
+	$itemsIds[] = $item["ID"];
 }
 
 $doubles = [
-
+	"%Баллон Slingshot 2014 - 2015 Rally Bladders - Strut ",
+	"%Баллон Slingshot 2014 - 2015 Rally LE Bladders ",
+	"%Баллон Slingshot 2011-2014 RPM LE Bladders ",
+	"%Кайтсерфборд Slingshot 2015 Alien Twitster FX ",
+	"%Гидрокостюм Body Glove 2015 Method 2.0 Bk/Zip 3/2 Fullsuit Green ",
+	"%Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Grey ",
+	"%Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Black/Red ",
+	"%Гидрокостюм Body Glove 2015 Pro3 3/2 Fullsuit Grey/Lime ",
+	"%Гидрокостюм Body Glove 2015 Siroko Bk/Zip 4/3 Fullsuit Red ",
+	"%Гидрокостюм Body Glove 2015 (Женский) Pro3 2/1MM Springsuit Shoty Black ",
+	"%Гидрокостюм Body Glove 2015 Torque Combo 3/3 Red ",
+	"%Гидромайка Body Glove 2015 Basic L/A Fitted Rashguard ",
+	"%Гидромайка Body Glove 2015 Performance Loosefit L/A Shirt ",
+	"%Гидромайка Body Glove 2015 Prime L/A 6oz Fitted Rashguard ",
+	"%Гидрообувь Body Glove 2015 CT Covered Split Toe Bootie 3mm (9 (41-42))",
+	"%Гидрообувь Body Glove 2015 Prime Round Toe Bootie 5mm ",
+	"%Гидрошлем Body Glove 2015 Super Beanie Neoprene Beanie 3mm ",
+	"%Перчатки Body Glove 2015 Pr1me 5 Finger Glove 3mm ",
+	"%Гидрошорты Body Glove 2015 Fusion Men's Pullover Short ",
+	"%Баллон Slingshot 2015-2016 RPM LE Bladder ",
+	"%Баллон Slingshot 2011 - 2015 RPM Strut Bladder Set ",
+	"%Футболка Slingshot 2015 First Tee Burgundy ",
+	"%Футболка Slingshot 2015 First Tee Royal Blue ",
+	"%Футболка Slingshot 2015 USA Wood Core Tee Grey ",
+	"%Кайтборд Slingshot 2016 Asylum ",
+	"%Слайдербар Slider Bar RideEngine Carbon (8'' (20,32 см))",
+	"%Гидрообувь Body Glove 2016 CT Covered Split Toe Bootie 3mm ",
+	"%Баллон Slingshot 2015 Turbine LE Bladder ",
+	"%Планка Slingshot 2017 Compstick w/ Guardian ",
+	"%Планка Slingshot 2017 Compstick w/ Sentinel ",
+	"%Кайтборд Slingshot 2017 Vision ",
+	"%Кайт Slingshot 2017 Turbine ",
+	"%Кайтборд Shaman Furor Dog (Board Only, 139 cm x 43 cm, tails 32)",
+	"%Кайт Трапеция Slingshot Ballistic Harness Lemon ",
+	"%Кайт Трапеция RideEngine 2017 Bamboo Elite Harness ",
+	"%Слайдербар RideEngine 2017 Metal Sliding Bar ",
+	"%Кайт Трапеция RideEngine 2017 Hex Core Space Grape Harness ",
+	"%Кайт Slingshot 2018 Turbine ",
+	"%Кайт Трапеция RideEngine 2018 3k Carbon Elite Harness ",
+	"%Кайт Трапеция RideEngine 2018 Hex Core Sea Engine Green Harness ",
+	"%Кайт Трапеция RideEngine 2018 Silver Carbon Elite Harness ",
+	"%Крюк RideEngine 2018 Kite Fixed Hook ",
+	"%Крюк RideEngine 2018 Windsurf Fixed Hook ",
+	"%Слайдербар RideEngine 2018 Metal Sliding Bar ",
+	"%Кайт Slingshot 2019 Rally ",
+	"%Кайт Трапеция RideEngine 2019 Elite Carbon Infrared Harness ",
+	"%Кайт Трапеция RideEngine 2019 Elite Carbon Sea Engine Green Harness ",
+	"%Кайт Трапеция RideEngine 2019 Elite Carbon White Harness ",
+	"%Кайт Трапеция RideEngine 2019 Prime Coast Harness ",
+	"%Кайт Трапеция RideEngine 2019 Prime Deep Sea Harness ",
+	"%Кайт Трапеция RideEngine 2019 Prime Island Time Harness ",
+	"%Кайт Трапеция RideEngine 2019 Prime Pacific Mist Harness ",
+	"%Гидрокостюм RideEngine 2019 Silo 5/4 BZ full ",
+	"%Гидромайка RideEngine 2019 Cora 2mm Tank Top ",
+	"%Гидрообувь RideEngine 2019 4mm Aire Booties ",
+	"%Гидрошорты RideEngine 2019 Harlo 2mm Shorts ",
+	"%Неопреновая куртка RideEngine Layover 2.5mm Neo Hoodie ",
+	"%Перчатки RideEngine 2018 2mm Gloves ",
 ];
 
 $filter = ["NAME" => $doubles];
 
 // TODO продумать фильтр
 
-\CIBlockElement::GetPropertyValuesArray($itemsIds,CATALOG_IBLOCK_ID, $filter);
+\CIBlockElement::GetPropertyValuesArray($itemsIds, CATALOG_IBLOCK_ID, $filter);
 
 // Только для SKIBOARD!
 // Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации

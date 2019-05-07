@@ -222,4 +222,4 @@ foreach ($addArray as $key => $item) {
 	}
 }
 
-//file_put_contents(__DIR__ . "/logs/add_errorItemsArray.log", print_r($errorItemsArray, true));
+//file_put_contents(__DIR__ . "/logs/add_errorItemsArray.log", var_export($errorItemsArray, true));
