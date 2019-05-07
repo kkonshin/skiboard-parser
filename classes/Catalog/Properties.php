@@ -2,8 +2,6 @@
 
 namespace Parser\Catalog;
 
-// TODO рефактор
-// Методы должны работать с любыми парсерами
 class Properties
 {
 	/**
@@ -15,7 +13,7 @@ class Properties
 		$catalogIbPropsDb = \CIBlockProperty::GetList(
 			[],
 			[
-				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+				"IBLOCK_ID" => $propertyParams["IBLOCK_ID"],
 				"CHECK_PERMISSIONS" => "N",
 				"CODE" => $propertyParams["CODE"] // "P_SKIBOARD_GROUP_ID"
 			]
@@ -31,7 +29,7 @@ class Properties
 				"ACTIVE" => "Y",
 				"CODE" => $propertyParams["CODE"],
 				"PROPERTY_TYPE" => "S",
-				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+				"IBLOCK_ID" => $propertyParams["IBLOCK_ID"],
 				"SEARCHABLE" => "Y",
 				"FILTRABLE" => "Y",
 				"VALUES" => [

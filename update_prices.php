@@ -1,5 +1,8 @@
 <?php
 
+global $resultArray;
+global $catalogSkus;
+
 echo PHP_EOL;
 echo "Проверяем наличие внешних ключей и обновляем цены" . PHP_EOL;
 echo PHP_EOL;

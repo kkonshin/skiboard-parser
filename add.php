@@ -3,6 +3,7 @@
 global $USER;
 global $addArray;
 global $serverName;
+global $valueIdPairsArray;
 
 // Ограничение длины массива для разработки
 //$offset = 0;

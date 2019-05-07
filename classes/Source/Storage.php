@@ -25,7 +25,7 @@ class Storage extends Source
 				echo "Файл {$sourceSavePath} будет перезаписан." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			} else {
-				echo "Файл {$sourceSavePath} не найден. Будет произведено первичное заполнение временного раздела каталога" . PHP_EOL;
+				echo "Файл {$sourceSavePath} не найден." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			}
 
