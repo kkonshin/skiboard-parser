@@ -25,7 +25,7 @@ $itemsList = $items->getList([], ["PROPERTY_CATEGORY_ID"])->list;
 $itemsIds = [];
 
 foreach ($itemsList as $item) {
-	$itemsIds[] = $item["ID"];
+	$itemsIds[$item["ID"]] = $item["ID"];
 }
 
 $doubles = [
@@ -94,6 +94,8 @@ $filter = ["NAME" => $doubles];
 // TODO продумать фильтр
 
 \CIBlockElement::GetPropertyValuesArray($itemsIds, CATALOG_IBLOCK_ID, $filter);
+
+file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", var_export($itemsIds, true));
 
 // Только для SKIBOARD!
 // Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
