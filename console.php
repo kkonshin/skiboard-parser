@@ -167,7 +167,7 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 				}
 			}
 		}
-		*/
+        */
 //		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
 	}
 } else {
