@@ -56,7 +56,7 @@ class Prices
 							$tmpPriceId = $res;
 						}
 
-						echo "Обновлена цена ТП {$offerIdValue["ID"]} - {$offerIdValue["NAME"]} - {$offerValue["SEASON_PRICE"]} руб. ID ценового предложения - "
+						echo "Обновлена цена ТП {$offerIdValue["ID"]} - {$offerIdValue["NAME"]} - {$offerValue["PRICE"]} руб. ID ценового предложения - "
 							. \CPrice::Update(
 								$tmpPriceId["ID"],
 								[

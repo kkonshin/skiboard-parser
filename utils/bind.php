@@ -119,16 +119,13 @@ foreach ($doublesList as $doubleKey => $doubleValue) {
 	}
 }
 
-
-file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
-file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
-file_put_contents(__DIR__ . "/../logs/bind_itemsToAdd.log", print_r($itemsToAdd, true));
-
-file_put_contents(__DIR__ . "/../logs/bind_bindingsArray.log", print_r($bindingsArray, true));
-file_put_contents(__DIR__ . "/../logs/bind_bindingsArray--count.log", print_r(count($bindingsArray), true));
-
-file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
-file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
+//file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
+//file_put_contents(__DIR__ . "/../logs/bind_itemsToAdd.log", print_r($itemsToAdd, true));
+//file_put_contents(__DIR__ . "/../logs/bind_bindingsArray.log", print_r($bindingsArray, true));
+//file_put_contents(__DIR__ . "/../logs/bind_bindingsArray--count.log", print_r(count($bindingsArray), true));
+//file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
+//file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
 
 // Только для SKIBOARD!
 // Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации

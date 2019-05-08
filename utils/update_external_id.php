@@ -114,9 +114,9 @@ $skusList = $items->getList()
 Parser\Utils\ExternalOfferId::updateExternalItemId($itemsList, $resultArray, "P_GROUP_ID", P_TRANSLIT_PARAMS);
 Parser\Utils\ExternalOfferId::updateExternalOfferId($skusList, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
 
-file_put_contents(__DIR__ . "/../logs/update_external__resultArray--392.log", print_r($resultArray, true));
-file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
-file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__resultArray--392.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
 
 $items->reset();
 
