@@ -19,6 +19,7 @@ $itemsIds = [];
 $doublesList = [];
 $params = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 $items = new Parser\Catalog\Items($params);
+
 $doublesFilter = [
 	"Баллон Slingshot 2014 - 2015 Rally Bladders - Strut",
 	"Баллон Slingshot 2014 - 2015 Rally LE Bladders ",
