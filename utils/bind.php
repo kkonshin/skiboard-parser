@@ -79,21 +79,42 @@ $doublesFilter = array (
 	55 => 'Неопреновая куртка RideEngine Layover 2.5mm Neo Hoodie%',
 	56 => 'Перчатки RideEngine 2018 2mm Gloves%',
 );
-//$itemsList = $items->getList(["NAME" => $doublesFilter, "SECTION_ID" => ''], ["PROPERTY_CATEGORY_ID"])->list;
-$itemsList = $items->getList(["NAME" => $doublesFilter], ["PROPERTY_CATEGORY_ID"])->list;
+$itemsList = $items->getList(["NAME" => $doublesFilter, "SECTION_ID" => ''], ["PROPERTY_CATEGORY_ID"])->list;
+//$itemsList = $items->getList(["NAME" => $doublesFilter], ["PROPERTY_CATEGORY_ID"])->list;
 
 foreach ($itemsList as $item) {
-	$itemsIds[$item["ID"]] = $item["ID"];
+//    if($item["IBLOCK_SECTION_ID"] != TEMP_CATALOG_SECTION) {
+		$itemsIds[$item["ID"]] = $item["ID"];
+//	}
 }
 
 $dbRes = \CIBlockElement::GetElementGroups($itemsIds,false, ["ID", "CODE", "NAME", "IBLOCK_ELEMENT_ID"]);
 
 while($res = $dbRes->GetNext()){
-    $doublesList[$res["IBLOCK_ELEMENT_ID"]] = $res;
+    $doublesList[$res["IBLOCK_ELEMENT_ID"]][] = $res;
 }
+
+$items->reset();
+
+$filterKeys = array_keys($doublesList);
+
+$itemsToAdd = $items->getList(["ID" => $filterKeys, "SECTION_ID" => ''], ["PROPERTY_CATEGORY_ID"])->list;
+
+foreach ($doublesList as $doubleKey => $doubleValue){
+    foreach ($doubleValue as $doubleValueKey => $doubleValueValue){
+        foreach ($itemsToAdd as $itemKey => $itemValue){
+            if($doubleValueValue["IBLOCK_ELEMENT_ID"] == $itemValue["ID"]){
+                $doublesList[$doubleKey][$doubleValueKey]["IBLOCK_ELEMENT_NAME"] = $itemValue["NAME"];
+                $doublesList[$doubleKey][$doubleValueKey]["IBLOCK_ELEMENT_CODE"] = $itemValue["CODE"];
+            }
+        }
+    }
+}
+
 
 file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
 file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
+file_put_contents(__DIR__ . "/../logs/bind_itemsToAdd.log", print_r($itemsToAdd, true));
 file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
 file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
 
