@@ -79,7 +79,8 @@ $doublesFilter = array (
 	55 => 'Неопреновая куртка RideEngine Layover 2.5mm Neo Hoodie%',
 	56 => 'Перчатки RideEngine 2018 2mm Gloves%',
 );
-$itemsList = $items->getList(["NAME" => $doublesFilter, "SECTION_ID" => ''], ["PROPERTY_CATEGORY_ID"])->list;
+//$itemsList = $items->getList(["NAME" => $doublesFilter, "SECTION_ID" => ''], ["PROPERTY_CATEGORY_ID"])->list;
+$itemsList = $items->getList(["NAME" => $doublesFilter], ["PROPERTY_CATEGORY_ID"])->list;
 
 foreach ($itemsList as $item) {
 	$itemsIds[$item["ID"]] = $item["ID"];
@@ -91,10 +92,10 @@ while($res = $dbRes->GetNext()){
     $doublesList[$res["IBLOCK_ELEMENT_ID"]] = $res;
 }
 
-//file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
-//file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
-//file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
-//file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
+file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
+file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
+file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
+file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
 
 // Только для SKIBOARD!
 // Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
