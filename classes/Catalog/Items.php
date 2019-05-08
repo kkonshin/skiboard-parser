@@ -70,6 +70,7 @@ class Items
 				}
 			}
 		}
+//		file_put_contents(__DIR__ . "/../../logs/getList--filter.log", print_r($filter, true));
 		if (count($properties) > 0) {
 			$fields = array_merge($fields, $properties);
 		}

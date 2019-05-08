@@ -55,7 +55,8 @@ foreach ($addArray as $key => $item) {
 		}
 
 		$itemName = (!empty($item[0]["SHORT_NAME"])) ? $item[0]["SHORT_NAME"] : $item[0]["NAME"];
-		$itemName = preg_replace( "/\r|\n/", "", $itemName); // удалим из названия товара переносы строк
+		// удаляем переносы строк и пробелы
+		$itemName = trim(preg_replace( "/\r|\n/", "", $itemName));
 
 		// Обработка детального описания товара
 		// TODO совместить с реализацией в классе Description / убрать из этого модуля /
@@ -222,4 +223,4 @@ foreach ($addArray as $key => $item) {
 	}
 }
 
-//file_put_contents(__DIR__ . "/logs/add_errorItemsArray.log", var_export($errorItemsArray, true));
+file_put_contents(__DIR__ . "/logs/add_errorItemsArray.log", var_export($errorItemsArray, true));
