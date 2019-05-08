@@ -115,7 +115,7 @@ $bindingsArray = [];
 
 foreach ($doublesList as $doubleKey => $doubleValue) {
 	foreach ($doubleValue as $doubleValueKey => $doubleValueValue) {
-        $bindingsArray[trim($doubleValueValue["IBLOCK_ELEMENT_NAME"])][$doubleValueValue["IBLOCK_ELEMENT_ID"]] = $doubleValueValue["ID"];
+        $bindingsArray[trim($doubleValueValue["IBLOCK_ELEMENT_NAME"])][$doubleValueValue["IBLOCK_ELEMENT_ID"]][] = $doubleValueValue["ID"];
 	}
 }
 
