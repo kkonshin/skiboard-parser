@@ -39,10 +39,11 @@ class ExternalOfferId
 	public static function updateExternalItemId(Array $itemsList, Array $resultArray, $propertyName, $translitParams)
 	{
 		foreach ($resultArray as $resultKey => $resultValue) {
-			$resultItemCode = trim(\CUtil::translit($resultValue[0]["NAME"] . ' ' . $resultValue[0]["OFFER_ID"], "ru", $translitParams));
+			$resultItemName = (!empty($resultValue[0]["SHORT_NAME"])) ? $resultValue[0]["SHORT_NAME"] : $resultValue[0]["NAME"];
+			$resultItemCode = trim(\CUtil::translit($resultItemName . ' ' . $resultValue[0]["OFFER_ID"], "ru", $translitParams));
 			foreach ($itemsList as $itemKey => $itemValue) {
 				if ($resultItemCode == $itemValue["CODE"]) {
-//					echo $resultKey . ' ' . $resultItemCode . PHP_EOL;
+					echo $resultKey . ' ' . $resultItemCode . ' >> ID элемента в каталоге >> ' . $itemValue["ID"]. PHP_EOL;
 					self::update($itemValue["ID"], CATALOG_IBLOCK_ID, [(string)$propertyName => [$resultKey]]);
 				}
 			}

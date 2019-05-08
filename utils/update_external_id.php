@@ -12,14 +12,12 @@ require_once(__DIR__ . "/../vendor/autoload.php");
 
 use Parser\SectionParams;
 use Parser\Source\Source;
-use Parser\Utils\ExternalOfferId;
 use Parser\ParserBody\ParserBody;
 use Symfony\Component\DomCrawler\Crawler;
 
 while (ob_get_level()) {
 	ob_end_flush();
 }
-
 $doublesFilter = array (
 	0 => 'Баллон Slingshot 2014 - 2015 Rally Bladders - Strut%',
 	1 => 'Баллон Slingshot 2014 - 2015 Rally LE Bladders%',
@@ -82,25 +80,27 @@ $doublesFilter = array (
 
 //$source = __DIR__ . "/../save/backup/13.02.2019/previous.xml";
 $source = SOURCE;
-
-// На рабочем! На тестовом задавать ID раздела
+$catalogIblockId = CATALOG_IBLOCK_ID;
 $tempCatalogSection = TEMP_CATALOG_SECTION;
 
-$params = new SectionParams(CATALOG_IBLOCK_ID, $tempCatalogSection);
+$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
+// Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
+if ($isDevServer === "Y"){
+	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
+	$tempCatalogSection = 392;
+}
 
+$params = new SectionParams($catalogIblockId, $tempCatalogSection);
 $items = new Parser\Catalog\Items($params);
-
 $source = new Source($source);
-
 $xml = $source->getSource();
-
 $crawler = new Crawler($xml);
-
 $resultArray = ParserBody::parse($crawler);
 
 $extraProperties = [
 	"PROPERTY_P_GROUP_ID",
 ];
+// Товары автоматически выбираются только из временного раздела. Для всех разделов SECTION_ID => ''
 $itemsList = $items->getList(["NAME" => $doublesFilter], $extraProperties)->list;
 
 $items->reset();
@@ -111,14 +111,13 @@ $skusList = $items->getList()
 	->getSkusListFlatten()
 	->skusListFlatten;
 
-$items->reset();
-
-ExternalOfferId::updateExternalItemId($itemsList, $resultArray, "P_GROUP_ID", P_TRANSLIT_PARAMS);
-
-ExternalOfferId::updateExternalOfferId($skusList, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
+Parser\Utils\ExternalOfferId::updateExternalItemId($itemsList, $resultArray, "P_GROUP_ID", P_TRANSLIT_PARAMS);
+Parser\Utils\ExternalOfferId::updateExternalOfferId($skusList, $resultArray, "P_KITERU_EXTERNAL_OFFER_ID");
 
 file_put_contents(__DIR__ . "/../logs/update_external__resultArray--392.log", print_r($resultArray, true));
 file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
 file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
+
+$items->reset();
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/epilog_after.php");
