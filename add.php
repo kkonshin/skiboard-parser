@@ -131,7 +131,7 @@ foreach ($addArray as $key => $item) {
 		} else {
 
 			// Сохраняем в массив товары с ошибками для дальнейшей обработки
-			$errorItemsArray[] = '"%' . $itemFieldsArray["NAME"] . '"';
+			$errorItemsArray[] = $itemFieldsArray["NAME"];
 
 			echo $obElement->LAST_ERROR
 				. ' '
