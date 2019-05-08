@@ -20,7 +20,7 @@ $doublesList = [];
 $params = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
 $items = new Parser\Catalog\Items($params);
 
-$doublesFilter = array (
+$doublesFilter = array(
 	0 => 'Баллон Slingshot 2014 - 2015 Rally Bladders - Strut%',
 	1 => 'Баллон Slingshot 2014 - 2015 Rally LE Bladders%',
 	2 => 'Баллон Slingshot 2011-2014 RPM LE Bladders%',
@@ -84,14 +84,14 @@ $itemsList = $items->getList(["NAME" => $doublesFilter, "SECTION_ID" => ''], ["P
 
 foreach ($itemsList as $item) {
 //    if($item["IBLOCK_SECTION_ID"] != TEMP_CATALOG_SECTION) {
-		$itemsIds[$item["ID"]] = $item["ID"];
+	$itemsIds[$item["ID"]] = $item["ID"];
 //	}
 }
 
-$dbRes = \CIBlockElement::GetElementGroups($itemsIds,false, ["ID", "CODE", "NAME", "IBLOCK_ELEMENT_ID"]);
+$dbRes = \CIBlockElement::GetElementGroups($itemsIds, false, ["ID", "CODE", "NAME", "IBLOCK_ELEMENT_ID"]);
 
-while($res = $dbRes->GetNext()){
-    $doublesList[$res["IBLOCK_ELEMENT_ID"]][] = $res;
+while ($res = $dbRes->GetNext()) {
+	$doublesList[$res["IBLOCK_ELEMENT_ID"]][] = $res;
 }
 
 $items->reset();
@@ -100,21 +100,33 @@ $filterKeys = array_keys($doublesList);
 
 $itemsToAdd = $items->getList(["ID" => $filterKeys, "SECTION_ID" => ''], ["PROPERTY_CATEGORY_ID"])->list;
 
-foreach ($doublesList as $doubleKey => $doubleValue){
-    foreach ($doubleValue as $doubleValueKey => $doubleValueValue){
-        foreach ($itemsToAdd as $itemKey => $itemValue){
-            if($doubleValueValue["IBLOCK_ELEMENT_ID"] == $itemValue["ID"]){
-                $doublesList[$doubleKey][$doubleValueKey]["IBLOCK_ELEMENT_NAME"] = $itemValue["NAME"];
-                $doublesList[$doubleKey][$doubleValueKey]["IBLOCK_ELEMENT_CODE"] = $itemValue["CODE"];
-            }
-        }
-    }
+foreach ($doublesList as $doubleKey => $doubleValue) {
+	foreach ($doubleValue as $doubleValueKey => $doubleValueValue) {
+		foreach ($itemsToAdd as $itemKey => $itemValue) {
+			if ($doubleValueValue["IBLOCK_ELEMENT_ID"] == $itemValue["ID"]) {
+				$doublesList[$doubleKey][$doubleValueKey]["IBLOCK_ELEMENT_NAME"] = $itemValue["NAME"];
+				$doublesList[$doubleKey][$doubleValueKey]["IBLOCK_ELEMENT_CODE"] = $itemValue["CODE"];
+			}
+		}
+	}
+}
+
+$bindingsArray = [];
+
+foreach ($doublesList as $doubleKey => $doubleValue) {
+	foreach ($doubleValue as $doubleValueKey => $doubleValueValue) {
+        $bindingsArray[trim($doubleValueValue["IBLOCK_ELEMENT_NAME"])][$doubleValueValue["IBLOCK_ELEMENT_ID"]] = $doubleValueValue["ID"];
+	}
 }
 
 
 file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
 file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
 file_put_contents(__DIR__ . "/../logs/bind_itemsToAdd.log", print_r($itemsToAdd, true));
+
+file_put_contents(__DIR__ . "/../logs/bind_bindingsArray.log", print_r($bindingsArray, true));
+file_put_contents(__DIR__ . "/../logs/bind_bindingsArray--count.log", print_r(count($bindingsArray), true));
+
 file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
 file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
 
