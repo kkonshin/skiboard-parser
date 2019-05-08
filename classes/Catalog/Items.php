@@ -39,8 +39,8 @@ class Items
 	}
 
 	/**
-	 * Получает список товаров временного раздела, принимает дополнительные параметры
-	 * в зависимости от конкретного парсера
+	 * Список товаров временного раздела
+	 * Если передать в фильтр "SECTION_ID" => '' - вернет товары из всех разделов
 	 * @param array $additionalFilter
 	 * @param array $properties
 	 * @return $this
@@ -64,8 +64,12 @@ class Items
 
 		if (count($additionalFilter) > 0) {
 			$filter = array_merge($filter, $additionalFilter);
+			foreach ($filter as $key => $value){
+				if ($value == false){
+					unset($filter[$key]);
+				}
+			}
 		}
-
 		if (count($properties) > 0) {
 			$fields = array_merge($fields, $properties);
 		}
