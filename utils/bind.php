@@ -15,20 +15,11 @@ global $categoryToSection;
 while (ob_get_level()) {
 	ob_end_flush();
 }
-
-$params = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
-
-$items = new Parser\Catalog\Items($params);
-
-$itemsList = $items->getList([], ["PROPERTY_CATEGORY_ID"])->list;
-
 $itemsIds = [];
-
-foreach ($itemsList as $item) {
-	$itemsIds[$item["ID"]] = $item["ID"];
-}
-
-$doubles = [
+$doublesList = [];
+$params = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$items = new Parser\Catalog\Items($params);
+$doublesFilter = [
 	"%Баллон Slingshot 2014 - 2015 Rally Bladders - Strut ",
 	"%Баллон Slingshot 2014 - 2015 Rally LE Bladders ",
 	"%Баллон Slingshot 2011-2014 RPM LE Bladders ",
@@ -89,13 +80,18 @@ $doubles = [
 	"%Перчатки RideEngine 2018 2mm Gloves ",
 ];
 
-$filter = ["NAME" => $doubles];
-
-// TODO продумать фильтр
-
-\CIBlockElement::GetPropertyValuesArray($itemsIds, CATALOG_IBLOCK_ID, $filter);
-
-file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", var_export($itemsIds, true));
+$itemsList = $items->getList(["NAME" => $doublesFilter], ["PROPERTY_CATEGORY_ID"])->list;
+foreach ($itemsList as $item) {
+	$itemsIds[$item["ID"]] = $item["ID"];
+}
+$dbRes = \CIBlockElement::GetElementGroups($itemsIds,false, ["ID", "CODE", "NAME", "IBLOCK_ELEMENT_ID"]);
+while($res = $dbRes->GetNext()){
+    $doublesList[$res["IBLOCK_ELEMENT_ID"]] = $res;
+}
+//file_put_contents(__DIR__ . "/../logs/bind_itemsList.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/bind_itemsIds.log", print_r($itemsIds, true));
+file_put_contents(__DIR__ . "/../logs/bind_doublesList.log", print_r($doublesList, true));
+file_put_contents(__DIR__ . "/../logs/bind_doublesList--count.log", print_r(count($doublesList), true));
 
 // Только для SKIBOARD!
 // Привязка всех товаров временного раздела к разделам в зависимости от таблицы $categoryToSection из файла конфигурации
