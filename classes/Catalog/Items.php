@@ -12,10 +12,10 @@ class Items
 	 * @param \Parser\SectionParams $params
 	 */
 	function __construct(\Parser\SectionParams $params)
-
 	{
 		$this->catalogIblockId = $params->catalogIblockId;
 		$this->tempCatalogSection = $params->tempCatalogSection;
+		$this->skuIblockId = $params->skuIblockId;
 
 		// Инициализация параметров для шаблона "Chaining"
 
@@ -125,7 +125,6 @@ class Items
 					"IBLOCK_ID",
 					"ACTIVE",
 					"NAME",
-					"QUANTITY"
 				],
 				$extraParameters
 			);
@@ -145,6 +144,33 @@ class Items
 				$this->skusListFlatten[$offerKey] = $offerValue;
 			}
 		}
+		$this->addSkuQuantity();
 		return $this;
+	}
+
+	private function addSkuQuantity()
+	{
+		$ids = [];
+		$quantity = [];
+
+		if (count($this->skusListFlatten)){
+			foreach ($this->skusListFlatten as $sku){
+				$ids[] = $sku["ID"];
+			}
+
+			$dbRes = \CCatalogProduct::GetList([],["ID" => $ids], false, false, ["ID", "QUANTITY"]);
+
+			while($res = $dbRes->GetNext()){
+				$quantity[$res["ID"]] = $res["QUANTITY"];
+			}
+			foreach ($this->skusListFlatten as $key => $value){
+				foreach ($quantity as $id => $skuQuantity){
+					if ($value["ID"] == $id){
+						$this->skusListFlatten[$key]["QUANTITY"] = $skuQuantity;
+					}
+				}
+			}
+		}
+//		file_put_contents(__DIR__ . "/../../logs/addSkuQuantity--quantity.log", print_r($quantity, true));
 	}
 }

@@ -40,11 +40,11 @@ global $translitParams;
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Parser\Utils\Dirs::make(__DIR__);
 // Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
-$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
+$serverName = \Bitrix\Main\Config\Option::get('main', 'server_name');
 // Проверяем галку 'Установка для разработки'
-$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
+$isDevServer = \Bitrix\Main\Config\Option::get('main', 'update_devsrv');
 // Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
-if ($isDevServer === "Y"){
+if ($isDevServer === "Y") {
 	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
 	$serverName = "rocketstore.profi-server.ru";
 }
@@ -57,7 +57,7 @@ $crawler = null; // объект компонента Symfony
 $result = null; // Результат отправки почтового уведомления менеждерам
 
 // Конфигурируем объект для работы с сохраненными элементами каталога
-$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION, SKU_IBLOCK_ID);
 // Создаем объект для работы с товарами временного раздела
 $items = new Parser\Catalog\Items($sectionParams);
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
@@ -75,7 +75,7 @@ Parser\Catalog\Properties::createExternalItemIdProperty(
 	[
 		"NAME" => "Идентификатор товара в каталоге kite.ru",
 		"CODE" => "P_GROUP_ID",
-        "IBLOCK_ID" => CATALOG_IBLOCK_ID
+		"IBLOCK_ID" => CATALOG_IBLOCK_ID
 	]
 );
 // Создаем свойство для хранения внешнего ключа торгового предложения, если оно не существует
@@ -83,7 +83,7 @@ Parser\Catalog\Properties::createExternalItemIdProperty(
 	[
 		"NAME" => "Идентификатор торгового предложения в каталоге kite.ru",
 		"CODE" => "P_KITERU_EXTERNAL_OFFER_ID",
-        "IBLOCK_ID" => SKU_IBLOCK_ID
+		"IBLOCK_ID" => SKU_IBLOCK_ID
 	]
 );
 
@@ -109,16 +109,22 @@ $resultArrayKeys = array_keys($resultArray);
 // Товары (внешние ключи), которые будут добавлены в каталог
 $differenceAdd = array_values(array_diff($resultArrayKeys, $catalogItemsExternalIds));
 $differenceAddCount = count($differenceAdd);
-// Товары (внешние ключи), торговые предложения которых будут установлены в 0
+// Товары (внешние ключи), которые есть в каталоге, но отсутствуют в выгрузке. Их торговые предложения будут установлены в 0
 $differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
 $differenceDisableCount = count($differenceDisable);
+// Товары (внешние ключи), торговые предложения которых будут установлены в 5. Все товары, кроме отключаемых.
+$restoreQuantityItems = array_values(array_diff($catalogItemsExternalIds, $differenceDisable));
+$restoreQuantityItemsCount = count($restoreQuantityItems);
 
 //file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
 //file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisable--keys.log", print_r(array_keys($differenceDisable), true));
+//file_put_contents(__DIR__ . "/logs/console__catalogItemsExternalIds.log", print_r($catalogItemsExternalIds, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
+//file_put_contents(__DIR__ . "/logs/console__restoreQuantityItems.log", print_r($restoreQuantityItems, true));
 
 // Массив торговых предложений временного раздела
 $catalogSkus = $items->getList()
@@ -152,7 +158,7 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 				$addArray[$key] = $item;
 			}
 		}
-        // Запускаем для выбранных товаров парсер HTML
+		// Запускаем для выбранных товаров парсер HTML
 		foreach ($addArray as $key => $value) {
 			foreach ($value as $k => $v) {
 				$body = HtmlParser::getBody($v["URL"]);
@@ -189,7 +195,6 @@ if ($differenceDisableCount > 0) {
 
 	$items->reset();
 
-	// TODO выбрать количество
 	$disableSkusList = $items->getList($filter, $props)
 		->getItemsIds()
 		->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
@@ -198,15 +203,38 @@ if ($differenceDisableCount > 0) {
 
 	$items->reset();
 
-//	echo PHP_EOL;
-
 	foreach ($disableSkusList as $itemKey => $itemValue) {
 		if ($itemValue["QUANTITY"] > 0) {
 			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
 			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 		}
 	}
-//	echo PHP_EOL;
+}
+
+// Восстанавливаем кол-во ТП в каталоге до 5
+if ($restoreQuantityItemsCount > 0) {
+	$filter = [
+		"PROPERTY_P_GROUP_ID" => $restoreQuantityItems
+	];
+
+	$props = [
+		"PROPERTY_P_GROUP_ID"
+	];
+
+	$restoreQuantitySkusList = $items->getList($filter, $props)
+		->getItemsIds()
+		->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
+		->getSkusListFlatten()
+		->skusListFlatten;
+
+	$items->reset();
+
+	foreach ($restoreQuantitySkusList as $itemKey => $itemValue) {
+		if ($itemValue["QUANTITY"] < 5) {
+			CCatalogProduct::Update($itemKey, ["QUANTITY" => 5]);
+			echo "Количество ТП {$itemKey} - {$itemValue["NAME"]} восстановлено до 5 единиц" . PHP_EOL;
+		}
+	}
 }
 echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
 
@@ -441,7 +469,7 @@ if ($differenceAddCount > 0) {
 	require(__DIR__ . "/add.php");
 }
 
-require_once (__DIR__ . "/update_prices.php");
+require_once(__DIR__ . "/update_prices.php");
 // Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
 // Завершаем скрипт и выводим статистику
