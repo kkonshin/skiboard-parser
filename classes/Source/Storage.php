@@ -13,6 +13,16 @@ class Storage extends Source
 
 	private static $sourceSavePath = SOURCE_SAVE_PATH . "previous.xml";
 
+	/**
+	 * Возвращает путь к последнему сохраненому файлу каталога
+	 * @return string
+	 */
+
+	public static function getSourceSavePath()
+	{
+		return self::$sourceSavePath;
+	}
+
 	public static function storeCurrentXml(Source $source)
 	{
 		try {
@@ -21,11 +31,11 @@ class Storage extends Source
 
 			$sourceSavePath = self::$sourceSavePath;
 
-			if (is_file($sourceSavePath)){
+			if (is_file($sourceSavePath)) {
 				echo "Файл {$sourceSavePath} будет перезаписан." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			} else {
-				echo "Файл {$sourceSavePath} не найден. Будет произведено первичное заполнение временного раздела каталога" . PHP_EOL;
+				echo "Файл {$sourceSavePath} не найден." . PHP_EOL;
 				$result = file_put_contents($sourceSavePath, $source);
 			}
 
@@ -39,19 +49,17 @@ class Storage extends Source
 		}
 	}
 
+	/**
+	 * Возвращает содержимое последнего сохраненного файла каталога
+	 * @return bool|string
+	 */
+
 	public static function getPreviousXml()
 	{
-		if (is_file(self::$sourceSavePath)){
+		if (is_file(self::$sourceSavePath)) {
 			return file_get_contents(self::$sourceSavePath);
 		} else {
 			return false;
 		}
-
 	}
-
-	public static function rename()
-	{
-		
-	}
-
 }

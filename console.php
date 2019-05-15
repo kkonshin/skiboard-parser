@@ -1,22 +1,21 @@
 #!/usr/bin/php
-
 <?php
 
 if (php_sapi_name() !== "cli") {
-	die ('Этот скрипт предназначен для запуска из командной строки');
+	die ('Этот скрипт предназначен для запуска из командной строки: php -f console.php');
 }
 
-require(__DIR__ . "/config.php");  // настройки и константы
+require_once(__DIR__ . "/config.php");  // настройки и константы
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 
-// Очищаем все 3 буфера
+// Очищаем все 3 уровня буфера битрикса
 while (ob_get_level()) {
 	ob_end_flush();
 }
-
+// Засекаем время выполнения скрипта
 $startExecTime = getmicrotime();
-
+// Подключаем классы через composer
 require_once("vendor/autoload.php");
 
 use Symfony\Component\DomCrawler\Crawler;
@@ -26,216 +25,197 @@ use \Bitrix\Highloadblock as HL;
 
 use Parser\Source\Source;
 use Parser\Source\Storage;
-use Parser\ParserBody\ParserBody;
-
-use Parser\Update;
-use Parser\CatalogDate;
-use Parser\SectionsList;
-use Parser\Mail;
-
-use Parser\Utils\Price;
-
-global $USER;
-
-if (!is_dir(__DIR__ . "/logs")) {
-	mkdir(__DIR__ . "/logs", 0777, true);
-}
-if (!is_dir(__DIR__ . "/save")) {
-	mkdir(__DIR__ . "/save", 0777, true);
-}
+use Parser\ParserBody\ParserBody; // Основной парсер XML. Различается для разных сайтов-источников
+use Parser\HtmlParser\HtmlParser; // Дополнительный парсер для получения картинок и детального описания из HTML
 
 if (!Loader::includeModule('iblock')) {
 	die('Не удалось загрузить модуль инфоблоки');
 }
-
 if (!Loader::includeModule('catalog')) {
 	die('Невозможно загрузить модуль торгового каталога');
 }
 
-/**
- * Инициализация объекта для работы с источником
- */
+global $translitParams;
 
+// Создаем директории для сохранения файлов каталогов, логирования и т.п.
+Parser\Utils\Dirs::make(__DIR__);
+// Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
+$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
+// Проверяем галку 'Установка для разработки'
+$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
+// Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
+if ($isDevServer === "Y"){
+	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
+	$serverName = "rocketstore.profi-server.ru";
+}
+
+$resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
+$addArray = []; // массив товаров, которые будут добавлены в каталог
+$catalogItemsExternalIds = []; // Внешние ключи товаров каталога
+$newItems = []; // Массив новых товаров для отправки почтового уведомления менеджерам
+$crawler = null; // объект компонента Symfony
+$result = null; // Результат отправки почтового уведомления менеждерам
+
+// Конфигурируем объект для работы с сохраненными элементами каталога
+$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+// Создаем объект для работы с товарами временного раздела
+$items = new Parser\Catalog\Items($sectionParams);
+// Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
 $source = new Source(SOURCE);
-
-/**
- * Получение содержания файла - источника
- */
-
+// Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
-
-/**
- * Получение предыдущего сохраненного файла - источника
- */
-
-$previousXml = Storage::getPreviousXml();
-
-$previousResultArray = [];
-
-$resultDifferenceArray = [];
-$resultDifferenceArrayKeys = [];
-
-$isAddNewItems = false;
-
-$resultArrayLength = 0;
-$previousResultArrayLength = 0;
-
-// TODO разделяем парсинг, запись свойств, запись элементов, апдейт свойств (?), апдейт элементов
-
+// Создаем краулер для нового каталога
 $crawler = new Crawler($xml);
-
-if (!empty($previousXml)) {
-	$previousCrawler = new Crawler($previousXml);
-}
-
-// TODO удалить после тестирования
-
-/*
-$newSectionsList = [123,321,145];
-
-$mailSendResult = Parser\Mail::sendMail($newSectionsList);
-
-echo $mailSendResult->getId() . PHP_EOL; // ID записи в таблице b_event при удачном добавлении письма в очередь отправки
-*/
-
-// если даты каталогов не совпадают, значит получен новый прайс, распарсим его для получения даты
-// TODO убрать дублирование парсинга нового файла?
-
-if ($crawler && $previousCrawler) {
-	$isNewPrice = Parser\CatalogDate::checkDate($crawler, $previousCrawler);
-}
-
-if (!empty($previousXml) && $isNewPrice) {
-
-	$previousResultArray = ParserBody::parse($previousCrawler);  // Парсим старый файл
-
-	if (!empty($previousResultArray)) {
-		$previousResultArrayLength = count($previousResultArray);
-	}
-}
-
-$resultArray = ParserBody::parse($crawler); // Парсим новый файл в любом случае
-
-file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-
-//exit();
-
-$dbRes = CIBlockElement::GetList(
-	[],
+// Парсим новый каталог
+$resultArray = ParserBody::parse($crawler);
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+// Создаем свойство для хранения внешнего ключа товара, если оно не существует
+Parser\Catalog\Properties::createExternalItemIdProperty(
 	[
-		"IBLOCK_ID" => CATALOG_IBLOCK_ID,
-		"SECTION_ID" => TEMP_CATALOG_SECTION
-	],
-	false,
-	false, ["ID"]
-);
-
-while ($res = $dbRes->GetNext()) {
-	$catalogIdsTempArray[] = $res;
-}
-
-foreach ($catalogIdsTempArray as $cidsKey => $cidsValue) {
-	$catalogIds[] = $cidsValue["ID"];
-}
-
-// TODO - проверить свойство для каталога gssport
-
-$catalogSkus = CCatalogSku::getOffersList(
-	$catalogIds,
-	CATALOG_IBLOCK_ID,
-	[],
-	["*"],
-	[
-		"CODE" => ["SKIBOARD_EXTERNAL_OFFER_ID"]
+		"NAME" => "Идентификатор товара в каталоге gssport.ru",
+		"CODE" => "P_GSSPORT_GROUP_ID",
+		"IBLOCK_ID" => CATALOG_IBLOCK_ID
 	]
 );
 
-//echo "Количество товаров во временном разделе: " . count($catalogSkus) . PHP_EOL;
+// Создаем свойство для хранения внешнего ключа торгового предложения, если оно не существует
+Parser\Catalog\Properties::createExternalItemIdProperty(
+	[
+		"NAME" => "Идентификатор торгового предложения в каталоге gssport.ru",
+		"CODE" => "P_GSSPORT_EXTERNAL_OFFER_ID",
+		"IBLOCK_ID" => SKU_IBLOCK_ID
+	]
+);
 
-foreach ($catalogSkus as $skuKey => $skuValue) {
-	foreach ($skuValue as $key => $value) {
-		$catalogSkusWithoutParent[] = $value;
-		$skusPrices[] = CPrice::GetBasePrice($key);
+// Массив товаров временного раздела
+$catalogItems = $items->getList([], ["PROPERTY_P_GSSPORT_GROUP_ID"])->list;
+// Очищает результаты предыдущей выборки
+$items->reset();
+
+foreach ($catalogItems as $item) {
+	if (strlen($item["PROPERTY_P_GSSPORT_GROUP_ID_VALUE"]) > 0) {
+		$catalogItemsExternalIds[] = $item["PROPERTY_P_GSSPORT_GROUP_ID_VALUE"];
 	}
 }
 
-//echo "Количество торговых предложений: " . count($catalogSkusWithoutParent) . PHP_EOL;
-
-foreach ($catalogSkusWithoutParent as $skuKey => $skuValue) {
-	foreach ($skusPrices as $priceKey => $priceValue) {
-		if ($skuValue["ID"] == $priceValue["PRODUCT_ID"]) {
-			$catalogSkusWithoutParent[$skuKey]["PRICE"] = $priceValue["PRICE"];
-		}
+$i = 0;
+foreach ($resultArray as $itemKey => $item) {
+	foreach ($item as $offerKey => $offer) {
+		$i++;
 	}
 }
 
-/**
- * Обновление цен торговых предложений
- */
+$resultArrayKeys = array_keys($resultArray);
+// Товары (внешние ключи), которые будут добавлены в каталог
+$differenceAdd = array_values(array_diff($resultArrayKeys, $catalogItemsExternalIds));
+$differenceAddCount = count($differenceAdd);
+// Товары (внешние ключи), торговые предложения которых будут установлены в 0
+$differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
+$differenceDisableCount = count($differenceDisable);
 
-if(!empty($catalogSkusWithoutParent) && !empty($resultArray)){
-	Price::update($catalogSkusWithoutParent, $resultArray);
+file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
+file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
+file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
+file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
+file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
+file_put_contents(__DIR__ . "/logs/console__ catalogItemsExternalIds.log", print_r($catalogItemsExternalIds, true));
+
+// Массив торговых предложений временного раздела
+$catalogSkus = $items->getList()
+	->getItemsIds()
+	->getSkusList(["CODE" => ["P_GSSPORT_EXTERNAL_OFFER_ID"]])
+	->getSkusListFlatten()
+	->skusListFlatten;
+
+$items->reset();
+
+echo PHP_EOL;
+echo "Количество товаров во временном разделе каталога: " . count($catalogItems) . PHP_EOL;
+echo "Количество торговых предложений во временном разделе каталога: " . count($catalogSkus) . PHP_EOL;
+echo "Количество товаров в новом файле XML: " . count($resultArrayKeys) . PHP_EOL;
+echo "Количество торговых предложений в новом файле XML: " . $i . PHP_EOL;
+
+unset($i);
+
+if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
+	echo PHP_EOL;
+	echo "Временный раздел будет обновлен" . PHP_EOL;
+	echo PHP_EOL;
+	if ($differenceDisableCount > 0) {
+		echo "Товаров, количество ТП которых установлено в 0: " . $differenceDisableCount . PHP_EOL;
+	}
+	if ($differenceAddCount > 0) {
+		echo "Товаров будет добавлено: " . $differenceAddCount . PHP_EOL;
+		// Выбираем из $resultArray массив товаров для добавления
+		foreach ($resultArray as $key => $item) {
+			if (in_array($key, $differenceAdd)) {
+				$addArray[$key] = $item;
+			}
+		}
+		// Запускаем для выбранных товаров парсер HTML
+        /*
+		foreach ($addArray as $key => $value) {
+			foreach ($value as $k => $v) {
+			    if (empty($v["URL"])){
+			        continue;
+                }
+				$body = HtmlParser::getBody($v["URL"]);
+				if (!empty($body)) {
+					$addArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
+					$addArray[$key][$k]["HTML_MORE_PHOTO"] = HtmlParser::getMorePhoto($body);
+					$addArray[$key][$k]["HTML_DESCRIPTION"] = HtmlParser::getDescription($body);
+					if (!empty($addArray[$key][$k]["HTML_DESCRIPTION"])) {
+						$addArray[$key][$k]["HTML_PARSED_DESCRIPTION"] = HtmlParser::parseDescription($addArray[$key][$k]["HTML_DESCRIPTION"]);
+					}
+				}
+			}
+		}
+		*/
+
+//		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
+	}
+} else {
+	echo PHP_EOL;
+	echo "Выгрузка и каталог совпадают, обновление не требуется" . PHP_EOL;
+	echo PHP_EOL;
+	return;
 }
 
-if (!empty($resultArray)) {
-	$resultArrayLength = count($resultArray);
-}
+if ($differenceDisableCount > 0) {
 
-echo "Длина массива обновлений: " . $resultArrayLength . PHP_EOL;
-echo "Длина исходного массива: " . $previousResultArrayLength . PHP_EOL;
+	$filter = [
+		"PROPERTY_P_GSSPORT_GROUP_ID" => $differenceDisable
+	];
 
-if ($previousResultArrayLength > 0 && $resultArrayLength !== $previousResultArrayLength) {
+	$props = [
+		"PROPERTY_P_GSSPORT_GROUP_ID"
+	];
 
-	$resultArrayKeys = array_keys($resultArray);
-	$previousResultArrayKeys = array_keys($previousResultArray);
+	$disableItemsList = $items->getList($filter, $props)->list;
 
-	// TODO берем массив с большей длиной для определения разницы
-	if ($resultArrayLength > $previousResultArrayLength) {
+	$items->reset();
 
-		$resultDifferenceArrayKeys = array_diff($resultArrayKeys, $previousResultArrayKeys);
-		foreach ($resultDifferenceArrayKeys as $diffKey => $diffValue) {
-			$temp[$diffValue] = $resultArray[$diffValue];
-		}
-		$resultArray = $temp;
-		// Значит нужно записать в инфоблок новые элементы с ключами разницы
-		// т.е. выбрать из нового массива только эти элементы
+	// TODO выбрать количество
+	$disableSkusList = $items->getList($filter, $props)
+		->getItemsIds()
+		->getSkusList(["CODE" => ["P_GSSPORT_EXTERNAL_OFFER_ID"]])
+		->getSkusListFlatten()
+		->skusListFlatten;
 
-		$isAddNewItems = true;
+	$items->reset();
 
-	} elseif ($previousResultArrayLength > $resultArrayLength) {
+//	echo PHP_EOL;
 
-		$resultDifferenceArrayKeys = array_diff($previousResultArrayKeys, $resultArrayKeys);
-
-		// Значит в инфоблоке нужно деактивировать товары с ключами разницы
-
-		$dbRes = CIBlockElement::GetList(
-			[],
-			["IBLOCK_ID" => CATALOG_IBLOCK_ID, "SECTION_ID" => TEMP_CATALOG_SECTION, "PROPERTY_GROUP_ID" => $resultDifferenceArrayKeys],
-			false,
-			false,
-			["IBLOCK_ID", "ID", "NAME", "PROPERTY_GROUP_ID", "ACTIVE"]
-		);
-
-		while ($res = $dbRes->GetNext()) {
-			$temp[] = $res;
-		}
-
-		foreach ($temp as $tempKey => $tempValue) {
-			$element = new CIBlockElement();
-			$element->Update($tempValue["ID"], ["ACTIVE" => "N"]);
+	foreach ($disableSkusList as $itemKey => $itemValue) {
+		if ($itemValue["QUANTITY"] > 0) {
+			CCatalogProduct::Update($itemKey, ["QUANTITY" => 0]);
+			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 		}
 	}
-
-//	file_put_contents(__DIR__ . "/arrays_difference.log", print_r($resultDifferenceArrayKeys, true));
-//	file_put_contents(__DIR__ . "/resultArrayKeys.log", var_export($resultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/previousResultArrayKeys.log", var_export($previousResultArrayKeys, true));
-//	file_put_contents(__DIR__ . "/resultArray.log", print_r($resultArray, true));
-//	file_put_contents(__DIR__ . "/diffResultArray.log", var_export($diffResultArray, true));
+//	echo PHP_EOL;
 }
-
-echo "Парсинг завершен. Обновляем свойства элементов" . PHP_EOL;
-
-//-------------------------------------------КОНЕЦ ПАРСЕРА------------------------------------------------------------//
+echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
 
 //---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//
 
@@ -450,27 +430,33 @@ foreach ($manufacturerArray as $manId => $man) {
 	$manValueIdPairsArray[$man["UF_NAME"]] = $man["UF_XML_ID"];
 }
 
-//file_put_contents(__DIR__ . "/logs/manValueIdPairsArray.log", print_r($manValueIdPairsArray, true));
+// Сохраняем товары во временный раздел
+if ($differenceAddCount > 0) {
+	echo PHP_EOL;
+	echo "Сохраняем новые товары" . PHP_EOL;
+	echo PHP_EOL;
+//	require(__DIR__ . "/add.php");
+}
 
-// Сохранение товаров
+// Отправляем уведомление о новых товарах
+$newItemsLength = count($newItems);
+if (is_array($newItems) && $newItemsLength > 0) {
+	$result = \Parser\Mail::sendNewItems($newItems);
+}
 
-// FIXME запуск add должен происходить по определенным условиям
-//if($isAddNewItems){
-	echo "\nСохраняем товары" . PHP_EOL;
-	require(__DIR__ . "/add.php");
-//}
-
-/**
- * Сохранение файла - источника
- */
+if ($result && $result->isSuccess()) {
+	echo "Уведомление о {$newItemsLength} новых товарах успешно отправлено " . PHP_EOL;
+}
+//require_once (__DIR__ . "/update_prices.php");
+// Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
-
+// Завершаем скрипт и выводим статистику
 register_shutdown_function(function () {
 	global $startExecTime;
 	$elapsedMemory = (!function_exists('memory_get_usage'))
 		? '-'
 		: round(memory_get_usage() / 1024 / 1024, 2) . ' MB';
-	echo "\nВремя работы скрипта: " . (getmicrotime() - $startExecTime) . " сек\n";
+	echo "\nВремя работы скрипта: " . number_format((getmicrotime() - $startExecTime), 2) . " сек\n";
 	echo "Использованная память: " . $elapsedMemory . PHP_EOL;
 });
 

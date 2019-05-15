@@ -12,6 +12,7 @@ if (php_sapi_name() !== "cli") {
 require(__DIR__ . "/../config.php");
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/modules/main/include/prolog_before.php");
 require_once(__DIR__ . "/../vendor/autoload.php");
+
 use Parser\SectionParams;
 use Parser\ItemsStatus;
 use Parser\BindToSections;

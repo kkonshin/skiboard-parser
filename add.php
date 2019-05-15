@@ -1,30 +1,38 @@
 <?php
-//-----------------------------------------СОХРАНЕНИЕ (ADD) ЭЛЕМЕНТОВ (ПРОТОТИП)--------------------------------------//
+
+global $USER;
+global $addArray;
+global $serverName;
+global $valueIdPairsArray;
+global $translitParams;
+global $catalogSkus;
 
 // Ограничение длины массива для разработки
 //$offset = 0;
-//$length = count($resultArray) - $offset;
-//$length = 80;
-//$resultArray = array_slice($resultArray, $offset, $length, true);
+//$length = count($addArray) - $offset;
+//$length = 20;
+//$addArray = array_slice($addArray, $offset, $length, true);
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($addArray, true));
 
-echo "Количество товаров для записи: " . count($resultArray) . "\n";
+echo "Количество товаров для записи: " . count($addArray) . PHP_EOL;
+// Получаем инфоблок товаров для дальнейшего получения свойства типа привязки товар<->ТП
+$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID);
+// ID инфоблока товаров
+$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID'];
+// ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
+$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID'];
+// Массив внешних ключей торговых предложений. Используется для избежания записи дублей.
+$externalIdsArray = [];
 
-$arCatalog = CCatalog::GetByID(SKU_IBLOCK_ID); // Инфоблок товаров
+foreach ($catalogSkus as $key => $sku) {
+	if (!empty($sku["PROPERTIES"]["P_GSSPORT_EXTERNAL_OFFER_ID"]["VALUE"])) {
+		$externalIdsArray[$key] = $sku["PROPERTIES"]["P_GSSPORT_EXTERNAL_OFFER_ID"]["VALUE"];
+	}
+}
 
-$IBlockCatalogId = $arCatalog['PRODUCT_IBLOCK_ID']; // ID инфоблока товаров
-
-$SKUPropertyId = $arCatalog['SKU_PROPERTY_ID']; // ID свойства в инфоблоке предложений типа "Привязка к товарам (SKU)"
-
-foreach ($resultArray as $key => $item) {
+foreach ($addArray as $key => $item) {
 	try {
-		$offerPrice = 0;
-
-		$itemTypeId = 0;
-
-		$itemPurposeId = 0;
-
 		$morePhotoArray = []; // Массив дополнительных картинок товара
 
 		$obElement = new CIBlockElement;
@@ -41,66 +49,7 @@ foreach ($resultArray as $key => $item) {
 					}
 				}
 			}
-
-			if (!empty($offer["CATEGORY_ID"])) {
-				switch ($offer["CATEGORY_ID"]) {
-
-					/**
-					 *  Устанавливаем свойство "ТИП", если товар принадлежит к определенной категории
-					 */
-
-					case 358:
-						$itemTypeId = 1126;
-						break;
-					case 360:
-						$itemTypeId = 1127;
-						break;
-					case 292:
-						$itemTypeId = 1128;
-						break;
-					case 401:
-						$itemTypeId = 1129;
-						break;
-					case 279:
-						$itemTypeId = 1130;
-						break;
-					case 282:
-						$itemTypeId = 1131;
-						break;
-
-					/**
-					 *  Устанавливаем свойство "НАЗНАЧЕНИЕ", если товар принадлежит к определенной категории
-					 */
-
-					case 400:
-						$itemPurposeId = 1132;
-						break;
-					case 414:
-						$itemTypeId = 1133;
-						break;
-					case 415:
-					case 381:
-					case 370:
-						$itemTypeId = 1134;
-						break;
-					case 283:
-					case 366:
-					case 368:
-						$itemTypeId = 1135;
-						break;
-				}
-			}
 		}
-
-		if ($itemTypeId > 0) {
-			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
-		}
-		if ($itemPurposeId > 0) {
-			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
-		}
-
-		// Лог ошибок изображений
-
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
@@ -116,40 +65,48 @@ foreach ($resultArray as $key => $item) {
 			"DETAIL_TEXT" => (!empty ($item[0]["DESCRIPTION"])) ? html_entity_decode($item[0]["DESCRIPTION"]) : "",
 			"PROPERTY_VALUES" => [
 				"SITE_NAME" => P_SITE_NAME,
-				"GROUP_ID" => $key,
+				"P_GSSPORT_GROUP_ID" => $key,
 				"CATEGORY_ID" => $item[0]["CATEGORY_ID"],
 				"MORE_PHOTO" => (!empty($item[0]["MORE_PHOTO"])) ? $item[0]["MORE_PHOTO"] : "",
-				"SKIBOARD_ITEM_TYPE" => $itemTypeId > 0 ? $itemTypeId : '',
-				"SKIBOARD_ITEM_PURPOSE" => $itemPurposeId > 0 ? $itemPurposeId : ''
 			]
 		];
 
 		if ($productId = $obElement->Add($itemFieldsArray)) {
-			echo "Добавлен товар " . $productId . "\n";
+
+			echo "Добавлен товар " . $productId . PHP_EOL;
+
+			$filter = [
+				"ID" => $productId
+			];
+
+			$fields = [
+				"DETAIL_PAGE_URL"
+			];
+
+			// Собираем массив добавленных товаров для дальнейшей отправки уведомления
+			$newItems[$productId]["NAME"] = $itemFieldsArray["NAME"];
+			$newItems[$productId]["VENDOR_SITE_NAME"] = $itemFieldsArray["PROPERTY_VALUES"]["SITE_NAME"];
+			// Ссылка на детальную страницу ведет во временный раздел
+			$newItems[$productId]["DETAIL_PAGE_URL"] = "https://" . $serverName . $items->getList($filter, $fields)->list[0]["DETAIL_PAGE_URL"];
+
+			$items->reset();
+
 		} else {
-			echo "Ошибка добавления товара: " . $obElement->LAST_ERROR . "\n";
+
+			echo $obElement->LAST_ERROR
+				. ' '
+				. $itemFieldsArray["NAME"]
+				. ' >Внешний ключ> '
+				. $itemFieldsArray["PROPERTY_VALUES"]["P_GSSPORT_GROUP_ID"]
+				. PHP_EOL;
 			continue;
+
 		}
 
 		if ($productId) {
-
-			// FIXME uppercase
-
-			if (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])){
-				$manXmlId = $manValueIdPairsArray[strtoupper($item[0]["BRAND"])];
-			} else if (!empty($manValueIdPairsArray[$item[0]["BRAND"]])) {
-				$manXmlId = $manValueIdPairsArray[$item[0]["BRAND"]];
-			} else if (!empty($manValueIdPairsArray[strtolower($item[0]["BRAND"])])){
-				$manXmlId = $manValueIdPairsArray[strtolower($item[0]["BRAND"])];
-			} else if (!empty($manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))])){
-				$manXmlId = $manValueIdPairsArray[ucfirst(strtolower($item[0]["BRAND"]))];
-			}
-
-			/*
-			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["BRAND"])]))
-				? ($manValueIdPairsArray[strtoupper($item[0]["BRAND"])])
-				: ($manValueIdPairsArray[$item[0]["BRAND"]]);
-			*/
+			$manXmlId = (!empty($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])]))
+				? ($manValueIdPairsArray[strtoupper($item[0]["ATTRIBUTES"]["Бренд"])])
+				: ($manValueIdPairsArray[$item[0]["ATTRIBUTES"]["Бренд"]]);
 
 			// Запись значения свойства "Производитель". Передается UF_XML_ID из хайлоад-блока
 			if (!empty ($manXmlId)) {
@@ -158,39 +115,26 @@ foreach ($resultArray as $key => $item) {
 
 			foreach ($item as $k => $offer) {
 
+				// Если ТП с таким ключом уже существует в разделе - не записываем
+				if (in_array($offer["OFFER_ID"], $externalIdsArray)) {
+					continue;
+				}
+
 				$obElement = new CIBlockElement();
 
-				// Цена торгового предложения в зависимости от сезона
-				/*
-				if (in_array((int)$offer["CATEGORY_ID"], SUMMER)) {
-					$offerPrice = $offer["PRICE"] * 1.5;
-				}
-
-				if (in_array((int)$offer["CATEGORY_ID"], WINTER)) {
-					$offerPrice = $offer["PRICE"] * 1.6;
-				}
-				*/
-
-				$offerPrice = $offer["PRICE"];
-
 				$arOfferProps = [
+					// Привязка к родительскому товару
 					$SKUPropertyId => $productId,
 					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
-					'SKIBOARD_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
+					'P_GSSPORT_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 				];
 
 				foreach ($offer['ATTRIBUTES'] as $propertyName => $propertyValue) {
 					$arOfferProps[strtoupper(CUtil::translit($propertyName, 'ru', $translitParams))] = $propertyValue;
 				}
 
-				if (!empty($offer["ATTRIBUTES"]["variation_sku"])){
-					$offerName = $offer["ATTRIBUTES"]["variation_sku"];
-				} else {
-					$offerName = $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"];
-				}
-
 				$arOfferFields = [
-					'NAME' => $offerName,
+					'NAME' => $offer["NAME"] . " " . $offer["ATTRIBUTES"]["Размер"] . " " . $offer["ATTRIBUTES"]["Артикул"],
 					'IBLOCK_ID' => SKU_IBLOCK_ID,
 					'ACTIVE' => 'Y',
 					"DETAIL_PICTURE" => (isset($offer["PICTURES"][0])) ? CFile::MakeFileArray($offer["PICTURES"][0]) : "",
@@ -207,24 +151,18 @@ foreach ($resultArray as $key => $item) {
 						'QUANTITY' => '5',
 						"VAT_INCLUDED" => "Y"
 					]);
-
 					if (!$catalogProductAddResult) {
 						throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
 					}
-
-					// и установим цену
-					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
+					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offer["PRICE"], "RUB")) {
 						throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
 					}
-
 					echo "Добавлено торговое предложение " . $offerId . PHP_EOL;
-
 				}
 			}
 		}
+
 	} catch (Exception $e) {
 		echo $e->getMessage() . PHP_EOL;
 	}
 }
-
-//--------------------------------------КОНЕЦ СОХРАНЕНИЯ (ADD) ЭЛЕМЕНТОВ----------------------------------------------//
