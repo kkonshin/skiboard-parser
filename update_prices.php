@@ -14,6 +14,10 @@ foreach ($catalogSkus as $skuKey => $skuValue) {
 }
 // Перед обновлением цен убедимся что внешние ключи заполнены
 // Обновятся только ТП, которые есть в новом прайсе
+
+// TODO - цены берутся из $resultArray.
+// Убедиться, что в нем присутствуют сезонные наценки
+// Исправить механизм в add.php
 Parser\Utils\ExternalOfferId::updateExternalOfferId__skiboard($catalogSkus, $resultArray);
 // Добавляем в массив торговых предложений цены
 $catalogSkus = Parser\Catalog\Prices::prepare($catalogSkus, $skusPrices);

@@ -67,8 +67,8 @@ $xml = $source->getSource();
 $crawler = new Crawler($xml);
 // Парсим новый каталог
 $resultArray = ParserBody::parse($crawler);
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
-
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+exit();
 //TEMP
 //$resultArray = array_slice($resultArray, 30, 30, true); // Для отладки
 //ENDTEMP
