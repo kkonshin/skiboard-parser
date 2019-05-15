@@ -20,7 +20,7 @@ class ParserBody
 	 * Возвращает список категорий, название которых отличается от "Нет в наличии"
 	 * @return array
 	 */
- 	public static function getAvailableCategories()
+	public static function getAvailableCategories()
 	{
 		return self::$availableCategoriesArray;
 	}
@@ -187,9 +187,10 @@ class ParserBody
 						if ($match) {
 							$lastParens = $matches[0][count($matches[0]) - 1];
 							self::$groupedItemsArray[$key][$skuKey]['ATTRIBUTES']['Размер'] = trim(
-								substr($lastParens, 1, -1)
-							);
-
+								substr($lastParens, 1, -1));
+							// удаляем перенос строк из размеров
+							self::$groupedItemsArray[$key][$skuKey]['ATTRIBUTES']['Размер'] =
+								preg_replace( "/\r|\n/", "", self::$groupedItemsArray[$key][$skuKey]['ATTRIBUTES']['Размер']);
 //                            $pattern = '/\(' . self::$groupedItemsArray[$key][$skuKey]["ATTRIBUTES"]["Размер"] . '\)/';
 
 							// -2 - это скобки, убранные при записи размера
