@@ -56,7 +56,7 @@ $crawler = null; // объект компонента Symfony
 $result = null; // Результат отправки почтового уведомления менеждерам
 
 // Конфигурируем объект для работы с сохраненными элементами каталога
-$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION, SKU_IBLOCK_ID);
 // Создаем объект для работы с товарами временного раздела
 $items = new Parser\Catalog\Items($sectionParams);
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
@@ -117,13 +117,19 @@ $differenceAddCount = count($differenceAdd);
 // Товары (внешние ключи), торговые предложения которых будут установлены в 0
 $differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
 $differenceDisableCount = count($differenceDisable);
+// Товары (внешние ключи), торговые предложения которых будут установлены в 5. Все товары, кроме отключаемых.
+$restoreQuantityItems = array_values(array_diff($catalogItemsExternalIds, $differenceDisable));
+$restoreQuantityItemsCount = count($restoreQuantityItems);
 
 //file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
 //file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisable--keys.log", print_r(array_keys($differenceDisable), true));
+//file_put_contents(__DIR__ . "/logs/console__catalogItemsExternalIds.log", print_r($catalogItemsExternalIds, true));
 //file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
+//file_put_contents(__DIR__ . "/logs/console__restoreQuantityItems.log", print_r($restoreQuantityItems, true));
 
 // Массив торговых предложений временного раздела
 $catalogSkus = $items->getList()
@@ -197,9 +203,34 @@ if ($differenceDisableCount > 0) {
 			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 		}
 	}
-//	echo PHP_EOL;
+	echo PHP_EOL;
 }
 
+// Восстанавливаем кол-во ТП в каталоге до 5
+if ($restoreQuantityItemsCount > 0) {
+	$filter = [
+		"PROPERTY_P_GROUP_ID" => $restoreQuantityItems
+	];
+
+	$props = [
+		"PROPERTY_P_GROUP_ID"
+	];
+
+	$restoreQuantitySkusList = $items->getList($filter, $props)
+		->getItemsIds()
+		->getSkusList(["CODE" => ["P_KITERU_EXTERNAL_OFFER_ID"]])
+		->getSkusListFlatten()
+		->skusListFlatten;
+
+	$items->reset();
+
+	foreach ($restoreQuantitySkusList as $itemKey => $itemValue) {
+		if ($itemValue["QUANTITY"] < 5) {
+			CCatalogProduct::Update($itemKey, ["QUANTITY" => 5]);
+			echo "Количество ТП {$itemKey} - {$itemValue["NAME"]} восстановлено до 5 единиц" . PHP_EOL;
+		}
+	}
+}
 echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
 
 //---------------------------------------------ОБРАБОТКА РАЗМЕРОВ-----------------------------------------------------//

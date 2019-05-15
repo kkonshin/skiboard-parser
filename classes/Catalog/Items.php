@@ -146,7 +146,36 @@ class Items
 				$this->skusListFlatten[$offerKey] = $offerValue;
 			}
 		}
+		$this->addSkuQuantity();
 		return $this;
 	}
 
+	/**
+	 * Служебная функция, добавляет количество единиц ТП в $this->skusListFlatten
+	 */
+
+	private function addSkuQuantity()
+	{
+		$ids = [];
+		$quantity = [];
+
+		if (count($this->skusListFlatten)){
+			foreach ($this->skusListFlatten as $sku){
+				$ids[] = $sku["ID"];
+			}
+
+			$dbRes = \CCatalogProduct::GetList([],["ID" => $ids], false, false, ["ID", "QUANTITY"]);
+
+			while($res = $dbRes->GetNext()){
+				$quantity[$res["ID"]] = $res["QUANTITY"];
+			}
+			foreach ($this->skusListFlatten as $key => $value){
+				foreach ($quantity as $id => $skuQuantity){
+					if ($value["ID"] == $id){
+						$this->skusListFlatten[$key]["QUANTITY"] = $skuQuantity;
+					}
+				}
+			}
+		}
+	}
 }

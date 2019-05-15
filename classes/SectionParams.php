@@ -5,16 +5,16 @@ namespace Parser;
 class SectionParams
 {
 	/**
-	 * Позволяет создавать экземпляры для конфигурирования парсеров
-	 * Инъекция зависимости для Items
 	 * SectionParams constructor.
 	 * @param $catalogIblockId
 	 * @param $tempCatalogSection
+	 * @param int $skuIblockId
 	 */
 
-	function __construct($catalogIblockId, $tempCatalogSection)
+	function __construct($catalogIblockId, $tempCatalogSection, $skuIblockId = 13)
 	{
 		$this->catalogIblockId = $catalogIblockId;
 		$this->tempCatalogSection = $tempCatalogSection;
+		$this->skuIblockId = $skuIblockId;
 	}
 }
