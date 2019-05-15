@@ -29,7 +29,7 @@ class Properties
 				"ACTIVE" => "Y",
 				"CODE" => $propertyParams["CODE"],
 				"PROPERTY_TYPE" => "S",
-				"IBLOCK_ID" => CATALOG_IBLOCK_ID,
+				"IBLOCK_ID" => $propertyParams["IBLOCK_ID"],
 				"SEARCHABLE" => "Y",
 				"FILTRABLE" => "Y",
 				"VALUES" => [
