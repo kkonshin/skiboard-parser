@@ -209,6 +209,7 @@ if ($differenceDisableCount > 0) {
 			echo "Количество отсутствующего в новом прайсе ТП {$itemKey} - {$itemValue["NAME"]} установлено в 0" . PHP_EOL;
 		}
 	}
+	echo PHP_EOL;
 }
 
 // Восстанавливаем кол-во ТП в каталоге до 5
