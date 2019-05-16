@@ -455,7 +455,11 @@ foreach ($manufacturerArray as $manId => $man) {
 // Отправляем уведомление о новых товарах
 $newItemsLength = count($newItems);
 if (is_array($newItems) && $newItemsLength > 0) {
-	$result = \Parser\Mail::sendNewItems($newItems);
+	try {
+		$result = \Parser\Mail::sendNewItems($newItems);
+	} catch (Exception $e) {
+		echo PHP_EOL . $e->getTraceAsString() . PHP_EOL;
+	}
 }
 
 if ($result && $result->isSuccess()) {
