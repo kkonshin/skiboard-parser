@@ -19,11 +19,9 @@ class ParserBody
 	private static $ta = [];
 	private static $parentItemsIdsArray = [];
 
-	public static function parse(Crawler $crawler = null)
+	public static function parse(Crawler $crawler)
 	{
-		$sourceDate = $crawler->filter('yml_catalog')->attr('date');
-
-		echo "Разбираем каталог от " . $sourceDate . PHP_EOL;
+		echo "Разбираем каталог от " . $crawler->filter('yml_catalog')->attr('date') . PHP_EOL;
 
 		$offers = $crawler->filter('offer');
 
@@ -47,15 +45,14 @@ class ParserBody
 				foreach ($item as $k => $v) {
 
 					self::$ta[$key]["PARENT_ITEM_ID"] = (!empty($groupIds[$key])) ? $groupIds[$key] : $offerIds[$key];
-
-					self::$ta[$key]["OFFER_ID"] = $offerIds[$key];
+					self::$ta[$key]["OFFER_ID"] = trim($offerIds[$key]);
 
 					if ($v->nodeName === 'name') {
-						self::$ta[$key]['NAME'] = $v->nodeValue;
+						self::$ta[$key]['NAME'] = trim($v->nodeValue);
 					}
 
 					if ($v->nodeName === 'price') {
-						self::$ta[$key]['PRICE'] = $v->nodeValue;
+						self::$ta[$key]['PRICE'] = trim($v->nodeValue);
 					}
 
 					// Исключаем категории
@@ -71,20 +68,20 @@ class ParserBody
 					}
 
 					if ($v->nodeName === 'url') {
-						self::$ta[$key]['URL'] = $v->nodeValue;
+						self::$ta[$key]['URL'] = trim($v->nodeValue);
 					}
 
 					if ($v->nodeName === 'vendor') {
-						self::$ta[$key]['BRAND'] = $v->nodeValue;
+						self::$ta[$key]['BRAND'] = trim($v->nodeValue);
 					}
 
 					if ($v->nodeName === 'picture') {
 						self::$ta[$key]['PICTURES'][] = $v->nodeValue;
 					}
 					if ($v->nodeName === 'description') {
-						self::$ta[$key]['DESCRIPTION'] = $v->nodeValue;
+						self::$ta[$key]['DESCRIPTION'] = trim($v->nodeValue);
 					}
-					self::$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
+					self::$ta[$key]['ATTRIBUTES'] = trim($item->filter('param')->extract(['name', '_text']));
 				}
 			}
 
@@ -139,11 +136,8 @@ class ParserBody
 			}
 
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
-
 				foreach ($itemValue as $offerKey => $offerValue) {
-
 					foreach (self::$colorsArray[$offerValue['PARENT_ITEM_ID']] as $colorKey => $colorValue) {
-
 						if (strtolower(trim($colorValue)) === strtolower(trim($offerValue['ATTRIBUTES']['Цвет']))) {
 							self::$groupedItemsArray[$itemKey]['PARTS'][$colorValue][] = $offerValue;
 							unset(self::$groupedItemsArray[$itemKey][$offerKey]);
@@ -172,7 +166,8 @@ class ParserBody
 			return self::$groupedItemsArray;
 
 		} catch (\Exception $e) {
-			return $e->getMessage();
+			echo "e\n";
+			return $e->getTraceAsString();
 		}
 	}
 }

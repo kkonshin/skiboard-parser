@@ -31,17 +31,11 @@ class Prices
 	public static function update(Array $catalogSkus, Array $resultArray)
 	{
 		foreach ($catalogSkus as $offerIdKey => $offerIdValue) {
-
 			foreach ($resultArray as $resultKey => $resultItem) {
-
 				foreach ($resultItem as $offerKey => $offerValue) {
-
-					if ($offerValue["OFFER_ID"] == $offerIdValue["PROPERTIES"]["P_KITERU_EXTERNAL_OFFER_ID"]["VALUE"]) {
-
+					if ($offerValue["OFFER_ID"] == $offerIdValue["PROPERTIES"]["P_GSSPORT_EXTERNAL_OFFER_ID"]["VALUE"]) {
 						$tmpPriceId = null;
-
 						$cp = new \CPrice();
-
 						$dbres = $cp->GetList(
 							[],
 							[

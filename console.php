@@ -18,8 +18,6 @@ $startExecTime = getmicrotime();
 // Подключаем классы через composer
 require_once("vendor/autoload.php");
 
-use Symfony\Component\DomCrawler\Crawler;
-
 use \Bitrix\Main\Loader;
 use \Bitrix\Highloadblock as HL;
 
@@ -37,18 +35,7 @@ if (!Loader::includeModule('catalog')) {
 
 global $translitParams;
 
-// Создаем директории для сохранения файлов каталогов, логирования и т.п.
-Parser\Utils\Dirs::make(__DIR__);
-// Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
-$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
-// Проверяем галку 'Установка для разработки'
-$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
-// Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
-if ($isDevServer === "Y"){
-	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
-	$serverName = "rocketstore.profi-server.ru";
-}
-
+$source = \SOURCE;
 $resultArray = []; // результат парсинга нового полученного XML-каталога с сайта-донора
 $addArray = []; // массив товаров, которые будут добавлены в каталог
 $catalogItemsExternalIds = []; // Внешние ключи товаров каталога
@@ -56,18 +43,32 @@ $newItems = []; // Массив новых товаров для отправк�
 $crawler = null; // объект компонента Symfony
 $result = null; // Результат отправки почтового уведомления менеждерам
 
+// Создаем директории для сохранения файлов каталогов, логирования и т.п.
+Parser\Utils\Dirs::make(__DIR__);
+// Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
+$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
+// Проверяем галку 'Установка для разработки'
+$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
+
+// Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
+if ($isDevServer === "Y"){
+	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
+	$serverName = "rocketstore.profi-server.ru";
+	$source = "save/diller2.xml";
+}
 // Конфигурируем объект для работы с сохраненными элементами каталога
-$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION);
+$sectionParams = new Parser\SectionParams(CATALOG_IBLOCK_ID, TEMP_CATALOG_SECTION, SKU_IBLOCK_ID);
 // Создаем объект для работы с товарами временного раздела
 $items = new Parser\Catalog\Items($sectionParams);
 // Создаем экземпляр источника, фактически это путь к каталогу товаров на сайте-источнике
-$source = new Source(SOURCE);
+$source = new Source($source);
 // Получаем содержание каталога с сайта-источника, которое и будем парсить
 $xml = $source->getSource();
 // Создаем краулер для нового каталога
-$crawler = new Crawler($xml);
+$crawler = new Symfony\Component\DomCrawler\Crawler($xml);
 // Парсим новый каталог
 $resultArray = ParserBody::parse($crawler);
+
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 // Создаем свойство для хранения внешнего ключа товара, если оно не существует
 Parser\Catalog\Properties::createExternalItemIdProperty(
@@ -112,14 +113,19 @@ $differenceAddCount = count($differenceAdd);
 // Товары (внешние ключи), торговые предложения которых будут установлены в 0
 $differenceDisable = array_values(array_diff($catalogItemsExternalIds, $resultArrayKeys));
 $differenceDisableCount = count($differenceDisable);
+// Товары (внешние ключи), торговые предложения которых будут установлены в 5. Все товары, кроме отключаемых.
+$restoreQuantityItems = array_values(array_diff($catalogItemsExternalIds, $differenceDisable));
+$restoreQuantityItemsCount = count($restoreQuantityItems);
 
-file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
-file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
-file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
-file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
-file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
-file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
-file_put_contents(__DIR__ . "/logs/console__ catalogItemsExternalIds.log", print_r($catalogItemsExternalIds, true));
+//file_put_contents(__DIR__ . "/logs/console__resultArray.log", print_r($resultArray, true));
+//file_put_contents(__DIR__ . "/logs/console__resultArrayKeys.log", print_r($resultArrayKeys, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceAdd.log", print_r($differenceAdd, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceAddCount.log", print_r($differenceAddCount, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisable.log", print_r($differenceDisable, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisable--keys.log", print_r(array_keys($differenceDisable), true));
+//file_put_contents(__DIR__ . "/logs/console__catalogItemsExternalIds.log", print_r($catalogItemsExternalIds, true));
+//file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
+//file_put_contents(__DIR__ . "/logs/console__restoreQuantityItems.log", print_r($restoreQuantityItems, true));
 
 // Массив торговых предложений временного раздела
 $catalogSkus = $items->getList()
@@ -214,6 +220,34 @@ if ($differenceDisableCount > 0) {
 		}
 	}
 //	echo PHP_EOL;
+}
+
+// Восстанавливаем кол-во ТП в каталоге до 5
+if ($restoreQuantityItemsCount > 0) {
+	$filter = [
+		"PROPERTY_P_GSSPORT_GROUP_ID" => $restoreQuantityItems
+	];
+
+	$props = [
+		"PROPERTY_P_GSSPORT_GROUP_ID"
+	];
+
+	$restoreQuantitySkusList = $items->getList($filter, $props)
+		->getItemsIds()
+		->getSkusList(["CODE" => ["P_GSSPORT_EXTERNAL_OFFER_ID"]])
+		->getSkusListFlatten()
+		->skusListFlatten;
+
+	$items->reset();
+
+//	file_put_contents(__DIR__ . "/logs/console__restoreQuantitySkusList.log", print_r($restoreQuantitySkusList, true));
+
+	foreach ($restoreQuantitySkusList as $itemKey => $itemValue) {
+		if ($itemValue["QUANTITY"] < 5) {
+			CCatalogProduct::Update($itemKey, ["QUANTITY" => 5]);
+			echo "Количество ТП {$itemKey} - {$itemValue["NAME"]} восстановлено до 5 единиц" . PHP_EOL;
+		}
+	}
 }
 echo "Обновляем свойства товаров и торговых предложений" . PHP_EOL;
 
@@ -435,19 +469,23 @@ if ($differenceAddCount > 0) {
 	echo PHP_EOL;
 	echo "Сохраняем новые товары" . PHP_EOL;
 	echo PHP_EOL;
-//	require(__DIR__ . "/add.php");
+	require(__DIR__ . "/add.php");
 }
 
 // Отправляем уведомление о новых товарах
 $newItemsLength = count($newItems);
 if (is_array($newItems) && $newItemsLength > 0) {
-	$result = \Parser\Mail::sendNewItems($newItems);
+    try {
+		$result = Parser\Mail::sendNewItems($newItems);
+    } catch (Exception $e){
+        echo PHP_EOL . $e->getTraceAsString() . PHP_EOL;
+    }
 }
 
 if ($result && $result->isSuccess()) {
 	echo "Уведомление о {$newItemsLength} новых товарах успешно отправлено " . PHP_EOL;
 }
-//require_once (__DIR__ . "/update_prices.php");
+require_once (__DIR__ . "/update_prices.php");
 // Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
 // Завершаем скрипт и выводим статистику
