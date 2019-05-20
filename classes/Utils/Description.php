@@ -4,22 +4,19 @@ namespace Parser\Utils;
 
 class Description extends \Parser\ItemsStatus
 {
-	/**
-	 * Обновление детального описания товара
-	 * @param \Parser\ItemsStatus $object
-	 * @param array|null $resultArray
-	 */
-
-	public static function updateDescription(\Parser\ItemsStatus $object, array $resultArray=null)
+	public static function updateDescription(\Parser\Catalog\Items $object, array $resultArray, $useHtmlDescription = false)
 	{
-		$itemsList = $object->getList();
-
+		$items = $object->getList()->list;
 		try {
-			foreach ($itemsList as $itemKey => $itemValue) {
+			foreach ($items as $itemKey => $itemValue) {
 				foreach ($resultArray as $resultArrayKey => $resultArrayValue){
 					if (\CUtil::translit($resultArrayValue[0]["NAME"] . ' ' . $resultArrayValue[0]["OFFER_ID"], "ru", P_TRANSLIT_PARAMS) === $itemValue["CODE"]){
 						$element = new \CIBlockElement();
-						echo $element->Update($itemValue["ID"], ["DETAIL_TEXT" => html_entity_decode($resultArrayValue[0]["DESCRIPTION"])]);
+						//
+						$description = $useHtmlDescription && $resultArrayValue[0]["HTML_PARSED_DESCRIPTION"]
+							? $resultArrayValue[0]["HTML_PARSED_DESCRIPTION"]
+							: $resultArrayValue[0]["DESCRIPTION"];
+						echo $element->Update($itemValue["ID"], ["DETAIL_TEXT" => html_entity_decode($description)]);
 					}
 				}
 			}

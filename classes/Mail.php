@@ -56,7 +56,7 @@ class Mail
 				"EVENT_NAME" => "NEW_ITEMS_IN_YML",
 				"LID" => "s1",
 				"C_FIELDS" => [
-//					"EMAIL" => "konshin@profi-studio.ru",
+					"EMAIL" => "konshin@profi-studio.ru",
 					"NEW_ITEMS_LIST" => $htmlString,
 				]
 			]);
@@ -65,4 +65,8 @@ class Mail
 			return false;
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 36635a2aa27c23ee5de59ff847fe6259e80e72e1

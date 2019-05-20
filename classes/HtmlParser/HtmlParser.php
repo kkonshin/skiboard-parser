@@ -85,7 +85,7 @@ class HtmlParser
 	{
 		try {
 			$crawler = new Crawler($body);
-			$descriptionHtml = $crawler->filter('.element-description')->html();
+			$descriptionHtml = $crawler->filter('.field--name-field-product-description')->html();
 			return $descriptionHtml;
 		} catch (\Exception $e) {
 //			echo $e->getTraceAsString() . ' ' . $e->getMessage() . PHP_EOL;
