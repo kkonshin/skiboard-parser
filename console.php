@@ -46,12 +46,12 @@ $result = null; // Результат отправки почтового уве
 // Создаем директории для сохранения файлов каталогов, логирования и т.п.
 Parser\Utils\Dirs::make(__DIR__);
 // Получаем название сайта из опций главного модуля, т.к. контекст у нас - CLI
-$serverName = \Bitrix\Main\Config\Option::get('main','server_name');
+$serverName = \Bitrix\Main\Config\Option::get('main', 'server_name');
 // Проверяем галку 'Установка для разработки'
-$isDevServer = \Bitrix\Main\Config\Option::get('main','update_devsrv');
+$isDevServer = \Bitrix\Main\Config\Option::get('main', 'update_devsrv');
 
 // Здесь можно переопределить параметры для тестового сайта, например ID временного раздела
-if ($isDevServer === "Y"){
+if ($isDevServer === "Y") {
 	echo "В главном модуле включена опция 'Установка для разработки'. Параметры config.php будут переопределены." . PHP_EOL;
 	$serverName = "rocketstore.profi-server.ru";
 	$source = "save/diller2.xml";
@@ -160,12 +160,12 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
 			}
 		}
 		// Запускаем для выбранных товаров парсер HTML
-        /*
+		/*
 		foreach ($addArray as $key => $value) {
 			foreach ($value as $k => $v) {
-			    if (empty($v["URL"])){
-			        continue;
-                }
+				if (empty($v["URL"])){
+					continue;
+				}
 				$body = HtmlParser::getBody($v["URL"]);
 				if (!empty($body)) {
 					$addArray[$key][$k]["HTML_DETAIL_PICTURE_URL"] = HtmlParser::getDetailPicture($body);
@@ -337,9 +337,9 @@ foreach ($resultArray as $key => $item) {
 	foreach ($item as $k => $offer) {
 		foreach ($offer["ATTRIBUTES"] as $attribute => $attributeValue) {
 			if (!in_array($attribute, $allSourcePropertiesArray)) {
-                if (!in_array($attribute, P_PROPERTIES_TO_EXCLUDE)){
+				if (!in_array($attribute, P_PROPERTIES_TO_EXCLUDE)) {
 					$allSourcePropertiesArray[] = $attribute;
-                }
+				}
 			}
 		}
 	}
@@ -475,21 +475,17 @@ if ($differenceAddCount > 0) {
 // Отправляем уведомление о новых товарах
 $newItemsLength = count($newItems);
 if (is_array($newItems) && $newItemsLength > 0) {
-<<<<<<< HEAD
-	$result = Parser\Mail::sendNewItems($newItems);
-=======
-    try {
+	try {
 		$result = Parser\Mail::sendNewItems($newItems);
-    } catch (Exception $e){
-        echo PHP_EOL . $e->getTraceAsString() . PHP_EOL;
-    }
->>>>>>> 36635a2aa27c23ee5de59ff847fe6259e80e72e1
+	} catch (Exception $e) {
+		echo PHP_EOL . $e->getTraceAsString() . PHP_EOL;
+	}
 }
 
 if ($result && $result->isSuccess()) {
 	echo "Уведомление о {$newItemsLength} новых товарах успешно отправлено " . PHP_EOL;
 }
-require_once (__DIR__ . "/update_prices.php");
+require_once(__DIR__ . "/update_prices.php");
 // Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
 // Завершаем скрипт и выводим статистику

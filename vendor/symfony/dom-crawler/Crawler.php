@@ -256,7 +256,7 @@ class Crawler implements \Countable, \IteratorAggregate
         if ('' !== trim($content)) {
 //            $dom->loadXML($content, $options);
             $dom->loadXML($content, LIBXML_PARSEHUGE);
-			file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/test/gssport-parser-new/logs/DOMDocument--XML.log", print_r($dom->saveXML(), true));
+//			file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/test/gssport-parser-new/logs/DOMDocument--XML.log", print_r($dom->saveXML(), true));
         }
 
         libxml_use_internal_errors($internalErrors);
