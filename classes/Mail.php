@@ -44,7 +44,7 @@ class Mail
 				"<tr>"
 				. "<td>" . $item["NAME"] . "</td>"
 				. "<td>" . $item["VENDOR_SITE_NAME"] . "</td>"
-				. "<td>" . $item["DETAIL_PAGE_URL"]	. "</td>"
+				. "<td>" . $item["DETAIL_PAGE_URL"] . "</td>"
 				. "</tr>";
 		}
 
@@ -56,7 +56,7 @@ class Mail
 				"EVENT_NAME" => "NEW_ITEMS_IN_YML",
 				"LID" => "s1",
 				"C_FIELDS" => [
-//					"EMAIL" => "konshin@profi-studio.ru",
+					"EMAIL" => "konshin@profi-studio.ru",
 					"NEW_ITEMS_LIST" => $htmlString,
 				]
 			]);

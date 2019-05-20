@@ -125,7 +125,7 @@ foreach ($addArray as $key => $item) {
 				$arOfferProps = [
 					// Привязка к родительскому товару
 					$SKUPropertyId => $productId,
-					'SIZE' => $valueIdPairsArray[$offer['ATTRIBUTES']['Размер']],
+					'SIZE' => trim($valueIdPairsArray[$offer['ATTRIBUTES']['Размер']]),
 					'P_GSSPORT_EXTERNAL_OFFER_ID' => $offer['OFFER_ID']
 				];
 
