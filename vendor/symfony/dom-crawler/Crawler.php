@@ -59,7 +59,7 @@ class Crawler implements \Countable, \IteratorAggregate
      * @param string $uri      The current URI
      * @param string $baseHref The base href value
      */
-    public function __construct($node = null, $uri = null, $baseHref = null)
+    public function __construct($node = null, string $uri = null, string $baseHref = null)
     {
         $this->uri = $uri;
         $this->baseHref = $baseHref ?: $uri;
@@ -501,14 +501,29 @@ class Crawler implements \Countable, \IteratorAggregate
     /**
      * Returns the children nodes of the current selection.
      *
+     * @param string|null $selector An optional CSS selector to filter children
+     *
      * @return self
      *
      * @throws \InvalidArgumentException When current node is empty
+     * @throws \RuntimeException         If the CssSelector Component is not available and $selector is provided
      */
-    public function children()
+    public function children(/* string $selector = null */)
     {
+        if (\func_num_args() < 1 && __CLASS__ !== \get_class($this) && __CLASS__ !== (new \ReflectionMethod($this, __FUNCTION__))->getDeclaringClass()->getName() && !$this instanceof \PHPUnit\Framework\MockObject\MockObject && !$this instanceof \Prophecy\Prophecy\ProphecySubjectInterface) {
+            @trigger_error(sprintf('The "%s()" method will have a new "string $selector = null" argument in version 5.0, not defining it is deprecated since Symfony 4.2.', __METHOD__), E_USER_DEPRECATED);
+        }
+        $selector = 0 < \func_num_args() ? func_get_arg(0) : null;
+
         if (!$this->nodes) {
             throw new \InvalidArgumentException('The current node list is empty.');
+        }
+
+        if (null !== $selector) {
+            $converter = $this->createCssSelectorConverter();
+            $xpath = $converter->toXPath($selector, 'child::');
+
+            return $this->filterRelativeXPath($xpath);
         }
 
         $node = $this->getNode(0)->firstChild;
@@ -691,11 +706,7 @@ class Crawler implements \Countable, \IteratorAggregate
      */
     public function filter($selector)
     {
-        if (!class_exists(CssSelectorConverter::class)) {
-            throw new \RuntimeException('To filter with a CSS selector, install the CssSelector component ("composer require symfony/css-selector"). Or use filterXpath instead.');
-        }
-
-        $converter = new CssSelectorConverter($this->isHtml);
+        $converter = $this->createCssSelectorConverter();
 
         // The CssSelector already prefixes the selector with descendant-or-self::
         return $this->filterRelativeXPath($converter->toXPath($selector));
@@ -710,10 +721,9 @@ class Crawler implements \Countable, \IteratorAggregate
      */
     public function selectLink($value)
     {
-        $xpath = sprintf('descendant-or-self::a[contains(concat(\' \', normalize-space(string(.)), \' \'), %s) ', static::xpathLiteral(' '.$value.' ')).
-                            sprintf('or ./img[contains(concat(\' \', normalize-space(string(@alt)), \' \'), %s)]]', static::xpathLiteral(' '.$value.' '));
-
-        return $this->filterRelativeXPath($xpath);
+        return $this->filterRelativeXPath(
+            sprintf('descendant-or-self::a[contains(concat(\' \', normalize-space(string(.)), \' \'), %1$s) or ./img[contains(concat(\' \', normalize-space(string(@alt)), \' \'), %1$s)]]', static::xpathLiteral(' '.$value.' '))
+        );
     }
 
     /**
@@ -739,12 +749,9 @@ class Crawler implements \Countable, \IteratorAggregate
      */
     public function selectButton($value)
     {
-        $translate = 'translate(@type, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")';
-        $xpath = sprintf('descendant-or-self::input[((contains(%s, "submit") or contains(%1$s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %s)) ', $translate, static::xpathLiteral(' '.$value.' ')).
-                         sprintf('or (contains(%s, "image") and contains(concat(\' \', normalize-space(string(@alt)), \' \'), %s)) or @id=%s or @name=%s] ', $translate, static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value)).
-                         sprintf('| descendant-or-self::button[contains(concat(\' \', normalize-space(string(.)), \' \'), %s) or @id=%s or @name=%s]', static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value), static::xpathLiteral($value));
-
-        return $this->filterRelativeXPath($xpath);
+        return $this->filterRelativeXPath(
+            sprintf('descendant-or-self::input[((contains(%1$s, "submit") or contains(%1$s, "button")) and contains(concat(\' \', normalize-space(string(@value)), \' \'), %2$s)) or (contains(%1$s, "image") and contains(concat(\' \', normalize-space(string(@alt)), \' \'), %2$s)) or @id=%3$s or @name=%3$s] | descendant-or-self::button[contains(concat(\' \', normalize-space(string(.)), \' \'), %2$s) or @id=%3$s or @name=%3$s]', 'translate(@type, "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyz")', static::xpathLiteral(' '.$value.' '), static::xpathLiteral($value))
+        );
     }
 
     /**
@@ -958,12 +965,8 @@ class Crawler implements \Countable, \IteratorAggregate
      *
      * The returned XPath will match elements matching the XPath inside the current crawler
      * when running in the context of a node of the crawler.
-     *
-     * @param string $xpath
-     *
-     * @return string
      */
-    private function relativize($xpath)
+    private function relativize(string $xpath): string
     {
         $expressions = [];
 
@@ -1085,8 +1088,9 @@ class Crawler implements \Countable, \IteratorAggregate
     {
         $nodes = [];
 
+        $currentNode = $this->getNode(0);
         do {
-            if ($node !== $this->getNode(0) && 1 === $node->nodeType) {
+            if ($node !== $currentNode && XML_ELEMENT_NODE === $node->nodeType) {
                 $nodes[] = $node;
             }
         } while ($node = $node->$siblingDir);
@@ -1095,14 +1099,9 @@ class Crawler implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param \DOMDocument $document
-     * @param array        $prefixes
-     *
-     * @return \DOMXPath
-     *
      * @throws \InvalidArgumentException
      */
-    private function createDOMXPath(\DOMDocument $document, array $prefixes = [])
+    private function createDOMXPath(\DOMDocument $document, array $prefixes = []): \DOMXPath
     {
         $domxpath = new \DOMXPath($document);
 
@@ -1117,14 +1116,9 @@ class Crawler implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param \DOMXPath $domxpath
-     * @param string    $prefix
-     *
-     * @return string
-     *
      * @throws \InvalidArgumentException
      */
-    private function discoverNamespace(\DOMXPath $domxpath, $prefix)
+    private function discoverNamespace(\DOMXPath $domxpath, string $prefix): ?string
     {
         if (isset($this->namespaces[$prefix])) {
             return $this->namespaces[$prefix];
@@ -1136,14 +1130,11 @@ class Crawler implements \Countable, \IteratorAggregate
         if ($node = $namespaces->item(0)) {
             return $node->nodeValue;
         }
+
+        return null;
     }
 
-    /**
-     * @param string $xpath
-     *
-     * @return array
-     */
-    private function findNamespacePrefixes($xpath)
+    private function findNamespacePrefixes(string $xpath): array
     {
         if (preg_match_all('/(?P<prefix>[a-z_][a-z_0-9\-\.]*+):[^"\/:]/i', $xpath, $matches)) {
             return array_unique($matches['prefix']);
@@ -1167,5 +1158,17 @@ class Crawler implements \Countable, \IteratorAggregate
         $crawler->namespaces = $this->namespaces;
 
         return $crawler;
+    }
+
+    /**
+     * @throws \RuntimeException If the CssSelector Component is not available
+     */
+    private function createCssSelectorConverter(): CssSelectorConverter
+    {
+        if (!\class_exists(CssSelectorConverter::class)) {
+            throw new \LogicException('To filter with a CSS selector, install the CssSelector component ("composer require symfony/css-selector"). Or use filterXpath instead.');
+        }
+
+        return new CssSelectorConverter($this->isHtml);
     }
 }

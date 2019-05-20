@@ -435,13 +435,13 @@ if ($differenceAddCount > 0) {
 	echo PHP_EOL;
 	echo "Сохраняем новые товары" . PHP_EOL;
 	echo PHP_EOL;
-//	require(__DIR__ . "/add.php");
+	require(__DIR__ . "/add.php");
 }
 
 // Отправляем уведомление о новых товарах
 $newItemsLength = count($newItems);
 if (is_array($newItems) && $newItemsLength > 0) {
-	$result = \Parser\Mail::sendNewItems($newItems);
+	$result = Parser\Mail::sendNewItems($newItems);
 }
 
 if ($result && $result->isSuccess()) {
