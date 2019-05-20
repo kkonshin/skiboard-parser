@@ -142,7 +142,7 @@ class Crawler implements \Countable, \IteratorAggregate
             return;
         }
 
-		$charset = null;
+        $charset = null;
         if (false !== $pos = stripos($type, 'charset=')) {
             $charset = substr($type, $pos + 8);
             if (false !== $pos = strpos($charset, ';')) {
@@ -150,7 +150,7 @@ class Crawler implements \Countable, \IteratorAggregate
             }
         }
 
-		// http://www.w3.org/TR/encoding/#encodings
+        // http://www.w3.org/TR/encoding/#encodings
         // http://www.w3.org/TR/REC-xml/#NT-EncName
         if (null === $charset &&
             preg_match('/\<meta[^\>]+charset *= *["\']?([a-zA-Z\-0-9_:.]+)/i', $content, $matches)) {
@@ -162,7 +162,7 @@ class Crawler implements \Countable, \IteratorAggregate
         }
 
         if ('x' === $xmlMatches[1]) {
-			$this->addXmlContent($content, $charset);
+            $this->addXmlContent($content, $charset);
         } else {
             $this->addHtmlContent($content, $charset);
         }
@@ -250,13 +250,10 @@ class Crawler implements \Countable, \IteratorAggregate
         $disableEntities = libxml_disable_entity_loader(true);
 
         $dom = new \DOMDocument('1.0', $charset);
-
         $dom->validateOnParse = true;
 
         if ('' !== trim($content)) {
-//            $dom->loadXML($content, $options);
-            $dom->loadXML($content, LIBXML_PARSEHUGE);
-//			file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/test/gssport-parser-new/logs/DOMDocument--XML.log", print_r($dom->saveXML(), true));
+            @$dom->loadXML($content, $options);
         }
 
         libxml_use_internal_errors($internalErrors);
@@ -274,8 +271,6 @@ class Crawler implements \Countable, \IteratorAggregate
      */
     public function addDocument(\DOMDocument $dom)
     {
-    	file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/test/gssport-parser-new/logs/DOMDocument--element.log", print_r($dom->documentElement, true));
-    	echo $dom->validate();
         if ($dom->documentElement) {
             $this->addNode($dom->documentElement);
         }
