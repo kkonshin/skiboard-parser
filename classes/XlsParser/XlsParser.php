@@ -89,7 +89,7 @@ class XlsParser
         foreach ($parserResult as $key => $value){
             $ta[$key][] = str_pad($value[2], 11, "0", STR_PAD_LEFT); // Код поставщика
             $ta[$key][] = $value[5]; // Полное наименование
-            $ta[$key][] = $value[14]; // Остаток
+            $ta[$key][] = (stripos(trim(mb_strtolower(strval($value[14]))), "более") === false) ? $value[14] : 5; // Остаток
             $ta[$key][] = $value[15]; // Процент скидки
         }
         return $ta;

@@ -178,7 +178,6 @@ $restoreQuantityItemsCount = count($restoreQuantityItems);
 //file_put_contents(__DIR__ . "/logs/console__differenceDisableCount.log", print_r($differenceDisableCount, true));
 //file_put_contents(__DIR__ . "/logs/console__restoreQuantityItems.log", print_r($restoreQuantityItems, true));
 //file_put_contents(__DIR__ . "/logs/console__notAvailable.log", print_r($notAvailable, true));
-//exit();
 // Массив торговых предложений временного раздела
 $catalogSkus = $items->getList()
     ->getItemsIds()
@@ -275,10 +274,11 @@ if ($restoreQuantityItemsCount > 0) {
     }
 
 //file_put_contents(__DIR__ . "/logs/console__restoreQuantitySkusList.log", print_r($restoreQuantitySkusList, true));
+
     foreach ($restoreQuantitySkusList as $itemKey => $itemValue) {
-        if ($itemValue["QUANTITY"] < 5 && $itemValue["XML_QUANTITY"] > 0) {
+        if ($itemValue["XML_QUANTITY"] > 0) {
             CCatalogProduct::Update($itemKey, ["QUANTITY" => $itemValue["XML_QUANTITY"]]);
-            echo "Количество ТП {$itemKey} - {$itemValue["NAME"]} восстановлено до {$itemValue["XML_QUANTITY"]} единиц" . PHP_EOL;
+            echo "Доступное количество ТП {$itemKey} - {$itemValue["NAME"]} обновлено до {$itemValue["XML_QUANTITY"]} шт." . PHP_EOL;
         }
     }
 }
