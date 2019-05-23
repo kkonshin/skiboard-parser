@@ -28,6 +28,10 @@ class ComposerStaticInite2ed05a03474265efb2f4c9cd67c4c04
             'Psr\\Http\\Message\\' => 17,
             'Parser\\' => 7,
         ),
+        'L' => 
+        array (
+            'League\\Csv\\' => 11,
+        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
@@ -60,6 +64,10 @@ class ComposerStaticInite2ed05a03474265efb2f4c9cd67c4c04
         'Parser\\' => 
         array (
             0 => __DIR__ . '/../..' . '/classes',
+        ),
+        'League\\Csv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/csv/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (

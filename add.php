@@ -170,6 +170,8 @@ foreach ($addArray as $key => $item) {
 
 			foreach ($item as $k => $offer) {
 
+			    // TODO проверить
+
 				// Если ТП с таким ключом уже существует в разделе - не записываем
 				if (in_array($offer["OFFER_ID"], $externalIdsArray)) {
 					continue;
@@ -177,18 +179,6 @@ foreach ($addArray as $key => $item) {
 				// FIXME массив существующих ТП выбирается в console.php. Достаточно ли однократной выборки?
 
 				$obElement = new CIBlockElement();
-
-				// Цена торгового предложения в зависимости от сезона
-				// TODO при парсинге уже реализован механизм SEASON_PRICE, сравнить
-
-				if (in_array((int)$offer["CATEGORY_ID"], SUMMER)) {
-					$offerPrice = $offer["PRICE"] * 1.5;
-				}
-
-				if (in_array((int)$offer["CATEGORY_ID"], WINTER)) {
-					$offerPrice = $offer["PRICE"] * 1.6;
-				}
-
 				$arOfferProps = [
 					// Привязка к родительскому товару
 					$SKUPropertyId => $productId,
@@ -224,7 +214,7 @@ foreach ($addArray as $key => $item) {
 					}
 
 					// и установим цену
-					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offerPrice, "RUB")) {
+					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offer["SEASON_PRICE"], "RUB")) {
 						throw new Exception("Ошибка установки цены торгового предложения \"{$offerId}\"");
 					}
 

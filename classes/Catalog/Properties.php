@@ -20,7 +20,6 @@ class Properties
 		);
 
 		if ($res = $catalogIbPropsDb->GetNext()) {
-			echo PHP_EOL;
 			echo "Свойство {$propertyParams["NAME"]} - {$propertyParams["CODE"]} уже существует";
 			echo PHP_EOL;
 		} else {

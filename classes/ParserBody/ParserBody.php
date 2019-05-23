@@ -30,16 +30,21 @@ class ParserBody
 
 		try {
 			// Все параметры всех офферов
-			$allItems = $offers->each(function (Crawler $node, $i) {
+			$allItems = $offers->each(function (Crawler $node) {
 				return $node->children();
 			});
 
 			// ID родительского товара
-			$groupIds = $offers->each(function (Crawler $node, $i) {
+			$groupIds = $offers->each(function (Crawler $node) {
 				return $node->attr('group_id');
 			});
 
-			$offerIds = $offers->each(function (Crawler $node, $i) {
+			// Доступность
+            $available = $offers->each(function (Crawler $node){
+               return $node->attr('available');
+            });
+
+			$offerIds = $offers->each(function (Crawler $node) {
 				return $node->attr('id');
 			});
 
@@ -52,13 +57,17 @@ class ParserBody
 
 					$ta[$key]["OFFER_ID"] = $offerIds[$key];
 
+					$ta[$key]["AVAILABLE"] = $available[$key];
+
 					if ($v->nodeName === 'name') {
 						$ta[$key]['NAME'] = $v->nodeValue;
 					}
 					if ($v->nodeName === 'price') {
 						$ta[$key]['PRICE'] = $v->nodeValue;
 					}
-
+                    if ($v->nodeName === 'vendorCode'){
+					    $ta[$key]['VENDOR_CODE'] = $v->nodeValue;
+                    }
 					// Исключаем категории
 					if ($v->nodeName === 'categoryId' && !in_array(trim((string)$v->nodeValue),
 							[
@@ -75,9 +84,11 @@ class ParserBody
 						)
 					) {
 						$ta[$key]['CATEGORY_ID'] = $v->nodeValue;
-
 					}
 
+					// TODO применять сезонную надбавку к цене со скидкой
+                    // TODO вынести в отдельный класс или метод
+                    /*
 					if (in_array((int)$ta[$key]['CATEGORY_ID'], SUMMER)) {
 						$ta[$key]["SEASON_PRICE"] = round($ta[$key]["PRICE"] * 1.5);
 					}
@@ -86,6 +97,14 @@ class ParserBody
 						$ta[$key]["SEASON_PRICE"] = round($ta[$key]["PRICE"] * 1.6);
 					}
 
+					if (in_array((int)$ta[$key]['CATEGORY_ID'], SUMMER)) {
+						$ta[$key]["SEASON_PRICE"] = round($ta[$key]["DISCOUNT_PRICE"] * 1.5);
+					}
+
+					if (in_array((int)$ta[$key]['CATEGORY_ID'], WINTER)) {
+						$ta[$key]["SEASON_PRICE"] = round($ta[$key]["DISCOUNT_PRICE"] * 1.6);
+					}
+                    */
 
 					if ($v->nodeName === 'picture') {
 						$ta[$key]['PICTURES'][] = $v->nodeValue;
