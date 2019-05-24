@@ -78,7 +78,7 @@ class XlsParser
             if (!is_file(self::XLS_FILE_PATH)) {
                 return;
             }
-            exec('cd ~/www/test/skiboard-parser-new/save; xls2csv sklad.xls > sklad.csv');
+            exec('cd ~/www/local/skiboard-parser-new/save; xls2csv sklad.xls > sklad.csv');
         } catch (\Exception $exception) {
             echo $exception->getMessage();
         }

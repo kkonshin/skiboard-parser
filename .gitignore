@@ -1,3 +1,4 @@
 vendor/
 logs/
+save/
 composer-setup.php
