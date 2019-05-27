@@ -1,2 +1,5 @@
 vendor/
 logs/
+save/
+agents.php
+composer-setup.php
