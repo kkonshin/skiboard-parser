@@ -30,6 +30,7 @@ foreach ($catalogSkus as $key => $sku) {
 }
 
 foreach ($addArray as $key => $item) {
+
 	try {
 
 		$offerPrice = 0;
@@ -94,17 +95,14 @@ foreach ($addArray as $key => $item) {
 			}
 		}
 
-		// Для отладки
-//		if ($itemTypeId > 0) {
-//			echo "ID типа товара: " . $itemTypeId . PHP_EOL;
-//		}
-//		if ($itemPurposeId > 0) {
-//			echo "ID назначения товара: " . $itemPurposeId . PHP_EOL;
-//		}
-
 		// Лог ошибок изображений
 		if (!empty($pictureErrorsArray)) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
+		}
+
+		if(empty($item[0]["SEASON_PRICE"]) || $item[0]["SEASON_PRICE"] == 0){
+			echo "Для торгового предложения {$item[0]["NAME"]} отсутствует сезонная цена. Товар не будет сохранен";
+			continue;
 		}
 
 		$itemFieldsArray = [

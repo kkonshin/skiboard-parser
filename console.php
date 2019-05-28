@@ -215,9 +215,7 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
                 $addArray[$key] = $item;
             }
         }
-		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
     }
-    exit();
 } else {
     echo PHP_EOL;
     echo "Выгрузка и каталог совпадают, обновление не требуется" . PHP_EOL;
