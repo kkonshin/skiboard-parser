@@ -99,6 +99,10 @@ foreach ($resultArray as $resultKey => $resultValue) {
                 } elseif (in_array((int)$resultArray[$resultKey][$offerKey]['CATEGORY_ID'], WINTER)) {
                     $resultArray[$resultKey][$offerKey]["SEASON_PRICE"] = round($resultArray[$resultKey][$offerKey]["DISCOUNT_PRICE"] * 1.6, 2);
                 }
+
+                if($resultArray[$resultKey][$offerKey]["SEASON_PRICE"] == 0){
+                    echo $resultArray[$resultKey][$offerKey]["DISCOUNT_PRICE"] . $resultArray[$resultKey][$offerKey]["NAME"];
+                }
                 if ($resultArray[$resultKey][$offerKey]["DISCOUNT_PERCENT"] == false) {
                     echo "Отсутствует скидка на товар: {$resultArray[$resultKey][$offerKey]["NAME"]}" . PHP_EOL;
                     echo "Его сезонная цена составит {$resultArray[$resultKey][$offerKey]["SEASON_PRICE"]} руб." . PHP_EOL;
@@ -107,6 +111,7 @@ foreach ($resultArray as $resultKey => $resultValue) {
         }
     }
 }
+
 //file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
 // Создаем свойство для хранения внешнего ключа товара, если оно не существует
 Parser\Catalog\Properties::createExternalItemIdProperty(
@@ -210,8 +215,9 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
                 $addArray[$key] = $item;
             }
         }
-//		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
+		file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
     }
+    exit();
 } else {
     echo PHP_EOL;
     echo "Выгрузка и каталог совпадают, обновление не требуется" . PHP_EOL;
