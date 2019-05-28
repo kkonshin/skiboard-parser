@@ -252,8 +252,6 @@ class Crawler implements \Countable, \IteratorAggregate
         $dom = new \DOMDocument('1.0', $charset);
         $dom->validateOnParse = true;
 
-        $options = $options | LIBXML_PARSEHUGE;
-
         if ('' !== trim($content)) {
             @$dom->loadXML($content, $options);
         }

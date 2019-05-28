@@ -343,8 +343,8 @@
     },
     {
         "name": "symfony/css-selector",
-        "version": "v3.4.27",
-        "version_normalized": "3.4.27.0",
+        "version": "v3.4.28",
+        "version_normalized": "3.4.28.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/css-selector.git",
@@ -398,8 +398,8 @@
     },
     {
         "name": "symfony/dom-crawler",
-        "version": "v3.4.27",
-        "version_normalized": "3.4.27.0",
+        "version": "v3.4.28",
+        "version_normalized": "3.4.28.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/dom-crawler.git",
