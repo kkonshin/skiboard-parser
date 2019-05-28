@@ -223,6 +223,8 @@ if ($differenceDisableCount > 0 || $differenceAddCount > 0) {
     return;
 }
 
+file_put_contents(__DIR__ . "/logs/addArray.log", print_r($addArray, true));
+
 if ($differenceDisableCount > 0) {
 
     $filter = [
@@ -533,7 +535,7 @@ if ($result && $result->isSuccess()) {
 }
 
 // Обновляем цены всех торговых предложений
-require_once(__DIR__ . "/update_prices.php");
+//require_once(__DIR__ . "/update_prices.php");
 // Сохраняем текущий XML
 echo Storage::storeCurrentXml($source);
 // Завершаем скрипт и выводим статистику
