@@ -22,6 +22,7 @@ define('CATALOG_IBLOCK_ID', 12);
 define('SKU_IBLOCK_ID', 13);
 define('HIGHLOAD_ID', 2);
 define('TEMP_CATALOG_SECTION', 386); // ID раздела для временного сохранения товаров
+//define('TEMP_CATALOG_SECTION', 403); // ID раздела для временного сохранения товаров
 define('SIZE_PROPERTY_ID', 120); // ID свойства "Размер"
 define('PROPERTY_SKIBOARD_ITEM_TYPE', 214); // ID свойства "Тип"
 define('PROPERTY_SKIBOARD_ITEM_PURPOSE', 215); // ID свойства "Назначение"

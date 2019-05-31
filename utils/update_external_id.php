@@ -44,7 +44,16 @@ $codeOffer = "P_GSSPORT_EXTERNAL_OFFER_ID";
 Parser\Catalog\Properties::createExternalItemIdProperty(
 	[
 		"NAME" => "Идентификатор товара в каталоге {$site}",
-		"CODE" => $codeItem
+		"CODE" => $codeItem,
+        "IBLOCK_ID" => CATALOG_IBLOCK_ID
+	]
+);
+
+Parser\Catalog\Properties::createExternalItemIdProperty(
+	[
+		"NAME" => "Идентификатор торгового предложения в каталоге gssport.ru",
+		"CODE" => "P_GSSPORT_EXTERNAL_OFFER_ID",
+		"IBLOCK_ID" => SKU_IBLOCK_ID
 	]
 );
 
@@ -63,11 +72,10 @@ $skusList = $items->getList()
 	->skusListFlatten;
 
 ExternalOfferId::updateExternalItemId($itemsList, $resultArray, $codeItem, P_TRANSLIT_PARAMS);
-
-//ExternalOfferId::updateExternalOfferId($skusList, $resultArray, $codeOffer);
+ExternalOfferId::updateExternalOfferId($skusList, $resultArray, $codeOffer);
 
 //file_put_contents(__DIR__ . "/../logs/update_external__resultArray--392.log", print_r($resultArray, true));
-file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
+//file_put_contents(__DIR__ . "/../logs/update_external__itemsList--392.log", print_r($itemsList, true));
 //file_put_contents(__DIR__ . "/../logs/update_external__skusList--392.log", print_r($skusList, true));
 
 $items->reset();

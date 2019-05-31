@@ -1,7 +1,7 @@
 {
     "require": {
-        "symfony/dom-crawler": "^4.0",
-        "symfony/css-selector": "^4.0",
+        "symfony/dom-crawler": "^3.0",
+        "symfony/css-selector": "^3.0",
         "guzzlehttp/guzzle": "~6.0",
         "psr/log": "^1.1",
         "voku/simple_html_dom": "^4.2",

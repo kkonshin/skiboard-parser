@@ -54,6 +54,8 @@ foreach ($addArray as $key => $item) {
 			file_put_contents(__DIR__ . "/logs/picture_errors.log", print_r($pictureErrorsArray, true));
 		}
 
+
+		// TODO формирование имени, для товаров с цветом, цвет должен добавляться к имени родительского товара
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
 			"IBLOCK_ID" => $IBlockCatalogId,

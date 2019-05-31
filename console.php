@@ -69,7 +69,9 @@ $crawler = new Symfony\Component\DomCrawler\Crawler($xml);
 // Парсим новый каталог
 $resultArray = ParserBody::parse($crawler);
 
-//file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+file_put_contents(__DIR__ . "/logs/resultArray.log", print_r($resultArray, true));
+exit();
+
 // Создаем свойство для хранения внешнего ключа товара, если оно не существует
 Parser\Catalog\Properties::createExternalItemIdProperty(
 	[

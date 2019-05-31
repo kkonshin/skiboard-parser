@@ -42,8 +42,10 @@ class ParserBody
 			// Получаем массив свойств для каждого оффера
 
 			foreach ($allItems as $key => $item) {
+
 				foreach ($item as $k => $v) {
 
+					// Если оффер привязан к группе, то в ID родительского товара пишем группу, иначе сам ID оффера
 					self::$ta[$key]["PARENT_ITEM_ID"] = (!empty($groupIds[$key])) ? $groupIds[$key] : $offerIds[$key];
 					self::$ta[$key]["OFFER_ID"] = trim($offerIds[$key]);
 
@@ -81,7 +83,7 @@ class ParserBody
 					if ($v->nodeName === 'description') {
 						self::$ta[$key]['DESCRIPTION'] = trim($v->nodeValue);
 					}
-					self::$ta[$key]['ATTRIBUTES'] = trim($item->filter('param')->extract(['name', '_text']));
+					self::$ta[$key]['ATTRIBUTES'] = $item->filter('param')->extract(['name', '_text']);
 				}
 			}
 
@@ -117,39 +119,48 @@ class ParserBody
 				}
 			}
 
+			// Если у ТП есть непустой атрибут "цвет"
 			foreach (self::$groupedItemsArray as $key => $value) {
-				if (count($value) > 1) {
-					foreach ($value as $k => $offer) {
-						if (isset($offer['ATTRIBUTES']['Цвет']) && strlen($offer['ATTRIBUTES']['Цвет']) > 0) {
-							if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['PARENT_ITEM_ID']])) {
-								self::$colorsArray[$value[0]['PARENT_ITEM_ID']][] = $offer['ATTRIBUTES']['Цвет'];
-							}
+				foreach ($value as $k => $offer) {
+					if (isset($offer['ATTRIBUTES']['Цвет']) && strlen($offer['ATTRIBUTES']['Цвет']) > 0) {
+						// Записываем в отдельный массив пары "ID родительского товара" => "Цвета торговых предложений"
+						if (!in_array($offer['ATTRIBUTES']['Цвет'], self::$colorsArray[$value[0]['PARENT_ITEM_ID']])) {
+							self::$colorsArray[$value[0]['PARENT_ITEM_ID']][] = $offer['ATTRIBUTES']['Цвет'];
 						}
 					}
 				}
 			}
 
-			foreach (self::$colorsArray as $name => $colors) {
-				if (count($colors) === 1) {
-					unset (self::$colorsArray[$name]);
-				}
-			}
+//			file_put_contents(__DIR__ . "/../../logs/colorsArray--beforeUnset.log", print_r(count(self::$colorsArray), true));
 
+//			foreach (self::$colorsArray as $name => $colors) {
+//				if (count($colors) === 1) {
+//					unset (self::$colorsArray[$name]);
+//				}
+//			}
+//			file_put_contents(__DIR__ . "/../../logs/colorsArray--afterUnset.log", print_r(count(self::$colorsArray), true));
+//			exit();
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
 				foreach ($itemValue as $offerKey => $offerValue) {
+					// Для каждого родительского товара из массива ТОВАР=>ЦВЕТА
 					foreach (self::$colorsArray[$offerValue['PARENT_ITEM_ID']] as $colorKey => $colorValue) {
+
 						if (strtolower(trim($colorValue)) === strtolower(trim($offerValue['ATTRIBUTES']['Цвет']))) {
 							self::$groupedItemsArray[$itemKey]['PARTS'][$colorValue][] = $offerValue;
 							unset(self::$groupedItemsArray[$itemKey][$offerKey]);
 						}
+
+						echo "Длина массива частей " . count(self::$groupedItemsArray[$itemKey]['PARTS']) . PHP_EOL;
 					}
 				}
 			}
+			exit();
+//			file_put_contents(__DIR__ . "/ParserBody__groupedItemsArray--PARTS.log", print_r(self::$groupedItemsArray, true));
 
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
 				foreach ($itemValue as $offerKey => $offerValue) {
 					if ($offerKey === 'PARTS') {
-						foreach ($offerValue as $colorKey => $colorValue){
+						foreach ($offerValue as $colorKey => $colorValue) {
 							// Добавляем в название ТП цвет
 							$colorValue[0]['NAME'] = $colorValue[0]['NAME'] . ' ' . $colorValue[0]['ATTRIBUTES']['Цвет'];
 							// Создаем новый товар с ключом Родительский ID + $colorKey;
@@ -166,7 +177,6 @@ class ParserBody
 			return self::$groupedItemsArray;
 
 		} catch (\Exception $e) {
-			echo "e\n";
 			return $e->getTraceAsString();
 		}
 	}
