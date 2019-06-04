@@ -24,6 +24,8 @@ if ($res = $sectionDb->GetNext()){
 
 if ($sectionId === null){
     die("Временный раздел не найден");
+} else {
+    echo $sectionId . PHP_EOL;
 }
 
 $itemsDb = \CIBlockElement::GetList(
@@ -71,7 +73,6 @@ foreach ($sectionSkusFlatten as $key => $value) {
 	if (stripos($parentProduct["NAME"], $value["PROPERTY_TSVET_VALUE"]) === false) {
 
 	    echo "{$parentProduct["ID"]} {$parentProduct["NAME"]}" . PHP_EOL;
-        /*
 		$DB->StartTransaction();
 
 		if (!\CIBlockElement::Delete($parentProduct["ID"])) {
@@ -83,7 +84,6 @@ foreach ($sectionSkusFlatten as $key => $value) {
 				echo "Товар {$parentProduct["NAME"]} успешно удален" . PHP_EOL;
 			}
 		}
-        */
 	}
 }
 
