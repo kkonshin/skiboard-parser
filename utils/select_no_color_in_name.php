@@ -72,7 +72,7 @@ foreach ($sectionSkusFlatten as $key => $value) {
 
 	if (stripos($parentProduct["NAME"], $value["PROPERTY_TSVET_VALUE"]) === false) {
 
-	    echo "{$parentProduct["ID"]} {$parentProduct["NAME"]}" . PHP_EOL;
+//	    echo "{$parentProduct["ID"]} {$parentProduct["NAME"]}" . PHP_EOL;
 		$DB->StartTransaction();
 
 		if (!\CIBlockElement::Delete($parentProduct["ID"])) {
