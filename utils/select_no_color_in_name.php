@@ -11,24 +11,32 @@ require_once(__DIR__ . "/../vendor/autoload.php");
 
 global $DB;
 
-// Получим ID временного раздела
-
+$sectionId = null;
 $itemsIds = [];
 $sectionSkusFlatten = [];
 $sectionSkusColors = [];
 
-$resultDb = \CIBlockElement::GetList(
+$sectionDb = \CIBlockSection::GetList([], ["CODE" => "gssport-temp"], false, ["ID"]);
+
+if ($res = $sectionDb->GetNext()){
+    $sectionId = $res["ID"];
+}
+
+if ($sectionId === null){
+    die("Временный раздел не найден");
+}
+
+$itemsDb = \CIBlockElement::GetList(
 	[],
 	[
 		"IBLOCK_ID" => 12,
-//		"IBLOCK_SECTION_ID" => 386,
-		"SECTION_ID" => 386,
+		"SECTION_ID" => $sectionId,
 	],
 	false,
 	false,
 	["ID", "IBLOCK_ID", "NAME"]);
 
-while ($res = $resultDb->GetNext()) {
+while ($res = $itemsDb->GetNext()) {
 	$itemsIds[] = $res["ID"];
 }
 
@@ -62,8 +70,8 @@ foreach ($sectionSkusFlatten as $key => $value) {
 
 	if (stripos($parentProduct["NAME"], $value["PROPERTY_TSVET_VALUE"]) === false) {
 
-//	    echo "{$parentProduct["ID"]} {$parentProduct["NAME"]}" . PHP_EOL;
-
+	    echo "{$parentProduct["ID"]} {$parentProduct["NAME"]}" . PHP_EOL;
+        /*
 		$DB->StartTransaction();
 
 		if (!\CIBlockElement::Delete($parentProduct["ID"])) {
@@ -75,6 +83,7 @@ foreach ($sectionSkusFlatten as $key => $value) {
 				echo "Товар {$parentProduct["NAME"]} успешно удален" . PHP_EOL;
 			}
 		}
+        */
 	}
 }
 
