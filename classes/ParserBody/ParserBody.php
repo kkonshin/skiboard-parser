@@ -138,8 +138,7 @@ class ParserBody
 //					unset (self::$colorsArray[$name]);
 //				}
 //			}
-//			file_put_contents(__DIR__ . "/../../logs/colorsArray--afterUnset.log", print_r(count(self::$colorsArray), true));
-//			exit();
+//			file_put_contents(__DIR__ . "/../../logs/colorsArray--afterUnset.log", print_r(self::$colorsArray, true));
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
 				foreach ($itemValue as $offerKey => $offerValue) {
 					// Для каждого родительского товара из массива ТОВАР=>ЦВЕТА
@@ -149,12 +148,9 @@ class ParserBody
 							self::$groupedItemsArray[$itemKey]['PARTS'][$colorValue][] = $offerValue;
 							unset(self::$groupedItemsArray[$itemKey][$offerKey]);
 						}
-
-						echo "Длина массива частей " . count(self::$groupedItemsArray[$itemKey]['PARTS']) . PHP_EOL;
 					}
 				}
 			}
-			exit();
 //			file_put_contents(__DIR__ . "/ParserBody__groupedItemsArray--PARTS.log", print_r(self::$groupedItemsArray, true));
 
 			foreach (self::$groupedItemsArray as $itemKey => $itemValue) {
@@ -173,7 +169,7 @@ class ParserBody
 			}
 
 //			file_put_contents(__DIR__ . "/colorsArray.log", print_r(self::$colorsArray, true));
-
+//			exit();
 			return self::$groupedItemsArray;
 
 		} catch (\Exception $e) {
