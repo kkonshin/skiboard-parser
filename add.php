@@ -56,6 +56,8 @@ foreach ($addArray as $key => $item) {
 
 
 		// TODO формирование имени, для товаров с цветом, цвет должен добавляться к имени родительского товара
+
+		// FIXME - OFFER_ID не добавлять к коду товара, т.к. он меняется?
 		$itemFieldsArray = [
 			"MODIFIED_BY" => $USER->GetID(),
 			"IBLOCK_ID" => $IBlockCatalogId,
@@ -117,8 +119,8 @@ foreach ($addArray as $key => $item) {
 
 			foreach ($item as $k => $offer) {
 
-				// Если ТП с таким ключом уже существует в разделе - не записываем
-				if (in_array($offer["OFFER_ID"], $externalIdsArray)) {
+				// Если ТП с таким ключом уже существует в разделе или цена = 0 или отсутствует - не записываем
+				if (in_array($offer["OFFER_ID"], $externalIdsArray) || empty($offer["PRICE"])) {
 					continue;
 				}
 
@@ -153,7 +155,7 @@ foreach ($addArray as $key => $item) {
 						'QUANTITY' => '5',
 						"VAT_INCLUDED" => "Y"
 					]);
-					if (!$catalogProductAddResult) {
+					if ($catalogProductAddResult === false) {
 						throw new Exception("Ошибка добавление полей торгового предложения \"{$offerId}\"");
 					}
 					if ($catalogProductAddResult && !CPrice::SetBasePrice($offerId, $offer["PRICE"], "RUB")) {
